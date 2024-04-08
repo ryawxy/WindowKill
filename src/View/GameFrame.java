@@ -17,13 +17,14 @@ public class GameFrame extends JFrame {
     private static Epsilon epsilon;
     private static ShotGun shotGun;
     private Trigorath trigorath;
+    private Squarantine squarantine;
     private static   int FRAME_WIDTH = Constants.getFrameWidth();
     private static   int FRAME_HEIGHT = Constants.getFrameHeight();
 
     private Dimension SCREEN_SIZE = Constants.getFrameDimension();
     private MouseListener mouseListener;
-    int [] xPoints = {50,40,60};
-    int [] yPoints = {30,50,50};
+    int [] xPoints = {75,95,95,75};
+    int [] yPoints = {75,75,95,95};
 
 
 
@@ -38,9 +39,9 @@ public class GameFrame extends JFrame {
         shotGun.setHeight(Constants.getShotGunHeight());
         ShotGun.getShots().add(shotGun);
 
-        trigorath = new Trigorath(50,50);
-        trigorath.setxPoints(xPoints);
-        trigorath.setyPoints(yPoints);
+        squarantine = new Squarantine(80,80);
+        squarantine.setxPoints(xPoints);
+        squarantine.setyPoints(yPoints);
 
 
 
@@ -107,8 +108,13 @@ public class GameFrame extends JFrame {
             }
         }
         //paint trigorath
+//        g2D.setColor(Color.YELLOW);
+//            g2D.drawPolygon(xPoints,yPoints,3);
+
+        //paint squarantine
         g2D.setColor(Color.GREEN);
-        g2D.drawPolygon(xPoints,yPoints,3);
+        g2D.drawPolygon(xPoints,yPoints,4);
+
     }
 
     public static Epsilon getEpsilon() {
@@ -136,8 +142,8 @@ public class GameFrame extends JFrame {
     public Trigorath gettrigorath(){
         return trigorath;
     }
-//    public static JPanel getPanel(){
-//        return panel;
-//    }
-//
+
+    public Squarantine getSquarantine() {
+        return squarantine;
+    }
 }

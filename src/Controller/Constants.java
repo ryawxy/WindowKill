@@ -60,10 +60,19 @@ public class Constants {
         return 3;
     }
     public static int trigorathLongDistanceSpeed(){
-        return 2;
+        return 3;
     }
     public static int trigorathNearBySpeed(){
         return 1;
+    }
+    public static int squarantineNormalSpeed(){
+        return 3;
+    }
+    public static int squarantineAggressionSpeed(){
+        return 8;
+    }
+    public static int squarantineAcceleration(){
+        return 4;
     }
 
 }

@@ -25,7 +25,7 @@ public class GameLoop {
 
     public GameLoop(Game game) throws IOException {
         this.game = game;
-        timer = new Timer(10, new ActionListener() {
+        timer = new Timer(5, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -33,7 +33,8 @@ public class GameLoop {
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                game.getGameFrame().gettrigorath().move();
+
+                game.getGameFrame().getSquarantine().move();
                 GameFrame.getEpsilon().move();
 
                 try {

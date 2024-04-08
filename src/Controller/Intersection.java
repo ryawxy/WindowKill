@@ -14,9 +14,9 @@ public class Intersection {
 
     public Direction shotIntersectsFrame(ShotGun shotGun){
 
-        if(shotGun.getX()>=gameFrame.getFRAME_WIDTH()){
+        if(shotGun.getX()>= GameFrame.getFRAME_WIDTH()){
             return Direction.RIGHT;
-        } if(shotGun.getY() >= gameFrame.getFRAME_HEIGHT()){
+        } if(shotGun.getY() >= GameFrame.getFRAME_HEIGHT()){
             return Direction.DOWN;
         } if(shotGun.getX() <= 0){
             return Direction.LEFT;

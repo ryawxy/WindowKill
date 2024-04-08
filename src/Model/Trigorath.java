@@ -83,9 +83,7 @@ public class Trigorath extends GameObjects implements movable {
 
     @Override
     public void move() {
-        boolean checkX = true;
-        boolean checkY = true;
-        //check if trigorath gets out of frame edge
+
         epsilonXPos = epsilon.getX();
         epsilonYPos = epsilon.getY();
 
@@ -120,7 +118,6 @@ public class Trigorath extends GameObjects implements movable {
 
         this.setX(getX() + getxVelocity());
         this.setY(getY() + getyVelocity());
-
 
     }
 
