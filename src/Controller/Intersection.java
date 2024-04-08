@@ -16,17 +16,20 @@ public class Intersection {
     public Intersection(GamePanel gamePanel) throws IOException {
         this.gamePanel = gamePanel;
     }
-    public Intersection(){}
 
     public Direction shotIntersectsFrame(ShotGun shotGun){
 
         if(shotGun.getX()>= GamePanel.getFRAME_WIDTH()){
+            shotGun.setVisible(false);
             return Direction.RIGHT;
         } if(shotGun.getY() >= GamePanel.getFRAME_HEIGHT()){
+            shotGun.setVisible(false);
             return Direction.DOWN;
         } if(shotGun.getX() <= 0){
+            shotGun.setVisible(false);
             return Direction.LEFT;
         } if(shotGun.getY() <= 0){
+            shotGun.setVisible(false);
             return Direction.UP;
         }
         return null;
@@ -36,16 +39,17 @@ public class Intersection {
         // if so decrease its HP
         // if its HP reaches 0 , it dies
         for(int j = 0; j< GamePanel.getSquarantine().size(); j++) {
-            Squarantine squarantine1 = GamePanel.getSquarantine().get(j);
-            squarantine2 = new Polygon(squarantine1.getxPoints(),squarantine1.getyPoints(),4);
+            Squarantine squarantine = GamePanel.getSquarantine().get(j);
+            squarantine2 = new Polygon(squarantine.getxPoints(),squarantine.getyPoints(),3);
             for (int i = 0; i < ShotGun.getShots().size(); i++) {
                 ShotGun shot = ShotGun.getShots().get(i);
-                if (squarantine2.intersects(shot.getX(), shot.getY(), shot.getWidth(), shot.getHeight())) {
-                    ShotGun.getShots().remove(shot);
-                    squarantine1.setHP(squarantine1.getHP() - 5);
-                    if (squarantine1.getHP() <= 0) {
-                        GamePanel.getSquarantine().remove(squarantine1);
+                if(shot.isVisible()){
+                    if(squarantine2.intersects(shot.getX(), shot.getY(), shot.getWidth(), shot.getHeight())) {
+
+                        shot.setVisible(false);
+                        squarantine.decreaseHP();
                     }
+
                 }
             }
         }
@@ -60,9 +64,12 @@ public class Intersection {
             trigorath2 = new Polygon(trigorath.getxPoints(),trigorath.getyPoints(),3);
             for (int i = 0; i < ShotGun.getShots().size(); i++) {
                 ShotGun shot = ShotGun.getShots().get(i);
-                if(trigorath2.intersects(shot.getX(), shot.getY(), shot.getWidth(), shot.getHeight())){
-                    ShotGun.getShots().remove(shot);
+                if(shot.isVisible()){
+                if(trigorath2.intersects(shot.getX(), shot.getY(), shot.getWidth(), shot.getHeight())) {
+
+                    shot.setVisible(false);
                     trigorath.decreaseHP();
+                }
 
                 }
             }
@@ -108,7 +115,7 @@ public class Intersection {
 
                         epsilon.increaseXP();
                         trigorath.getCollectibles().remove(collectible);
-                        System.out.println(epsilon.getXP());
+
                     }
 
                 }

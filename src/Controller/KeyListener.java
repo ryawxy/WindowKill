@@ -20,7 +20,6 @@ public class KeyListener {
     private boolean leftPressed;
     private boolean rightPressed;
     private static boolean pauseGame;
-
     private final int absVelocity = Constants.epsilonAbsVelocity();
     private int mouseXPose;
     private int mouseYPose;

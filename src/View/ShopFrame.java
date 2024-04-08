@@ -69,6 +69,7 @@ public class ShopFrame extends JFrame {
                             JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
                     if(purchase == 0){
                         empowerItem = true;
+                        GamePanel.getEpsilon().setXP(GamePanel.getEpsilon().getXP()-75);
                     }
                 }
             }

@@ -12,6 +12,7 @@ public class ShotGun extends GameObjects implements movable{
     private static final ArrayList<ShotGun> shot = new ArrayList<>();
     private int expansion;
     // time interval that each shot expands the frame
+    private boolean visible = true;
 
 
     public ShotGun(int x, int y) {
@@ -86,5 +87,15 @@ public class ShotGun extends GameObjects implements movable{
 
     public void setExpansion(int expansion) {
         this.expansion = expansion;
+    }
+
+    @Override
+    public boolean isVisible() {
+        return visible;
+    }
+
+    @Override
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 }

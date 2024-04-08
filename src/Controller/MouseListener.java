@@ -21,6 +21,7 @@ public class MouseListener extends MouseInputAdapter {
     private final double speed = Constants.getShotGunSpeed();
     private static int timer;
     //if empower item is activated, wait a bit for each shot to fire
+    private static boolean shootinEmpowerMode;
     public MouseListener(GamePanel gamePanel){
         this.gamePanel = gamePanel;
         shotGun = GamePanel.getShotGun();
@@ -47,11 +48,12 @@ public class MouseListener extends MouseInputAdapter {
 
         }else{
 
+            shootinEmpowerMode = true;
             for(int i=0;i<3;i++){
                 ShotGun.addShot((int) fireX, (int) fireY, Constants.getShotGunHeight(), Constants.getShotGunWidth());
             }
 
-            for(int j=1;j<4;j++){
+            for(int j=ShotGun.getShots().size()-3;j<=ShotGun.getShots().size()-1;j++){
 
 
                 ShotGun.getShots().get(j).setxVelocity((int) (speed * Math.cos(angle)));
@@ -69,5 +71,13 @@ public class MouseListener extends MouseInputAdapter {
 
     public static void setTimer(int timer) {
         MouseListener.timer = timer;
+    }
+
+    public static boolean isShootinEmpowerMode() {
+        return shootinEmpowerMode;
+    }
+
+    public static void setShootinEmpowerMode(boolean shootinEmpowerMode) {
+        MouseListener.shootinEmpowerMode = shootinEmpowerMode;
     }
 }

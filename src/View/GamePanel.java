@@ -94,24 +94,26 @@ public class GamePanel extends JPanel {
 //        this.setResizable(false);
 
     }
-    public void paintComponent(Graphics g){
+    public void paintComponent(Graphics g) {
         Graphics2D g2D = (Graphics2D) g;
         super.paintComponent(g2D);
 
         //paint epsilon
         g2D.setColor(Color.RED);
-        g2D.drawOval(epsilon.getX(),epsilon.getY(),epsilon.getRadius(),epsilon.getRadius());
+        g2D.drawOval(epsilon.getX(), epsilon.getY(), epsilon.getRadius(), epsilon.getRadius());
 
 
         //paint epsilon's shotGun
         for (ShotGun shotGun1 : ShotGun.getShots()) {
-            if(shotGun1.isOnFire()) {
-                g2D.setColor(Color.WHITE);
+            if (shotGun1.isOnFire()) {
+                if (shotGun1.isVisible()){
+                    g2D.setColor(Color.WHITE);
 
                 g2D.fillRect(shotGun1.getX(), shotGun1.getY(),
                         shotGun1.getWidth(), shotGun1.getHeight());
             }
         }
+    }
         //paint trigorath
 
         // if trigorath is alive paint it

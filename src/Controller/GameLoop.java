@@ -4,6 +4,7 @@ import Model.Game;
 import Model.ShotGun;
 import Model.Trigorath;
 import View.GamePanel;
+import View.ShopFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -20,7 +21,12 @@ public class GameLoop {
     private Direction intersectionSide;
     private int countTime;
     // amount of time that has passed since the game has started
-
+    private int index=ShotGun.getShots().size()-3;
+    //balls shooting one by on in empower mode
+    private int time;
+    //amount of time since shooting the next fire
+    private int empowerTime;
+    //amount of time that has passed since empower item is activated
 
 
     public GameLoop(Game game) throws IOException {
@@ -28,67 +34,92 @@ public class GameLoop {
         timer = new Timer(5, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    intersection = new Intersection(game.getGameFrame());
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+                if (!KeyListener.getPauseGame()) {
+                    try {
+                        intersection = new Intersection(game.getGameFrame());
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
 
 //                for(int i=0;i<GameFrame.getSquarantine().size();i++) {
 //                    Squarantine squarantine = GameFrame.getSquarantine().get(i);
 //                    squarantine.move();
 //                }
-                for(int i = 0; i< GamePanel.getTrigoraths().size(); i++) {
+                for (int i = 0; i < GamePanel.getTrigoraths().size(); i++) {
                     Trigorath trigorath = GamePanel.getTrigoraths().get(i);
                     trigorath.move();
                 }
-                GamePanel.getEpsilon().move();
+                    GamePanel.getEpsilon().move();
 
-                try {
-                    frameSize = new FrameSize(game.getGameFrame());
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-                //shrinkage starts after 10 seconds
-                if(countTime>=700) {
-                    frameSize.shrink();
-                }
+                    try {
+                        frameSize = new FrameSize(game.getGameFrame());
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    //shrinkage starts after 10 seconds
+                    if (countTime >= 700) {
+                        frameSize.shrink();
+                    }
 
-                for (ShotGun shotGun : ShotGun.getShots()) {
-                    shotGun.move();
+                    if (!ShopFrame.isEmpowerItem()) {
+                        for (ShotGun shotGun : ShotGun.getShots()) {
+                            shotGun.move();
 
-                }
-                //check if a shot intersects with frame edges
-                // if so expansion starts from that side for a second
-                for(ShotGun shotGun : ShotGun.getShots()){
-                    intersectionSide = intersection.shotIntersectsFrame(shotGun);
-                    if(intersectionSide!=null) {
-                        if (shotGun.getExpansion() < 40) {
-                            frameSize.expand(intersectionSide);
-                            shotGun.setExpansion(shotGun.getExpansion()+1);
+                        }
+                    } else {
+                        empowerTime++;
+
+                        if (MouseListener.isShootinEmpowerMode()) {
+
+                            time++;
+
+                            for (int i = 0; i <= index; i++) {
+                                ShotGun.getShots().get(i).move();
+                            }
+                            if (time >= 5) {
+                                if (index <= ShotGun.getShots().size() - 2) {
+                                    index++;
+                                    time = 0;
+                                }
+                            }
                         }
                     }
-                }
-                intersection.shotIntersectsSquarantine();
-                intersection.shotIntersectsTrigorath();
-                intersection.shotIntersectsSquarantine();
-                intersection.epsilonIntersectsCollectible();
-                intersection.epsilonIntersectsEnemy();
+                    if (empowerTime >= 500) {
+                        ShopFrame.setEmpowerItem(false);
+                        empowerTime=0;
+                    }
 
-                //if trigorath is dead show its collectibles for 10 seconds
-                for(Trigorath trigorath : GamePanel.getTrigoraths()){
-                    if(trigorath.isShowCollectibles()){
-                        trigorath.setTimer(trigorath.getTimer()+1);
-                        if(trigorath.getTimer()>300){
-                            trigorath.setShowCollectibles(false);
+                    //check if a shot intersects with frame edges
+                    // if so expansion starts from that side for a second
+                    for (ShotGun shotGun : ShotGun.getShots()) {
+                        intersectionSide = intersection.shotIntersectsFrame(shotGun);
+                        if (intersectionSide != null) {
+                            if (shotGun.getExpansion() < 20) {
+                                frameSize.expand(intersectionSide);
+                                shotGun.setExpansion(shotGun.getExpansion() + 1);
+                            }
                         }
                     }
+                    intersection.shotIntersectsSquarantine();
+                    intersection.shotIntersectsTrigorath();
+                    intersection.shotIntersectsSquarantine();
+                    intersection.epsilonIntersectsCollectible();
+                    intersection.epsilonIntersectsEnemy();
+
+                    //if trigorath is dead show its collectibles for 10 seconds
+                    for (Trigorath trigorath : GamePanel.getTrigoraths()) {
+                        if (trigorath.isShowCollectibles()) {
+                            trigorath.setTimer(trigorath.getTimer() + 1);
+                            if (trigorath.getTimer() > 300) {
+                                trigorath.setShowCollectibles(false);
+                            }
+                        }
+                    }
+
+                    countTime++;
+
+                    game.getGameFrame().repaint();
                 }
-
-                countTime++;
-
-
-                game.getGameFrame().repaint();
             }
         });
         timer.start();
