@@ -1,6 +1,5 @@
 
 import myproject.MyProject;
-
 import java.io.IOException;
 
 public class Main {

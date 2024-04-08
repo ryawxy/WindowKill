@@ -30,7 +30,7 @@ public class Constants {
         return 8;
     }
     public static int epsilonAbsVelocity(){
-        return 2;
+        return 5;
     }
     public static int frameWidthForEpsilon(){
         return FRAME_WIDTH - 8;
@@ -57,7 +57,13 @@ public class Constants {
         return 1;
     }
     public static int expandAmount(){
+        return 3;
+    }
+    public static int trigorathLongDistanceSpeed(){
         return 2;
+    }
+    public static int trigorathNearBySpeed(){
+        return 1;
     }
 
 }

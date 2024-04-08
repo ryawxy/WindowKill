@@ -14,14 +14,17 @@ import java.io.IOException;
 
 public class GameFrame extends JFrame {
 
-    private static final JPanel panel = new JPanel();
     private static Epsilon epsilon;
     private static ShotGun shotGun;
-    private  int FRAME_WIDTH = Constants.getFrameWidth();
-    private  int FRAME_HEIGHT = Constants.getFrameHeight();
+    private Trigorath trigorath;
+    private static   int FRAME_WIDTH = Constants.getFrameWidth();
+    private static   int FRAME_HEIGHT = Constants.getFrameHeight();
 
     private Dimension SCREEN_SIZE = Constants.getFrameDimension();
     private MouseListener mouseListener;
+    int [] xPoints = {50,40,60};
+    int [] yPoints = {30,50,50};
+
 
 
     public GameFrame() throws IOException {
@@ -34,6 +37,13 @@ public class GameFrame extends JFrame {
         shotGun.setWidth(Constants.getShotGunWidth());
         shotGun.setHeight(Constants.getShotGunHeight());
         ShotGun.getShots().add(shotGun);
+
+        trigorath = new Trigorath(50,50);
+        trigorath.setxPoints(xPoints);
+        trigorath.setyPoints(yPoints);
+
+
+
 
         mouseListener = new MouseListener(this);
         addMouseListener(mouseListener);
@@ -63,8 +73,9 @@ public class GameFrame extends JFrame {
                     epsilon.setX(FRAME_WIDTH - epsilon.getRadius());
                 } if(epsilon.getY() + epsilon.getRadius() > FRAME_HEIGHT){
                     epsilon.setY(FRAME_HEIGHT - epsilon.getRadius());
-                    repaint();
                 }
+
+                repaint();
             }
         });
 
@@ -86,7 +97,6 @@ public class GameFrame extends JFrame {
 
 
         //paint epsilon's shotGun
-
         for (ShotGun shotGun1 : ShotGun.getShots()) {
             if(shotGun1.isOnFire()) {
                 g2D.setColor(Color.WHITE);
@@ -96,6 +106,9 @@ public class GameFrame extends JFrame {
                         shotGun1.getWidth(), shotGun1.getHeight());
             }
         }
+        //paint trigorath
+        g2D.setColor(Color.GREEN);
+        g2D.drawPolygon(xPoints,yPoints,3);
     }
 
     public static Epsilon getEpsilon() {
@@ -105,20 +118,23 @@ public class GameFrame extends JFrame {
         return shotGun;
     }
 
-    public int getFRAME_WIDTH() {
+    public static int getFRAME_WIDTH() {
         return FRAME_WIDTH;
     }
 
-    public void setFRAME_WIDTH(int FRAME_WIDTH) {
+    public  void setFRAME_WIDTH(int FRAME_WIDTH) {
         this.FRAME_WIDTH = FRAME_WIDTH;
     }
 
-    public int getFRAME_HEIGHT() {
+    public static int getFRAME_HEIGHT() {
         return FRAME_HEIGHT;
     }
 
     public void setFRAME_HEIGHT(int FRAME_HEIGHT) {
         this.FRAME_HEIGHT = FRAME_HEIGHT;
+    }
+    public Trigorath gettrigorath(){
+        return trigorath;
     }
 //    public static JPanel getPanel(){
 //        return panel;

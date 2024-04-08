@@ -96,7 +96,7 @@ public class KeyListener {
         actionMap.put("downPress", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(epsilon.getY() + epsilon.getRadius()< Constants.frameHeightForEpsilon()) {
+                if(epsilon.getY() + epsilon.getRadius()< gameFrame.getFRAME_HEIGHT()) {
                     if (!upPressed) {
                         epsilon.setyVelocity(absVelocity);
                         shotGun.setyVelocity(absVelocity);
@@ -155,7 +155,7 @@ public class KeyListener {
         actionMap.put("rightPress", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(epsilon.getX() + epsilon.getRadius()<Constants.frameWidthForEpsilon()) {
+                if(epsilon.getX() + epsilon.getRadius()< gameFrame.getFRAME_WIDTH()) {
                     if(!leftPressed) {
                         epsilon.setxVelocity(absVelocity);
                         shotGun.setxVelocity(absVelocity);

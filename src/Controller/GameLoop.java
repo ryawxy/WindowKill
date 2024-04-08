@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Game;
 import Model.ShotGun;
+import Model.Trigorath;
 import View.GameFrame;
 
 import javax.swing.*;
@@ -21,6 +22,7 @@ public class GameLoop {
     // amount of time that has passed since the game has started
 
 
+
     public GameLoop(Game game) throws IOException {
         this.game = game;
         timer = new Timer(10, new ActionListener() {
@@ -31,7 +33,9 @@ public class GameLoop {
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
+                game.getGameFrame().gettrigorath().move();
                 GameFrame.getEpsilon().move();
+
                 try {
                     frameSize = new FrameSize(game.getGameFrame());
                 } catch (IOException ex) {
@@ -56,9 +60,9 @@ public class GameLoop {
                             shotGun.setExpansion(shotGun.getExpansion()+1);
                         }
                     }
-                    countTime++;
-
                 }
+
+                countTime++;
 
                 game.getGameFrame().repaint();
             }
