@@ -1,6 +1,7 @@
 
 import View.GamePanel;
 import View.GlassFrame;
+import View.ShopFrame;
 import myproject.MyProject;
 
 import javax.swing.*;
@@ -23,6 +24,7 @@ public class Main {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+            //   new ShopFrame();
         });
 
 

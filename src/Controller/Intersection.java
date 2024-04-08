@@ -12,6 +12,7 @@ public class Intersection {
 
     private Polygon squarantine2;
     private Polygon trigorath2;
+    private boolean intersect;
     public Intersection(GamePanel gamePanel) throws IOException {
         this.gamePanel = gamePanel;
     }
@@ -144,7 +145,8 @@ public class Intersection {
 
                 if (distance <= epsilon.getRadius()) {
                     // Intersection with trigorath's vertex detected
-                    epsilon.decreaseHP();
+                    //     epsilon.decreaseHP();
+                    intersect = true;
 
                 }
             }
@@ -165,8 +167,7 @@ public class Intersection {
                 double discriminant = epsilon.getRadius()  * dr * dr - D * D;
 
                 if (discriminant >= 0) {
-
-
+                    intersect = true;
                     // Intersection with trigorath's edge detected
 
                 }
@@ -180,7 +181,8 @@ public class Intersection {
 
                 if (distance <= epsilon.getRadius()) {
                     // Intersection with squarantine's vertex detected
-                    epsilon.decreaseHP();
+                    //    epsilon.decreaseHP();
+                    intersect = true;
 
                 }
 
@@ -202,8 +204,7 @@ public class Intersection {
                 double discriminant = epsilon.getRadius()  * dr * dr - D * D;
 
                 if (discriminant >= 0) {
-
-
+                    intersect = true;
                     // Intersection with squarantine's edge detected
 
                 }
@@ -211,6 +212,7 @@ public class Intersection {
             }
         }
     }
+
 
 
 

@@ -9,13 +9,13 @@ import java.io.IOException;
 
 public class Epsilon extends GameObjects implements movable {
 
-    private int xVelocity;
-    private int yVelocity;
+    private double xVelocity;
+    private double yVelocity;
     private int radius;
-    private int xCenter = getX()+radius;
-    private int yCenter = getY()+radius;
-    private int HP;
-    private int XP;
+    private double xCenter = getX()+radius;
+    private double yCenter = getY()+radius;
+    private int HP = 100;
+    private int XP = 80;
 
 
     public Epsilon(int x, int y) throws IOException {
@@ -27,8 +27,10 @@ public class Epsilon extends GameObjects implements movable {
 
     @Override
     public void move() {
-        this.setX(getX()+xVelocity);
-        this.setY(getY()+yVelocity);
+        this.setX((int) (getX()+xVelocity));
+        this.setY((int) (getY()+yVelocity));
+        this.setxCenter((int) (getxCenter()+xVelocity));
+        this.setyCenter((int) (getyCenter()+yVelocity));
     }
     public void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -38,7 +40,7 @@ public class Epsilon extends GameObjects implements movable {
         g2D.drawOval(100,100,50,50);
     }
 
-    public int getxVelocity() {
+    public double getxVelocity() {
         return xVelocity;
     }
 
@@ -46,7 +48,7 @@ public class Epsilon extends GameObjects implements movable {
         this.xVelocity = xVelocity;
     }
 
-    public int getyVelocity() {
+    public double getyVelocity() {
         return yVelocity;
     }
 

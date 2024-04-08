@@ -3,6 +3,7 @@ package Controller;
 import Model.Epsilon;
 import Model.ShotGun;
 import View.GamePanel;
+import View.ShopFrame;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -18,6 +19,7 @@ public class KeyListener {
     private boolean downPressed;
     private boolean leftPressed;
     private boolean rightPressed;
+    private static boolean pauseGame;
 
     private final int absVelocity = Constants.epsilonAbsVelocity();
     private int mouseXPose;
@@ -45,6 +47,8 @@ public class KeyListener {
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN,0),"downPress");
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT,0),"leftPress");
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT,0),"rightPress");
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_SPACE,0),"shopPress");
+
 
 
 
@@ -181,9 +185,21 @@ public class KeyListener {
                 rightPressed = false;
             }
         });
+        actionMap.put("shopPress", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ShopFrame();
+                pauseGame =true;
+            }
+        });
 
 
     }
+    public static boolean getPauseGame(){
+        return pauseGame;
+    }
 
-
+    public static void setPauseGame(boolean pauseGame) {
+        KeyListener.pauseGame = pauseGame;
+    }
 }

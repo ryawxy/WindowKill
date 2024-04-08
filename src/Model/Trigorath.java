@@ -159,7 +159,7 @@ public class Trigorath extends GameObjects implements movable {
             for(int i=0;i<getCollectibles().size();i++){
 
                 getCollectibles().get(i).setX(xPoints[i]+40*(i%2));
-                getCollectibles().get(i).setY(yPoints[i]+40*(i%2));
+                getCollectibles().get(i).setY(yPoints[i]+80*(i%2));
 
             }
 

@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -50,11 +51,21 @@ public class StarterMenu extends JFrame {
         //  start.setContentAreaFilled(false);
         start.setFocusPainted(false);
         start.setBounds(200,100,300,80);
-        this.add(start);
+
         start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
+                Robot robot= null;
+                try {
+                    robot = new Robot();
+                } catch (AWTException ex) {
+                    throw new RuntimeException(ex);
+                }
+//                robot.keyPress(KeyEvent.VK_WINDOWS);
+//            robot.keyPress(KeyEvent.VK_D);
+//            robot.keyRelease(KeyEvent.VK_WINDOWS);
+//            robot.keyRelease(KeyEvent.VK_D);
                 try {
                     game = new Game();
                     gameLoop = new GameLoop(game);

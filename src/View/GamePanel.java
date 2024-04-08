@@ -27,12 +27,17 @@ public class GamePanel extends JPanel {
     int [] xPoints = {50,40,60};
     int [] yPoints = {20,40,40};
 
+    int [] xPoints2 = {150,140,160};
+    int [] yPoints2 = {120,140,140};
+    Trigorath trigorath2;
+
+
+
 
     public GamePanel() throws IOException {
         epsilon = new Epsilon(200,200);
         epsilon.setRadius(Constants.getEpsilonRadius());
-        epsilon.setHP(Constants.HP());
-        epsilon.setXP(Constants.XP());
+
 
         shotGun = new ShotGun(epsilon.getxCenter(),epsilon.getyCenter());
         shotGun.setWidth(Constants.getShotGunWidth());
@@ -48,6 +53,11 @@ public class GamePanel extends JPanel {
         trigorath.setxPoints(xPoints);
         trigorath.setyPoints(yPoints);
         trigoraths.add(trigorath);
+
+        trigorath2 = new Trigorath(150,133);
+        trigorath2.setxPoints(xPoints2);
+        trigorath2.setyPoints(yPoints2);
+        trigoraths.add(trigorath2);
 
 
         mouseListener = new MouseListener(this);
