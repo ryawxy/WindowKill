@@ -21,6 +21,8 @@ public class Squarantine extends GameObjects implements movable {
     private int squarantineXPos;
     private int squarantineYPos;
     private int angle;
+    private int speed;
+    private Random random;
     public Squarantine(int x, int y) {
         super(x, y);
         epsilon = GameFrame.getEpsilon();
@@ -122,8 +124,8 @@ public class Squarantine extends GameObjects implements movable {
         this.angle = angle;
     }
 
-    @Override
-    public void move() {
+
+    public void moveTowardsEpsilon() {
 
         epsilonXPos = epsilon.getX();
         epsilonYPos = epsilon.getY();
@@ -131,24 +133,10 @@ public class Squarantine extends GameObjects implements movable {
         squarantineXPos = (xPoints[0]+xPoints[1]+xPoints[2]+xPoints[3])/4;
         squarantineYPos = (yPoints[0]+yPoints[1]+yPoints[2]+yPoints[3])/4;
 
+
         angle = (int) Math.atan2(epsilonYPos-squarantineYPos,epsilonXPos-squarantineXPos);
-
-
-        Random random = new Random();
-        boolean aggressionMechanic = random.nextInt(15) == 1;
-        // create squarantine random aggression mechanism
-
-
-        if(!aggressionMechanic) {
-            this.setxVelocity((int) (Constants.squarantineNormalSpeed() * Math.cos(angle)));
-            this.setyVelocity((int) (Constants.squarantineNormalSpeed() * Math.sin(angle)));
-        }else{
-            System.out.println(111);
-            this.setxVelocity((int) (Constants.squarantineAggressionSpeed() * Math.cos(angle)));
-            this.setyVelocity((int) (Constants.squarantineAggressionSpeed() * Math.sin(angle)));
-            setxVelocity(getxVelocity()+Constants.squarantineAcceleration());
-            setyVelocity(getyVelocity()+Constants.squarantineAcceleration());
-        }
+        this.setxVelocity((int) (speed * Math.cos(angle)));
+        this.setyVelocity((int) (speed * Math.sin(angle)));
 
 
 
@@ -169,4 +157,21 @@ public class Squarantine extends GameObjects implements movable {
         this.setX(getX() + getxVelocity());
         this.setY(getY() + getyVelocity());
     }
+    @Override
+    public void move(){
+        random = new Random();
+        if (random.nextInt(100) < 3) { // 3% chance for acceleration event
+            int accelerationFactor = random.nextInt(3) + 1; // Random acceleration between 1 and 3
+            while (speed < 5) {
+                speed += accelerationFactor;
+                moveTowardsEpsilon();
+            }
+        } else {
+            if (speed > Constants.squarantineNormalSpeed()) {
+                speed -= Constants.squarantineAcceleration(); // Decelerate if above normal speed
+            }
+            moveTowardsEpsilon();
+        }
+    }
 }
+

@@ -72,7 +72,7 @@ public class Constants {
         return 8;
     }
     public static int squarantineAcceleration(){
-        return 4;
+        return 1;
     }
 
 }
