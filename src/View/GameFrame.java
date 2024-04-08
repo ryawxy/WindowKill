@@ -1,25 +1,21 @@
 package View;
 
-import Controller.KeyListener;
 import Controller.MouseListener;
 import Model.*;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class GameFrame extends JFrame {
 
-
     JPanel panel;
-    protected JPanel gamePanel;
     private static Epsilon epsilon;
     private static ShotGun shotGun;
+
     private  int FRAME_WIDTH = 700;
     private  int FRAME_HEIGHT = 700;
-    private Timer timer;
-    private int x;
-    private int y;
+
     private Dimension SCREEN_SIZE = new Dimension(FRAME_WIDTH, FRAME_HEIGHT);
     private MouseListener mouseListener;
 
@@ -30,11 +26,10 @@ public class GameFrame extends JFrame {
         shotGun = new ShotGun(epsilon.getX(),epsilon.getY());
         shotGun.setWidth(8);
         shotGun.setHeight(3);
+        ShotGun.getShots().add(shotGun);
 
         mouseListener = new MouseListener(this);
         addMouseListener(mouseListener);
-
-
 
 
         this.setSize(SCREEN_SIZE);
@@ -45,7 +40,6 @@ public class GameFrame extends JFrame {
         panel.setLayout(null);
         panel.setSize(700,700);
         panel.setBackground(Color.BLACK);
-
 
 
         this.add(panel);
@@ -67,13 +61,19 @@ public class GameFrame extends JFrame {
         g2D.setColor(Color.RED);
         g2D.drawOval(epsilon.getX(),epsilon.getY(),epsilon.getRadius(),epsilon.getRadius());
 
+
         //paint epsilon's shotGun
-        if(shotGun.getxVelocity()!=0 || shotGun.getyVelocity()!=0){
-            g2D.setColor(Color.WHITE);
-            g2D.fillRect(shotGun.getX(),shotGun.getY(),shotGun.getWidth(),shotGun.getHeight());
+
+
+        for (ShotGun shotGun1 : ShotGun.getShots()) {
+            if(shotGun1.isOnFire()) {
+                g2D.setColor(Color.WHITE);
+                int x = ShotGun.getShots().size() - 1;
+
+                g2D.fillRect(shotGun1.getX(), shotGun1.getY(),
+                        shotGun1.getWidth(), shotGun1.getHeight());
+            }
         }
-
-
     }
 
     public static Epsilon getEpsilon() {
@@ -98,5 +98,4 @@ public class GameFrame extends JFrame {
     public void setFRAME_HEIGHT(int FRAME_HEIGHT) {
         this.FRAME_HEIGHT = FRAME_HEIGHT;
     }
-
 }

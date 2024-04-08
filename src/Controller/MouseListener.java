@@ -17,6 +17,8 @@ public class MouseListener extends MouseInputAdapter {
     private double angle;
     private double angleDegrees;
     private final double speed = 8;
+    private static boolean onFire;
+    private static int shotNumber = 0;
     public MouseListener(GameFrame gameFrame){
         this.gameFrame = gameFrame;
         shotGun = GameFrame.getShotGun();
@@ -25,15 +27,40 @@ public class MouseListener extends MouseInputAdapter {
     }
 
     public void mouseClicked(MouseEvent e){
+        //  onFire = true;
         mouseX = e.getX();
         mouseY = e.getY();
-        System.out.println(11111);
+
+
+        ShotGun.addShot(GameFrame.getEpsilon().getX(),GameFrame.getEpsilon().getY(),3,8);
+        // shotNumber++;
+        //  System.out.println(shotNumber);
+
+
+
+        //    System.out.println(shotNumber);
+
+        //  System.out.println(ShotGun.getShots().size()-1);
+
 
         angle = Math.atan2(mouseY-epsilon.getY(),mouseX-epsilon.getX());
         angleDegrees = Math.toDegrees(angle);
-        shotGun.setxVelocity((int) (speed*Math.cos(angle)));
-        shotGun.setyVelocity((int) (speed*Math.sin(angle)));
+        ShotGun.getShots().getLast().setxVelocity((int) (speed*Math.cos(angle)));
+        ShotGun.getShots().getLast().setyVelocity((int) (speed*Math.sin(angle)));
+        ShotGun.getShots().getLast().setOnFire(true);
+
+
 
     }
 
+    public static boolean isOnFire() {
+        return onFire;
+    }
+
+    public static void setOnFire(boolean onFire) {
+        MouseListener.onFire = onFire;
+    }
+    public static int getShotNumber(){
+        return shotNumber;
+    }
 }

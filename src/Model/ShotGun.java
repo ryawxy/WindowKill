@@ -10,6 +10,9 @@ public class ShotGun extends GameObjects implements movable{
     private int height;
     private int xVelocity;
     private int yVelocity;
+    private boolean onFire;
+    private static final ArrayList<ShotGun> shot = new ArrayList<>();
+
 
     public ShotGun(int x, int y) {
         super(x, y);
@@ -59,4 +62,21 @@ public class ShotGun extends GameObjects implements movable{
         this.yVelocity = yVelocity;
     }
 
+    public static ArrayList<ShotGun> getShots(){
+        return shot;
+    }
+    public static void addShot(int x,int y, int height, int width){
+        ShotGun shotGun = new ShotGun(x,y);
+        shotGun.setWidth(width);
+        shotGun.setHeight(height);
+        shot.add(shotGun);
+    }
+
+    public boolean isOnFire() {
+        return onFire;
+    }
+
+    public void setOnFire(boolean onFire) {
+        this.onFire = onFire;
+    }
 }

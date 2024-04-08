@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Epsilon;
+import Model.ShotGun;
 import View.GameFrame;
 
 import javax.swing.*;
@@ -11,6 +12,7 @@ public class KeyListener {
     InputMap inputMap;
     ActionMap actionMap;
     Epsilon epsilon;
+    ShotGun shotGun;
     GameFrame gameFrame;
     private boolean upPressed;
     private boolean downPressed;
@@ -25,6 +27,7 @@ public class KeyListener {
     public KeyListener(GameFrame gameFrame){
         this.gameFrame = gameFrame;
         epsilon = GameFrame.getEpsilon();
+        shotGun = GameFrame.getShotGun();
         createKeyBindings();
         createKeyActions();
 
@@ -63,12 +66,16 @@ public class KeyListener {
                 if (epsilon.getY() - epsilon.getRadius() > 0) {
                     if (!downPressed) {
                         epsilon.setyVelocity(-1 * absVelocity);
+                        shotGun.setyVelocity(-1 * absVelocity);
+
                     }else {
                         epsilon.setyVelocity(0);
+                        shotGun.setyVelocity(0);
                     }
 
                 } else {
                     epsilon.setyVelocity(0);
+                    shotGun.setyVelocity(0);
                 }
                 upPressed = true;
             }
@@ -80,6 +87,7 @@ public class KeyListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 epsilon.setyVelocity(0);
+                shotGun.setyVelocity(0);
                 upPressed = false;
             }
         });
@@ -91,11 +99,14 @@ public class KeyListener {
                 if(epsilon.getY() + epsilon.getRadius()< gameFrame.getFRAME_HEIGHT()-5) {
                     if (!upPressed) {
                         epsilon.setyVelocity(absVelocity);
+                        shotGun.setyVelocity(absVelocity);
                     }else {
                         epsilon.setyVelocity(0);
+                        shotGun.setyVelocity(0);
                     }
                 }else {
                     epsilon.setyVelocity(0);
+                    shotGun.setyVelocity(0);
                 }
                 downPressed = true;
             }
@@ -106,6 +117,7 @@ public class KeyListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 epsilon.setyVelocity(0);
+                shotGun.setyVelocity(0);
                 downPressed = false;
             }
         });
@@ -117,11 +129,14 @@ public class KeyListener {
                 if(epsilon.getX() - epsilon.getRadius()>0) {
                     if(!rightPressed) {
                         epsilon.setxVelocity(-1 * absVelocity);
+                        shotGun.setxVelocity(-1 * absVelocity);
                     }else {
                         epsilon.setxVelocity(0);
+                        shotGun.setxVelocity(0);
                     }
                 }else{
                     epsilon.setxVelocity(0);
+                    shotGun.setxVelocity(0);
                 }
                 leftPressed = true;
             }
@@ -131,6 +146,7 @@ public class KeyListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 epsilon.setxVelocity(0);
+                shotGun.setxVelocity(0);
                 leftPressed = false;
             }
         });
@@ -142,13 +158,17 @@ public class KeyListener {
                 if(epsilon.getX() + epsilon.getRadius()<gameFrame.getFRAME_WIDTH()-5) {
                     if(!leftPressed) {
                         epsilon.setxVelocity(absVelocity);
+                        shotGun.setxVelocity(absVelocity);
                     }else {
                         epsilon.setxVelocity(0);
+                        shotGun.setxVelocity(0);
                     }
                 }else {
                     epsilon.setxVelocity(0);
+                    shotGun.setxVelocity(0);
                 }
                 rightPressed = true;
+
             }
         });
 
@@ -156,6 +176,7 @@ public class KeyListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 epsilon.setxVelocity(0);
+                shotGun.setxVelocity(0);
                 rightPressed = false;
             }
         });

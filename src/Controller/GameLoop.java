@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Game;
+import Model.ShotGun;
 import View.GameFrame;
 
 import javax.swing.*;
@@ -14,7 +15,6 @@ public class GameLoop {
     private Game game;
     private Timer timer;
     private FrameSize frameSize;
-    private KeyListener keyListener;
     public GameLoop(Game game) throws IOException {
         this.game = game;
         timer = new Timer(10, new ActionListener() {
@@ -24,10 +24,9 @@ public class GameLoop {
                 frameSize = new FrameSize(game.getGameFrame());
                 // frameSize.shrink();
 
-//                GameFrame.getShotGun().setX(GameFrame.getEpsilon().getX());
-//                GameFrame.getShotGun().setY(GameFrame.getEpsilon().getY());
-
-                GameFrame.getShotGun().move();
+                for(ShotGun shotGun : ShotGun.getShots()){
+                    shotGun.move();
+                }
 
 
 
