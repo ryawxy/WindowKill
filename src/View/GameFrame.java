@@ -5,6 +5,10 @@ import Controller.MouseListener;
 import Model.*;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 
@@ -51,11 +55,24 @@ public class GameFrame extends JFrame {
 //      this.add(panel);
 
         this.setVisible(true);
+        this.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                // super.componentResized(e);
+                if(epsilon.getX()+epsilon.getRadius() > FRAME_WIDTH){
+                    epsilon.setX(FRAME_WIDTH - epsilon.getRadius());
+                } if(epsilon.getY() + epsilon.getRadius() > FRAME_HEIGHT){
+                    epsilon.setY(FRAME_HEIGHT - epsilon.getRadius());
+                    repaint();
+                }
+            }
+        });
 
         this.setLayout(null);
         this.setLocationRelativeTo(null);
 
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+
         this.setResizable(false);
 
     }

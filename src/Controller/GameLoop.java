@@ -17,6 +17,8 @@ public class GameLoop {
     private FrameSize frameSize;
     private Intersection intersection;
     private Direction intersectionSide;
+    private int countTime;
+    // amount of time that has passed since the game has started
 
 
     public GameLoop(Game game) throws IOException {
@@ -35,12 +37,17 @@ public class GameLoop {
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                frameSize.shrink();
+                //shrinkage starts after 10 seconds
+                if(countTime>=700) {
+                    frameSize.shrink();
+                }
 
                 for (ShotGun shotGun : ShotGun.getShots()) {
                     shotGun.move();
 
                 }
+                //check if a shot intersects with frame edges
+                // if so expansion starts from that side for a second
                 for(ShotGun shotGun : ShotGun.getShots()){
                     intersectionSide = intersection.shotIntersectsFrame(shotGun);
                     if(intersectionSide!=null) {
@@ -49,25 +56,9 @@ public class GameLoop {
                             shotGun.setExpansion(shotGun.getExpansion()+1);
                         }
                     }
-//                    if(intersection.shotIntersectsFrame(shotGun)){
-//                        if(shotGun.getExpansion()<40){
-//                            frameSize.expand();
-//                            shotGun.setExpansion(shotGun.getExpansion()+1);
-//
-//                        }
-//                    }
+                    countTime++;
+
                 }
-
-
-
-
-
-
-
-
-
-
-
 
                 game.getGameFrame().repaint();
             }
