@@ -43,9 +43,9 @@ public class GameLoop {
                     throw new RuntimeException(ex);
                 }
                 //shrinkage starts after 10 seconds
-                if(countTime>=700) {
-                    frameSize.shrink();
-                }
+//                if(countTime>=700) {
+//                    frameSize.shrink();
+//                }
 
                 for (ShotGun shotGun : ShotGun.getShots()) {
                     shotGun.move();

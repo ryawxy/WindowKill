@@ -21,6 +21,7 @@ public class Squarantine extends GameObjects implements movable {
     private int squarantineXPos;
     private int squarantineYPos;
     private int angle;
+    private int speed;
     public Squarantine(int x, int y) {
         super(x, y);
         epsilon = GameFrame.getEpsilon();
@@ -140,14 +141,19 @@ public class Squarantine extends GameObjects implements movable {
 
 
         if(!aggressionMechanic) {
-            this.setxVelocity((int) (Constants.squarantineNormalSpeed() * Math.cos(angle)));
-            this.setyVelocity((int) (Constants.squarantineNormalSpeed() * Math.sin(angle)));
+            speed = Constants.squarantineNormalSpeed();
+            this.setxVelocity((int) (speed * Math.cos(angle)));
+            this.setyVelocity((int) (speed * Math.sin(angle)));
+            speed -= Constants.squarantineAcceleration();
+            if(speed<=2){
+                speed = 2;
+            }
         }else{
-            System.out.println(111);
-            this.setxVelocity((int) (Constants.squarantineAggressionSpeed() * Math.cos(angle)));
-            this.setyVelocity((int) (Constants.squarantineAggressionSpeed() * Math.sin(angle)));
-            setxVelocity(getxVelocity()+Constants.squarantineAcceleration());
-            setyVelocity(getyVelocity()+Constants.squarantineAcceleration());
+            System.out.println(1111);
+            this.setxVelocity((int) (speed * Math.cos(angle)));
+            this.setyVelocity((int) (speed * Math.sin(angle)));
+            speed += Constants.squarantineAcceleration();
+            speed += Constants.squarantineAcceleration();
         }
 
 

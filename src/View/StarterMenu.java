@@ -31,6 +31,7 @@ public class StarterMenu extends JFrame {
         this.setTitle("Window Kill");
         this.setLocationRelativeTo(null);
 //        this.setLayout(null);
+        this.setUndecorated(true);
 
 
         image = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/Images/menu.jpg")));
@@ -82,6 +83,13 @@ public class StarterMenu extends JFrame {
         settings.setBorderPainted(false);
         settings.setFocusPainted(false);
         settings.setBounds(200,320,300,80);
+        settings.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new SettingsFrame();
+                dispose();
+            }
+        });
 //        this.add(settings);
 
         //tutorial Button
