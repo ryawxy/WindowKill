@@ -133,6 +133,84 @@ public class Intersection {
             }
         }
     }
+    public void epsilonIntersectsEnemy(){
+
+        Epsilon epsilon = GamePanel.getEpsilon();
+
+        for(Trigorath trigorath : GamePanel.getTrigoraths()){
+            for (int i = 0; i < trigorath.getxPoints().length; i++) {
+
+                double distance = Math.sqrt(Math.pow(epsilon.getxCenter() - trigorath.getxPoints()[i], 2) + Math.pow(epsilon.getyCenter() - trigorath.getyPoints()[i], 2));
+
+                if (distance <= epsilon.getRadius()) {
+                    // Intersection with trigorath's vertex detected
+                    epsilon.decreaseHP();
+
+                }
+            }
+
+            for (int i = 0; i < trigorath.getxPoints().length; i++) {
+
+                int x1 = trigorath.getxPoints()[i];
+                int y1 = trigorath.getyPoints()[i];
+                int x2 = trigorath.getxPoints()[(i + 1) % trigorath.getxPoints().length];
+                int y2 = trigorath.getyPoints()[(i + 1) % trigorath.getyPoints().length];
+
+
+
+                double dx = x2 - x1;
+                double dy = y2 - y1;
+                double dr = Math.sqrt(dx * dx + dy * dy);
+                double D = x1 * y2 - x2 * y1;
+                double discriminant = epsilon.getRadius()  * dr * dr - D * D;
+
+                if (discriminant >= 0) {
+
+
+                    // Intersection with trigorath's edge detected
+
+                }
+
+            }
+        }
+        for(Squarantine squarantine : GamePanel.getSquarantine()){
+            for (int i = 0; i < squarantine.getxPoints().length; i++) {
+
+                double distance = Math.sqrt(Math.pow(epsilon.getxCenter() - squarantine.getxPoints()[i], 2) + Math.pow(epsilon.getyCenter() - squarantine.getyPoints()[i], 2));
+
+                if (distance <= epsilon.getRadius()) {
+                    // Intersection with squarantine's vertex detected
+                    epsilon.decreaseHP();
+
+                }
+
+            }
+
+            for (int i = 0; i < squarantine.getxPoints().length; i++) {
+
+                int x1 = squarantine.getxPoints()[i];
+                int y1 = squarantine.getyPoints()[i];
+                int x2 = squarantine.getxPoints()[(i + 1) % squarantine.getxPoints().length];
+                int y2 = squarantine.getyPoints()[(i + 1) % squarantine.getyPoints().length];
+
+
+
+                double dx = x2 - x1;
+                double dy = y2 - y1;
+                double dr = Math.sqrt(dx * dx + dy * dy);
+                double D = x1 * y2 - x2 * y1;
+                double discriminant = epsilon.getRadius()  * dr * dr - D * D;
+
+                if (discriminant >= 0) {
+
+
+                    // Intersection with squarantine's edge detected
+
+                }
+
+            }
+        }
+    }
 
 
 

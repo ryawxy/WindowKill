@@ -193,8 +193,13 @@ public class Squarantine extends GameObjects implements movable {
             setDead(true);
             setShowCollectibles(true);
 
-            getCollectibles().get(0).setX(xPoints[0]);
-            getCollectibles().get(0).setY(yPoints[0]);
+
+            for(int i=0;i<getCollectibles().size();i++){
+
+                getCollectibles().get(i).setX(xPoints[i]);
+                getCollectibles().get(i).setY(yPoints[i]);
+
+            }
 
         }
     }

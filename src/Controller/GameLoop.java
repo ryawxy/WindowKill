@@ -73,6 +73,7 @@ public class GameLoop {
                 intersection.shotIntersectsTrigorath();
                 intersection.shotIntersectsSquarantine();
                 intersection.epsilonIntersectsCollectible();
+                intersection.epsilonIntersectsEnemy();
 
                 //if trigorath is dead show its collectibles for 10 seconds
                 for(Trigorath trigorath : GamePanel.getTrigoraths()){
@@ -86,10 +87,6 @@ public class GameLoop {
 
                 countTime++;
 
-//                for(Trigorath trigorath : GamePanel.getTrigoraths()){
-//                    System.out.println("1: "+trigorath.getCollectibles().get(0).getX());
-//                    System.out.println("2: "+trigorath.getCollectibles().get(1).getX());
-//                }
 
                 game.getGameFrame().repaint();
             }

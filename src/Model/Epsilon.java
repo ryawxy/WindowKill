@@ -96,4 +96,8 @@ public class Epsilon extends GameObjects implements movable {
     public void increaseXP(){
         setXP(getXP()+5);
     }
+    public void decreaseHP(){
+        setHP(getHP()-10);
+
+    }
 }

@@ -33,7 +33,7 @@ public class Constants {
         return 8;
     }
     public static int epsilonAbsVelocity(){
-        return 5;
+        return 3;
     }
     public static int frameWidthForEpsilon(){
         return FRAME_WIDTH - 8;
