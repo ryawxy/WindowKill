@@ -12,19 +12,17 @@ public class Epsilon extends GameObjects implements movable {
     private int xVelocity;
     private int yVelocity;
     private int radius;
-    private int xCenter;
-    private int yCenter;
+    private int xCenter = getX()+radius;
+    private int yCenter = getY()+radius;
     private int HP;
     private int XP;
+
 
     public Epsilon(int x, int y) throws IOException {
         super(x, y);
         setX(x);
         setY(y);
-//        this.setWidth(100);
-//        this.setHeight(100);
-//        this.setSize(getWidth(),getHeight());
-        //   background = ImageIO.read(new File("C:\\Users\\Namazi\\Ap2024\\windowKill\\src"));
+
     }
 
     @Override
@@ -94,5 +92,8 @@ public class Epsilon extends GameObjects implements movable {
 
     public void setXP(int XP) {
         this.XP = XP;
+    }
+    public void increaseXP(){
+        setXP(getXP()+5);
     }
 }

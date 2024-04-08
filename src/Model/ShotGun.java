@@ -1,7 +1,5 @@
 package Model;
 
-import View.GameFrame;
-
 import java.util.ArrayList;
 
 public class ShotGun extends GameObjects implements movable{

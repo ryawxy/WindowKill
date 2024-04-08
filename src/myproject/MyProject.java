@@ -2,7 +2,6 @@ package myproject;
 
 import Controller.GameLoop;
 import Model.Game;
-import View.GameFrame;
 import View.StarterMenu;
 
 import java.io.IOException;

@@ -17,6 +17,9 @@ public class Constants {
     public static Dimension getFrameDimension(){
         return SCREEN_SIZE;
     }
+    public static Dimension glassFrameDimension(){
+        return Toolkit.getDefaultToolkit().getScreenSize();
+    }
     public static int getEpsilonRadius(){
         return 30;
     }
@@ -57,7 +60,7 @@ public class Constants {
         return 1;
     }
     public static int expandAmount(){
-        return 3;
+        return 2;
     }
     public static int trigorathLongDistanceSpeed(){
         return 3;
@@ -65,8 +68,11 @@ public class Constants {
     public static int trigorathNearBySpeed(){
         return 1;
     }
+    public static int trigorathAcceleration(){
+        return 2;
+    }
     public static int squarantineNormalSpeed(){
-        return 3;
+        return 2;
     }
     public static int squarantineAggressionSpeed(){
         return 8;

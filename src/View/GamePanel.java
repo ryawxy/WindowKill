@@ -7,65 +7,61 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
-public class GameFrame extends JFrame {
+public class GamePanel extends JPanel {
 
     private static Epsilon epsilon;
     private static ShotGun shotGun;
     private Trigorath trigorath;
     private Squarantine squarantine;
+    private static final ArrayList<Squarantine> squarantines = new ArrayList<>();
+    private static final ArrayList<Trigorath> trigoraths = new ArrayList<>();
     private static   int FRAME_WIDTH = Constants.getFrameWidth();
     private static   int FRAME_HEIGHT = Constants.getFrameHeight();
 
     private Dimension SCREEN_SIZE = Constants.getFrameDimension();
     private MouseListener mouseListener;
-    int [] xPoints = {75,95,95,75};
-    int [] yPoints = {75,75,95,95};
+    int [] xPoints = {50,40,60};
+    int [] yPoints = {20,40,40};
 
 
-
-    public GameFrame() throws IOException {
+    public GamePanel() throws IOException {
         epsilon = new Epsilon(200,200);
         epsilon.setRadius(Constants.getEpsilonRadius());
         epsilon.setHP(Constants.HP());
         epsilon.setXP(Constants.XP());
 
-        shotGun = new ShotGun(epsilon.getX(),epsilon.getY());
+        shotGun = new ShotGun(epsilon.getxCenter(),epsilon.getyCenter());
         shotGun.setWidth(Constants.getShotGunWidth());
         shotGun.setHeight(Constants.getShotGunHeight());
         ShotGun.getShots().add(shotGun);
 
-        squarantine = new Squarantine(80,80);
-        squarantine.setxPoints(xPoints);
-        squarantine.setyPoints(yPoints);
+//        squarantine = new Squarantine(80,80);
+//        squarantine.setxPoints(xPoints);
+//        squarantine.setyPoints(yPoints);
+//        squarantines.add(squarantine);
 
-
+        trigorath = new Trigorath(50,33);
+        trigorath.setxPoints(xPoints);
+        trigorath.setyPoints(yPoints);
+        trigoraths.add(trigorath);
 
 
         mouseListener = new MouseListener(this);
         addMouseListener(mouseListener);
 
 
-        this.setSize(SCREEN_SIZE);
-        this.setUndecorated(true);
-        this.setTitle("Window Kill");
-        Container contentPane = this.getContentPane();
-        contentPane.setBackground(Color.BLACK);
+
+        setBorder(BorderFactory.createLineBorder(Color.black,5));
+        setBackground(Color.BLACK);
+        setSize(SCREEN_SIZE);
+        setLocationToCenter(GlassFrame.getINSTANCE());
+        GlassFrame.getINSTANCE().setContentPane(this);
 
 
-//      panel.setLayout(null);
-//      panel.setSize(SCREEN_SIZE);
-//      panel.setBackground(Color.BLACK);
-//      panel.setLocation(100,100);
-//
-//
-//      this.add(panel);
-
-        this.setVisible(true);
         this.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
@@ -81,16 +77,16 @@ public class GameFrame extends JFrame {
         });
 
         this.setLayout(null);
-        this.setLocationRelativeTo(null);
-
-        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-
-        this.setResizable(false);
+//        this.setLocationRelativeTo(null);
+//
+//        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+//
+//        this.setResizable(false);
 
     }
-    public void paint(Graphics g){
+    public void paintComponent(Graphics g){
         Graphics2D g2D = (Graphics2D) g;
-        super.paint(g2D);
+        super.paintComponent(g2D);
 
         //paint epsilon
         g2D.setColor(Color.RED);
@@ -102,18 +98,43 @@ public class GameFrame extends JFrame {
             if(shotGun1.isOnFire()) {
                 g2D.setColor(Color.WHITE);
 
-
                 g2D.fillRect(shotGun1.getX(), shotGun1.getY(),
                         shotGun1.getWidth(), shotGun1.getHeight());
             }
         }
         //paint trigorath
-//        g2D.setColor(Color.YELLOW);
-//            g2D.drawPolygon(xPoints,yPoints,3);
 
-        //paint squarantine
-        g2D.setColor(Color.GREEN);
-        g2D.drawPolygon(xPoints,yPoints,4);
+        // if trigorath is alive paint it
+        // if not show its collectible
+        for(int i=0;i<trigoraths.size();i++) {
+            Trigorath trigorath1 = trigoraths.get(i);
+            if(!trigorath1.isDead()) {
+                g2D.setColor(Color.YELLOW);
+                g2D.drawPolygon(trigorath1.getxPoints(), trigorath1.getyPoints(), 3);
+            }else{
+                if(trigorath1.isShowCollectibles()){
+
+                    g2D.setColor(Color.orange);
+                    for(int j=0;j<trigorath1.getCollectibles().size();j++){
+
+
+                        Collectible collectible = trigorath1.getCollectibles().get(j);
+                        g2D.fillOval(collectible.getX(),collectible.getY(),collectible.getRadius(),collectible.getRadius());
+
+                    }
+                }
+            }
+        }
+
+        //  paint squarantine
+
+//            for(int i=0; i<squarantines.size();i++) {
+//                Squarantine squarantine1 = squarantines.get(i);
+//                if(!squarantine1.isDead()) {
+//                    g2D.setColor(Color.GREEN);
+//                    g2D.drawPolygon(squarantine1.getxPoints(), squarantine1.getyPoints(), 4);
+//                }
+//            }
 
     }
 
@@ -143,7 +164,14 @@ public class GameFrame extends JFrame {
         return trigorath;
     }
 
-    public Squarantine getSquarantine() {
-        return squarantine;
+    public static ArrayList<Squarantine> getSquarantine() {
+        return squarantines;
+    }
+    public static ArrayList<Trigorath> getTrigoraths(){
+        return trigoraths;
+    }
+
+    public void setLocationToCenter(GlassFrame glassFrame){
+        setLocation(glassFrame.getWidth()/2-getWidth()/2,glassFrame.getHeight()/2-getHeight()/2);
     }
 }

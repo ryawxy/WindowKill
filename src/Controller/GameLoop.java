@@ -3,7 +3,7 @@ package Controller;
 import Model.Game;
 import Model.ShotGun;
 import Model.Trigorath;
-import View.GameFrame;
+import View.GamePanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -34,8 +34,15 @@ public class GameLoop {
                     throw new RuntimeException(ex);
                 }
 
-                game.getGameFrame().getSquarantine().move();
-                GameFrame.getEpsilon().move();
+//                for(int i=0;i<GameFrame.getSquarantine().size();i++) {
+//                    Squarantine squarantine = GameFrame.getSquarantine().get(i);
+//                    squarantine.move();
+//                }
+                for(int i = 0; i< GamePanel.getTrigoraths().size(); i++) {
+                    Trigorath trigorath = GamePanel.getTrigoraths().get(i);
+                    trigorath.move();
+                }
+                GamePanel.getEpsilon().move();
 
                 try {
                     frameSize = new FrameSize(game.getGameFrame());
@@ -62,8 +69,27 @@ public class GameLoop {
                         }
                     }
                 }
+                intersection.shotIntersectsSquarantine();
+                intersection.shotIntersectsTrigorath();
+                intersection.shotIntersectsSquarantine();
+                intersection.epsilonIntersectsCollectible();
+
+                //if trigorath is dead show its collectibles for 10 seconds
+                for(Trigorath trigorath : GamePanel.getTrigoraths()){
+                    if(trigorath.isShowCollectibles()){
+                        trigorath.setTimer(trigorath.getTimer()+1);
+                        if(trigorath.getTimer()>300){
+                            trigorath.setShowCollectibles(false);
+                        }
+                    }
+                }
 
                 countTime++;
+
+//                for(Trigorath trigorath : GamePanel.getTrigoraths()){
+//                    System.out.println("1: "+trigorath.getCollectibles().get(0).getX());
+//                    System.out.println("2: "+trigorath.getCollectibles().get(1).getX());
+//                }
 
                 game.getGameFrame().repaint();
             }

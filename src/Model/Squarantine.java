@@ -1,8 +1,9 @@
 package Model;
 
 import Controller.Constants;
-import View.GameFrame;
+import View.GamePanel;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Squarantine extends GameObjects implements movable {
@@ -11,7 +12,7 @@ public class Squarantine extends GameObjects implements movable {
     private int yVelocity;
     private int [] xPoints;
     private int [] yPoints;
-    private int HP;
+    private int HP = 10;
     private int collectible;
     private int HPPerAttack;
     // number of HP it costs from epsilon per each attack
@@ -23,9 +24,15 @@ public class Squarantine extends GameObjects implements movable {
     private int angle;
     private int speed;
     private Random random;
+    private boolean dead;
+    private boolean showCollectibles;
+    private int timer;
+    // show collectibles only for 10 seconds
+    private final ArrayList<Collectible> collectibles = new ArrayList<>();
+
     public Squarantine(int x, int y) {
         super(x, y);
-        epsilon = GameFrame.getEpsilon();
+        epsilon = GamePanel.getEpsilon();
     }
 
     public int getxVelocity() {
@@ -124,6 +131,13 @@ public class Squarantine extends GameObjects implements movable {
         this.angle = angle;
     }
 
+    public boolean isDead() {
+        return dead;
+    }
+
+    public void setDead(boolean dead) {
+        this.dead = dead;
+    }
 
     public void moveTowardsEpsilon() {
 
@@ -173,5 +187,47 @@ public class Squarantine extends GameObjects implements movable {
             moveTowardsEpsilon();
         }
     }
+    public void decreaseHP(){
+        setHP(getHP()-5);
+        if(getHP()<=0){
+            setDead(true);
+            setShowCollectibles(true);
+
+            getCollectibles().get(0).setX(xPoints[0]);
+            getCollectibles().get(0).setY(yPoints[0]);
+
+        }
+    }
+
+
+    public boolean isShowCollectibles() {
+        return showCollectibles;
+    }
+
+    public void setShowCollectibles(boolean showCollectibles) {
+        this.showCollectibles = showCollectibles;
+    }
+
+    public int getTimer() {
+        return timer;
+    }
+
+    public void setTimer(int timer) {
+        this.timer = timer;
+    }
+    public void initializeCollectibles(){
+
+        Collectible collectible1 = new Collectible(xPoints[0],yPoints[0]);
+        collectible1.setRadius(10);
+
+        collectibles.add(collectible1);
+
+    }
+
+    public ArrayList<Collectible> getCollectibles() {
+        return collectibles;
+    }
+
 }
+
 

@@ -2,7 +2,7 @@ package Controller;
 
 import Model.Epsilon;
 import Model.ShotGun;
-import View.GameFrame;
+import View.GamePanel;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -13,7 +13,7 @@ public class KeyListener {
     ActionMap actionMap;
     Epsilon epsilon;
     ShotGun shotGun;
-    GameFrame gameFrame;
+    GamePanel gamePanel;
     private boolean upPressed;
     private boolean downPressed;
     private boolean leftPressed;
@@ -24,10 +24,10 @@ public class KeyListener {
     private int mouseYPose;
 
 
-    public KeyListener(GameFrame gameFrame){
-        this.gameFrame = gameFrame;
-        epsilon = GameFrame.getEpsilon();
-        shotGun = GameFrame.getShotGun();
+    public KeyListener(GamePanel gamePanel){
+        this.gamePanel = gamePanel;
+        epsilon = GamePanel.getEpsilon();
+        shotGun = GamePanel.getShotGun();
         createKeyBindings();
         createKeyActions();
 
@@ -37,8 +37,8 @@ public class KeyListener {
     public void createKeyBindings(){
 
 
-        inputMap = gameFrame.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
-        actionMap = gameFrame.getRootPane().getActionMap();
+        inputMap = gamePanel.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        actionMap = gamePanel.getRootPane().getActionMap();
 
         //key press
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP,0),"upPress");
@@ -68,6 +68,7 @@ public class KeyListener {
                         epsilon.setyVelocity(-1 * absVelocity);
                         shotGun.setyVelocity(-1 * absVelocity);
 
+
                     }else {
                         epsilon.setyVelocity(0);
                         shotGun.setyVelocity(0);
@@ -96,7 +97,7 @@ public class KeyListener {
         actionMap.put("downPress", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(epsilon.getY() + epsilon.getRadius()< gameFrame.getFRAME_HEIGHT()) {
+                if(epsilon.getY() + epsilon.getRadius()< gamePanel.getFRAME_HEIGHT()) {
                     if (!upPressed) {
                         epsilon.setyVelocity(absVelocity);
                         shotGun.setyVelocity(absVelocity);
@@ -155,7 +156,7 @@ public class KeyListener {
         actionMap.put("rightPress", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(epsilon.getX() + epsilon.getRadius()< gameFrame.getFRAME_WIDTH()) {
+                if(epsilon.getX() + epsilon.getRadius()< gamePanel.getFRAME_WIDTH()) {
                     if(!leftPressed) {
                         epsilon.setxVelocity(absVelocity);
                         shotGun.setxVelocity(absVelocity);

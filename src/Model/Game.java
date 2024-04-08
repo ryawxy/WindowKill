@@ -4,35 +4,42 @@ package Model;
 
 import Controller.KeyListener;
 import Controller.MouseListener;
-import View.GameFrame;
-import Controller.KeyListener;
+import View.GamePanel;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 
 public class Game {
 
-    protected GameFrame gameFrame;
+    protected GamePanel gamePanel;
     protected KeyListener keyListener;
     protected MouseListener mouseListener;
     //        protected Intersection intersection;
     private boolean isGameRunning = true;
 
 
-    public Game() throws IOException {
+    public Game() throws IOException, AWTException {
 
-        gameFrame = new GameFrame();
+        gamePanel = new GamePanel();
 //            intersection = new Intersection(gameFrame.getMagnet());
-        keyListener = new KeyListener(gameFrame);
-        mouseListener = new MouseListener(gameFrame);
+        keyListener = new KeyListener(gamePanel);
+        mouseListener = new MouseListener(gamePanel);
+
+//            Robot robot= new Robot();
+//            robot.keyPress(KeyEvent.VK_WINDOWS);
+//            robot.keyPress(KeyEvent.VK_D);
+//            robot.keyRelease(KeyEvent.VK_WINDOWS);
+//            robot.keyRelease(KeyEvent.VK_D);
     }
 
-    public GameFrame getGameFrame() {
-        return gameFrame;
+    public GamePanel getGameFrame() {
+        return gamePanel;
     }
 
-    public void setGameFrame(GameFrame gameFrame) {
-        this.gameFrame = gameFrame;
+    public void setGameFrame(GamePanel gamePanel) {
+        this.gamePanel = gamePanel;
     }
 
 //        public Intersection getIntersection() {
