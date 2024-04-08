@@ -60,10 +60,13 @@ public class Constants {
         return 3;
     }
     public static int trigorathLongDistanceSpeed(){
-        return 2;
+        return 3;
     }
     public static int trigorathNearBySpeed(){
         return 1;
+    }
+    public static int trigorathAcceleration(){
+        return 3;
     }
 
 }

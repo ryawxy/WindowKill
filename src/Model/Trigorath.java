@@ -19,6 +19,7 @@ public class Trigorath extends GameObjects implements movable {
     private int trigorathXPos;
     private int trigorathYPos;
     private int angle;
+    private int speed;
     public Trigorath(int x, int y) {
         super(x,y);
 
@@ -96,12 +97,23 @@ public class Trigorath extends GameObjects implements movable {
 
         int distance = (int) Math.sqrt(Math.pow(trigorathYPos - epsilonYPos,2)+
                 Math.pow(trigorathXPos-epsilonXPos,2));
-        if(distance>50) {
-            this.setxVelocity((int) (Constants.trigorathLongDistanceSpeed() * Math.cos(angle)));
-            this.setyVelocity((int) (Constants.trigorathLongDistanceSpeed() * Math.sin(angle)));
+        if(Math.abs(trigorathXPos-epsilonXPos)>40 && Math.abs(trigorathYPos-epsilonYPos)>40 ) {
+
+            speed = Constants.trigorathLongDistanceSpeed();
+            this.setxVelocity((int) (speed * Math.cos(angle)));
+            this.setyVelocity((int) (speed * Math.sin(angle)));
+            speed+=Constants.trigorathAcceleration();
+            if(speed>8){
+                speed = 8;
+            }
         }else{
-            this.setxVelocity((int) (Constants.trigorathNearBySpeed() * Math.cos(angle)));
-            this.setyVelocity((int) (Constants.trigorathNearBySpeed() * Math.sin(angle)));
+
+            this.setxVelocity((int) (speed * Math.cos(angle)));
+            this.setyVelocity((int) (speed * Math.sin(angle)));
+            speed -= Constants.trigorathAcceleration();
+            if(speed<2){
+                speed = 2;
+            }
         }
 
 
