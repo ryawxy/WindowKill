@@ -1,31 +1,34 @@
 package View;
 
+import Controller.Constants;
 import Controller.MouseListener;
 import Model.*;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.util.ArrayList;
+
 
 public class GameFrame extends JFrame {
 
-    JPanel panel;
+    private static final JPanel panel = new JPanel();
     private static Epsilon epsilon;
     private static ShotGun shotGun;
+    private  int FRAME_WIDTH = Constants.getFrameWidth();
+    private  int FRAME_HEIGHT = Constants.getFrameHeight();
 
-    private  int FRAME_WIDTH = 700;
-    private  int FRAME_HEIGHT = 700;
-
-    private Dimension SCREEN_SIZE = new Dimension(FRAME_WIDTH, FRAME_HEIGHT);
+    private Dimension SCREEN_SIZE = Constants.getFrameDimension();
     private MouseListener mouseListener;
+
 
     public GameFrame() throws IOException {
         epsilon = new Epsilon(200,200);
-        epsilon.setRadius(30);
+        epsilon.setRadius(Constants.getEpsilonRadius());
+        epsilon.setHP(Constants.HP());
+        epsilon.setXP(Constants.XP());
 
         shotGun = new ShotGun(epsilon.getX(),epsilon.getY());
-        shotGun.setWidth(8);
-        shotGun.setHeight(3);
+        shotGun.setWidth(Constants.getShotGunWidth());
+        shotGun.setHeight(Constants.getShotGunHeight());
         ShotGun.getShots().add(shotGun);
 
         mouseListener = new MouseListener(this);
@@ -35,14 +38,17 @@ public class GameFrame extends JFrame {
         this.setSize(SCREEN_SIZE);
         this.setUndecorated(true);
         this.setTitle("Window Kill");
-
-        panel = new JPanel();
-        panel.setLayout(null);
-        panel.setSize(700,700);
-        panel.setBackground(Color.BLACK);
+        Container contentPane = this.getContentPane();
+        contentPane.setBackground(Color.BLACK);
 
 
-        this.add(panel);
+//      panel.setLayout(null);
+//      panel.setSize(SCREEN_SIZE);
+//      panel.setBackground(Color.BLACK);
+//      panel.setLocation(100,100);
+//
+//
+//      this.add(panel);
 
         this.setVisible(true);
 
@@ -64,11 +70,10 @@ public class GameFrame extends JFrame {
 
         //paint epsilon's shotGun
 
-
         for (ShotGun shotGun1 : ShotGun.getShots()) {
             if(shotGun1.isOnFire()) {
                 g2D.setColor(Color.WHITE);
-                int x = ShotGun.getShots().size() - 1;
+
 
                 g2D.fillRect(shotGun1.getX(), shotGun1.getY(),
                         shotGun1.getWidth(), shotGun1.getHeight());
@@ -98,4 +103,8 @@ public class GameFrame extends JFrame {
     public void setFRAME_HEIGHT(int FRAME_HEIGHT) {
         this.FRAME_HEIGHT = FRAME_HEIGHT;
     }
+//    public static JPanel getPanel(){
+//        return panel;
+//    }
+//
 }

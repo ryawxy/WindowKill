@@ -12,6 +12,8 @@ public class ShotGun extends GameObjects implements movable{
     private int yVelocity;
     private boolean onFire;
     private static final ArrayList<ShotGun> shot = new ArrayList<>();
+    private int expansion;
+    // time interval that each shot expands the frame
 
 
     public ShotGun(int x, int y) {
@@ -78,5 +80,13 @@ public class ShotGun extends GameObjects implements movable{
 
     public void setOnFire(boolean onFire) {
         this.onFire = onFire;
+    }
+
+    public int getExpansion() {
+        return expansion;
+    }
+
+    public void setExpansion(int expansion) {
+        this.expansion = expansion;
     }
 }

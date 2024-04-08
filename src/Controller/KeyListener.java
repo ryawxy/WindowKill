@@ -19,7 +19,7 @@ public class KeyListener {
     private boolean leftPressed;
     private boolean rightPressed;
 
-    private final int absVelocity = 2;
+    private final int absVelocity = Constants.epsilonAbsVelocity();
     private int mouseXPose;
     private int mouseYPose;
 
@@ -96,7 +96,7 @@ public class KeyListener {
         actionMap.put("downPress", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(epsilon.getY() + epsilon.getRadius()< gameFrame.getFRAME_HEIGHT()-5) {
+                if(epsilon.getY() + epsilon.getRadius()< Constants.frameHeightForEpsilon()) {
                     if (!upPressed) {
                         epsilon.setyVelocity(absVelocity);
                         shotGun.setyVelocity(absVelocity);
@@ -155,7 +155,7 @@ public class KeyListener {
         actionMap.put("rightPress", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(epsilon.getX() + epsilon.getRadius()<gameFrame.getFRAME_WIDTH()-5) {
+                if(epsilon.getX() + epsilon.getRadius()<Constants.frameWidthForEpsilon()) {
                     if(!leftPressed) {
                         epsilon.setxVelocity(absVelocity);
                         shotGun.setxVelocity(absVelocity);

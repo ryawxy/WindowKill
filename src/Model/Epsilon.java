@@ -14,6 +14,8 @@ public class Epsilon extends GameObjects implements movable {
     private int radius;
     private int xCenter;
     private int yCenter;
+    private int HP;
+    private int XP;
 
     public Epsilon(int x, int y) throws IOException {
         super(x, y);
@@ -76,5 +78,21 @@ public class Epsilon extends GameObjects implements movable {
 
     public void setyCenter(int yCenter) {
         this.yCenter = yCenter;
+    }
+
+    public int getHP() {
+        return HP;
+    }
+
+    public void setHP(int HP) {
+        this.HP = HP;
+    }
+
+    public int getXP() {
+        return XP;
+    }
+
+    public void setXP(int XP) {
+        this.XP = XP;
     }
 }
