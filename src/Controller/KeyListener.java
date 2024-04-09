@@ -3,6 +3,7 @@ package Controller;
 import Model.Epsilon;
 import Model.ShotGun;
 import View.GameFrame;
+import View.SettingsFrame;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -14,6 +15,7 @@ public class KeyListener {
     Epsilon epsilon;
     ShotGun shotGun;
     GameFrame gameFrame;
+    SettingsFrame settingsFrame;
     private boolean upPressed;
     private boolean downPressed;
     private boolean leftPressed;
@@ -32,7 +34,6 @@ public class KeyListener {
         createKeyActions();
 
     }
-    public KeyListener(){}
 
     public void createKeyBindings(){
 
