@@ -12,8 +12,8 @@ public class Squarantine extends GameObjects implements movable {
 
     private int xVelocity;
     private int yVelocity;
-    private int [] xPoints;
-    private int [] yPoints;
+    private int [] xPoints = {0,0,0,0};
+    private int [] yPoints = {0,0,0,0};
     private int HP = 10;
     private int collectible;
     private int HPPerAttack;
@@ -38,6 +38,7 @@ public class Squarantine extends GameObjects implements movable {
     public Squarantine(int x, int y) {
         super(x, y);
         epsilon = GamePanel.getEpsilon();
+        initializeCollectibles();
     }
 
     public int getxVelocity() {
@@ -219,12 +220,12 @@ public class Squarantine extends GameObjects implements movable {
             setShowCollectibles(true);
 
 
-            for(int i=0;i<getCollectibles().size();i++){
 
-                getCollectibles().get(i).setX(xPoints[i]);
-                getCollectibles().get(i).setY(yPoints[i]);
 
-            }
+                getCollectibles().get(0).setX(xPoints[1]);
+                getCollectibles().get(0).setY(yPoints[1]);
+
+
 
         }
     }

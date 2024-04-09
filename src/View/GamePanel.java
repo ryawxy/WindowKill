@@ -143,13 +143,27 @@ public class GamePanel extends JPanel {
 
         //  paint squarantine
 
-            for(int i=0; i<squarantines.size();i++) {
-                Squarantine squarantine1 = squarantines.get(i);
-                if(!squarantine1.isDead()) {
-                    g2D.setColor(Color.GREEN);
-                    g2D.drawPolygon(squarantine1.getxPoints(), squarantine1.getyPoints(), 4);
+        // if squarantine is alive paint it
+        // if not show its collectible
+        for(int i=0;i<squarantines.size();i++) {
+            Squarantine squarantine1 = squarantines.get(i);
+            if(!squarantine1.isDead()) {
+                g2D.setColor(Color.GREEN);
+                g2D.drawPolygon(squarantine1.getxPoints(), squarantine1.getyPoints(), 4);
+            }else{
+                if(squarantine1.isShowCollectibles()){
+
+                    g2D.setColor(Color.orange);
+                    for(int j=0;j<squarantine1.getCollectibles().size();j++){
+
+
+                        Collectible collectible = squarantine1.getCollectibles().get(j);
+                        g2D.fillOval(collectible.getX(),collectible.getY(),collectible.getRadius(),collectible.getRadius());
+
+                    }
                 }
             }
+        }
 
     }
 
