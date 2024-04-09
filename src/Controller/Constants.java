@@ -72,7 +72,7 @@ public class Constants {
         return 2;
     }
     public static int squarantineNormalSpeed(){
-        return 2;
+        return 1;
     }
     public static int squarantineAggressionSpeed(){
         return 8;
@@ -83,5 +83,6 @@ public class Constants {
     public static int impactSpeed(){
         return 4;
     }
+
 
 }

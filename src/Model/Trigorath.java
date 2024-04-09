@@ -30,6 +30,9 @@ public class Trigorath extends GameObjects implements movable {
 
     private double xVelocity2;
     private double yVelocity2;
+
+    private double xVelocity3;
+    private double yVelocity3;
     private final ArrayList<Collectible> collectibles = new ArrayList<>();
     public Trigorath(int x, int y) {
         super(x,y);
@@ -112,11 +115,24 @@ public class Trigorath extends GameObjects implements movable {
                 yVelocity2 = 0;
             }
 
+            if(Intersection.getIntersectionPoint2()!=null){
+
+
+                double xPoint = Intersection.getIntersectionPoint2().getX();
+                double yPoint = Intersection.getIntersectionPoint2().getY();
+                double angle3 =  Math.atan2(trigorathYPos - yPoint, trigorathXPos - xPoint);
+                xVelocity3 = Math.cos(angle3) * Constants.impactSpeed();
+                yVelocity3 = Math.sin(angle3) * Constants.impactSpeed();
+            }else{
+                xVelocity3 = 0;
+                yVelocity3 = 0;
+            }
+
             if (Math.abs(trigorathXPos - epsilonXPos) > 40 && Math.abs(trigorathYPos - epsilonYPos) > 40) {
 
                 speed = Constants.trigorathLongDistanceSpeed();
-                this.setxVelocity((int) ((int) (speed * Math.cos(angle))+xVelocity2));
-                this.setyVelocity((int) ((int) (speed * Math.sin(angle))+yVelocity2));
+                this.setxVelocity((int) ((int) (speed * Math.cos(angle))+xVelocity2+xVelocity3));
+                this.setyVelocity((int) ((int) (speed * Math.sin(angle))+yVelocity2+yVelocity3));
 
 
 
@@ -126,8 +142,8 @@ public class Trigorath extends GameObjects implements movable {
                 }
             } else {
 
-                this.setxVelocity((int) ((int) (speed * Math.cos(angle))+xVelocity2));
-                this.setyVelocity((int) ((int) (speed * Math.sin(angle)) + yVelocity2));
+                this.setxVelocity((int) ((int) (speed * Math.cos(angle))+xVelocity2+xVelocity3));
+                this.setyVelocity((int) ((int) (speed * Math.sin(angle)) + yVelocity2+yVelocity3));
                 speed -= Constants.trigorathAcceleration();
                 if (speed < 2) {
                     speed = 2;
@@ -228,4 +244,5 @@ public class Trigorath extends GameObjects implements movable {
     public ArrayList<Collectible> getCollectibles() {
         return collectibles;
     }
+
 }

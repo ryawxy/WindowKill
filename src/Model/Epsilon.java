@@ -29,16 +29,11 @@ public class Epsilon extends GameObjects implements movable {
     public void move() {
         this.setX((int) (getX()+xVelocity));
         this.setY((int) (getY()+yVelocity));
-        this.setxCenter((int) (getxCenter()+xVelocity));
-        this.setyCenter((int) (getyCenter()+yVelocity));
+        this.setxCenter( (getxCenter()+xVelocity));
+        this.setyCenter( (getyCenter()+yVelocity));
+
     }
-    public void paintComponent(Graphics g){
-        super.paintComponent(g);
-        Graphics2D g2D = (Graphics2D) g;
-        //    g2D.drawImage(background,0,0,getWidth(),getHeight(),null);
-        g2D.setColor(Color.RED);
-        g2D.drawOval(100,100,50,50);
-    }
+
 
     public double getxVelocity() {
         return xVelocity;
@@ -64,19 +59,19 @@ public class Epsilon extends GameObjects implements movable {
         this.radius = radius;
     }
 
-    public int getxCenter() {
+    public double getxCenter() {
         return getX()+radius;
     }
 
-    public void setxCenter(int xCenter) {
+    public void setxCenter(double xCenter) {
         this.xCenter = xCenter;
     }
 
-    public int getyCenter() {
+    public double getyCenter() {
         return getY()+radius;
     }
 
-    public void setyCenter(int yCenter) {
+    public void setyCenter(double yCenter) {
         this.yCenter = yCenter;
     }
 

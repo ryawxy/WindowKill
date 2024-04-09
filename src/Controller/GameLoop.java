@@ -29,7 +29,9 @@ public class GameLoop {
     private int empowerTime;
     //amount of time that has passed since empower item is activated
     private int impactTimer;
-    //amount of time the has passed since collision
+    //amount of time the has passed since enemy collision
+    private int impactTimer2;
+    //amount of time the has passed since collision with epsilon
     private int banishTime;
     //amount of time the has passed since banish item is activated
 
@@ -70,15 +72,23 @@ public class GameLoop {
                         }
                     }
 
-                for(int i=0;i<GamePanel.getSquarantine().size();i++) {
-                    Squarantine squarantine = GamePanel.getSquarantine().get(i);
-                    squarantine.move();
-                }
+//                for(int i=0;i<GamePanel.getSquarantine().size();i++) {
+//                    Squarantine squarantine = GamePanel.getSquarantine().get(i);
+//                    squarantine.move();
+//                }
                 for (int i = 0; i < GamePanel.getTrigoraths().size(); i++) {
                     Trigorath trigorath = GamePanel.getTrigoraths().get(i);
                     trigorath.move();
                 }
                     GamePanel.getEpsilon().move();
+
+                    intersection.shotIntersectsSquarantine();
+                    intersection.shotIntersectsTrigorath();
+                    intersection.shotIntersectsSquarantine();
+                    intersection.epsilonIntersectsCollectible();
+                    intersection.epsilonIntersectEnemy();
+                    intersection.enemyIntersection();
+
 
                     try {
                         frameSize = new FrameSize(game.getGameFrame());
@@ -86,9 +96,9 @@ public class GameLoop {
                         throw new RuntimeException(ex);
                     }
                     //shrinkage starts after 10 seconds
-                    if (countTime >= 700) {
-                        frameSize.shrink();
-                    }
+//                    if (countTime >= 700) {
+//                        frameSize.shrink();
+//                    }
 
 
                     if (empowerTime >= 500) {
@@ -107,11 +117,7 @@ public class GameLoop {
                             }
                         }
                     }
-                    intersection.shotIntersectsSquarantine();
-                    intersection.shotIntersectsTrigorath();
-                    intersection.shotIntersectsSquarantine();
-                    intersection.epsilonIntersectsCollectible();
-                 //   intersection.epsilonIntersectsEnemy();
+
 
                     //if trigorath is dead show its collectibles for 10 seconds
                     for (Trigorath trigorath : GamePanel.getTrigoraths()) {
@@ -124,7 +130,7 @@ public class GameLoop {
                     }
 
                     countTime++;
-                    intersection.enemyIntersection();
+
                     if(Intersection.getIntersectionPoint()!=null){
                         impactTimer++;
                     }
@@ -132,10 +138,19 @@ public class GameLoop {
                         impactTimer = 0;
                         Intersection.setIntersectionPoint(null);
                     }
+
+                    if(Intersection.getIntersectionPoint2()!=null){
+                        impactTimer2++;
+                    }
+                    if(impactTimer2>=20){
+                        impactTimer2 = 0;
+                        Intersection.setIntersectionPoint2(null);
+                    }
+
                     if(ShopFrame.isBanishItem()){
                         banishTime++;
                     }
-                    if(banishTime>=50){
+                    if(banishTime>=80){
                         banishTime = 0;
                         ShopFrame.setBanishItem(false);
                     }

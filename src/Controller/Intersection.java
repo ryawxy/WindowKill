@@ -15,6 +15,7 @@ public class Intersection {
     private Polygon trigorath2;
     private boolean intersect;
     private static Point2D intersectionPoint;
+    private static Point2D intersectionPoint2;
     public Intersection(GamePanel gamePanel) throws IOException {
         this.gamePanel = gamePanel;
     }
@@ -43,14 +44,16 @@ public class Intersection {
         for(int j = 0; j< GamePanel.getSquarantine().size(); j++) {
             Squarantine squarantine = GamePanel.getSquarantine().get(j);
             squarantine2 = new Polygon(squarantine.getxPoints(),squarantine.getyPoints(),3);
+            if(!squarantine.isDead()){
             for (int i = 0; i < ShotGun.getShots().size(); i++) {
                 ShotGun shot = ShotGun.getShots().get(i);
-                if(shot.isVisible()){
-                    if(squarantine2.intersects(shot.getX(), shot.getY(), shot.getWidth(), shot.getHeight())) {
+                if(shot.isVisible()) {
+                    if (squarantine2.intersects(shot.getX(), shot.getY(), shot.getWidth(), shot.getHeight())) {
 
                         shot.setVisible(false);
                         squarantine.decreaseHP();
                     }
+                }
 
                 }
             }
@@ -64,13 +67,15 @@ public class Intersection {
         for(int j = 0; j< GamePanel.getTrigoraths().size(); j++) {
             Trigorath trigorath = GamePanel.getTrigoraths().get(j);
             trigorath2 = new Polygon(trigorath.getxPoints(),trigorath.getyPoints(),3);
+            if(!trigorath.isDead()){
             for (int i = 0; i < ShotGun.getShots().size(); i++) {
                 ShotGun shot = ShotGun.getShots().get(i);
-                if(shot.isVisible()){
-                if(trigorath2.intersects(shot.getX(), shot.getY(), shot.getWidth(), shot.getHeight())) {
+                if(shot.isVisible()) {
+                    if (trigorath2.intersects(shot.getX(), shot.getY(), shot.getWidth(), shot.getHeight())) {
 
-                    shot.setVisible(false);
-                    trigorath.decreaseHP();
+                        shot.setVisible(false);
+                        trigorath.decreaseHP();
+                    }
                 }
 
                 }
@@ -160,86 +165,42 @@ public class Intersection {
     public static void setIntersectionPoint(Point2D intersectionPoint) {
         Intersection.intersectionPoint = intersectionPoint;
     }
-    //    public void epsilonIntersectsEnemy(){
-//
-//        Epsilon epsilon = GamePanel.getEpsilon();
-//
-//        for(Trigorath trigorath : GamePanel.getTrigoraths()){
-//            for (int i = 0; i < trigorath.getxPoints().length; i++) {
-//
-//                double distance = Math.sqrt(Math.pow(epsilon.getxCenter() - trigorath.getxPoints()[i], 2) + Math.pow(epsilon.getyCenter() - trigorath.getyPoints()[i], 2));
-//
-//                if (distance <= epsilon.getRadius()) {
-//                    // Intersection with trigorath's vertex detected
-//                    //     epsilon.decreaseHP();
-//                    intersect = true;
-//
-//                }
-//            }
-//
-//            for (int i = 0; i < trigorath.getxPoints().length; i++) {
-//
-//                int x1 = trigorath.getxPoints()[i];
-//                int y1 = trigorath.getyPoints()[i];
-//                int x2 = trigorath.getxPoints()[(i + 1) % trigorath.getxPoints().length];
-//                int y2 = trigorath.getyPoints()[(i + 1) % trigorath.getyPoints().length];
-//
-//
-//
-//                double dx = x2 - x1;
-//                double dy = y2 - y1;
-//                double dr = Math.sqrt(dx * dx + dy * dy);
-//                double D = x1 * y2 - x2 * y1;
-//                double discriminant = epsilon.getRadius()  * dr * dr - D * D;
-//
-//                if (discriminant >= 0) {
-//                    intersect = true;
-//                    // Intersection with trigorath's edge detected
-//
-//                }
-//
-//            }
-//        }
-//        for(Squarantine squarantine : GamePanel.getSquarantine()){
-//            for (int i = 0; i < squarantine.getxPoints().length; i++) {
-//
-//                double distance = Math.sqrt(Math.pow(epsilon.getxCenter() - squarantine.getxPoints()[i], 2) + Math.pow(epsilon.getyCenter() - squarantine.getyPoints()[i], 2));
-//
-//                if (distance <= epsilon.getRadius()) {
-//                    // Intersection with squarantine's vertex detected
-//                    //    epsilon.decreaseHP();
-//                    intersect = true;
-//
-//                }
-//
-//            }
-//
-//            for (int i = 0; i < squarantine.getxPoints().length; i++) {
-//
-//                int x1 = squarantine.getxPoints()[i];
-//                int y1 = squarantine.getyPoints()[i];
-//                int x2 = squarantine.getxPoints()[(i + 1) % squarantine.getxPoints().length];
-//                int y2 = squarantine.getyPoints()[(i + 1) % squarantine.getyPoints().length];
-//
-//
-//
-//                double dx = x2 - x1;
-//                double dy = y2 - y1;
-//                double dr = Math.sqrt(dx * dx + dy * dy);
-//                double D = x1 * y2 - x2 * y1;
-//                double discriminant = epsilon.getRadius()  * dr * dr - D * D;
-//
-//                if (discriminant >= 0) {
-//                    intersect = true;
-//                    // Intersection with squarantine's edge detected
-//
-//                }
-//
-//            }
-//        }
-//    }
+public void epsilonIntersectEnemy(){
 
+        Epsilon epsilon = GamePanel.getEpsilon();
 
+    ArrayList <Point2D> vertex = new ArrayList<>();
+    for(Trigorath trigorath : GamePanel.getTrigoraths()){
+        if(!trigorath.isDead()){
+            for(int i=0;i<3;i++) {
+                vertex.add(new Point2D.Double(trigorath.getxPoints()[i], trigorath.getyPoints()[i]));
+            }
+        }
+    }
+    for(Squarantine squarantine : GamePanel.getSquarantine()){
+        if(!squarantine.isDead()){
+            for(int i=0;i<4;i++) {
+                vertex.add(new Point2D.Double(squarantine.getxPoints()[i], squarantine.getyPoints()[i]));
+            }
+        }
+    }
+    for(Point2D point2D : vertex){
+        Point2D center = new Point2D.Double(epsilon.getxCenter(),epsilon.getyCenter());
+//        double distance = Math.sqrt(Math.pow(point2D.getX()-epsilon.getxCenter(),2)+
+//                Math.pow(point2D.getY()-epsilon.getyCenter(),2));
+        if(point2D.distance(center)<=epsilon.getRadius()){
 
+            intersectionPoint2 = point2D;
+        }
+    }
 
+}
+
+    public static Point2D getIntersectionPoint2() {
+        return intersectionPoint2;
+    }
+
+    public static void setIntersectionPoint2(Point2D intersectionPoint2) {
+        Intersection.intersectionPoint2 = intersectionPoint2;
+    }
 }

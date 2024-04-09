@@ -22,6 +22,7 @@ public class StarterMenu extends JFrame {
     JButton skillTree;
     JButton settings;
     JButton tutorial;
+    JButton exit;
     private Game game;
     private GameLoop gameLoop;
 
@@ -31,6 +32,7 @@ public class StarterMenu extends JFrame {
         this.setSize(SCREEN_SIZE);
         this.setTitle("Window Kill");
         this.setLocationRelativeTo(null);
+        this.setUndecorated(true);
 //        this.setLayout(null);
 
 
@@ -50,7 +52,7 @@ public class StarterMenu extends JFrame {
         start.setBorderPainted(false);
         //  start.setContentAreaFilled(false);
         start.setFocusPainted(false);
-        start.setBounds(200,100,300,80);
+        start.setBounds(200,80,300,80);
 
         start.addActionListener(new ActionListener() {
             @Override
@@ -85,7 +87,7 @@ public class StarterMenu extends JFrame {
         skillTree.setBackground(backClr);
         skillTree.setBorderPainted(false);
         skillTree.setFocusPainted(false);
-        skillTree.setBounds(200,210,300,80);
+        skillTree.setBounds(200,190,300,80);
 //        this.add(skillTree);
 
         //settings Button
@@ -95,7 +97,7 @@ public class StarterMenu extends JFrame {
         settings.setBackground(backClr);
         settings.setBorderPainted(false);
         settings.setFocusPainted(false);
-        settings.setBounds(200,320,300,80);
+        settings.setBounds(200,300,300,80);
 //        this.add(settings);
 
         //tutorial Button
@@ -105,14 +107,30 @@ public class StarterMenu extends JFrame {
         tutorial.setBackground(backClr);
         tutorial.setBorderPainted(false);
         tutorial.setFocusPainted(false);
-        tutorial.setBounds(200,430,300,80);
+        tutorial.setBounds(200,410,300,80);
 //        this.add(tutorial);
+        //exit Button
+        exit = new JButton("Exit");
+        exit.setFont(fontStyle);
+        exit.setForeground(fontClr);
+        exit.setBackground(backClr);
+        exit.setBorderPainted(false);
+        exit.setFocusPainted(false);
+        exit.setBounds(200,520,300,80);
+        exit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                System.exit(0);
+            }
+        });
 
         this.setLayout(null);
         this.add(start);
         this.add(skillTree);
         this.add(settings);
         this.add(tutorial);
+        this.add(exit);
 
 
         this.setVisible(true);
