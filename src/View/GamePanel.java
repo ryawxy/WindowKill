@@ -29,7 +29,14 @@ public class GamePanel extends JPanel {
 
     int [] xPoints2 = {150,140,160};
     int [] yPoints2 = {120,140,140};
+
+    int [] xPoints3 = {250,240,260};
+    int [] yPoints3 = {220,240,240};
+
+    int[] xPoints4 = {290,310,310,290};
+    int [] yPoints4 = {290,290,310,310};
     Trigorath trigorath2;
+    Trigorath trigorath3;
 
 
 
@@ -44,10 +51,10 @@ public class GamePanel extends JPanel {
         shotGun.setHeight(Constants.getShotGunHeight());
         ShotGun.getShots().add(shotGun);
 
-//        squarantine = new Squarantine(80,80);
-//        squarantine.setxPoints(xPoints);
-//        squarantine.setyPoints(yPoints);
-//        squarantines.add(squarantine);
+        squarantine = new Squarantine(300,300);
+        squarantine.setxPoints(xPoints4);
+        squarantine.setyPoints(yPoints4);
+        squarantines.add(squarantine);
 
         trigorath = new Trigorath(50,33);
         trigorath.setxPoints(xPoints);
@@ -59,11 +66,14 @@ public class GamePanel extends JPanel {
         trigorath2.setyPoints(yPoints2);
         trigoraths.add(trigorath2);
 
+        trigorath3 = new Trigorath(250,233);
+        trigorath3.setxPoints(xPoints3);
+        trigorath3.setyPoints(yPoints3);
+        trigoraths.add(trigorath3);
+
 
         mouseListener = new MouseListener(this);
         addMouseListener(mouseListener);
-
-
 
         setBorder(BorderFactory.createLineBorder(Color.black,5));
         setBackground(Color.BLACK);
@@ -75,7 +85,6 @@ public class GamePanel extends JPanel {
         this.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-                // super.componentResized(e);
                 if(epsilon.getX()+epsilon.getRadius() > FRAME_WIDTH){
                     epsilon.setX(FRAME_WIDTH - epsilon.getRadius());
                 } if(epsilon.getY() + epsilon.getRadius() > FRAME_HEIGHT){
@@ -87,12 +96,6 @@ public class GamePanel extends JPanel {
         });
 
         this.setLayout(null);
-//        this.setLocationRelativeTo(null);
-//
-//        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-//
-//        this.setResizable(false);
-
     }
     public void paintComponent(Graphics g) {
         Graphics2D g2D = (Graphics2D) g;
@@ -140,13 +143,13 @@ public class GamePanel extends JPanel {
 
         //  paint squarantine
 
-//            for(int i=0; i<squarantines.size();i++) {
-//                Squarantine squarantine1 = squarantines.get(i);
-//                if(!squarantine1.isDead()) {
-//                    g2D.setColor(Color.GREEN);
-//                    g2D.drawPolygon(squarantine1.getxPoints(), squarantine1.getyPoints(), 4);
-//                }
-//            }
+            for(int i=0; i<squarantines.size();i++) {
+                Squarantine squarantine1 = squarantines.get(i);
+                if(!squarantine1.isDead()) {
+                    g2D.setColor(Color.GREEN);
+                    g2D.drawPolygon(squarantine1.getxPoints(), squarantine1.getyPoints(), 4);
+                }
+            }
 
     }
 

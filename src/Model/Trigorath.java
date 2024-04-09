@@ -26,6 +26,9 @@ public class Trigorath extends GameObjects implements movable {
     private boolean showCollectibles;
     private int timer;
     // show collectibles only for 10 seconds
+
+    private double xVelocity2;
+    private double yVelocity2;
     private final ArrayList<Collectible> collectibles = new ArrayList<>();
     public Trigorath(int x, int y) {
         super(x,y);
@@ -86,6 +89,8 @@ public class Trigorath extends GameObjects implements movable {
     public void move() {
 
         if (!isDead()) {
+
+
             epsilonXPos = epsilon.getX();
             epsilonYPos = epsilon.getY();
 
@@ -94,21 +99,31 @@ public class Trigorath extends GameObjects implements movable {
 
             angle = (int) Math.atan2(epsilonYPos - trigorathYPos, epsilonXPos - trigorathXPos);
 
-            int distance = (int) Math.sqrt(Math.pow(trigorathYPos - epsilonYPos, 2) +
-                    Math.pow(trigorathXPos - epsilonXPos, 2));
+            if(Intersection.getIntersectionPoint()!=null){
+
+                double xPoint = Intersection.getIntersectionPoint().getX();
+                double yPoint = Intersection.getIntersectionPoint().getY();
+                double angle2 =  Math.atan2(trigorathYPos - yPoint, trigorathXPos - xPoint);
+                 xVelocity2 = Math.cos(angle2) * Constants.impactSpeed();
+                 yVelocity2 = Math.sin(angle2) * Constants.impactSpeed();
+            }else{
+                xVelocity2 = 0;
+                yVelocity2 = 0;
+            }
+
             if (Math.abs(trigorathXPos - epsilonXPos) > 40 && Math.abs(trigorathYPos - epsilonYPos) > 40) {
 
                 speed = Constants.trigorathLongDistanceSpeed();
-                this.setxVelocity((int) (speed * Math.cos(angle)));
-                this.setyVelocity((int) (speed * Math.sin(angle)));
+                this.setxVelocity((int) ((int) (speed * Math.cos(angle))+xVelocity2));
+                this.setyVelocity((int) ((int) (speed * Math.sin(angle))+yVelocity2));
                 speed += Constants.trigorathAcceleration();
                 if (speed > 8) {
                     speed = 8;
                 }
             } else {
 
-                this.setxVelocity((int) (speed * Math.cos(angle)));
-                this.setyVelocity((int) (speed * Math.sin(angle)));
+                this.setxVelocity((int) ((int) (speed * Math.cos(angle))+xVelocity2));
+                this.setyVelocity((int) ((int) (speed * Math.sin(angle)) + yVelocity2));
                 speed -= Constants.trigorathAcceleration();
                 if (speed < 2) {
                     speed = 2;

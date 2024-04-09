@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Game;
 import Model.ShotGun;
+import Model.Squarantine;
 import Model.Trigorath;
 import View.GamePanel;
 import View.ShopFrame;
@@ -27,6 +28,8 @@ public class GameLoop {
     //amount of time since shooting the next fire
     private int empowerTime;
     //amount of time that has passed since empower item is activated
+    private int impactTimer;
+    //amount of time the has passed since collision
 
 
     public GameLoop(Game game) throws IOException {
@@ -40,11 +43,34 @@ public class GameLoop {
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
+                    if (!ShopFrame.isEmpowerItem()) {
+                        for (ShotGun shotGun : ShotGun.getShots()) {
+                            shotGun.move();
 
-//                for(int i=0;i<GameFrame.getSquarantine().size();i++) {
-//                    Squarantine squarantine = GameFrame.getSquarantine().get(i);
-//                    squarantine.move();
-//                }
+                        }
+                    } else {
+                        empowerTime++;
+
+                        if (MouseListener.isShootinEmpowerMode()) {
+
+                            time++;
+
+                            for (int i = 0; i <= index; i++) {
+                                ShotGun.getShots().get(i).move();
+                            }
+                            if (time >= 2) {
+                                if (index <= ShotGun.getShots().size() - 2) {
+                                    index++;
+                                    time = 0;
+                                }
+                            }
+                        }
+                    }
+
+                for(int i=0;i<GamePanel.getSquarantine().size();i++) {
+                    Squarantine squarantine = GamePanel.getSquarantine().get(i);
+                    squarantine.move();
+                }
                 for (int i = 0; i < GamePanel.getTrigoraths().size(); i++) {
                     Trigorath trigorath = GamePanel.getTrigoraths().get(i);
                     trigorath.move();
@@ -61,29 +87,7 @@ public class GameLoop {
                         frameSize.shrink();
                     }
 
-                    if (!ShopFrame.isEmpowerItem()) {
-                        for (ShotGun shotGun : ShotGun.getShots()) {
-                            shotGun.move();
 
-                        }
-                    } else {
-                        empowerTime++;
-
-                        if (MouseListener.isShootinEmpowerMode()) {
-
-                            time++;
-
-                            for (int i = 0; i <= index; i++) {
-                                ShotGun.getShots().get(i).move();
-                            }
-                            if (time >= 5) {
-                                if (index <= ShotGun.getShots().size() - 2) {
-                                    index++;
-                                    time = 0;
-                                }
-                            }
-                        }
-                    }
                     if (empowerTime >= 500) {
                         ShopFrame.setEmpowerItem(false);
                         empowerTime=0;
@@ -104,7 +108,7 @@ public class GameLoop {
                     intersection.shotIntersectsTrigorath();
                     intersection.shotIntersectsSquarantine();
                     intersection.epsilonIntersectsCollectible();
-                    intersection.epsilonIntersectsEnemy();
+                 //   intersection.epsilonIntersectsEnemy();
 
                     //if trigorath is dead show its collectibles for 10 seconds
                     for (Trigorath trigorath : GamePanel.getTrigoraths()) {
@@ -117,6 +121,14 @@ public class GameLoop {
                     }
 
                     countTime++;
+                    intersection.enemyIntersection();
+                    if(Intersection.getIntersectionPoint()!=null){
+                        impactTimer++;
+                    }
+                    if(impactTimer>=20){
+                        impactTimer = 0;
+                        Intersection.setIntersectionPoint(null);
+                    }
 
                     game.getGameFrame().repaint();
                 }

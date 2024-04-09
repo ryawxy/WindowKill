@@ -1,6 +1,7 @@
 package Model;
 
 import Controller.Constants;
+import Controller.Intersection;
 import View.GamePanel;
 
 import java.util.ArrayList;
@@ -28,6 +29,9 @@ public class Squarantine extends GameObjects implements movable {
     private boolean showCollectibles;
     private int timer;
     // show collectibles only for 10 seconds
+    private double xVelocity2;
+    private double yVelocity2;
+
     private final ArrayList<Collectible> collectibles = new ArrayList<>();
 
     public Squarantine(int x, int y) {
@@ -149,8 +153,23 @@ public class Squarantine extends GameObjects implements movable {
 
 
         angle = (int) Math.atan2(epsilonYPos-squarantineYPos,epsilonXPos-squarantineXPos);
-        this.setxVelocity((int) (speed * Math.cos(angle)));
-        this.setyVelocity((int) (speed * Math.sin(angle)));
+
+        if(Intersection.getIntersectionPoint()!=null){
+
+            double xPoint = Intersection.getIntersectionPoint().getX();
+            double yPoint = Intersection.getIntersectionPoint().getY();
+            double angle2 =  Math.atan2(squarantineYPos - yPoint, squarantineXPos - xPoint);
+            xVelocity2 = Math.cos(angle2) * Constants.impactSpeed();
+            yVelocity2 = Math.sin(angle2) * Constants.impactSpeed();
+        }else{
+            xVelocity2 = 0;
+            yVelocity2 = 0;
+        }
+
+
+
+        this.setxVelocity((int) ((int) (speed * Math.cos(angle))+xVelocity2));
+        this.setyVelocity((int) ((int) (speed * Math.sin(angle))+yVelocity2));
 
 
 

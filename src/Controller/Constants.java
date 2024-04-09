@@ -80,5 +80,8 @@ public class Constants {
     public static int squarantineAcceleration(){
         return 1;
     }
+    public static int impactSpeed(){
+        return 4;
+    }
 
 }
