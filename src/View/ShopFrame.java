@@ -10,7 +10,6 @@ import java.util.Objects;
 
 public class ShopFrame extends JFrame {
 
-    JPanel panel;
     private final int SHOP_WIDTH = 700;
     private final int SHOP_HEIGHT = 700;
     private final Dimension SCREEN_SIZE = new Dimension(SHOP_WIDTH,SHOP_HEIGHT);
@@ -22,6 +21,7 @@ public class ShopFrame extends JFrame {
     private JButton exit;
     private static boolean healItem;
     private static boolean empowerItem;
+    private static boolean banishItem;
     private String[] option = {"yes","no"};
 
     public ShopFrame(){
@@ -47,6 +47,24 @@ public class ShopFrame extends JFrame {
         banish.setBorderPainted(false);
         banish.setFocusPainted(false);
         banish.setBounds(200,100,400,80);
+        banish.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(GamePanel.getEpsilon().getXP()<100){
+                    JOptionPane.showMessageDialog(ShopFrame.this,
+                            "You don't have enough XP to purchase this item.");
+                }else{
+
+                    int purchase = JOptionPane.showOptionDialog(ShopFrame.this,
+                            "this item costs 100 XP.DO you want to purchase it?", null, JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
+                    if(purchase == 0){
+                        banishItem = true;
+                        GamePanel.getEpsilon().setXP(GamePanel.getEpsilon().getXP()-100);
+                    }
+                }
+            }
+        });
 
         //empower button
         empower = new JButton("O'Athena,Empower");
@@ -120,8 +138,6 @@ public class ShopFrame extends JFrame {
         });
 
 
-
-
         this.add(banish);
         this.add(empower);
         this.add(heal);
@@ -145,5 +161,13 @@ public class ShopFrame extends JFrame {
 
     public static void setEmpowerItem(boolean empowerItem) {
         ShopFrame.empowerItem = empowerItem;
+    }
+
+    public static boolean isBanishItem() {
+        return banishItem;
+    }
+
+    public static void setBanishItem(boolean banishItem) {
+        ShopFrame.banishItem = banishItem;
     }
 }

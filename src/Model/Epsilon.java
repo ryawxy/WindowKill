@@ -15,7 +15,7 @@ public class Epsilon extends GameObjects implements movable {
     private double xCenter = getX()+radius;
     private double yCenter = getY()+radius;
     private int HP = 100;
-    private int XP = 80;
+    private int XP = 110;
 
 
     public Epsilon(int x, int y) throws IOException {

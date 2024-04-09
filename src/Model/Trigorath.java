@@ -3,6 +3,7 @@ package Model;
 import Controller.Constants;
 import Controller.Intersection;
 import View.GamePanel;
+import View.ShopFrame;
 
 import java.util.ArrayList;
 
@@ -116,6 +117,9 @@ public class Trigorath extends GameObjects implements movable {
                 speed = Constants.trigorathLongDistanceSpeed();
                 this.setxVelocity((int) ((int) (speed * Math.cos(angle))+xVelocity2));
                 this.setyVelocity((int) ((int) (speed * Math.sin(angle))+yVelocity2));
+
+
+
                 speed += Constants.trigorathAcceleration();
                 if (speed > 8) {
                     speed = 8;
@@ -128,6 +132,11 @@ public class Trigorath extends GameObjects implements movable {
                 if (speed < 2) {
                     speed = 2;
                 }
+            }
+            //if banish item is activated move in the opposite direction
+            if(ShopFrame.isBanishItem()){
+                this.setxVelocity(getxVelocity()*-1);
+                this.setyVelocity(getyVelocity()*-1);
             }
 
             xPoints[0] += getxVelocity();

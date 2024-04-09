@@ -30,6 +30,9 @@ public class GameLoop {
     //amount of time that has passed since empower item is activated
     private int impactTimer;
     //amount of time the has passed since collision
+    private int banishTime;
+    //amount of time the has passed since banish item is activated
+
 
 
     public GameLoop(Game game) throws IOException {
@@ -128,6 +131,13 @@ public class GameLoop {
                     if(impactTimer>=20){
                         impactTimer = 0;
                         Intersection.setIntersectionPoint(null);
+                    }
+                    if(ShopFrame.isBanishItem()){
+                        banishTime++;
+                    }
+                    if(banishTime>=50){
+                        banishTime = 0;
+                        ShopFrame.setBanishItem(false);
                     }
 
                     game.getGameFrame().repaint();
