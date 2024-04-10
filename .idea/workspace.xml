@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="added collectible for squarantine">
-      <change afterPath="$PROJECT_DIR$/src/Controller/ImpactSpeed.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="epsilon remains in game frame while shrinking">
       <change beforePath="$PROJECT_DIR$/src/Controller/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Constants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Intersection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Intersection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Epsilon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Epsilon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/KeyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/KeyListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Trigorath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Trigorath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/StarterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/StarterMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/GameFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/GameFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,16 +26,11 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="master" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 2
-}</component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
   <component name="ProjectId" id="2eomOtKF3m1dtnE0xNY8YwEPx1Y" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -49,8 +41,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Namazi/Ap2024/WindowKill2"
+    "git-widget-placeholder": "master"
   }
 }]]></component>
   <component name="RunManager">
@@ -103,63 +94,7 @@
       <option name="project" value="LOCAL" />
       <updated>1712580834325</updated>
     </task>
-    <task id="LOCAL-00005" summary="epsilon remains in game frame while shrinking">
-      <option name="closed" value="true" />
-      <created>1712582152562</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1712582152562</updated>
-    </task>
-    <task id="LOCAL-00006" summary="added glass frame">
-      <option name="closed" value="true" />
-      <created>1712582580534</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1712582580534</updated>
-    </task>
-    <task id="LOCAL-00007" summary="fixed bug in collectible collision with epsilon">
-      <option name="closed" value="true" />
-      <created>1712582745788</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1712582745788</updated>
-    </task>
-    <task id="LOCAL-00008" summary="shop frame created">
-      <option name="closed" value="true" />
-      <created>1712585893251</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1712585893251</updated>
-    </task>
-    <task id="LOCAL-00009" summary="empower &amp; heal item created">
-      <option name="closed" value="true" />
-      <created>1712589632727</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1712589632727</updated>
-    </task>
-    <task id="LOCAL-00010" summary="empower &amp; heal item created">
-      <option name="closed" value="true" />
-      <created>1712645772139</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1712645772140</updated>
-    </task>
-    <task id="LOCAL-00011" summary="added collectible for squarantine">
-      <option name="closed" value="true" />
-      <created>1712647467711</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1712647467711</updated>
-    </task>
-    <option name="localTasksCounter" value="12" />
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -177,13 +112,7 @@
     <MESSAGE value="added a structure to the game" />
     <MESSAGE value="added shotgun for epsilon" />
     <MESSAGE value="changing game frame size applied" />
-    <MESSAGE value="aggression mechanism for trigorath" />
     <MESSAGE value="epsilon remains in game frame while shrinking" />
-    <MESSAGE value="added glass frame" />
-    <MESSAGE value="fixed bug in collectible collision with epsilon" />
-    <MESSAGE value="shop frame created" />
-    <MESSAGE value="empower &amp; heal item created" />
-    <MESSAGE value="added collectible for squarantine" />
-    <option name="LAST_COMMIT_MESSAGE" value="added collectible for squarantine" />
+    <option name="LAST_COMMIT_MESSAGE" value="epsilon remains in game frame while shrinking" />
   </component>
 </project>

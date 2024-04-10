@@ -2,8 +2,8 @@ package Controller;
 
 import Model.Epsilon;
 import Model.ShotGun;
-import View.GamePanel;
-import View.ShopFrame;
+import View.GameFrame;
+import View.Settings.SettingsFrame;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -14,48 +14,46 @@ public class KeyListener {
     ActionMap actionMap;
     Epsilon epsilon;
     ShotGun shotGun;
-    GamePanel gamePanel;
+    GameFrame gameFrame;
+    SettingsFrame settingsFrame;
     private boolean upPressed;
     private boolean downPressed;
     private boolean leftPressed;
     private boolean rightPressed;
-    private static boolean pauseGame;
+
     private final int absVelocity = Constants.epsilonAbsVelocity();
     private int mouseXPose;
     private int mouseYPose;
 
 
-    public KeyListener(GamePanel gamePanel){
-        this.gamePanel = gamePanel;
-        epsilon = GamePanel.getEpsilon();
-        shotGun = GamePanel.getShotGun();
+    public KeyListener(GameFrame gameFrame){
+        this.gameFrame = gameFrame;
+        epsilon = GameFrame.getEpsilon();
+        shotGun = GameFrame.getShotGun();
         createKeyBindings();
         createKeyActions();
 
     }
-    public KeyListener(){}
 
     public void createKeyBindings(){
 
 
-        inputMap = gamePanel.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
-        actionMap = gamePanel.getRootPane().getActionMap();
+        inputMap = gameFrame.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        actionMap = gameFrame.getRootPane().getActionMap();
 
         //key press
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP,0),"upPress");
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN,0),"downPress");
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT,0),"leftPress");
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT,0),"rightPress");
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_SPACE,0),"shopPress");
-
+        inputMap.put(KeyStroke.getKeyStroke(SettingsFrame.getKeyBinding("up"),0),"upPress");
+        inputMap.put(KeyStroke.getKeyStroke(SettingsFrame.getKeyBinding("down"),0),"downPress");
+        inputMap.put(KeyStroke.getKeyStroke(SettingsFrame.getKeyBinding("left"),0),"leftPress");
+        inputMap.put(KeyStroke.getKeyStroke(SettingsFrame.getKeyBinding("right"),0),"rightPress");
 
 
 
         // key release
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP,0,true),"upRelease");
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN,0,true),"downRelease");
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT,0,true),"leftRelease");
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT,0,true),"rightRelease");
+        inputMap.put(KeyStroke.getKeyStroke(SettingsFrame.getKeyBinding("up"),0,true),"upRelease");
+        inputMap.put(KeyStroke.getKeyStroke(SettingsFrame.getKeyBinding("down"),0,true),"downRelease");
+        inputMap.put(KeyStroke.getKeyStroke(SettingsFrame.getKeyBinding("left"),0,true),"leftRelease");
+        inputMap.put(KeyStroke.getKeyStroke(SettingsFrame.getKeyBinding("right"),0,true),"rightRelease");
 
 
 
@@ -70,7 +68,6 @@ public class KeyListener {
                     if (!downPressed) {
                         epsilon.setyVelocity(-1 * absVelocity);
                         shotGun.setyVelocity(-1 * absVelocity);
-
 
                     }else {
                         epsilon.setyVelocity(0);
@@ -100,7 +97,7 @@ public class KeyListener {
         actionMap.put("downPress", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(epsilon.getY() + epsilon.getRadius()< gamePanel.getFRAME_HEIGHT()) {
+                if(epsilon.getY() + epsilon.getRadius()< gameFrame.getFRAME_HEIGHT()) {
                     if (!upPressed) {
                         epsilon.setyVelocity(absVelocity);
                         shotGun.setyVelocity(absVelocity);
@@ -159,7 +156,7 @@ public class KeyListener {
         actionMap.put("rightPress", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(epsilon.getX() + epsilon.getRadius()< gamePanel.getFRAME_WIDTH()) {
+                if(epsilon.getX() + epsilon.getRadius()< gameFrame.getFRAME_WIDTH()) {
                     if(!leftPressed) {
                         epsilon.setxVelocity(absVelocity);
                         shotGun.setxVelocity(absVelocity);
@@ -184,21 +181,9 @@ public class KeyListener {
                 rightPressed = false;
             }
         });
-        actionMap.put("shopPress", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new ShopFrame();
-                pauseGame =true;
-            }
-        });
 
 
     }
-    public static boolean getPauseGame(){
-        return pauseGame;
-    }
 
-    public static void setPauseGame(boolean pauseGame) {
-        KeyListener.pauseGame = pauseGame;
-    }
+
 }
