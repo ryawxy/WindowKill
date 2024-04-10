@@ -35,10 +35,12 @@ public class KeyCodeCapture extends JDialog {
 
             public void keyPressed(KeyEvent e) {
 
-                keyCode = e.getKeyCode();
-
-              //  System.out.println(SettingsFrame.getKeyBinding(key));
-                keyCodeField.setText(KeyEvent.getKeyText(keyCode));
+                if(e.getKeyCode() != KeyEvent.VK_ESCAPE) {
+                    keyCode = e.getKeyCode();
+                    keyCodeField.setText(KeyEvent.getKeyText(keyCode));
+                }else{
+                    dispose();
+                }
 
             }
 
