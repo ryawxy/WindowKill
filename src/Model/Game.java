@@ -6,7 +6,9 @@ import Controller.KeyListener;
 import Controller.MouseListener;
 import View.GameFrame;
 import Controller.KeyListener;
+import View.Settings.SettingsFrame;
 
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 

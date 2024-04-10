@@ -2,6 +2,7 @@ package View;
 
 import Controller.GameLoop;
 import Model.Game;
+import View.Settings.SettingsFrame;
 
 import javax.swing.*;
 import java.awt.*;

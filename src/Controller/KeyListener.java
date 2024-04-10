@@ -3,7 +3,7 @@ package Controller;
 import Model.Epsilon;
 import Model.ShotGun;
 import View.GameFrame;
-import View.SettingsFrame;
+import View.Settings.SettingsFrame;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -42,18 +42,18 @@ public class KeyListener {
         actionMap = gameFrame.getRootPane().getActionMap();
 
         //key press
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP,0),"upPress");
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN,0),"downPress");
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT,0),"leftPress");
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT,0),"rightPress");
+        inputMap.put(KeyStroke.getKeyStroke(SettingsFrame.getKeyBinding("up"),0),"upPress");
+        inputMap.put(KeyStroke.getKeyStroke(SettingsFrame.getKeyBinding("down"),0),"downPress");
+        inputMap.put(KeyStroke.getKeyStroke(SettingsFrame.getKeyBinding("left"),0),"leftPress");
+        inputMap.put(KeyStroke.getKeyStroke(SettingsFrame.getKeyBinding("right"),0),"rightPress");
 
 
 
         // key release
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP,0,true),"upRelease");
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN,0,true),"downRelease");
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT,0,true),"leftRelease");
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT,0,true),"rightRelease");
+        inputMap.put(KeyStroke.getKeyStroke(SettingsFrame.getKeyBinding("up"),0,true),"upRelease");
+        inputMap.put(KeyStroke.getKeyStroke(SettingsFrame.getKeyBinding("down"),0,true),"downRelease");
+        inputMap.put(KeyStroke.getKeyStroke(SettingsFrame.getKeyBinding("left"),0,true),"leftRelease");
+        inputMap.put(KeyStroke.getKeyStroke(SettingsFrame.getKeyBinding("right"),0,true),"rightRelease");
 
 
 

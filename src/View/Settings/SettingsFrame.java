@@ -1,14 +1,14 @@
-package View;
+package View.Settings;
+
+import View.StarterMenu;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
+import java.util.HashMap;
 import java.util.Objects;
 
-public class SettingsFrame extends JFrame implements KeyListener {
+public class SettingsFrame extends JFrame  {
 
     private final int MENU_WIDTH = 700;
     private final int MENU_HEIGHT = 700;
@@ -28,9 +28,17 @@ public class SettingsFrame extends JFrame implements KeyListener {
     private JButton rightward;
     private JButton shop;
     private JButton ability;
+    private JButton exit;
+    private static HashMap<String,Integer> keyBindings = new HashMap<>();
+    private JTextField upKey;
+    JLabel instructionLabel = new JLabel("current key: ");
+
+    JTextField keyCodeField = new JTextField(10);
 
 
     public SettingsFrame() {
+
+        keyCodeField.setEditable(false);
 
         this.setSize(SCREEN_SIZE);
         this.setTitle("Window Kill");
@@ -123,13 +131,10 @@ public class SettingsFrame extends JFrame implements KeyListener {
         upward.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                KeyCodeCapture dialog = new KeyCodeCapture(SettingsFrame.this,"up");
+                dialog.setVisible(true);
             }
         });
-
-
-
-
 
         label.add(upward);
 
@@ -141,6 +146,13 @@ public class SettingsFrame extends JFrame implements KeyListener {
         downward.setBorderPainted(false);
         downward.setFocusPainted(false);
         downward.setBounds(80,460,150,50);
+        downward.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                KeyCodeCapture dialog = new KeyCodeCapture(SettingsFrame.this,"down");
+                dialog.setVisible(true);
+            }
+        });
         label.add(downward);
         //leftward key
         leftward= new JButton("Leftward");
@@ -150,6 +162,13 @@ public class SettingsFrame extends JFrame implements KeyListener {
         leftward.setBorderPainted(false);
         leftward.setFocusPainted(false);
         leftward.setBounds(80,520,150,50);
+        leftward.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                KeyCodeCapture dialog = new KeyCodeCapture(SettingsFrame.this,"left");
+                dialog.setVisible(true);
+            }
+        });
         label.add(leftward);
         //rightward key
         rightward= new JButton("Rightward");
@@ -159,6 +178,13 @@ public class SettingsFrame extends JFrame implements KeyListener {
         rightward.setBorderPainted(false);
         rightward.setFocusPainted(false);
         rightward.setBounds(80,580,150,50);
+        rightward.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                KeyCodeCapture dialog = new KeyCodeCapture(SettingsFrame.this,"right");
+                dialog.setVisible(true);
+            }
+        });
         label.add(rightward);
         // shop key
         shop= new JButton("Shop");
@@ -168,6 +194,13 @@ public class SettingsFrame extends JFrame implements KeyListener {
         shop.setBorderPainted(false);
         shop.setFocusPainted(false);
         shop.setBounds(240,400,150,50);
+        shop.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                KeyCodeCapture dialog = new KeyCodeCapture(SettingsFrame.this,"shop");
+                dialog.setVisible(true);
+            }
+        });
         label.add(shop);
         //ability key
         ability= new JButton("Ability");
@@ -177,29 +210,51 @@ public class SettingsFrame extends JFrame implements KeyListener {
         ability.setBorderPainted(false);
         ability.setFocusPainted(false);
         ability.setBounds(240,460,150,50);
+        ability.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                KeyCodeCapture dialog = new KeyCodeCapture(SettingsFrame.this,"ability");
+                dialog.setVisible(true);
+            }
+        });
         label.add(ability);
 
-
-
-
+        exit= new JButton("Exit");
+        fontStyle = new Font("Ravie",Font.ITALIC,30);
+        exit.setFont(fontStyle);
+        exit.setForeground(fontClr);
+        exit.setBackground(backClr);
+        exit.setBorderPainted(false);
+        exit.setFocusPainted(false);
+        exit.setBounds(500,600,150,50);
+        exit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new StarterMenu();
+                dispose();
+            }
+        });
+        label.add(exit);
 
         //   this.setLayout(null);
         this.setVisible(true);
 
     }
+    public static void setKeyBinding(String action, int keyCode) {
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-
+        keyBindings.put(action, keyCode);
     }
 
-    @Override
-    public void keyPressed(KeyEvent e) {
+    public static int getKeyBinding(String action) {
 
+        return keyBindings.getOrDefault(action, -1);
     }
 
-    @Override
-    public void keyReleased(KeyEvent e) {
+    public static HashMap<String, Integer> getKeyBindings() {
+        return keyBindings;
+    }
 
+    public static void setKeyBindings(HashMap<String, Integer> keyBindings) {
+        SettingsFrame.keyBindings = keyBindings;
     }
 }

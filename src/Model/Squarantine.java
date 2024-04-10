@@ -149,7 +149,7 @@ public class Squarantine extends GameObjects implements movable {
                 speed = 2;
             }
         }else{
-            System.out.println(1111);
+
             this.setxVelocity((int) (speed * Math.cos(angle)));
             this.setyVelocity((int) (speed * Math.sin(angle)));
             speed += Constants.squarantineAcceleration();
