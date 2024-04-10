@@ -1,0 +1,19 @@
+Index: src/Controller/GameLoop.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Controller;\r\n\r\nimport Model.Game;\r\nimport Model.ShotGun;\r\nimport Model.Trigorath;\r\nimport View.GameFrame;\r\n\r\nimport javax.swing.*;\r\nimport java.awt.event.ActionEvent;\r\nimport java.awt.event.ActionListener;\r\nimport java.io.IOException;\r\n\r\n\r\npublic class GameLoop {\r\n\r\n    private Game game;\r\n    private Timer timer;\r\n    private FrameSize frameSize;\r\n    private Intersection intersection;\r\n    private Direction intersectionSide;\r\n    private int countTime;\r\n    // amount of time that has passed since the game has started\r\n\r\n\r\n\r\n    public GameLoop(Game game) throws IOException {\r\n        this.game = game;\r\n        timer = new Timer(5, new ActionListener() {\r\n            @Override\r\n            public void actionPerformed(ActionEvent e) {\r\n                try {\r\n                    intersection = new Intersection(game.getGameFrame());\r\n                } catch (IOException ex) {\r\n                    throw new RuntimeException(ex);\r\n                }\r\n\r\n                game.getGameFrame().getSquarantine().move();\r\n                GameFrame.getEpsilon().move();\r\n\r\n                try {\r\n                    frameSize = new FrameSize(game.getGameFrame());\r\n                } catch (IOException ex) {\r\n                    throw new RuntimeException(ex);\r\n                }\r\n                //shrinkage starts after 10 seconds\r\n                if(countTime>=700) {\r\n                    frameSize.shrink();\r\n                }\r\n\r\n                for (ShotGun shotGun : ShotGun.getShots()) {\r\n                    shotGun.move();\r\n\r\n                }\r\n                //check if a shot intersects with frame edges\r\n                // if so expansion starts from that side for a second\r\n                for(ShotGun shotGun : ShotGun.getShots()){\r\n                    intersectionSide = intersection.shotIntersectsFrame(shotGun);\r\n                    if(intersectionSide!=null) {\r\n                        if (shotGun.getExpansion() < 40) {\r\n                            frameSize.expand(intersectionSide);\r\n                            shotGun.setExpansion(shotGun.getExpansion()+1);\r\n                        }\r\n                    }\r\n                }\r\n\r\n                countTime++;\r\n\r\n                game.getGameFrame().repaint();\r\n            }\r\n        });\r\n        timer.start();\r\n\r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Controller/GameLoop.java b/src/Controller/GameLoop.java
+--- a/src/Controller/GameLoop.java	(revision a05e386c6f05085f44be92e65cda25e62a0eea9c)
++++ b/src/Controller/GameLoop.java	(date 1712757027729)
+@@ -25,7 +25,7 @@
+ 
+     public GameLoop(Game game) throws IOException {
+         this.game = game;
+-        timer = new Timer(5, new ActionListener() {
++        timer = new Timer(3, new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                 try {

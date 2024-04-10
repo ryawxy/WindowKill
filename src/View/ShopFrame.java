@@ -30,6 +30,7 @@ public class ShopFrame extends JFrame {
         this.setTitle("Window Kill");
         this.setLocationRelativeTo(null);
         this.setUndecorated(true);
+        this.setVisible(true);
 
         image = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/Images/shop.jpg")));
         label = new JLabel(image);
@@ -138,12 +139,12 @@ public class ShopFrame extends JFrame {
         });
 
 
-        this.add(banish);
-        this.add(empower);
-        this.add(heal);
-        this.add(exit);
-        this.setLayout(null);
-        this.setVisible(true);
+        label.add(banish);
+        label.add(empower);
+        label.add(heal);
+        label.add(exit);
+        label.setLayout(null);
+        label.setVisible(true);
 
     }
 

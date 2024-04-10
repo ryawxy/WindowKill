@@ -64,8 +64,6 @@ public class SettingsFrame extends JFrame  {
         label.add(soundText);
 
 
-
-
         //sound slider
         sound = new JSlider(SwingConstants.HORIZONTAL,0,100,50);
         sound.setMajorTickSpacing(10);
@@ -254,7 +252,4 @@ public class SettingsFrame extends JFrame  {
         return keyBindings;
     }
 
-    public static void setKeyBindings(HashMap<String, Integer> keyBindings) {
-        SettingsFrame.keyBindings = keyBindings;
-    }
 }

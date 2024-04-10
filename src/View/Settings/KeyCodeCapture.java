@@ -24,11 +24,7 @@ public class KeyCodeCapture extends JDialog {
         ok.setBounds(50,50,30,30);
         ok.setBounds(50,90,30,30);
 
-
-
         keyCodeField.setEditable(false);
-
-
         addKeyListener(new KeyAdapter() {
 
             @Override

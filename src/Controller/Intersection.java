@@ -158,6 +158,7 @@ public class Intersection {
                 }
             }
         }
+
     }
 
     public static Point2D getIntersectionPoint() {

@@ -38,7 +38,7 @@ public class GameLoop {
 
     public GameLoop(Game game) throws IOException {
         this.game = game;
-        timer = new Timer(5, new ActionListener() {
+        timer = new Timer(2, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!KeyListener.getPauseGame()) {
@@ -95,9 +95,9 @@ public class GameLoop {
                         throw new RuntimeException(ex);
                     }
                     //shrinkage starts after 10 seconds
-//                    if (countTime >= 700) {
-//                        frameSize.shrink();
-//                    }
+                    if (countTime >= 700) {
+                        frameSize.shrink();
+                    }
 
 
                     if (empowerTime >= 500) {
@@ -154,19 +154,23 @@ public class GameLoop {
                         ShopFrame.setBanishItem(false);
                     }
                     for(Trigorath trigorath:GamePanel.getTrigoraths() ){
+                        if(!trigorath.isDead()){
                         Epsilon epsilon = GamePanel.getEpsilon();
                         Polygon trigorath2 = new Polygon(trigorath.getxPoints(), trigorath.getyPoints(),3);
-                        if(intersection.checkCollision(epsilon.getxCenter(),epsilon.getyCenter(),epsilon.getRadius(),trigorath2)){
-                            Intersection.setIntersectionPoint2(new Point2D.Double(epsilon.getxCenter(),epsilon.getyCenter()));
+                        if(intersection.checkCollision(epsilon.getxCenter(),epsilon.getyCenter(),epsilon.getRadius(),trigorath2)) {
+                            Intersection.setIntersectionPoint2(new Point2D.Double(epsilon.getxCenter(), epsilon.getyCenter()));
+                        }
                         }
                     }
-//                    for(Squarantine squarantine:GamePanel.getSquarantine() ){
-//                        Epsilon epsilon = GamePanel.getEpsilon();
-//                        Polygon squarantine2 = new Polygon(squarantine.getxPoints(), squarantine.getyPoints(),4);
-//                        if(intersection.checkCollision(epsilon.getxCenter(),epsilon.getyCenter(),epsilon.getRadius(),squarantine2)){
-//                            Intersection.setIntersectionPoint2(new Point2D.Double(epsilon.getxCenter(),epsilon.getyCenter()));
-//                        }
-//                    }
+                    for(Squarantine squarantine:GamePanel.getSquarantine() ){
+                        if(!squarantine.isDead()){
+                        Epsilon epsilon = GamePanel.getEpsilon();
+                        Polygon squarantine2 = new Polygon(squarantine.getxPoints(), squarantine.getyPoints(),4);
+                        if(intersection.checkCollision(epsilon.getxCenter(),epsilon.getyCenter(),epsilon.getRadius(),squarantine2)) {
+                            Intersection.setIntersectionPoint2(new Point2D.Double(epsilon.getxCenter(), epsilon.getyCenter()));
+                        }
+                        }
+                    }
 
                     game.getGameFrame().repaint();
                 }

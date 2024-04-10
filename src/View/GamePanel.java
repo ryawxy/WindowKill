@@ -33,8 +33,8 @@ public class GamePanel extends JPanel {
     int [] xPoints3 = {250,240,260};
     int [] yPoints3 = {220,240,240};
 
-    int[] xPoints4 = {290,310,310,290};
-    int [] yPoints4 = {290,290,310,310};
+    int [] xPoints4 = {75,95,95,75};
+    int [] yPoints4 = {75,75,95,95};
     Trigorath trigorath2;
     Trigorath trigorath3;
 
@@ -42,8 +42,16 @@ public class GamePanel extends JPanel {
 
 
     public GamePanel() throws IOException {
+
+
+
+
+
+
         epsilon = new Epsilon(200,200);
         epsilon.setRadius(Constants.getEpsilonRadius());
+        GameInfo gameInfo = new GameInfo(this);
+
 
 
         shotGun = new ShotGun((int) epsilon.getxCenter(), (int) epsilon.getyCenter());
@@ -51,7 +59,7 @@ public class GamePanel extends JPanel {
         shotGun.setHeight(Constants.getShotGunHeight());
         ShotGun.getShots().add(shotGun);
 
-        squarantine = new Squarantine(300,300);
+        squarantine = new Squarantine(85,85);
         squarantine.setxPoints(xPoints4);
         squarantine.setyPoints(yPoints4);
         squarantines.add(squarantine);
@@ -59,17 +67,17 @@ public class GamePanel extends JPanel {
         trigorath = new Trigorath(50,33);
         trigorath.setxPoints(xPoints);
         trigorath.setyPoints(yPoints);
-     //   trigoraths.add(trigorath);
+        trigoraths.add(trigorath);
 
         trigorath2 = new Trigorath(150,133);
         trigorath2.setxPoints(xPoints2);
         trigorath2.setyPoints(yPoints2);
-    //    trigoraths.add(trigorath2);
+        trigoraths.add(trigorath2);
 
         trigorath3 = new Trigorath(250,233);
         trigorath3.setxPoints(xPoints3);
         trigorath3.setyPoints(yPoints3);
-  //      trigoraths.add(trigorath3);
+        trigoraths.add(trigorath3);
 
 
         mouseListener = new MouseListener(this);

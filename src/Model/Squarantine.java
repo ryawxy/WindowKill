@@ -1,6 +1,7 @@
 package Model;
 
 import Controller.Constants;
+import Controller.ImpactSpeed;
 import Controller.Intersection;
 import View.GamePanel;
 import View.ShopFrame;
@@ -163,8 +164,9 @@ public class Squarantine extends GameObjects implements movable {
             double xPoint = Intersection.getIntersectionPoint().getX();
             double yPoint = Intersection.getIntersectionPoint().getY();
             double angle2 =  Math.atan2(squarantineYPos - yPoint, squarantineXPos - xPoint);
-            xVelocity2 = Math.cos(angle2) * Constants.impactSpeed();
-            yVelocity2 = Math.sin(angle2) * Constants.impactSpeed();
+            double impactSpeed = ImpactSpeed.getImpactspeed(this);
+            xVelocity2 = Math.cos(angle2) * impactSpeed;
+            yVelocity2 = Math.sin(angle2)*impactSpeed;
         }else{
             xVelocity2 = 0;
             yVelocity2 = 0;
@@ -177,8 +179,10 @@ public class Squarantine extends GameObjects implements movable {
             double xPoint = Intersection.getIntersectionPoint2().getX();
             double yPoint = Intersection.getIntersectionPoint2().getY();
             double angle3 =  Math.atan2(squarantineYPos - yPoint, squarantineXPos - xPoint);
-            xVelocity3 = Math.cos(angle3) * Constants.impactSpeed();
-            yVelocity3 = Math.sin(angle3) * Constants.impactSpeed();
+            double impactSpeed = ImpactSpeed.getImpactspeed(this);
+            xVelocity3 = Math.cos(angle3) * impactSpeed;
+            yVelocity3 = Math.sin(angle3) * impactSpeed;
+
         }else{
             xVelocity3 = 0;
             yVelocity3 = 0;

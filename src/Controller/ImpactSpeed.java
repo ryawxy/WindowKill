@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.GameObjects;
 import Model.Squarantine;
 import Model.Trigorath;
 import View.GamePanel;
@@ -10,36 +11,42 @@ import java.util.ArrayList;
 public class ImpactSpeed {
 
     static ArrayList<Trigorath> trigoraths = GamePanel.getTrigoraths();
-    ArrayList<Squarantine> squarantines = GamePanel.getSquarantine();
+    static ArrayList<Squarantine> squarantines = GamePanel.getSquarantine();
     static double distance;
     static int impactspeed;
-    public ImpactSpeed(){}
+    static Point2D point;
 
-    public static int impactspeed() {
-        if (Intersection.getIntersectionPoint() != null) {
-            Point2D point = Intersection.getIntersectionPoint();
-            for (Trigorath trigorath : trigoraths) {
-                distance = Math.sqrt(Math.pow(trigorath.getTrigorathXPos() - point.getX(),2)+
-                        Math.pow(trigorath.getTrigorathYPos() - point.getY(),2));
-                if(distance<=10){
-                    return 5;
 
-                }
-                if(distance>10 && distance<=20){
-                    return 4;
 
-                }
-                if(distance>20 && distance<=30){
-                    return 3;
+    public static double getImpactspeed(GameObjects gameObjects) {
 
-                }
-                if(distance>30){
-                    return 0;
+        if(Intersection.getIntersectionPoint()!=null) {
+             point = Intersection.getIntersectionPoint();
+        }else if(Intersection.getIntersectionPoint2()!=null){
+            point = Intersection.getIntersectionPoint2();
+        }
 
-                }
+            distance = Math.sqrt(Math.pow(gameObjects.getX() - point.getX(), 2) +
+                    Math.pow(gameObjects.getY() - point.getY(), 2));
+            if (distance <= 60) {
+                return 6;
+
             }
+            if (distance > 70 && distance <= 80) {
+                return 5;
+
+            }
+            if (distance > 90 && distance <= 100) {
+                return 3;
+
+            }
+            if (distance > 100) {
+                return 0;
+
+
+
+
         }
         return 0;
     }
-
 }
