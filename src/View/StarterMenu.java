@@ -134,11 +134,11 @@ public class StarterMenu extends JFrame {
         });
 
         this.setLayout(null);
-        this.add(start);
-        this.add(skillTree);
-        this.add(settings);
-        this.add(tutorial);
-        this.add(exit);
+        label.add(start);
+        label.add(skillTree);
+        label.add(settings);
+        label.add(tutorial);
+        label.add(exit);
 
 
         this.setVisible(true);

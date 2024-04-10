@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="resolved conflict in settings branch">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_8_2024_4_39_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_8_2024_4_39_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/StarterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/StarterMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
