@@ -59,17 +59,17 @@ public class GamePanel extends JPanel {
         trigorath = new Trigorath(50,33);
         trigorath.setxPoints(xPoints);
         trigorath.setyPoints(yPoints);
-        trigoraths.add(trigorath);
+     //   trigoraths.add(trigorath);
 
         trigorath2 = new Trigorath(150,133);
         trigorath2.setxPoints(xPoints2);
         trigorath2.setyPoints(yPoints2);
-        trigoraths.add(trigorath2);
+    //    trigoraths.add(trigorath2);
 
         trigorath3 = new Trigorath(250,233);
         trigorath3.setxPoints(xPoints3);
         trigorath3.setyPoints(yPoints3);
-        trigoraths.add(trigorath3);
+  //      trigoraths.add(trigorath3);
 
 
         mouseListener = new MouseListener(this);
@@ -145,25 +145,25 @@ public class GamePanel extends JPanel {
 
         // if squarantine is alive paint it
         // if not show its collectible
-//        for(int i=0;i<squarantines.size();i++) {
-//            Squarantine squarantine1 = squarantines.get(i);
-//            if(!squarantine1.isDead()) {
-//                g2D.setColor(Color.GREEN);
-//                g2D.drawPolygon(squarantine1.getxPoints(), squarantine1.getyPoints(), 4);
-//            }else{
-//                if(squarantine1.isShowCollectibles()){
-//
-//                    g2D.setColor(Color.orange);
-//                    for(int j=0;j<squarantine1.getCollectibles().size();j++){
-//
-//
-//                        Collectible collectible = squarantine1.getCollectibles().get(j);
-//                        g2D.fillOval(collectible.getX(),collectible.getY(),collectible.getRadius(),collectible.getRadius());
-//
-//                    }
-//                }
-//            }
-//        }
+        for(int i=0;i<squarantines.size();i++) {
+            Squarantine squarantine1 = squarantines.get(i);
+            if(!squarantine1.isDead()) {
+                g2D.setColor(Color.GREEN);
+                g2D.drawPolygon(squarantine1.getxPoints(), squarantine1.getyPoints(), 4);
+            }else{
+                if(squarantine1.isShowCollectibles()){
+
+                    g2D.setColor(Color.orange);
+                    for(int j=0;j<squarantine1.getCollectibles().size();j++){
+
+
+                        Collectible collectible = squarantine1.getCollectibles().get(j);
+                        g2D.fillOval(collectible.getX(),collectible.getY(),collectible.getRadius(),collectible.getRadius());
+
+                    }
+                }
+            }
+        }
 
     }
 

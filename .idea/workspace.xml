@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="resolved conflict in settings branch">
-      <change beforePath="$PROJECT_DIR$/src/View/StarterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/StarterMenu.java" afterDir="false" />
+    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="resolved a problem in displaying buttons on starter menu">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameLoop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Intersection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Intersection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Epsilon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Epsilon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Squarantine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Squarantine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Trigorath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Trigorath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/GamePanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +103,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712729501227</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="resolved a problem in displaying buttons on starter menu">
+      <option name="closed" value="true" />
+      <created>1712730558884</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1712730558884</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -118,6 +132,7 @@
     <MESSAGE value="epsilon remains in game frame while shrinking" />
     <MESSAGE value="added key changing to settings" />
     <MESSAGE value="resolved conflict in settings branch" />
-    <option name="LAST_COMMIT_MESSAGE" value="resolved conflict in settings branch" />
+    <MESSAGE value="resolved a problem in displaying buttons on starter menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="resolved a problem in displaying buttons on starter menu" />
   </component>
 </project>

@@ -1,15 +1,14 @@
 package Controller;
 
-import Model.Game;
-import Model.ShotGun;
-import Model.Squarantine;
-import Model.Trigorath;
+import Model.*;
 import View.GamePanel;
 import View.ShopFrame;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Point2D;
 import java.io.IOException;
 
 
@@ -72,10 +71,10 @@ public class GameLoop {
                         }
                     }
 
-//                for(int i=0;i<GamePanel.getSquarantine().size();i++) {
-//                    Squarantine squarantine = GamePanel.getSquarantine().get(i);
-//                    squarantine.move();
-//                }
+                for(int i=0;i<GamePanel.getSquarantine().size();i++) {
+                    Squarantine squarantine = GamePanel.getSquarantine().get(i);
+                    squarantine.move();
+                }
                 for (int i = 0; i < GamePanel.getTrigoraths().size(); i++) {
                     Trigorath trigorath = GamePanel.getTrigoraths().get(i);
                     trigorath.move();
@@ -86,7 +85,7 @@ public class GameLoop {
                     intersection.shotIntersectsTrigorath();
                     intersection.shotIntersectsSquarantine();
                     intersection.epsilonIntersectsCollectible();
-                    intersection.epsilonIntersectEnemy();
+              //      intersection.epsilonIntersectEnemy();
                     intersection.enemyIntersection();
 
 
@@ -154,6 +153,20 @@ public class GameLoop {
                         banishTime = 0;
                         ShopFrame.setBanishItem(false);
                     }
+                    for(Trigorath trigorath:GamePanel.getTrigoraths() ){
+                        Epsilon epsilon = GamePanel.getEpsilon();
+                        Polygon trigorath2 = new Polygon(trigorath.getxPoints(), trigorath.getyPoints(),3);
+                        if(intersection.checkCollision(epsilon.getxCenter(),epsilon.getyCenter(),epsilon.getRadius(),trigorath2)){
+                            Intersection.setIntersectionPoint2(new Point2D.Double(epsilon.getxCenter(),epsilon.getyCenter()));
+                        }
+                    }
+//                    for(Squarantine squarantine:GamePanel.getSquarantine() ){
+//                        Epsilon epsilon = GamePanel.getEpsilon();
+//                        Polygon squarantine2 = new Polygon(squarantine.getxPoints(), squarantine.getyPoints(),4);
+//                        if(intersection.checkCollision(epsilon.getxCenter(),epsilon.getyCenter(),epsilon.getRadius(),squarantine2)){
+//                            Intersection.setIntersectionPoint2(new Point2D.Double(epsilon.getxCenter(),epsilon.getyCenter()));
+//                        }
+//                    }
 
                     game.getGameFrame().repaint();
                 }

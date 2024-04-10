@@ -32,6 +32,8 @@ public class Squarantine extends GameObjects implements movable {
     // show collectibles only for 10 seconds
     private double xVelocity2;
     private double yVelocity2;
+    private double xVelocity3;
+    private double yVelocity3;
 
     private final ArrayList<Collectible> collectibles = new ArrayList<>();
 
@@ -169,9 +171,20 @@ public class Squarantine extends GameObjects implements movable {
         }
 
 
+        if(Intersection.getIntersectionPoint2()!=null){
 
-        this.setxVelocity((int) ((int) (speed * Math.cos(angle))+xVelocity2));
-        this.setyVelocity((int) ((int) (speed * Math.sin(angle))+yVelocity2));
+
+            double xPoint = Intersection.getIntersectionPoint2().getX();
+            double yPoint = Intersection.getIntersectionPoint2().getY();
+            double angle3 =  Math.atan2(squarantineYPos - yPoint, squarantineXPos - xPoint);
+            xVelocity3 = Math.cos(angle3) * Constants.impactSpeed();
+            yVelocity3 = Math.sin(angle3) * Constants.impactSpeed();
+        }else{
+            xVelocity3 = 0;
+            yVelocity3 = 0;
+        }
+        this.setxVelocity((int) ((int) (speed * Math.cos(angle))+xVelocity2+xVelocity3));
+        this.setyVelocity((int) ((int) (speed * Math.sin(angle))+yVelocity2+yVelocity3));
 
 
         //if banish item is activated move in the opposite direction

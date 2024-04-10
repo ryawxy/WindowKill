@@ -142,9 +142,10 @@ public class Trigorath extends GameObjects implements movable {
                 }
             } else {
 
+                speed = 2;
                 this.setxVelocity((int) ((int) (speed * Math.cos(angle))+xVelocity2+xVelocity3));
                 this.setyVelocity((int) ((int) (speed * Math.sin(angle)) + yVelocity2+yVelocity3));
-                speed -= Constants.trigorathAcceleration();
+             //   speed -= Constants.trigorathAcceleration();
                 if (speed < 2) {
                     speed = 2;
                 }

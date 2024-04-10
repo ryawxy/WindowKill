@@ -4,6 +4,8 @@ import Model.*;
 import View.GamePanel;
 
 import java.awt.*;
+import java.awt.geom.Area;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -165,36 +167,45 @@ public class Intersection {
     public static void setIntersectionPoint(Point2D intersectionPoint) {
         Intersection.intersectionPoint = intersectionPoint;
     }
-public void epsilonIntersectEnemy(){
+//public void epsilonIntersectEnemy(){
+//
+//        Epsilon epsilon = GamePanel.getEpsilon();
+//
+//    ArrayList <Point2D> vertex = new ArrayList<>();
+//    for(Trigorath trigorath : GamePanel.getTrigoraths()){
+//        if(!trigorath.isDead()){
+//            for(int i=0;i<3;i++) {
+//                vertex.add(new Point2D.Double(trigorath.getxPoints()[i], trigorath.getyPoints()[i]));
+//            }
+//        }
+//    }
+//    for(Squarantine squarantine : GamePanel.getSquarantine()){
+//        if(!squarantine.isDead()){
+//            for(int i=0;i<4;i++) {
+//                vertex.add(new Point2D.Double(squarantine.getxPoints()[i], squarantine.getyPoints()[i]));
+//            }
+//        }
+//    }
+//    for(Point2D point2D : vertex){
+//        Point2D center = new Point2D.Double(epsilon.getxCenter(),epsilon.getyCenter());
+////        double distance = Math.sqrt(Math.pow(point2D.getX()-epsilon.getxCenter(),2)+
+////                Math.pow(point2D.getY()-epsilon.getyCenter(),2));
+//        if(point2D.distance(center)<=epsilon.getRadius()){
+//
+//            intersectionPoint2 = point2D;
+//        }
+//    }
+//
+//}
 
-        Epsilon epsilon = GamePanel.getEpsilon();
-
-    ArrayList <Point2D> vertex = new ArrayList<>();
-    for(Trigorath trigorath : GamePanel.getTrigoraths()){
-        if(!trigorath.isDead()){
-            for(int i=0;i<3;i++) {
-                vertex.add(new Point2D.Double(trigorath.getxPoints()[i], trigorath.getyPoints()[i]));
-            }
-        }
-    }
-    for(Squarantine squarantine : GamePanel.getSquarantine()){
-        if(!squarantine.isDead()){
-            for(int i=0;i<4;i++) {
-                vertex.add(new Point2D.Double(squarantine.getxPoints()[i], squarantine.getyPoints()[i]));
-            }
-        }
-    }
-    for(Point2D point2D : vertex){
-        Point2D center = new Point2D.Double(epsilon.getxCenter(),epsilon.getyCenter());
-//        double distance = Math.sqrt(Math.pow(point2D.getX()-epsilon.getxCenter(),2)+
-//                Math.pow(point2D.getY()-epsilon.getyCenter(),2));
-        if(point2D.distance(center)<=epsilon.getRadius()){
-
-            intersectionPoint2 = point2D;
-        }
-    }
-
+public boolean checkCollision(int epsilonX,int epsilonY,int radius,Polygon polygon){
+    Ellipse2D epsilon = new Ellipse2D.Double(epsilonX-radius,epsilonY-radius,2*radius,2*radius);
+    Area epsilonArea = new Area(epsilon);
+    Area polygonArea = new Area(polygon);
+    epsilonArea.intersect(polygonArea);
+    return !epsilonArea.isEmpty();
 }
+
 
     public static Point2D getIntersectionPoint2() {
         return intersectionPoint2;

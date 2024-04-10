@@ -1,10 +1,5 @@
 package Model;
 
-import myproject.ProjectData;
-
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 
 public class Epsilon extends GameObjects implements movable {
@@ -59,7 +54,7 @@ public class Epsilon extends GameObjects implements movable {
         this.radius = radius;
     }
 
-    public double getxCenter() {
+    public int getxCenter() {
         return getX()+radius;
     }
 
@@ -67,7 +62,7 @@ public class Epsilon extends GameObjects implements movable {
         this.xCenter = xCenter;
     }
 
-    public double getyCenter() {
+    public int getyCenter() {
         return getY()+radius;
     }
 
