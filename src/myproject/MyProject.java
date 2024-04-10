@@ -2,7 +2,7 @@ package myproject;
 
 import Controller.GameLoop;
 import Model.Game;
-import View.GameFrame;
+import View.GamePanel;
 import View.Settings.SettingsFrame;
 import View.StarterMenu;
 

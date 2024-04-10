@@ -2,8 +2,9 @@ package Controller;
 
 import Model.Epsilon;
 import Model.ShotGun;
-import View.GameFrame;
+import View.GamePanel;
 import View.Settings.SettingsFrame;
+import View.ShopFrame;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -14,7 +15,7 @@ public class KeyListener {
     ActionMap actionMap;
     Epsilon epsilon;
     ShotGun shotGun;
-    GameFrame gameFrame;
+    GamePanel gameFrame;
     SettingsFrame settingsFrame;
     private boolean upPressed;
     private boolean downPressed;
@@ -24,12 +25,13 @@ public class KeyListener {
     private final int absVelocity = Constants.epsilonAbsVelocity();
     private int mouseXPose;
     private int mouseYPose;
+    private static boolean pauseGame;
 
 
-    public KeyListener(GameFrame gameFrame){
+    public KeyListener(GamePanel gameFrame){
         this.gameFrame = gameFrame;
-        epsilon = GameFrame.getEpsilon();
-        shotGun = GameFrame.getShotGun();
+        epsilon = GamePanel.getEpsilon();
+        shotGun = GamePanel.getShotGun();
         createKeyBindings();
         createKeyActions();
 
@@ -46,6 +48,7 @@ public class KeyListener {
         inputMap.put(KeyStroke.getKeyStroke(SettingsFrame.getKeyBinding("down"),0),"downPress");
         inputMap.put(KeyStroke.getKeyStroke(SettingsFrame.getKeyBinding("left"),0),"leftPress");
         inputMap.put(KeyStroke.getKeyStroke(SettingsFrame.getKeyBinding("right"),0),"rightPress");
+        inputMap.put(KeyStroke.getKeyStroke(SettingsFrame.getKeyBinding("shop"),0),"shopPress");
 
 
 
@@ -181,9 +184,25 @@ public class KeyListener {
                 rightPressed = false;
             }
         });
+        actionMap.put("shopPress", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ShopFrame();
+                pauseGame =true;
+            }
+        });
 
 
     }
+    public static boolean getPauseGame(){
+        return pauseGame;
+    }
+
+    public static void setPauseGame(boolean pauseGame) {
+        KeyListener.pauseGame = pauseGame;
+    }
+
+
 
 
 }

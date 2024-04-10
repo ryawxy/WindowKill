@@ -98,6 +98,7 @@ public class StarterMenu extends JFrame {
         settings.setBorderPainted(false);
         settings.setFocusPainted(false);
         settings.setBounds(200,300,300,80);
+
 //        this.add(settings);
 
         //tutorial Button
