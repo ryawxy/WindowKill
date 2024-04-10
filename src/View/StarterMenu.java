@@ -2,6 +2,7 @@ package View;
 
 import Controller.GameLoop;
 import Model.Game;
+import View.Settings.SettingsFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -98,7 +99,13 @@ public class StarterMenu extends JFrame {
         settings.setBorderPainted(false);
         settings.setFocusPainted(false);
         settings.setBounds(200,300,300,80);
-
+        settings.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new SettingsFrame();
+                dispose();
+            }
+        });
 //        this.add(settings);
 
         //tutorial Button
