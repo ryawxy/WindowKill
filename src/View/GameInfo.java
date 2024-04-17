@@ -1,5 +1,7 @@
 package View;
 
+import Controller.CurrentAbility;
+
 import javax.swing.*;
 
 public class GameInfo extends JLabel {
@@ -7,6 +9,7 @@ public class GameInfo extends JLabel {
     private static int XP = 800;
     private int HP;
     private int waveNumber;
+    private static CurrentAbility currentAbility;
 
     private JLabel epsilonsHP;
 
@@ -23,5 +26,13 @@ public class GameInfo extends JLabel {
 
     public static int getXP() {
         return XP;
+    }
+
+    public static CurrentAbility getCurrentAbility() {
+        return currentAbility;
+    }
+
+    public static void setCurrentAbility(CurrentAbility currentAbility) {
+        GameInfo.currentAbility = currentAbility;
     }
 }

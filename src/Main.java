@@ -13,12 +13,12 @@ public class Main {
 
         SwingUtilities.invokeLater(() -> {
 
-//            try {
-//                new MyProject();
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-           new SkillTreeFrame();
+            try {
+                new MyProject();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
 
         });
 

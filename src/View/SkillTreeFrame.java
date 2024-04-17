@@ -1,5 +1,6 @@
 package View;
 
+import Controller.CurrentAbility;
 import Controller.MouseListener;
 
 import javax.swing.*;
@@ -71,17 +72,27 @@ public class SkillTreeFrame extends JFrame {
         ares.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(GameInfo.getXP()<750){
-                    JOptionPane.showMessageDialog(SkillTreeFrame.this,
-                            "You don't have enough XP to unlock this ability.");
-                }else{
+                if (!aresUnlocked) {
+                    if (GameInfo.getXP() < 750) {
+                        JOptionPane.showMessageDialog(SkillTreeFrame.this,
+                                "You don't have enough XP to unlock this ability.");
+                    } else {
 
+                        int purchase = JOptionPane.showOptionDialog(SkillTreeFrame.this,
+                                "this ability costs 750 XP.DO you want to unlock it?", null, JOptionPane.DEFAULT_OPTION,
+                                JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
+                        if (purchase == 0) {
+                            aresUnlocked = true;
+                            GameInfo.setXP(GameInfo.getXP() - 750);
+                        }
+                    }
+                }else{
                     int purchase = JOptionPane.showOptionDialog(SkillTreeFrame.this,
-                            "this ability costs 750 XP.DO you want to unlock it?", null, JOptionPane.DEFAULT_OPTION,
+                            "Do you want to use this ability?", null, JOptionPane.DEFAULT_OPTION,
                             JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
-                    if(purchase == 0){
-                        aresUnlocked = true;
-                        GameInfo.setXP(GameInfo.getXP()-750);
+                    if (purchase == 0) {
+
+                        GameInfo.setCurrentAbility(CurrentAbility.Ares);
                     }
                 }
             }
@@ -127,17 +138,27 @@ public class SkillTreeFrame extends JFrame {
         aceso.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(GameInfo.getXP()<500){
-                    JOptionPane.showMessageDialog(SkillTreeFrame.this,
-                            "You don't have enough XP to unlock this ability.");
-                }else{
+                if(!acesoUnlocked) {
+                    if (GameInfo.getXP() < 500) {
+                        JOptionPane.showMessageDialog(SkillTreeFrame.this,
+                                "You don't have enough XP to unlock this ability.");
+                    } else {
 
+                        int purchase = JOptionPane.showOptionDialog(SkillTreeFrame.this,
+                                "this ability costs 750 XP.DO you want to unlock it?", null, JOptionPane.DEFAULT_OPTION,
+                                JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
+                        if (purchase == 0) {
+                            acesoUnlocked = true;
+                            GameInfo.setXP(GameInfo.getXP() - 500);
+                        }
+                    }
+                }else{
                     int purchase = JOptionPane.showOptionDialog(SkillTreeFrame.this,
-                            "this ability costs 750 XP.DO you want to unlock it?", null, JOptionPane.DEFAULT_OPTION,
+                            "Do you want to use this ability?", null, JOptionPane.DEFAULT_OPTION,
                             JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
-                    if(purchase == 0){
-                        acesoUnlocked = true;
-                        GameInfo.setXP(GameInfo.getXP()-500);
+                    if (purchase == 0) {
+
+                        GameInfo.setCurrentAbility(CurrentAbility.Aceso);
                     }
                 }
             }
@@ -182,17 +203,27 @@ public class SkillTreeFrame extends JFrame {
         proteus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(GameInfo.getXP()<1000){
-                    JOptionPane.showMessageDialog(SkillTreeFrame.this,
-                            "You don't have enough XP to unlock this ability.");
-                }else{
+                if(!proteusUnlocked) {
+                    if (GameInfo.getXP() < 1000) {
+                        JOptionPane.showMessageDialog(SkillTreeFrame.this,
+                                "You don't have enough XP to unlock this ability.");
+                    } else {
 
+                        int purchase = JOptionPane.showOptionDialog(SkillTreeFrame.this,
+                                "this ability costs 750 XP.DO you want to unlock it?", null, JOptionPane.DEFAULT_OPTION,
+                                JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
+                        if (purchase == 0) {
+                            proteusUnlocked = true;
+                            GameInfo.setXP(GameInfo.getXP() - 1000);
+                        }
+                    }
+                }else{
                     int purchase = JOptionPane.showOptionDialog(SkillTreeFrame.this,
-                            "this ability costs 750 XP.DO you want to unlock it?", null, JOptionPane.DEFAULT_OPTION,
+                            "Do you want to use this ability?", null, JOptionPane.DEFAULT_OPTION,
                             JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
-                    if(purchase == 0){
-                        proteusUnlocked = true;
-                        GameInfo.setXP(GameInfo.getXP()-1000);
+                    if (purchase == 0) {
+
+                        GameInfo.setCurrentAbility(CurrentAbility.Proteus);
                     }
                 }
             }

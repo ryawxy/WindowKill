@@ -96,15 +96,21 @@ public class Intersection {
 
                 for(int i=0;i<trigorath.getCollectibles().size();i++){
                     Collectible collectible = trigorath.getCollectibles().get(i);
-                    double xDistance = Math.abs(epsilon.getxCenter()-collectible.getXCenter());
-                    double yDistance = Math.abs(epsilon.getyCenter()-collectible.getYCenter());
-                    double distance = Math.sqrt(Math.pow(xDistance,2)+Math.pow(yDistance,2));
-                    if(distance<=collectible.getRadius()+epsilon.getRadius()){
+                    Ellipse2D epsilonShape = new Ellipse2D.Double(epsilon.getX()-epsilon.getRadius(),
+                            epsilon.getY()-epsilon.getRadius(),
+                            2*epsilon.getRadius(),2*epsilon.getRadius());
+                    Ellipse2D collectibleShape = new Ellipse2D.Double(collectible.getX()-collectible.getRadius(),
+                            collectible.getY()-collectible.getRadius(),
+                            2*collectible.getRadius(),2*collectible.getRadius());
+                    Area epsilonArea = new Area(epsilonShape);
+                    Area collectibleArea = new Area(collectibleShape);
+                    epsilonArea.intersect(collectibleArea);
 
+                    if(!epsilonArea.isEmpty()){
                         epsilon.increaseXP();
                         trigorath.getCollectibles().remove(collectible);
-
                     }
+
 
                 }
             }
@@ -115,16 +121,21 @@ public class Intersection {
 
                 for(int i=0;i<squarantine.getCollectibles().size();i++){
                     Collectible collectible = squarantine.getCollectibles().get(i);
-                    double xDistance = Math.abs(epsilon.getxCenter()-collectible.getXCenter());
-                    double yDistance = Math.abs(epsilon.getyCenter()-collectible.getYCenter());
-                    double distance = Math.sqrt(Math.pow(xDistance,2)+Math.pow(yDistance,2));
-                    if(distance<=collectible.getRadius()+epsilon.getRadius()){
 
+                    Ellipse2D epsilonShape = new Ellipse2D.Double(epsilon.getX()-epsilon.getRadius(),
+                            epsilon.getY()-epsilon.getRadius(),
+                            2*epsilon.getRadius(),2*epsilon.getRadius());
+                    Ellipse2D collectibleShape = new Ellipse2D.Double(collectible.getX()-collectible.getRadius(),
+                            collectible.getY()-collectible.getRadius(),
+                            2*collectible.getRadius(),2*collectible.getRadius());
+                    Area epsilonArea = new Area(epsilonShape);
+                    Area collectibleArea = new Area(collectibleShape);
+                    epsilonArea.intersect(collectibleArea);
+
+                    if(!epsilonArea.isEmpty()){
                         epsilon.increaseXP();
                         squarantine.getCollectibles().remove(collectible);
-
                     }
-
                 }
             }
         }
@@ -168,36 +179,7 @@ public class Intersection {
     public static void setIntersectionPoint(Point2D intersectionPoint) {
         Intersection.intersectionPoint = intersectionPoint;
     }
-//public void epsilonIntersectEnemy(){
-//
-//        Epsilon epsilon = GamePanel.getEpsilon();
-//
-//    ArrayList <Point2D> vertex = new ArrayList<>();
-//    for(Trigorath trigorath : GamePanel.getTrigoraths()){
-//        if(!trigorath.isDead()){
-//            for(int i=0;i<3;i++) {
-//                vertex.add(new Point2D.Double(trigorath.getxPoints()[i], trigorath.getyPoints()[i]));
-//            }
-//        }
-//    }
-//    for(Squarantine squarantine : GamePanel.getSquarantine()){
-//        if(!squarantine.isDead()){
-//            for(int i=0;i<4;i++) {
-//                vertex.add(new Point2D.Double(squarantine.getxPoints()[i], squarantine.getyPoints()[i]));
-//            }
-//        }
-//    }
-//    for(Point2D point2D : vertex){
-//        Point2D center = new Point2D.Double(epsilon.getxCenter(),epsilon.getyCenter());
-////        double distance = Math.sqrt(Math.pow(point2D.getX()-epsilon.getxCenter(),2)+
-////                Math.pow(point2D.getY()-epsilon.getyCenter(),2));
-//        if(point2D.distance(center)<=epsilon.getRadius()){
-//
-//            intersectionPoint2 = point2D;
-//        }
-//    }
-//
-//}
+
 
 public boolean checkCollision(int epsilonX,int epsilonY,int radius,Polygon polygon){
     Ellipse2D epsilon = new Ellipse2D.Double(epsilonX-radius,epsilonY-radius,2*radius,2*radius);
