@@ -1,5 +1,7 @@
 package Model;
 
+import View.GameInfo;
+
 import java.io.IOException;
 
 public class Epsilon extends GameObjects implements movable {
@@ -10,7 +12,7 @@ public class Epsilon extends GameObjects implements movable {
     private double xCenter = getX()+radius;
     private double yCenter = getY()+radius;
     private int HP = 100;
-    private int XP = 110;
+    private int XP = GameInfo.getXP();
 
 
     public Epsilon(int x, int y) throws IOException {

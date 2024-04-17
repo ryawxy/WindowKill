@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class GameInfo extends JLabel {
     private int time;
-    private int XP;
+    private static int XP = 800;
     private int HP;
     private int waveNumber;
 
@@ -17,5 +17,11 @@ public class GameInfo extends JLabel {
 
     }
 
+    public static void setXP(int XP) {
+        GameInfo.XP = XP;
+    }
 
+    public static int getXP() {
+        return XP;
+    }
 }

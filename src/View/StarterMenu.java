@@ -30,6 +30,7 @@ public class StarterMenu extends JFrame {
     public StarterMenu(){
 
 
+
         this.setSize(SCREEN_SIZE);
         this.setTitle("Window Kill");
         this.setLocationRelativeTo(null);
@@ -65,10 +66,6 @@ public class StarterMenu extends JFrame {
                 } catch (AWTException ex) {
                     throw new RuntimeException(ex);
                 }
-//                robot.keyPress(KeyEvent.VK_WINDOWS);
-//            robot.keyPress(KeyEvent.VK_D);
-//            robot.keyRelease(KeyEvent.VK_WINDOWS);
-//            robot.keyRelease(KeyEvent.VK_D);
                 try {
                     game = new Game();
                     gameLoop = new GameLoop(game);
@@ -89,6 +86,13 @@ public class StarterMenu extends JFrame {
         skillTree.setBorderPainted(false);
         skillTree.setFocusPainted(false);
         skillTree.setBounds(200,190,300,80);
+        skillTree.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new SkillTreeFrame();
+                dispose();
+            }
+        });
 //        this.add(skillTree);
 
         //settings Button

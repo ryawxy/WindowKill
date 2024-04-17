@@ -161,6 +161,7 @@ public class Squarantine extends GameObjects implements movable {
 
         if(Intersection.getIntersectionPoint()!=null){
 
+            System.out.println(111);
             double xPoint = Intersection.getIntersectionPoint().getX();
             double yPoint = Intersection.getIntersectionPoint().getY();
             double angle2 =  Math.atan2(squarantineYPos - yPoint, squarantineXPos - xPoint);

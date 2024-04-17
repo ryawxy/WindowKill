@@ -2,6 +2,7 @@
 import View.GamePanel;
 import View.GlassFrame;
 import View.ShopFrame;
+import View.SkillTreeFrame;
 import myproject.MyProject;
 
 import javax.swing.*;
@@ -12,19 +13,13 @@ public class Main {
 
         SwingUtilities.invokeLater(() -> {
 
-            //  GlassFrame.getINSTANCE();
 //            try {
-//                new GamePanel();
+//                new MyProject();
 //            } catch (IOException e) {
 //                throw new RuntimeException(e);
 //            }
-            //   System.out.println(gamePanel.getWidth());
-            try {
-                new MyProject();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            //   new ShopFrame();
+           new SkillTreeFrame();
+
         });
 
 
