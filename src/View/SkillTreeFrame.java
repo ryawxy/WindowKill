@@ -25,9 +25,6 @@ public class SkillTreeFrame extends JFrame {
     JButton aceso;
     JLabel transformation;
     JButton proteus;
-    private static boolean aresUnlocked;
-    private static boolean acesoUnlocked;
-    private static boolean proteusUnlocked;
     JButton exit;
 
     public SkillTreeFrame(){
@@ -61,7 +58,10 @@ public class SkillTreeFrame extends JFrame {
         ares.setFont(fontStyle);
          fontClr = Color.WHITE;
         ares.setForeground(fontClr);
-         backClr = Color.GRAY;
+        if(!GameInfo.isAresUnlocked()) backClr = Color.GRAY;
+        else{
+            backClr = Color.BLACK;
+        }
         ares.setBackground(backClr);
         ares.setBorderPainted(false);
         //  start.setContentAreaFilled(false);
@@ -72,7 +72,7 @@ public class SkillTreeFrame extends JFrame {
         ares.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!aresUnlocked) {
+                if (!GameInfo.isAresUnlocked()) {
                     if (GameInfo.getXP() < 750) {
                         JOptionPane.showMessageDialog(SkillTreeFrame.this,
                                 "You don't have enough XP to unlock this ability.");
@@ -82,7 +82,7 @@ public class SkillTreeFrame extends JFrame {
                                 "this ability costs 750 XP.DO you want to unlock it?", null, JOptionPane.DEFAULT_OPTION,
                                 JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
                         if (purchase == 0) {
-                            aresUnlocked = true;
+                            GameInfo.setAresUnlocked(true);
                             GameInfo.setXP(GameInfo.getXP() - 750);
                         }
                     }
@@ -101,7 +101,7 @@ public class SkillTreeFrame extends JFrame {
             @Override
             public void stateChanged(ChangeEvent e) {
 
-                if(aresUnlocked){
+                if(GameInfo.isAresUnlocked()){
 
                     ares.setBackground(Color.BLACK);
                 }
@@ -127,7 +127,10 @@ public class SkillTreeFrame extends JFrame {
         aceso.setFont(fontStyle);
         fontClr = Color.WHITE;
         aceso.setForeground(fontClr);
-        backClr = Color.GRAY;
+        if(!GameInfo.isAcesoUnlocked()) backClr = Color.GRAY;
+        else{
+            backClr = Color.BLACK;
+        }
         aceso.setBackground(backClr);
         aceso.setBorderPainted(false);
         //  start.setContentAreaFilled(false);
@@ -138,7 +141,7 @@ public class SkillTreeFrame extends JFrame {
         aceso.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(!acesoUnlocked) {
+                if(!GameInfo.isAcesoUnlocked()) {
                     if (GameInfo.getXP() < 500) {
                         JOptionPane.showMessageDialog(SkillTreeFrame.this,
                                 "You don't have enough XP to unlock this ability.");
@@ -148,7 +151,7 @@ public class SkillTreeFrame extends JFrame {
                                 "this ability costs 750 XP.DO you want to unlock it?", null, JOptionPane.DEFAULT_OPTION,
                                 JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
                         if (purchase == 0) {
-                            acesoUnlocked = true;
+                            GameInfo.setAcesoUnlocked(true);
                             GameInfo.setXP(GameInfo.getXP() - 500);
                         }
                     }
@@ -167,7 +170,7 @@ public class SkillTreeFrame extends JFrame {
             @Override
             public void stateChanged(ChangeEvent e) {
 
-                if(acesoUnlocked){
+                if(GameInfo.isAcesoUnlocked()){
 
                     aceso.setBackground(Color.BLACK);
                 }
@@ -193,7 +196,10 @@ public class SkillTreeFrame extends JFrame {
         proteus.setFont(fontStyle);
         fontClr = Color.WHITE;
         proteus.setForeground(fontClr);
-        backClr = Color.GRAY;
+        if(!GameInfo.isProteusUnlocked()) backClr = Color.GRAY;
+        else{
+            backClr = Color.BLACK;
+        }
         proteus.setBackground(backClr);
         proteus.setBorderPainted(false);
         proteus.setFocusPainted(false);
@@ -203,7 +209,7 @@ public class SkillTreeFrame extends JFrame {
         proteus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(!proteusUnlocked) {
+                if(!GameInfo.isProteusUnlocked()) {
                     if (GameInfo.getXP() < 1000) {
                         JOptionPane.showMessageDialog(SkillTreeFrame.this,
                                 "You don't have enough XP to unlock this ability.");
@@ -213,7 +219,7 @@ public class SkillTreeFrame extends JFrame {
                                 "this ability costs 750 XP.DO you want to unlock it?", null, JOptionPane.DEFAULT_OPTION,
                                 JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
                         if (purchase == 0) {
-                            proteusUnlocked = true;
+                            GameInfo.setProteusUnlocked(true);
                             GameInfo.setXP(GameInfo.getXP() - 1000);
                         }
                     }
@@ -232,7 +238,7 @@ public class SkillTreeFrame extends JFrame {
             @Override
             public void stateChanged(ChangeEvent e) {
 
-                if(proteusUnlocked){
+                if(GameInfo.isProteusUnlocked()){
 
                     proteus.setBackground(Color.BLACK);
                 }
@@ -264,27 +270,4 @@ public class SkillTreeFrame extends JFrame {
         label.add(exit);
     }
 
-    public static boolean isAcesoUnlocked() {
-        return acesoUnlocked;
-    }
-
-    public static void setAcesoUnlocked(boolean acesoUnlocked) {
-        SkillTreeFrame.acesoUnlocked = acesoUnlocked;
-    }
-
-    public static boolean isProteusUnlocked() {
-        return proteusUnlocked;
-    }
-
-    public static void setProteusUnlocked(boolean proteusUnlocked) {
-        SkillTreeFrame.proteusUnlocked = proteusUnlocked;
-    }
-
-    public static boolean isAresUnlocked() {
-        return aresUnlocked;
-    }
-
-    public static void setAresUnlocked(boolean aresUnlocked) {
-        SkillTreeFrame.aresUnlocked = aresUnlocked;
-    }
 }

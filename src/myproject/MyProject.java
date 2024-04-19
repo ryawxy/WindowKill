@@ -2,6 +2,7 @@ package myproject;
 
 import Controller.GameLoop;
 import Model.Game;
+import View.GameInfo;
 import View.GamePanel;
 import View.Settings.SettingsFrame;
 import View.StarterMenu;
@@ -20,6 +21,7 @@ public class MyProject {
         SettingsFrame.setKeyBinding("shop",KeyEvent.VK_SPACE);
         //TODO : ability key
 
+       new GameInfo();
         new StarterMenu();
 
 

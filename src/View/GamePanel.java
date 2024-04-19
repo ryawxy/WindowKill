@@ -50,9 +50,6 @@ public class GamePanel extends JPanel {
 
         epsilon = new Epsilon(200,200);
         epsilon.setRadius(Constants.getEpsilonRadius());
-        GameInfo gameInfo = new GameInfo(this);
-
-
 
         shotGun = new ShotGun((int) epsilon.getxCenter(), (int) epsilon.getyCenter());
         shotGun.setWidth(Constants.getShotGunWidth());

@@ -4,7 +4,7 @@ import Controller.CurrentAbility;
 
 import javax.swing.*;
 
-public class GameInfo extends JLabel {
+public class GameInfo  {
     private int time;
     private static int XP = 800;
     private int HP;
@@ -12,11 +12,11 @@ public class GameInfo extends JLabel {
     private static CurrentAbility currentAbility;
 
     private JLabel epsilonsHP;
+    private static boolean aresUnlocked;
+    private static boolean acesoUnlocked;
+    private static boolean proteusUnlocked;
 
-    public  GameInfo(JPanel parent){
-       epsilonsHP = new JLabel("HP:"+GamePanel.getEpsilon().getHP());
-       epsilonsHP.setBounds(parent.getX()+10,100,200,100);
-       parent.add(epsilonsHP);
+    public  GameInfo(){
 
     }
 
@@ -34,5 +34,29 @@ public class GameInfo extends JLabel {
 
     public static void setCurrentAbility(CurrentAbility currentAbility) {
         GameInfo.currentAbility = currentAbility;
+    }
+
+    public static boolean isAresUnlocked() {
+        return aresUnlocked;
+    }
+
+    public static void setAresUnlocked(boolean aresUnlocked) {
+        GameInfo.aresUnlocked = aresUnlocked;
+    }
+
+    public static boolean isAcesoUnlocked() {
+        return acesoUnlocked;
+    }
+
+    public static void setAcesoUnlocked(boolean acesoUnlocked) {
+        GameInfo.acesoUnlocked = acesoUnlocked;
+    }
+
+    public static boolean isProteusUnlocked() {
+        return proteusUnlocked;
+    }
+
+    public static void setProteusUnlocked(boolean proteusUnlocked) {
+        GameInfo.proteusUnlocked = proteusUnlocked;
     }
 }

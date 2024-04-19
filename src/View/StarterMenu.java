@@ -24,6 +24,7 @@ public class StarterMenu extends JFrame {
     JButton settings;
     JButton tutorial;
     JButton exit;
+    JButton XP;
     private Game game;
     private GameLoop gameLoop;
 
@@ -135,7 +136,17 @@ public class StarterMenu extends JFrame {
                 dispose();
                 System.exit(0);
             }
+
         });
+        XP = new JButton("XP:"+GameInfo.getXP());
+         fontStyle = new Font("Magneto",Font.BOLD,20);
+        XP.setFont(fontStyle);
+        XP.setForeground(fontClr);
+        XP.setBackground(backClr);
+        XP.setBorderPainted(false);
+        XP.setFocusPainted(false);
+        XP.setBounds(200,620,300,60);
+
 
         this.setLayout(null);
         label.add(start);
@@ -143,6 +154,7 @@ public class StarterMenu extends JFrame {
         label.add(settings);
         label.add(tutorial);
         label.add(exit);
+        label.add(XP);
 
 
         this.setVisible(true);
