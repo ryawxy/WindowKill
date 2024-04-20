@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Epsilon;
 import Model.ShotGun;
+import View.GameInfo;
 import View.GamePanel;
 import View.Settings.SettingsFrame;
 import View.ShopFrame;
@@ -26,6 +27,12 @@ public class KeyListener {
     private int mouseXPose;
     private int mouseYPose;
     private static boolean pauseGame;
+    private static boolean activate;
+    //activates chosen ability;
+    private static boolean canUseAbility;
+    // can the player use the ability?
+    private static boolean abilityKeyPressed;
+    private static int keyPressedNumber;
 
 
     public KeyListener(GamePanel gameFrame){
@@ -49,6 +56,7 @@ public class KeyListener {
         inputMap.put(KeyStroke.getKeyStroke(SettingsFrame.getKeyBinding("left"),0),"leftPress");
         inputMap.put(KeyStroke.getKeyStroke(SettingsFrame.getKeyBinding("right"),0),"rightPress");
         inputMap.put(KeyStroke.getKeyStroke(SettingsFrame.getKeyBinding("shop"),0),"shopPress");
+        inputMap.put(KeyStroke.getKeyStroke(SettingsFrame.getKeyBinding("ability"),0),"abilityPress");
 
 
 
@@ -191,6 +199,16 @@ public class KeyListener {
                 pauseGame =true;
             }
         });
+        actionMap.put("abilityPress", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if(GameInfo.getCurrentAbility()!= null){
+                    abilityKeyPressed = true;
+                    keyPressedNumber++;
+                }
+            }
+        });
 
 
     }
@@ -202,7 +220,35 @@ public class KeyListener {
         KeyListener.pauseGame = pauseGame;
     }
 
+    public static boolean isActivate() {
+        return activate;
+    }
 
+    public static void setActivate(boolean activate) {
+        KeyListener.activate = activate;
+    }
 
+    public static boolean isCanUseAbility() {
+        return canUseAbility;
+    }
 
+    public static void setCanUseAbility(boolean canUseAbility) {
+        KeyListener.canUseAbility = canUseAbility;
+    }
+
+    public static boolean isAbilityKeyPressed() {
+        return abilityKeyPressed;
+    }
+
+    public static void setAbilityKeyPressed(boolean abilityKeyPressed) {
+        KeyListener.abilityKeyPressed = abilityKeyPressed;
+    }
+
+    public static int getKeyPressedNumber() {
+        return keyPressedNumber;
+    }
+
+    public static void setKeyPressedNumber(int keyPressedNumber) {
+        KeyListener.keyPressedNumber = keyPressedNumber;
+    }
 }

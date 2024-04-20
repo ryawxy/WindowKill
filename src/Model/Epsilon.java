@@ -1,5 +1,7 @@
 package Model;
 
+import Controller.ImpactSpeed;
+import Controller.Intersection;
 import View.GameInfo;
 
 import java.io.IOException;
@@ -13,6 +15,11 @@ public class Epsilon extends GameObjects implements movable {
     private double yCenter = getY()+radius;
     private int HP = 100;
     private int XP = GameInfo.getXP();
+    private double xVelocity2;
+    private double yVelocity2;
+    private double xVelocity3;
+    private double yVelocity3;
+
 
 
     public Epsilon(int x, int y) throws IOException {
@@ -24,6 +31,34 @@ public class Epsilon extends GameObjects implements movable {
 
     @Override
     public void move() {
+ //       if(Intersection.getIntersectionPoint()!=null){
+
+//            double xPoint = Intersection.getIntersectionPoint().getX();
+//            double yPoint = Intersection.getIntersectionPoint().getY();
+//            double angle2 =  Math.atan2(getY() - yPoint, getX() - xPoint);
+//            double impactSpeed = ImpactSpeed.getImpactspeed(this);
+//            xVelocity2 = Math.cos(angle2) * impactSpeed;
+//            yVelocity2 = Math.sin(angle2) * impactSpeed;
+//        }else{
+//            xVelocity2 = 0;
+//            yVelocity2 = 0;
+//        }
+//
+//        if(Intersection.getIntersectionPoint2()!=null){
+//
+//
+//            double xPoint = Intersection.getIntersectionPoint2().getX();
+//            double yPoint = Intersection.getIntersectionPoint2().getY();
+//            double angle3 =  Math.atan2(getY() - yPoint, getX() - xPoint);
+//            double impactSpeed = 4;
+//            xVelocity3 = Math.cos(angle3) * impactSpeed;
+//            yVelocity3 = Math.sin(angle3) * impactSpeed;
+//        }else{
+//            xVelocity3 = 0;
+//            yVelocity3 = 0;
+//        }
+//        setxVelocity((int) (getxVelocity()+xVelocity2+xVelocity3));
+//        setyVelocity((int) (getyVelocity()+yVelocity2+yVelocity3));
         this.setX((int) (getX()+xVelocity));
         this.setY((int) (getY()+yVelocity));
         this.setxCenter( (getxCenter()+xVelocity));

@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.*;
+import View.GameInfo;
 import View.GamePanel;
 import View.ShopFrame;
 
@@ -10,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Point2D;
 import java.io.IOException;
+import java.util.Date;
 
 
 public class GameLoop {
@@ -33,6 +35,14 @@ public class GameLoop {
     //amount of time the has passed since collision with epsilon
     private int banishTime;
     //amount of time the has passed since banish item is activated
+    private long currentTime;
+    private long lastUsed = 0;
+    // last time ability key activated
+    private boolean canUseAbility;
+    private long acesoTimer = 0;
+    // last time HP added
+
+
 
 
 
@@ -171,6 +181,50 @@ public class GameLoop {
                         }
                         }
                     }
+                    if(canUseAbility){
+
+                        if(GameInfo.getCurrentAbility().equals(CurrentAbility.Aceso)){
+                            currentTime = System.currentTimeMillis();
+
+                                if((currentTime - acesoTimer)/(1000)>=1) {
+                                    for(int i=1;i<=KeyListener.getKeyPressedNumber();i++) {
+                                        if (GamePanel.getEpsilon().getHP() < 100) {
+                                            GamePanel.getEpsilon().setHP(GamePanel.getEpsilon().getHP() + 1);
+                                            acesoTimer = currentTime;
+                                        }
+                                    }
+
+                                }
+
+                        }else if(GameInfo.getCurrentAbility().equals(CurrentAbility.Ares)){
+                            Trigorath.setHPDecrement(Trigorath.getHPDecrement()+2*KeyListener.getKeyPressedNumber());
+                            Squarantine.setHPDecrement(Trigorath.getHPDecrement()+2*KeyListener.getKeyPressedNumber());
+                            canUseAbility = false;
+                        }
+
+
+
+                    }
+
+                    if(KeyListener.isAbilityKeyPressed()){
+
+                        currentTime = System.currentTimeMillis();
+
+                        if( (currentTime - lastUsed)/(60 * 1000)>=1){
+                            if(GamePanel.getEpsilon().getXP()>=100) {
+                                canUseAbility = true;
+                                GamePanel.getEpsilon().setXP(GamePanel.getEpsilon().getXP() - 100);
+
+                                lastUsed = currentTime;
+                            }else{
+                                KeyListener.setKeyPressedNumber(KeyListener.getKeyPressedNumber()-1);
+                            }
+                        }else{
+                            KeyListener.setKeyPressedNumber(KeyListener.getKeyPressedNumber()-1);
+                        }
+                        KeyListener.setAbilityKeyPressed(false);
+                    }
+
 
                     game.getGameFrame().repaint();
                 }

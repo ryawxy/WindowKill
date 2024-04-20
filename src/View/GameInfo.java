@@ -15,6 +15,8 @@ public class GameInfo  {
     private static boolean aresUnlocked;
     private static boolean acesoUnlocked;
     private static boolean proteusUnlocked;
+    private static boolean canActivateAbility = true;
+    private static boolean useCurrentAbility = false;
 
     public  GameInfo(){
 
@@ -58,5 +60,21 @@ public class GameInfo  {
 
     public static void setProteusUnlocked(boolean proteusUnlocked) {
         GameInfo.proteusUnlocked = proteusUnlocked;
+    }
+
+    public static boolean isCanActivateAbility() {
+        return canActivateAbility;
+    }
+
+    public static void setCanActivateAbility(boolean canActivateAbility) {
+        GameInfo.canActivateAbility = canActivateAbility;
+    }
+
+    public static boolean isUseCurrentAbility() {
+        return useCurrentAbility;
+    }
+
+    public static void setUseCurrentAbility(boolean useCurrentAbility) {
+        GameInfo.useCurrentAbility = useCurrentAbility;
     }
 }

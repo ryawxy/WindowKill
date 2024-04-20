@@ -3,6 +3,7 @@ package Model;
 import Controller.Constants;
 import Controller.ImpactSpeed;
 import Controller.Intersection;
+import Controller.KeyListener;
 import View.GamePanel;
 import View.ShopFrame;
 
@@ -34,6 +35,7 @@ public class Trigorath extends GameObjects implements movable {
 
     private double xVelocity3;
     private double yVelocity3;
+    private static  int HPDecrement = 5;
     private final ArrayList<Collectible> collectibles = new ArrayList<>();
     public Trigorath(int x, int y) {
         super(x,y);
@@ -194,7 +196,7 @@ public class Trigorath extends GameObjects implements movable {
     }
 
     public void decreaseHP(){
-        setHP(getHP()-5);
+        setHP(getHP()-(HPDecrement));
         if(getHP()<=0){
             setDead(true);
             setShowCollectibles(true);
@@ -249,4 +251,11 @@ public class Trigorath extends GameObjects implements movable {
         return collectibles;
     }
 
+    public static int getHPDecrement() {
+        return HPDecrement;
+    }
+
+    public static void setHPDecrement(int HPDecrement) {
+        Trigorath.HPDecrement = HPDecrement;
+    }
 }

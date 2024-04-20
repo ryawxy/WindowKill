@@ -3,10 +3,12 @@ package Model;
 import Controller.Constants;
 import Controller.ImpactSpeed;
 import Controller.Intersection;
+import Controller.KeyListener;
 import View.GamePanel;
 import View.ShopFrame;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 public class Squarantine extends GameObjects implements movable {
@@ -35,6 +37,7 @@ public class Squarantine extends GameObjects implements movable {
     private double yVelocity2;
     private double xVelocity3;
     private double yVelocity3;
+    private static int HPDecrement = 5;
 
     private final ArrayList<Collectible> collectibles = new ArrayList<>();
 
@@ -161,7 +164,7 @@ public class Squarantine extends GameObjects implements movable {
 
         if(Intersection.getIntersectionPoint()!=null){
 
-            System.out.println(111);
+
             double xPoint = Intersection.getIntersectionPoint().getX();
             double yPoint = Intersection.getIntersectionPoint().getY();
             double angle2 =  Math.atan2(squarantineYPos - yPoint, squarantineXPos - xPoint);
@@ -232,13 +235,11 @@ public class Squarantine extends GameObjects implements movable {
         }
     }
     public void decreaseHP(){
-        setHP(getHP()-5);
+        setHP(getHP()-(HPDecrement));
+        System.out.println(getHP());
         if(getHP()<=0){
             setDead(true);
             setShowCollectibles(true);
-
-
-
 
                 getCollectibles().get(0).setX(xPoints[1]);
                 getCollectibles().get(0).setY(yPoints[1]);
@@ -277,6 +278,13 @@ public class Squarantine extends GameObjects implements movable {
         return collectibles;
     }
 
+    public static int getHPDecrement() {
+        return HPDecrement;
+    }
+
+    public static void setHPDecrement(int HPDecrement) {
+        Squarantine.HPDecrement = HPDecrement;
+    }
 }
 
 
