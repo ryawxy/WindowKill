@@ -114,32 +114,32 @@ public class GamePanel extends JPanel {
         //paint epsilon's shotGun
         for (ShotGun shotGun1 : ShotGun.getShots()) {
             if (shotGun1.isOnFire()) {
-                if (shotGun1.isVisible()){
+                if (shotGun1.isVisible()) {
                     g2D.setColor(Color.WHITE);
 
-                g2D.fillRect(shotGun1.getX(), shotGun1.getY(),
-                        shotGun1.getWidth(), shotGun1.getHeight());
+                    g2D.fillRect(shotGun1.getX(), shotGun1.getY(),
+                            shotGun1.getWidth(), shotGun1.getHeight());
+                }
             }
         }
-    }
         //paint trigorath
 
         // if trigorath is alive paint it
         // if not show its collectible
-        for(int i=0;i<trigoraths.size();i++) {
+        for (int i = 0; i < trigoraths.size(); i++) {
             Trigorath trigorath1 = trigoraths.get(i);
-            if(!trigorath1.isDead()) {
+            if (!trigorath1.isDead()) {
                 g2D.setColor(Color.YELLOW);
                 g2D.drawPolygon(trigorath1.getxPoints(), trigorath1.getyPoints(), 3);
-            }else{
-                if(trigorath1.isShowCollectibles()){
+            } else {
+                if (trigorath1.isShowCollectibles()) {
 
                     g2D.setColor(Color.orange);
-                    for(int j=0;j<trigorath1.getCollectibles().size();j++){
+                    for (int j = 0; j < trigorath1.getCollectibles().size(); j++) {
 
 
                         Collectible collectible = trigorath1.getCollectibles().get(j);
-                        g2D.fillOval(collectible.getX(),collectible.getY(),collectible.getRadius(),collectible.getRadius());
+                        g2D.fillOval(collectible.getX(), collectible.getY(), collectible.getRadius(), collectible.getRadius());
 
                     }
                 }
@@ -150,26 +150,38 @@ public class GamePanel extends JPanel {
 
         // if squarantine is alive paint it
         // if not show its collectible
-        for(int i=0;i<squarantines.size();i++) {
+        for (int i = 0; i < squarantines.size(); i++) {
             Squarantine squarantine1 = squarantines.get(i);
-            if(!squarantine1.isDead()) {
+            if (!squarantine1.isDead()) {
                 g2D.setColor(Color.GREEN);
                 g2D.drawPolygon(squarantine1.getxPoints(), squarantine1.getyPoints(), 4);
-            }else{
-                if(squarantine1.isShowCollectibles()){
+            } else {
+                if (squarantine1.isShowCollectibles()) {
 
                     g2D.setColor(Color.orange);
-                    for(int j=0;j<squarantine1.getCollectibles().size();j++){
+                    for (int j = 0; j < squarantine1.getCollectibles().size(); j++) {
 
 
                         Collectible collectible = squarantine1.getCollectibles().get(j);
-                        g2D.fillOval(collectible.getX(),collectible.getY(),collectible.getRadius(),collectible.getRadius());
+                        g2D.fillOval(collectible.getX(), collectible.getY(), collectible.getRadius(), collectible.getRadius());
 
                     }
                 }
             }
         }
+        //paint epsilons vertex
+        double angleStep = 2 * Math.PI / epsilon.getVertexNumber();
 
+        for (int i = 0; i < epsilon.getVertexNumber(); i++) {
+
+            int dotX = (int) (epsilon.getX()+epsilon.getRadius()/2 + epsilon.getRadius()/2 * Math.cos(i * angleStep));
+
+            int dotY = (int) (epsilon.getY()+epsilon.getRadius()/2 + epsilon.getRadius()/2 * Math.sin(i * angleStep));
+
+            g.setColor(Color.WHITE);
+            g.fillOval(dotX - 5, dotY - 5, 7, 7);
+
+        }
     }
 
     public static Epsilon getEpsilon() {

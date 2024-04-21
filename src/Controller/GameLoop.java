@@ -93,7 +93,7 @@ public class GameLoop {
 
                     intersection.shotIntersectsSquarantine();
                     intersection.shotIntersectsTrigorath();
-                    intersection.shotIntersectsSquarantine();
+                //    intersection.shotIntersectsSquarantine();
                     intersection.epsilonIntersectsCollectible();
               //      intersection.epsilonIntersectEnemy();
                     intersection.enemyIntersection();
@@ -199,6 +199,9 @@ public class GameLoop {
                         }else if(GameInfo.getCurrentAbility().equals(CurrentAbility.Ares)){
                             Trigorath.setHPDecrement(Trigorath.getHPDecrement()+2*KeyListener.getKeyPressedNumber());
                             Squarantine.setHPDecrement(Trigorath.getHPDecrement()+2*KeyListener.getKeyPressedNumber());
+                            canUseAbility = false;
+                        }else if(GameInfo.getCurrentAbility().equals(CurrentAbility.Proteus)){
+                            GamePanel.getEpsilon().setVertexNumber(GamePanel.getEpsilon().getVertexNumber()+1);
                             canUseAbility = false;
                         }
 

@@ -29,15 +29,15 @@ public class ImpactSpeed {
             distance = Math.sqrt(Math.pow(gameObjects.getX() - point.getX(), 2) +
                     Math.pow(gameObjects.getY() - point.getY(), 2));
             if (distance <= 60) {
-                return 8;
-
-            }
-            if (distance > 70 && distance <= 80) {
                 return 6;
 
             }
+            if (distance > 70 && distance <= 80) {
+                return 5;
+
+            }
             if (distance > 90 && distance <= 100) {
-                return 4;
+                return 3;
 
             }
             if (distance > 100) {

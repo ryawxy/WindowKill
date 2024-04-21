@@ -4,7 +4,9 @@ import Controller.ImpactSpeed;
 import Controller.Intersection;
 import View.GameInfo;
 
+import java.awt.geom.Point2D;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Epsilon extends GameObjects implements movable {
 
@@ -19,6 +21,8 @@ public class Epsilon extends GameObjects implements movable {
     private double yVelocity2;
     private double xVelocity3;
     private double yVelocity3;
+    private ArrayList<Point2D> vertex;
+    private int vertexNumber;
 
 
 
@@ -128,5 +132,21 @@ public class Epsilon extends GameObjects implements movable {
     public void decreaseHP(){
         setHP(getHP()-10);
 
+    }
+
+    public ArrayList<Point2D> getVertex() {
+        return vertex;
+    }
+
+    public void setVertex(ArrayList<Point2D> vertex) {
+        this.vertex = vertex;
+    }
+
+    public int getVertexNumber() {
+        return vertexNumber;
+    }
+
+    public void setVertexNumber(int vertexNumber) {
+        this.vertexNumber = vertexNumber;
     }
 }

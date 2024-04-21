@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class GameInfo  {
     private int time;
-    private static int XP = 800;
+    private static int XP = 2000;
     private int HP;
     private int waveNumber;
     private static CurrentAbility currentAbility;
