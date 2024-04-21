@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -171,15 +172,13 @@ public class GamePanel extends JPanel {
             }
         }
         //paint epsilons vertex
-        double angle = 2 * Math.PI / epsilon.getVertexNumber();
-        for (int i = 0; i < epsilon.getVertexNumber(); i++) {
-            int dotX = (int) (epsilon.getX()+epsilon.getRadius()/2 + epsilon.getRadius()/2 * Math.cos(i * angle));
-            int dotY = (int) (epsilon.getY()+epsilon.getRadius()/2 + epsilon.getRadius()/2 * Math.sin(i * angle));
 
+        for(Point2D point2D : getEpsilon().getVertex()) {
             g2D.setColor(Color.WHITE);
-            g2D.fillOval(dotX - 5, dotY - 5, 7, 7);
-
+            g2D.fillOval((int) (point2D.getX() - 5), (int) (point2D.getY() - 5), 7, 7);
         }
+
+
         //paint Game info
         g2D.setColor(Color.WHITE);
         g2D.drawString("✦"+epsilon.getXP(),5,20);

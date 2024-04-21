@@ -22,7 +22,7 @@ public class Epsilon extends GameObjects implements movable {
     private double yVelocity2;
     private double xVelocity3;
     private double yVelocity3;
-    private ArrayList<Point2D> vertex;
+    private ArrayList<Point2D> vertex = new ArrayList<>();
     private int vertexNumber;
 
 
@@ -171,6 +171,17 @@ public class Epsilon extends GameObjects implements movable {
 
     public void setVertexNumber(int vertexNumber) {
         this.vertexNumber = vertexNumber;
+    }
+    public void addVertex() {
+        System.out.println(1111);
+        vertex.clear();
+        double angle = 2 * Math.PI / vertexNumber;
+        for (int i = 0; i < vertexNumber; i++) {
+            int dotX = (int) (getX() + radius / 2 + radius / 2 * Math.cos(i * angle));
+            int dotY = (int) (getY() + radius / 2 + radius / 2 * Math.sin(i * angle));
+            vertex.add(new Point2D.Double(dotX,dotY));
+            System.out.println(vertex.size());
+        }
     }
 
 }

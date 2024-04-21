@@ -19,6 +19,7 @@ public class Intersection {
     private static Point2D intersectionPoint;
     private static Point2D intersectionPoint2;
     private static Point2D intersectionPoint3;
+    private static boolean meleeAttack;
     public Intersection(GamePanel gamePanel) throws IOException {
         this.gamePanel = gamePanel;
     }
@@ -183,11 +184,39 @@ public class Intersection {
 
 
 public boolean checkCollision(int epsilonX,int epsilonY,int radius,Polygon polygon){
-    Ellipse2D epsilon = new Ellipse2D.Double(epsilonX-radius,epsilonY-radius,2*radius,2*radius);
+    Ellipse2D epsilon = new Ellipse2D.Double(epsilonX-radius,epsilonY-radius,radius,radius);
     Area epsilonArea = new Area(epsilon);
     Area polygonArea = new Area(polygon);
     epsilonArea.intersect(polygonArea);
     return !epsilonArea.isEmpty();
+}
+public void checkMeleeAttack(){
+        Point2D epsilonCenter = new Point2D.Double(GamePanel.getEpsilon().getxCenter(),GamePanel.getEpsilon().getyCenter());
+
+      for(Trigorath trigorath : GamePanel.getTrigoraths()) {
+          for (int i = 0; i < 3; i++) {
+              if (epsilonCenter.distance(trigorath.getxPoints()[i], trigorath.getyPoints()[i]) <= GamePanel.getEpsilon().getRadius()) {
+                  for (Point2D point2D : GamePanel.getEpsilon().getVertex()) {
+                   //   Point2D vertexCenter = new Point2D.Double()
+                      GamePanel.getEpsilon().setHP(GamePanel.getEpsilon().getHP() - 10);
+                      break;
+                  }
+              }
+          }
+      }
+          for(Squarantine squarantine : GamePanel.getSquarantine()) {
+              for (int i = 0; i < 4; i++) {
+                  if (epsilonCenter.distance(squarantine.getxPoints()[i], squarantine.getyPoints()[i]) <= GamePanel.getEpsilon().getRadius()) {
+                      GamePanel.getEpsilon().setHP(GamePanel.getEpsilon().getHP() - 10);
+                      break;
+
+                  }
+              }
+          }
+
+
+
+
 }
 
 

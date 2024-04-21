@@ -49,7 +49,7 @@ public class GameLoop {
 
     public GameLoop(Game game) throws IOException {
         this.game = game;
-        timer = new Timer(2, new ActionListener() {
+        timer = new Timer(5, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!KeyListener.getPauseGame()) {
@@ -98,6 +98,7 @@ public class GameLoop {
                     intersection.epsilonIntersectsCollectible();
               //      intersection.epsilonIntersectEnemy();
                     intersection.enemyIntersection();
+
 
 
                     try {
@@ -177,6 +178,7 @@ public class GameLoop {
                         if(intersection.checkCollision(epsilon.getxCenter(),epsilon.getyCenter(),epsilon.getRadius(),trigorath2)) {
                             Intersection.setIntersectionPoint2(new Point2D.Double(epsilon.getxCenter(), epsilon.getyCenter()));
                             Intersection.setIntersectionPoint3(new Point2D.Double(trigorath.getX(),trigorath.getY()));
+                            intersection.checkMeleeAttack();
                         }
                         }
                     }
@@ -187,9 +189,13 @@ public class GameLoop {
                         if(intersection.checkCollision(epsilon.getxCenter(),epsilon.getyCenter(),epsilon.getRadius(),squarantine2)) {
                             Intersection.setIntersectionPoint2(new Point2D.Double(epsilon.getxCenter(), epsilon.getyCenter()));
                             Intersection.setIntersectionPoint3(new Point2D.Double(squarantine.getX(),squarantine.getY()));
+                            intersection.checkMeleeAttack();
                         }
                         }
                     }
+
+
+
                     if(canUseAbility){
 
                         if(GameInfo.getCurrentAbility().equals(CurrentAbility.Aceso)){
@@ -210,7 +216,11 @@ public class GameLoop {
                             Squarantine.setHPDecrement(Trigorath.getHPDecrement()+2*KeyListener.getKeyPressedNumber());
                             canUseAbility = false;
                         }else if(GameInfo.getCurrentAbility().equals(CurrentAbility.Proteus)){
+
+                            GamePanel.getEpsilon().addVertex();
+
                             GamePanel.getEpsilon().setVertexNumber(GamePanel.getEpsilon().getVertexNumber()+1);
+
                             canUseAbility = false;
                         }
 
