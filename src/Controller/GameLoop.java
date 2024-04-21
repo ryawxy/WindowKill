@@ -41,8 +41,9 @@ public class GameLoop {
     private boolean canUseAbility;
     private long acesoTimer = 0;
     // last time HP added
-
-
+    private Timer elapsedTimer;
+    private static int seconds;
+    private static int minutes;
 
 
 
@@ -151,9 +152,11 @@ public class GameLoop {
                     if(Intersection.getIntersectionPoint2()!=null){
                         impactTimer2++;
                     }
+
                     if(impactTimer2>=20){
                         impactTimer2 = 0;
                         Intersection.setIntersectionPoint2(null);
+                        Intersection.setIntersectionPoint3(null);
                     }
 
                     if(ShopFrame.isBanishItem()){
@@ -163,12 +166,17 @@ public class GameLoop {
                         banishTime = 0;
                         ShopFrame.setBanishItem(false);
                     }
+                    if(ShopFrame.isHealItem()){
+                        GamePanel.getEpsilon().setHP(GamePanel.getEpsilon().getHP()+10);
+                        ShopFrame.setHealItem(false);
+                    }
                     for(Trigorath trigorath:GamePanel.getTrigoraths() ){
                         if(!trigorath.isDead()){
                         Epsilon epsilon = GamePanel.getEpsilon();
                         Polygon trigorath2 = new Polygon(trigorath.getxPoints(), trigorath.getyPoints(),3);
                         if(intersection.checkCollision(epsilon.getxCenter(),epsilon.getyCenter(),epsilon.getRadius(),trigorath2)) {
                             Intersection.setIntersectionPoint2(new Point2D.Double(epsilon.getxCenter(), epsilon.getyCenter()));
+                            Intersection.setIntersectionPoint3(new Point2D.Double(trigorath.getX(),trigorath.getY()));
                         }
                         }
                     }
@@ -178,6 +186,7 @@ public class GameLoop {
                         Polygon squarantine2 = new Polygon(squarantine.getxPoints(), squarantine.getyPoints(),4);
                         if(intersection.checkCollision(epsilon.getxCenter(),epsilon.getyCenter(),epsilon.getRadius(),squarantine2)) {
                             Intersection.setIntersectionPoint2(new Point2D.Double(epsilon.getxCenter(), epsilon.getyCenter()));
+                            Intersection.setIntersectionPoint3(new Point2D.Double(squarantine.getX(),squarantine.getY()));
                         }
                         }
                     }
@@ -234,8 +243,33 @@ public class GameLoop {
             }
         });
         timer.start();
+        elapsedTimer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                seconds++;
+                if(seconds>=59){
+                    seconds = 0;
+                    minutes++;
+                }
+            }
+        });
+        elapsedTimer.start();
 
     }
 
+    public static int getSeconds() {
+        return seconds;
+    }
 
+    public static void setSeconds(int seconds) {
+        GameLoop.seconds = seconds;
+    }
+
+    public static int getMinutes() {
+        return minutes;
+    }
+
+    public static void setMinutes(int minutes) {
+        GameLoop.minutes = minutes;
+    }
 }

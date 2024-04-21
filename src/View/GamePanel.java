@@ -1,6 +1,7 @@
 package View;
 
 import Controller.Constants;
+import Controller.GameLoop;
 import Controller.MouseListener;
 import Model.*;
 import javax.swing.*;
@@ -170,18 +171,21 @@ public class GamePanel extends JPanel {
             }
         }
         //paint epsilons vertex
-        double angleStep = 2 * Math.PI / epsilon.getVertexNumber();
-
+        double angle = 2 * Math.PI / epsilon.getVertexNumber();
         for (int i = 0; i < epsilon.getVertexNumber(); i++) {
+            int dotX = (int) (epsilon.getX()+epsilon.getRadius()/2 + epsilon.getRadius()/2 * Math.cos(i * angle));
+            int dotY = (int) (epsilon.getY()+epsilon.getRadius()/2 + epsilon.getRadius()/2 * Math.sin(i * angle));
 
-            int dotX = (int) (epsilon.getX()+epsilon.getRadius()/2 + epsilon.getRadius()/2 * Math.cos(i * angleStep));
-
-            int dotY = (int) (epsilon.getY()+epsilon.getRadius()/2 + epsilon.getRadius()/2 * Math.sin(i * angleStep));
-
-            g.setColor(Color.WHITE);
-            g.fillOval(dotX - 5, dotY - 5, 7, 7);
+            g2D.setColor(Color.WHITE);
+            g2D.fillOval(dotX - 5, dotY - 5, 7, 7);
 
         }
+        //paint Game info
+        g2D.setColor(Color.WHITE);
+        g2D.drawString("✦"+epsilon.getXP(),5,20);
+        g2D.drawString("♥"+epsilon.getHP(),100,20);
+        g2D.drawString(GameLoop.getMinutes()+":"+GameLoop.getSeconds(),195,20);
+        //TODO:wave
     }
 
     public static Epsilon getEpsilon() {

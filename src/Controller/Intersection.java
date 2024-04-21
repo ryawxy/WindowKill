@@ -18,6 +18,7 @@ public class Intersection {
     private boolean intersect;
     private static Point2D intersectionPoint;
     private static Point2D intersectionPoint2;
+    private static Point2D intersectionPoint3;
     public Intersection(GamePanel gamePanel) throws IOException {
         this.gamePanel = gamePanel;
     }
@@ -196,5 +197,13 @@ public boolean checkCollision(int epsilonX,int epsilonY,int radius,Polygon polyg
 
     public static void setIntersectionPoint2(Point2D intersectionPoint2) {
         Intersection.intersectionPoint2 = intersectionPoint2;
+    }
+
+    public static Point2D getIntersectionPoint3() {
+        return intersectionPoint3;
+    }
+
+    public static void setIntersectionPoint3(Point2D intersectionPoint3) {
+        Intersection.intersectionPoint3 = intersectionPoint3;
     }
 }

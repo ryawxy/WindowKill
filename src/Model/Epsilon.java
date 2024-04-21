@@ -3,6 +3,7 @@ package Model;
 import Controller.ImpactSpeed;
 import Controller.Intersection;
 import View.GameInfo;
+import View.GamePanel;
 
 import java.awt.geom.Point2D;
 import java.io.IOException;
@@ -35,38 +36,60 @@ public class Epsilon extends GameObjects implements movable {
 
     @Override
     public void move() {
- //       if(Intersection.getIntersectionPoint()!=null){
+        if(Intersection.getIntersectionPoint()!=null){
 
-//            double xPoint = Intersection.getIntersectionPoint().getX();
-//            double yPoint = Intersection.getIntersectionPoint().getY();
-//            double angle2 =  Math.atan2(getY() - yPoint, getX() - xPoint);
-//            double impactSpeed = ImpactSpeed.getImpactspeed(this);
-//            xVelocity2 = Math.cos(angle2) * impactSpeed;
-//            yVelocity2 = Math.sin(angle2) * impactSpeed;
-//        }else{
-//            xVelocity2 = 0;
-//            yVelocity2 = 0;
-//        }
-//
-//        if(Intersection.getIntersectionPoint2()!=null){
-//
-//
-//            double xPoint = Intersection.getIntersectionPoint2().getX();
-//            double yPoint = Intersection.getIntersectionPoint2().getY();
-//            double angle3 =  Math.atan2(getY() - yPoint, getX() - xPoint);
-//            double impactSpeed = 4;
-//            xVelocity3 = Math.cos(angle3) * impactSpeed;
-//            yVelocity3 = Math.sin(angle3) * impactSpeed;
-//        }else{
-//            xVelocity3 = 0;
-//            yVelocity3 = 0;
-//        }
-//        setxVelocity((int) (getxVelocity()+xVelocity2+xVelocity3));
-//        setyVelocity((int) (getyVelocity()+yVelocity2+yVelocity3));
-        this.setX((int) (getX()+xVelocity));
-        this.setY((int) (getY()+yVelocity));
-        this.setxCenter( (getxCenter()+xVelocity));
-        this.setyCenter( (getyCenter()+yVelocity));
+            double xPoint = Intersection.getIntersectionPoint().getX();
+            double yPoint = Intersection.getIntersectionPoint().getY();
+            double angle2 =  Math.atan2(getY() - yPoint, getX() - xPoint);
+            double impactSpeed = ImpactSpeed.getImpactspeed(this);
+            xVelocity2 = Math.cos(angle2) * 3;
+            yVelocity2 = Math.sin(angle2) * 3;
+        }else{
+            xVelocity2 = 0;
+            yVelocity2 = 0;
+        }
+
+        if(Intersection.getIntersectionPoint2()!=null){
+
+            double xPoint = Intersection.getIntersectionPoint3().getX();
+            double yPoint = Intersection.getIntersectionPoint3().getY();
+            double angle3 =  Math.atan2(getY() - yPoint, getX() - xPoint);
+            double impactSpeed = 4;
+            xVelocity3 = Math.cos(angle3) * 3;
+            yVelocity3 = Math.sin(angle3) * 3;
+        }else{
+            xVelocity3 = 0;
+            yVelocity3 = 0;
+        }
+        if(getY()-radius<=0){
+            yVelocity2=0;
+          //  xVelocity2=0;
+         //   xVelocity3=0;
+            yVelocity3=0;
+        }
+        if(getY() + radius>= GamePanel.getFRAME_HEIGHT()) {
+            yVelocity2=0;
+         //   xVelocity2=0;
+        //    xVelocity3=0;
+            yVelocity3=0;
+        }
+        if(getX() - radius<=0) {
+         //   yVelocity2=0;
+            xVelocity2=0;
+            xVelocity3=0;
+         //   yVelocity3=0;
+        }
+        if(getX() + radius>= GamePanel.getFRAME_WIDTH()) {
+         //   yVelocity2=0;
+            xVelocity2=0;
+            xVelocity3=0;
+         //   yVelocity3=0;
+        }
+
+        this.setX((int) (getX()+xVelocity+xVelocity2+xVelocity3));
+        this.setY((int) (getY()+yVelocity+yVelocity2+yVelocity3));
+        this.setxCenter( (getxCenter()+xVelocity+xVelocity2));
+        this.setyCenter( (getyCenter()+yVelocity+yVelocity2));
 
     }
 
@@ -149,4 +172,5 @@ public class Epsilon extends GameObjects implements movable {
     public void setVertexNumber(int vertexNumber) {
         this.vertexNumber = vertexNumber;
     }
+
 }
