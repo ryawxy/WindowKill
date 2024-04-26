@@ -67,6 +67,7 @@ public class ShopFrame extends JFrame {
             }
         });
 
+
         //empower button
         empower = new JButton("O'Athena,Empower");
         empower.setFont(fontStyle);

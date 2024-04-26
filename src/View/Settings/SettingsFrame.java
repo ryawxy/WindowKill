@@ -3,9 +3,12 @@ package View.Settings;
 import View.StarterMenu;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Objects;
 
 public class SettingsFrame extends JFrame  {
@@ -32,6 +35,9 @@ public class SettingsFrame extends JFrame  {
     private static HashMap<String,Integer> keyBindings = new HashMap<>();
     private JTextField upKey;
     JLabel instructionLabel = new JLabel("current key: ");
+    private static int chosenLevel;
+    private static int chosenSound;
+    private static int chosenSensitivity;
 
     JTextField keyCodeField = new JTextField(10);
 
@@ -60,16 +66,16 @@ public class SettingsFrame extends JFrame  {
         Color backClr = Color.WHITE;
         soundText.setBackground(backClr);
         soundText.setBounds(30,120,150,50);
-
         label.add(soundText);
 
 
         //sound slider
-        sound = new JSlider(SwingConstants.HORIZONTAL,0,100,50);
+        sound = new JSlider(SwingConstants.HORIZONTAL,0,20,0);
         sound.setMajorTickSpacing(10);
-        sound.setMinorTickSpacing(1);
+        sound.setMinorTickSpacing(10);
         sound.setPaintTicks(true);
         sound.setPaintLabels(true);
+        sound.setSnapToTicks(true);
         sound.setBounds(330,100,300,80);
         sound.setBorder(null);
         sound.setBackground(Color.WHITE);
@@ -86,11 +92,12 @@ public class SettingsFrame extends JFrame  {
         label.add(keySensitivityText);
 
         //keySensitivity slider
-        keySensitivity = new JSlider(SwingConstants.HORIZONTAL,0,100,50);
+        keySensitivity = new JSlider(SwingConstants.HORIZONTAL,0,20,0);
         keySensitivity.setMajorTickSpacing(10);
-        keySensitivity.setMinorTickSpacing(1);
+        keySensitivity.setMinorTickSpacing(10);
         keySensitivity.setPaintTicks(true);
         keySensitivity.setPaintLabels(true);
+        keySensitivity.setSnapToTicks(true);
         keySensitivity.setBounds(330,200,300,80);
         keySensitivity.setBorder(null);
         keySensitivity.setBackground(Color.WHITE);
@@ -106,14 +113,28 @@ public class SettingsFrame extends JFrame  {
         label.add(levelText);
 
         //level slider
-       level = new JSlider(SwingConstants.HORIZONTAL,0,100,50);
-       level.setMajorTickSpacing(10);
+       level = new JSlider(SwingConstants.HORIZONTAL,0,2,0);
+
+
+        Hashtable<Integer,JLabel> levels = new Hashtable<>();
+        levels.put(0,new JLabel("easy"));
+        levels.put(1,new JLabel("medium"));
+        levels.put(2,new JLabel("hard"));
+        level.setLabelTable(levels);
+       level.setMajorTickSpacing(1);
        level.setMinorTickSpacing(1);
        level.setPaintTicks(true);
        level.setPaintLabels(true);
        level.setBounds(330,300,300,80);
        level.setBorder(null);
        level.setBackground(Color.WHITE);
+       level.addChangeListener(new ChangeListener() {
+           @Override
+           public void stateChanged(ChangeEvent e) {
+               chosenLevel = level.getValue();
+
+           }
+       });
        label.add(level);
 
 //upward key
@@ -252,4 +273,27 @@ public class SettingsFrame extends JFrame  {
         return keyBindings;
     }
 
+    public static int getChosenLevel() {
+        return chosenLevel;
+    }
+
+    public static void setChosenLevel(int chosenLevel) {
+        SettingsFrame.chosenLevel = chosenLevel;
+    }
+
+    public static int getChosenSound() {
+        return chosenSound;
+    }
+
+    public static void setChosenSound(int chosenSound) {
+        SettingsFrame.chosenSound = chosenSound;
+    }
+
+    public static int getChosenSensitivity() {
+        return chosenSensitivity;
+    }
+
+    public static void setChosenSensitivity(int chosenSensitivity) {
+        SettingsFrame.chosenSensitivity = chosenSensitivity;
+    }
 }

@@ -10,13 +10,18 @@ public class FrameSize {
     GamePanel gamePanel;
     private int newX;
     private int newY;
+    private int minSize;
 
     public FrameSize(GamePanel gamePanel) throws IOException {
 
         this.gamePanel = gamePanel;
     }
     public void shrink (){
-        if(GamePanel.getFRAME_WIDTH()>=200 && GamePanel.getFRAME_HEIGHT()>=200){
+     minSize = 200;
+     if(GameLoop.isWin() && GamePanel.getEpsilon().getRadius()>=GamePanel.getFRAME_HEIGHT()){
+         minSize = 0;
+     }
+        if(GamePanel.getFRAME_WIDTH()>=minSize && GamePanel.getFRAME_HEIGHT()>=minSize){
 
             gamePanel.setFRAME_WIDTH(GamePanel.getFRAME_WIDTH()-2*Constants.shrinkAmount());
             //   Constants.setFrameWidth(Constants.getFrameWidth()-2*Constants.shrinkAmount());

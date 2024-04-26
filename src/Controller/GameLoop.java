@@ -1,9 +1,9 @@
 package Controller;
 
 import Model.*;
-import View.GameInfo;
-import View.GamePanel;
-import View.ShopFrame;
+import View.*;
+import View.Settings.SettingsFrame;
+import myproject.MyProject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Point2D;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -25,7 +26,7 @@ public class GameLoop {
     // amount of time that has passed since the game has started
     private int index=ShotGun.getShots().size()-3;
     //balls shooting one by on in empower mode
-    private int time;
+    private int time=3;
     //amount of time since shooting the next fire
     private int empowerTime;
     //amount of time that has passed since empower item is activated
@@ -33,6 +34,14 @@ public class GameLoop {
     //amount of time the has passed since enemy collision
     private int impactTimer2;
     //amount of time the has passed since collision with epsilon
+    private int impactTimer3;
+    //amount of time the has passed since enemy collision with shotgun
+    private int impactTimer4;
+    //amount of time the has passed since frame collision with shotgun
+    private int impactTimer5;
+    //amount of time the has passed since enemy collision with epsilons vertex
+    private int impactTimer6;
+    //amount of time the has passed since squarantine
     private int banishTime;
     //amount of time the has passed since banish item is activated
     private long currentTime;
@@ -44,20 +53,247 @@ public class GameLoop {
     private Timer elapsedTimer;
     private static int seconds;
     private static int minutes;
+    private boolean wave1Created;
+    private boolean wave2Created;
+    private boolean wave3Created;
+
+
+    int deadS;
+    int deadT;
+    int timeBetweenWave;
+    private static boolean win;
+    private String [] option = {"menu"};
+
 
 
 
     public GameLoop(Game game) throws IOException {
         this.game = game;
-        timer = new Timer(5, new ActionListener() {
+        timer = new Timer(2, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+
                 if (!KeyListener.getPauseGame()) {
                     try {
                         intersection = new Intersection(game.getGameFrame());
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
+
+                    //waves
+                    Wave.initWave1();
+                    if (!wave1Created) {
+                        if(SettingsFrame.getChosenLevel()==0) {
+                            for (Squarantine squarantine : Wave.wave1EasySquarantine) {
+                                GamePanel.getSquarantine().add(squarantine);
+                            }
+                            for (Trigorath trigorath : Wave.wave1EasyTrigorath) {
+                                GamePanel.getTrigoraths().add(trigorath);
+                            }
+                        }else        if(SettingsFrame.getChosenLevel()==1) {
+                            for (Squarantine squarantine : Wave.wave1MediumSquarantine) {
+                                GamePanel.getSquarantine().add(squarantine);
+                            }
+                            for (Trigorath trigorath : Wave.wave1MediumTrigorath) {
+                                GamePanel.getTrigoraths().add(trigorath);
+                            }
+                        }else  if(SettingsFrame.getChosenLevel()==2) {
+                            for (Squarantine squarantine : Wave.wave1HardSquarantine) {
+                                GamePanel.getSquarantine().add(squarantine);
+                            }
+                            for (Trigorath trigorath : Wave.wave1HardTrigorath) {
+                                GamePanel.getTrigoraths().add(trigorath);
+                            }
+                        }
+                        wave1Created = true;
+                        GameInfo.setCurrentWave(1);
+                    }
+
+
+                    //if wave 1 ended create wave2
+                    if (!wave2Created) {
+                        for (Trigorath trigorath : GamePanel.getTrigoraths()) {
+                            if (trigorath.isDead()) {
+                                deadT++;
+
+                            }
+                        }
+                        for (Squarantine squarantine : GamePanel.getSquarantine()) {
+                            if (squarantine.isDead()) {
+                                deadS++;
+
+                            }
+                        }
+                    }
+                    if (deadT >= GamePanel.getTrigoraths().size() && deadS >= GamePanel.getSquarantine().size()) {
+                        timeBetweenWave++;
+                        if (timeBetweenWave > 500){
+                            GamePanel.getSquarantine().clear();
+                        GamePanel.getTrigoraths().clear();
+                        //    if(nextWave>=200) {
+                        Wave.initWave2();
+                        if (!wave2Created && wave1Created) {
+                            if(SettingsFrame.getChosenLevel()==0) {
+                                for (Squarantine squarantine : Wave.wave2EasySquarantine) {
+                                    GamePanel.getSquarantine().add(squarantine);
+                                }
+                                for (Trigorath trigorath : Wave.wave2EasyTrigorath) {
+                                    GamePanel.getTrigoraths().add(trigorath);
+                                }
+                            }else        if(SettingsFrame.getChosenLevel()==1) {
+                                for (Squarantine squarantine : Wave.wave2MediumSquarantine) {
+                                    GamePanel.getSquarantine().add(squarantine);
+                                }
+                                for (Trigorath trigorath : Wave.wave2MediumTrigorath) {
+                                    GamePanel.getTrigoraths().add(trigorath);
+                                }
+                            }else  if(SettingsFrame.getChosenLevel()==2) {
+                                for (Squarantine squarantine : Wave.wave2HardSquarantine) {
+                                    GamePanel.getSquarantine().add(squarantine);
+                                }
+                                for (Trigorath trigorath : Wave.wave2HardTrigorath) {
+                                    GamePanel.getTrigoraths().add(trigorath);
+                                }
+                            }
+                            wave2Created = true;
+                            GameInfo.setCurrentWave(2);
+                        }
+                        timeBetweenWave = 0;
+
+                    }
+                }
+                    deadS = 0;
+                    deadT =0 ;
+                    if(!wave3Created) {
+                        for (Trigorath trigorath : GamePanel.getTrigoraths()) {
+                            if (trigorath.isDead()) {
+                                deadT++;
+
+                            }
+                        }
+                        for (Squarantine squarantine : GamePanel.getSquarantine()) {
+                            if (squarantine.isDead()) {
+                                deadS++;
+
+                            }
+                        }
+                    }
+                    if(deadT>=GamePanel.getTrigoraths().size() && deadS>=GamePanel.getSquarantine().size()) {
+                        timeBetweenWave++;
+                        if (timeBetweenWave > 500) {
+
+                            GamePanel.getSquarantine().clear();
+                            GamePanel.getTrigoraths().clear();
+
+                            Wave.initWave3();
+                            if (!wave3Created && wave2Created) {
+
+                                if(SettingsFrame.getChosenLevel()==0) {
+                                    for (Squarantine squarantine : Wave.wave3EasySquarantine) {
+                                        GamePanel.getSquarantine().add(squarantine);
+                                    }
+                                    for (Trigorath trigorath : Wave.wave3EasyTrigorath) {
+                                        GamePanel.getTrigoraths().add(trigorath);
+                                    }
+                                }else        if(SettingsFrame.getChosenLevel()==1) {
+                                    for (Squarantine squarantine : Wave.wave3MediumSquarantine) {
+                                        GamePanel.getSquarantine().add(squarantine);
+                                    }
+                                    for (Trigorath trigorath : Wave.wave3MediumTrigorath) {
+                                        GamePanel.getTrigoraths().add(trigorath);
+                                    }
+                                }else  if(SettingsFrame.getChosenLevel()==2) {
+                                    for (Squarantine squarantine : Wave.wave3HardSquarantine) {
+                                        GamePanel.getSquarantine().add(squarantine);
+                                    }
+                                    for (Trigorath trigorath : Wave.wave3HardTrigorath) {
+                                        GamePanel.getTrigoraths().add(trigorath);
+                                    }
+                                }
+                                wave3Created = true;
+                                GameInfo.setCurrentWave(3);
+                            }
+                            timeBetweenWave = 0;
+                        }
+                    }
+
+                    deadS = 0;
+                    deadT =0 ;
+                    if(wave3Created) {
+                        for (Trigorath trigorath : GamePanel.getTrigoraths()) {
+                            if (trigorath.isDead()) {
+                                deadT++;
+
+                            }
+                        }
+                        for (Squarantine squarantine : GamePanel.getSquarantine()) {
+                            if (squarantine.isDead()) {
+                                deadS++;
+
+                            }
+                        }
+                    }
+                    if(deadT>=GamePanel.getTrigoraths().size() && deadS>=GamePanel.getSquarantine().size()){
+                        win = true;
+                        if(GamePanel.getEpsilon().getRadius()<GamePanel.getFRAME_WIDTH() && GamePanel.getEpsilon().getRadius()<=GamePanel.getFRAME_HEIGHT()) {
+                            GamePanel.getEpsilon().setRadius(GamePanel.getEpsilon().getRadius() + 1);
+
+                        }
+
+                    }
+
+                    if(GamePanel.getFRAME_HEIGHT()<=0 && win){
+                        int purchase = 0;
+
+                            purchase = JOptionPane.showOptionDialog(GlassFrame.getINSTANCE(),
+                                    "You won! XP:"+ GameInfo.getXP(), null, JOptionPane.DEFAULT_OPTION,
+                                    JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
+
+                        if(purchase == 0){
+                        //    GlassFrame.getINSTANCE().dispose();
+                            GameInfo.setCurrentAbility(null);
+                            GamePanel.getEpsilon().setHP(0);
+                            wave1Created =  false;
+                            wave2Created = false;
+                            wave3Created = false;
+                            countTime = 0;
+                            seconds = 0;
+                            minutes = 0;
+                            banishTime = 0;
+                            acesoTimer = 0;
+                            win = false;
+                            canUseAbility = false;
+                            lastUsed =0;
+                            deadS = 0;
+                            deadT = 0;
+                        //    new StarterMenu();
+
+
+
+                            //     GlassFrame.setINSTANCE(null);
+                            try {
+                                new Game();
+                            } catch (IOException ex) {
+                                throw new RuntimeException(ex);
+                            } catch (AWTException ex) {
+                                throw new RuntimeException(ex);
+                            }
+//                            try {
+//                                new MyProject();
+//                            } catch (IOException ex) {
+//                                throw new RuntimeException(ex);
+//                            }
+
+                        }
+                    }
+
+
+
+
+
+
+
                     if (!ShopFrame.isEmpowerItem()) {
                         for (ShotGun shotGun : ShotGun.getShots()) {
                             shotGun.move();
@@ -91,6 +327,9 @@ public class GameLoop {
                     trigorath.move();
                 }
                     GamePanel.getEpsilon().move();
+                for(Vertex vertex : GamePanel.getEpsilon().getVertex()){
+                    vertex.move();
+                }
 
                     intersection.shotIntersectsSquarantine();
                     intersection.shotIntersectsTrigorath();
@@ -107,9 +346,9 @@ public class GameLoop {
                         throw new RuntimeException(ex);
                     }
                     //shrinkage starts after 10 seconds
-//                    if (countTime >= 700) {
-//                        frameSize.shrink();
-//                    }
+                    if (countTime >= 700) {
+                        frameSize.shrink();
+                    }
 
 
                     if (empowerTime >= 500) {
@@ -119,15 +358,22 @@ public class GameLoop {
 
                     //check if a shot intersects with frame edges
                     // if so expansion starts from that side for a second
-                    for (ShotGun shotGun : ShotGun.getShots()) {
-                        intersectionSide = intersection.shotIntersectsFrame(shotGun);
+                    // and impact mechanism activates from that point
+
+                    for(ShotGun shotGun : ShotGun.getShots()){
+                        if(shotGun.isVisible()) intersectionSide = intersection.shotIntersectsFrame(shotGun);
                         if (intersectionSide != null) {
-                            if (shotGun.getExpansion() < 20) {
+
+                            if (shotGun.getExpansion() < 10) {
                                 frameSize.expand(intersectionSide);
                                 shotGun.setExpansion(shotGun.getExpansion() + 1);
+                                Intersection.setIntersectionPoint5(new Point2D.Double(shotGun.getX(), shotGun.getY()));
+                                shotGun.setVisible(false);
                             }
                         }
                     }
+
+
 
 
                     //if trigorath is dead show its collectibles for 10 seconds
@@ -145,7 +391,7 @@ public class GameLoop {
                     if(Intersection.getIntersectionPoint()!=null){
                         impactTimer++;
                     }
-                    if(impactTimer>=20){
+                    if(impactTimer>=10){
                         impactTimer = 0;
                         Intersection.setIntersectionPoint(null);
                     }
@@ -154,16 +400,47 @@ public class GameLoop {
                         impactTimer2++;
                     }
 
-                    if(impactTimer2>=20){
+                    if(impactTimer2>=10){
                         impactTimer2 = 0;
                         Intersection.setIntersectionPoint2(null);
                         Intersection.setIntersectionPoint3(null);
+                    }
+                    if(Intersection.getIntersectionPoint4()!=null){
+                        impactTimer3++;
+                    }
+                    if (impactTimer3>=10){
+                        Intersection.setIntersectionPoint4(null);
+                        impactTimer3 = 0;
+                    }
+                    if(Intersection.getIntersectionPoint5()!=null){
+                        impactTimer4++;
+
+                    }
+                    if(impactTimer4>=20){
+                        impactTimer4= 0;
+                        Intersection.setIntersectionPoint5(null);
+                    }
+                    if(Intersection.getIntersectionPoint6()!=null){
+                        impactTimer5++;
+                    }
+
+                    if(impactTimer5>=10){
+                        Intersection.setIntersectionPoint6(null);
+                        Intersection.setIntersectionPoint7(null);
+                        impactTimer5 = 0;
+                    }
+                    if(Intersection.getIntersectionPoint8()!=null){
+                        impactTimer6++;
+                    }
+                    if(impactTimer6>=10){
+                        Intersection.setIntersectionPoint8(null);
+                        impactTimer6 = 0;
                     }
 
                     if(ShopFrame.isBanishItem()){
                         banishTime++;
                     }
-                    if(banishTime>=80){
+                    if(banishTime>=20){
                         banishTime = 0;
                         ShopFrame.setBanishItem(false);
                     }
@@ -175,22 +452,40 @@ public class GameLoop {
                         if(!trigorath.isDead()){
                         Epsilon epsilon = GamePanel.getEpsilon();
                         Polygon trigorath2 = new Polygon(trigorath.getxPoints(), trigorath.getyPoints(),3);
+                            for(Vertex vertex : epsilon.getVertex()) {
+                                if(intersection.checkCollision((int)vertex.getxCenter(),(int)vertex.getyCenter(),vertex.getRadius(),trigorath2)) {
+
+                                    Intersection.setIntersectionPoint2(new Point2D.Double(vertex.getxCenter(), vertex.getyCenter()));
+                                    Intersection.setIntersectionPoint3(new Point2D.Double(trigorath.getX(),trigorath.getY()));
+                                    intersection.checkMeleeAttack();
+                                }
+                            }
                         if(intersection.checkCollision(epsilon.getxCenter(),epsilon.getyCenter(),epsilon.getRadius(),trigorath2)) {
                             Intersection.setIntersectionPoint2(new Point2D.Double(epsilon.getxCenter(), epsilon.getyCenter()));
                             Intersection.setIntersectionPoint3(new Point2D.Double(trigorath.getX(),trigorath.getY()));
                             intersection.checkMeleeAttack();
                         }
+
                         }
                     }
                     for(Squarantine squarantine:GamePanel.getSquarantine() ){
                         if(!squarantine.isDead()){
                         Epsilon epsilon = GamePanel.getEpsilon();
                         Polygon squarantine2 = new Polygon(squarantine.getxPoints(), squarantine.getyPoints(),4);
+                            for(Vertex vertex : epsilon.getVertex()) {
+                                if(intersection.checkCollision((int)vertex.getxCenter(),(int)vertex.getyCenter(),vertex.getRadius(),squarantine2)) {
+                                    System.out.println(111);
+                                    Intersection.setIntersectionPoint2(new Point2D.Double(vertex.getxCenter(), vertex.getyCenter()));
+                                    Intersection.setIntersectionPoint3(new Point2D.Double(squarantine.getX(),squarantine.getY()));
+                                    intersection.checkMeleeAttack();
+                                }
+                            }
                         if(intersection.checkCollision(epsilon.getxCenter(),epsilon.getyCenter(),epsilon.getRadius(),squarantine2)) {
                             Intersection.setIntersectionPoint2(new Point2D.Double(epsilon.getxCenter(), epsilon.getyCenter()));
                             Intersection.setIntersectionPoint3(new Point2D.Double(squarantine.getX(),squarantine.getY()));
                             intersection.checkMeleeAttack();
                         }
+
                         }
                     }
 
@@ -217,9 +512,9 @@ public class GameLoop {
                             canUseAbility = false;
                         }else if(GameInfo.getCurrentAbility().equals(CurrentAbility.Proteus)){
 
+                            GamePanel.getEpsilon().setVertexNumber(GamePanel.getEpsilon().getVertexNumber()+1);
                             GamePanel.getEpsilon().addVertex();
 
-                            GamePanel.getEpsilon().setVertexNumber(GamePanel.getEpsilon().getVertexNumber()+1);
 
                             canUseAbility = false;
                         }
@@ -232,7 +527,7 @@ public class GameLoop {
 
                         currentTime = System.currentTimeMillis();
 
-                        if( (currentTime - lastUsed)/(60 * 1000)>=1){
+                        if( (currentTime - lastUsed)/(  1000)>=2){
                             if(GamePanel.getEpsilon().getXP()>=100) {
                                 canUseAbility = true;
                                 GamePanel.getEpsilon().setXP(GamePanel.getEpsilon().getXP() - 100);
@@ -246,6 +541,7 @@ public class GameLoop {
                         }
                         KeyListener.setAbilityKeyPressed(false);
                     }
+
 
 
                     game.getGameFrame().repaint();
@@ -281,5 +577,13 @@ public class GameLoop {
 
     public static void setMinutes(int minutes) {
         GameLoop.minutes = minutes;
+    }
+
+    public static boolean isWin() {
+        return win;
+    }
+
+    public static void setWin(boolean win) {
+        GameLoop.win = win;
     }
 }

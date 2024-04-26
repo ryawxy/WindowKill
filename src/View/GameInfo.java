@@ -5,18 +5,16 @@ import Controller.CurrentAbility;
 import javax.swing.*;
 
 public class GameInfo  {
-    private int time;
-    private static int XP = 2000;
-    private int HP;
-    private int waveNumber;
-    private static CurrentAbility currentAbility;
 
-    private JLabel epsilonsHP;
+    private static int XP = 2000;
+
+    private static CurrentAbility currentAbility;
     private static boolean aresUnlocked;
     private static boolean acesoUnlocked;
     private static boolean proteusUnlocked;
     private static boolean canActivateAbility = true;
     private static boolean useCurrentAbility = false;
+    private static int currentWave;
 
     public  GameInfo(){
 
@@ -76,5 +74,13 @@ public class GameInfo  {
 
     public static void setUseCurrentAbility(boolean useCurrentAbility) {
         GameInfo.useCurrentAbility = useCurrentAbility;
+    }
+
+    public static int getCurrentWave() {
+        return currentWave;
+    }
+
+    public static void setCurrentWave(int currentWave) {
+        GameInfo.currentWave = currentWave;
     }
 }

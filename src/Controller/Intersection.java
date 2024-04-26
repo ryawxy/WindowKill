@@ -9,6 +9,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Intersection {
     GamePanel gamePanel;
@@ -19,28 +20,45 @@ public class Intersection {
     private static Point2D intersectionPoint;
     private static Point2D intersectionPoint2;
     private static Point2D intersectionPoint3;
-    private static boolean meleeAttack;
+    private static Point2D intersectionPoint4;
+    private static Point2D intersectionPoint5;
+    private static Point2D intersectionPoint6;
+    private static Point2D intersectionPoint7;
+    private static Point2D intersectionPoint8;
+
     public Intersection(GamePanel gamePanel) throws IOException {
         this.gamePanel = gamePanel;
     }
 
-    public Direction shotIntersectsFrame(ShotGun shotGun){
+    public Direction shotIntersectsFrame(ShotGun shotGun) {
 
-        if(shotGun.getX()>= GamePanel.getFRAME_WIDTH()){
-            shotGun.setVisible(false);
+      //    if(shotGun.isVisible()) {
+        if (shotGun.getX() >= GamePanel.getFRAME_WIDTH()) {
             return Direction.RIGHT;
-        } if(shotGun.getY() >= GamePanel.getFRAME_HEIGHT()){
-            shotGun.setVisible(false);
-            return Direction.DOWN;
-        } if(shotGun.getX() <= 0){
-            shotGun.setVisible(false);
-            return Direction.LEFT;
-        } if(shotGun.getY() <= 0){
-            shotGun.setVisible(false);
-            return Direction.UP;
         }
+        if (shotGun.getY() >= GamePanel.getFRAME_HEIGHT()) {
+         //   if(shotGun.isVisible()) {
+            //    shotGun.setVisible(false);
+                return Direction.DOWN;
+
+        }
+        if (shotGun.getX() <= 0) {
+         //   if(shotGun.isVisible()) {
+            //    shotGun.setVisible(false);
+                return Direction.LEFT;
+           // }
+        }
+        if (shotGun.getY() <= 0) {
+         //   if(shotGun.isVisible()) {
+           //     shotGun.setVisible(false);
+                return Direction.UP;
+        //    }
+                }
+
         return null;
     }
+
+
     public void shotIntersectsSquarantine(){
         //check if a shot intersects with squarantine
         // if so decrease its HP
@@ -53,7 +71,7 @@ public class Intersection {
                 ShotGun shot = ShotGun.getShots().get(i);
                 if(shot.isVisible()) {
                     if (squarantine2.intersects(shot.getX(), shot.getY(), shot.getWidth(), shot.getHeight())) {
-
+                        intersectionPoint4 = new Point2D.Double(shot.getX(),shot.getY());
                         shot.setVisible(false);
                         squarantine.decreaseHP();
                     }
@@ -76,6 +94,7 @@ public class Intersection {
                 ShotGun shot = ShotGun.getShots().get(i);
                 if(shot.isVisible()) {
                     if (trigorath2.intersects(shot.getX(), shot.getY(), shot.getWidth(), shot.getHeight())) {
+                        intersectionPoint4 = new Point2D.Double(shot.getX(),shot.getY());
 
                         shot.setVisible(false);
                         trigorath.decreaseHP();
@@ -172,6 +191,20 @@ public class Intersection {
             }
         }
 
+        for(Squarantine squarantine : GamePanel.getSquarantine()){
+            for(Squarantine squarantine1 : GamePanel.getSquarantine()){
+                if(!squarantine.equals(squarantine1)){
+                    Rectangle squarantine2 = new Rectangle(squarantine.getxPoints()[0],squarantine.getyPoints()[0],20,20);
+                    Rectangle squarantine3 = new Rectangle(squarantine1.getxPoints()[0],squarantine1.getyPoints()[0],20,20);
+                    if(squarantine2.intersects(squarantine3)){
+                        Rectangle intersection = squarantine2.intersection(squarantine3);
+                        intersectionPoint8 = new Point2D.Double(intersection.x,intersection.y);
+                    }
+                }
+            }
+        }
+
+
     }
 
     public static Point2D getIntersectionPoint() {
@@ -196,8 +229,15 @@ public void checkMeleeAttack(){
       for(Trigorath trigorath : GamePanel.getTrigoraths()) {
           for (int i = 0; i < 3; i++) {
               if (epsilonCenter.distance(trigorath.getxPoints()[i], trigorath.getyPoints()[i]) <= GamePanel.getEpsilon().getRadius()) {
-                  for (Point2D point2D : GamePanel.getEpsilon().getVertex()) {
-                   //   Point2D vertexCenter = new Point2D.Double()
+                  if(!GamePanel.getEpsilon().getVertex().isEmpty()) {
+                      for (Vertex vertex : GamePanel.getEpsilon().getVertex()) {
+                          Point2D vertexCenter = new Point2D.Double(vertex.getX(), vertex.getY());
+                          if (vertexCenter.distance(trigorath.getxPoints()[i], trigorath.getyPoints()[i]) > vertex.getRadius()) {
+                              GamePanel.getEpsilon().setHP(GamePanel.getEpsilon().getHP() - 10);
+                              break;
+                          }
+                      }
+                  }else{
                       GamePanel.getEpsilon().setHP(GamePanel.getEpsilon().getHP() - 10);
                       break;
                   }
@@ -207,13 +247,21 @@ public void checkMeleeAttack(){
           for(Squarantine squarantine : GamePanel.getSquarantine()) {
               for (int i = 0; i < 4; i++) {
                   if (epsilonCenter.distance(squarantine.getxPoints()[i], squarantine.getyPoints()[i]) <= GamePanel.getEpsilon().getRadius()) {
+                      if (!GamePanel.getEpsilon().getVertex().isEmpty()) {
+                          for (Vertex vertex : GamePanel.getEpsilon().getVertex()) {
+                              Point2D vertexCenter = new Point2D.Double(vertex.getX(), vertex.getY());
+                              if (vertexCenter.distance(squarantine.getxPoints()[i], squarantine.getyPoints()[i]) > GamePanel.getEpsilon().getRadius()) {
+                                  GamePanel.getEpsilon().setHP(GamePanel.getEpsilon().getHP() - 10);
+                                  break;
+                              }
+                          }
+                      }
+                  }else{
                       GamePanel.getEpsilon().setHP(GamePanel.getEpsilon().getHP() - 10);
                       break;
-
                   }
               }
           }
-
 
 
 
@@ -234,5 +282,45 @@ public void checkMeleeAttack(){
 
     public static void setIntersectionPoint3(Point2D intersectionPoint3) {
         Intersection.intersectionPoint3 = intersectionPoint3;
+    }
+
+    public static Point2D getIntersectionPoint4() {
+        return intersectionPoint4;
+    }
+
+    public static void setIntersectionPoint4(Point2D intersectionPoint4) {
+        Intersection.intersectionPoint4 = intersectionPoint4;
+    }
+
+    public static Point2D getIntersectionPoint5() {
+        return intersectionPoint5;
+    }
+
+    public static void setIntersectionPoint5(Point2D intersectionPoint5) {
+        Intersection.intersectionPoint5 = intersectionPoint5;
+    }
+
+    public static Point2D getIntersectionPoint6() {
+        return intersectionPoint6;
+    }
+
+    public static void setIntersectionPoint6(Point2D intersectionPoint6) {
+        Intersection.intersectionPoint6 = intersectionPoint6;
+    }
+
+    public static Point2D getIntersectionPoint7() {
+        return intersectionPoint7;
+    }
+
+    public static void setIntersectionPoint7(Point2D intersectionPoint7) {
+        Intersection.intersectionPoint7 = intersectionPoint7;
+    }
+
+    public static Point2D getIntersectionPoint8() {
+        return intersectionPoint8;
+    }
+
+    public static void setIntersectionPoint8(Point2D intersectionPoint8) {
+        Intersection.intersectionPoint8 = intersectionPoint8;
     }
 }

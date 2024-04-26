@@ -18,11 +18,11 @@ public class Game {
     protected MouseListener mouseListener;
 
     public Game() throws IOException, AWTException {
-//                    Robot robot= new Robot();
-//            robot.keyPress(KeyEvent.VK_WINDOWS);
-//            robot.keyPress(KeyEvent.VK_D);
-//            robot.keyRelease(KeyEvent.VK_WINDOWS);
-//            robot.keyRelease(KeyEvent.VK_D);
+//        Robot robot= new Robot();
+//        robot.keyPress(KeyEvent.VK_WINDOWS);
+//        robot.keyPress(KeyEvent.VK_D);
+//        robot.keyRelease(KeyEvent.VK_WINDOWS);
+//        robot.keyRelease(KeyEvent.VK_D);
 
         gamePanel = new GamePanel();
         keyListener = new KeyListener(gamePanel);
@@ -35,5 +35,3 @@ public class Game {
 
 
 }
-
-

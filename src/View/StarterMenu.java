@@ -60,6 +60,7 @@ public class StarterMenu extends JFrame {
         start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 dispose();
                 Robot robot= null;
                 try {

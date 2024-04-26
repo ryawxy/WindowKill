@@ -1,8 +1,9 @@
 package myproject;
 
 import Controller.GameLoop;
-import Model.Game;
+
 import View.GameInfo;
+
 import View.GamePanel;
 import View.Settings.SettingsFrame;
 import View.StarterMenu;

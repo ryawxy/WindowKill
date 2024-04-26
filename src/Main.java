@@ -1,8 +1,5 @@
 
-import View.GamePanel;
-import View.GlassFrame;
-import View.ShopFrame;
-import View.SkillTreeFrame;
+
 import myproject.MyProject;
 
 import javax.swing.*;

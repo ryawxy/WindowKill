@@ -11,43 +11,25 @@ import java.awt.event.ComponentEvent;
 import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.util.ArrayList;
+import View.GlassFrame;
 
 
 public class GamePanel extends JPanel {
 
+    static GamePanel INSTANCE;
     private static Epsilon epsilon;
     private static ShotGun shotGun;
-    private Trigorath trigorath;
-    private Squarantine squarantine;
-    private static final ArrayList<Squarantine> squarantines = new ArrayList<>();
-    private static final ArrayList<Trigorath> trigoraths = new ArrayList<>();
+
+    private static  ArrayList<Squarantine> squarantines = new ArrayList<>();
+    private static  ArrayList<Trigorath> trigoraths = new ArrayList<>();
     private static   int FRAME_WIDTH = Constants.getFrameWidth();
     private static   int FRAME_HEIGHT = Constants.getFrameHeight();
 
     private Dimension SCREEN_SIZE = Constants.getFrameDimension();
     private MouseListener mouseListener;
-    int [] xPoints = {50,40,60};
-    int [] yPoints = {20,40,40};
-
-    int [] xPoints2 = {150,140,160};
-    int [] yPoints2 = {120,140,140};
-
-    int [] xPoints3 = {250,240,260};
-    int [] yPoints3 = {220,240,240};
-
-    int [] xPoints4 = {75,95,95,75};
-    int [] yPoints4 = {75,75,95,95};
-    Trigorath trigorath2;
-    Trigorath trigorath3;
-
-
 
 
     public GamePanel() throws IOException {
-
-
-
-
 
 
         epsilon = new Epsilon(200,200);
@@ -56,27 +38,9 @@ public class GamePanel extends JPanel {
         shotGun = new ShotGun((int) epsilon.getxCenter(), (int) epsilon.getyCenter());
         shotGun.setWidth(Constants.getShotGunWidth());
         shotGun.setHeight(Constants.getShotGunHeight());
-        ShotGun.getShots().add(shotGun);
+    //    ShotGun.getShots().add(shotGun);
 
-        squarantine = new Squarantine(85,85);
-        squarantine.setxPoints(xPoints4);
-        squarantine.setyPoints(yPoints4);
-        squarantines.add(squarantine);
 
-        trigorath = new Trigorath(50,33);
-        trigorath.setxPoints(xPoints);
-        trigorath.setyPoints(yPoints);
-        trigoraths.add(trigorath);
-
-        trigorath2 = new Trigorath(150,133);
-        trigorath2.setxPoints(xPoints2);
-        trigorath2.setyPoints(yPoints2);
-        trigoraths.add(trigorath2);
-
-        trigorath3 = new Trigorath(250,233);
-        trigorath3.setxPoints(xPoints3);
-        trigorath3.setyPoints(yPoints3);
-        trigoraths.add(trigorath3);
 
 
         mouseListener = new MouseListener(this);
@@ -103,6 +67,7 @@ public class GamePanel extends JPanel {
         });
 
         this.setLayout(null);
+
     }
     public void paintComponent(Graphics g) {
         Graphics2D g2D = (Graphics2D) g;
@@ -173,9 +138,9 @@ public class GamePanel extends JPanel {
         }
         //paint epsilons vertex
 
-        for(Point2D point2D : getEpsilon().getVertex()) {
+        for(Vertex vertex : getEpsilon().getVertex()) {
             g2D.setColor(Color.WHITE);
-            g2D.fillOval((int) (point2D.getX() - 5), (int) (point2D.getY() - 5), 7, 7);
+            g2D.fillOval((int) (vertex.getX() ), (int) (vertex.getY() - 5), vertex.getRadius(), vertex.getRadius());
         }
 
 
@@ -184,7 +149,7 @@ public class GamePanel extends JPanel {
         g2D.drawString("✦"+epsilon.getXP(),5,20);
         g2D.drawString("♥"+epsilon.getHP(),100,20);
         g2D.drawString(GameLoop.getMinutes()+":"+GameLoop.getSeconds(),195,20);
-        //TODO:wave
+        g2D.drawString(GameInfo.getCurrentWave()+"/3",290,20);
     }
 
     public static Epsilon getEpsilon() {
@@ -209,9 +174,7 @@ public class GamePanel extends JPanel {
     public void setFRAME_HEIGHT(int FRAME_HEIGHT) {
         this.FRAME_HEIGHT = FRAME_HEIGHT;
     }
-    public Trigorath gettrigorath(){
-        return trigorath;
-    }
+
 
     public static ArrayList<Squarantine> getSquarantine() {
         return squarantines;
@@ -220,7 +183,21 @@ public class GamePanel extends JPanel {
         return trigoraths;
     }
 
+    public static void setSquarantines(ArrayList<Squarantine> squarantines) {
+        GamePanel.squarantines = squarantines;
+    }
+
+    public static void setTrigoraths(ArrayList<Trigorath> trigoraths) {
+        GamePanel.trigoraths = trigoraths;
+    }
+
     public void setLocationToCenter(GlassFrame glassFrame){
         setLocation(glassFrame.getWidth()/2-getWidth()/2,glassFrame.getHeight()/2-getHeight()/2);
+    }
+    public static GamePanel getINSTANCE() throws IOException {
+        if(INSTANCE == null){
+            INSTANCE = new GamePanel();
+        }
+        return INSTANCE;
     }
 }

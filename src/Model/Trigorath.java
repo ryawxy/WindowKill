@@ -35,6 +35,14 @@ public class Trigorath extends GameObjects implements movable {
 
     private double xVelocity3;
     private double yVelocity3;
+    private double xVelocity4;
+    private double yVelocity4;
+    private double xVelocity5;
+    private double yVelocity5;
+    private double xVelocity6;
+    private double yVelocity6;
+    private double xVelocity8;
+    private double yVelocity8;
     private static  int HPDecrement = 5;
     private final ArrayList<Collectible> collectibles = new ArrayList<>();
     public Trigorath(int x, int y) {
@@ -111,9 +119,9 @@ public class Trigorath extends GameObjects implements movable {
                 double xPoint = Intersection.getIntersectionPoint().getX();
                 double yPoint = Intersection.getIntersectionPoint().getY();
                 double angle2 =  Math.atan2(trigorathYPos - yPoint, trigorathXPos - xPoint);
-                double impactSpeed = ImpactSpeed.getImpactspeed(this);
-                 xVelocity2 = Math.cos(angle2) * impactSpeed;
-                 yVelocity2 = Math.sin(angle2) * impactSpeed;
+         //       double impactSpeed = ImpactSpeed.getImpactspeed(this);
+                 xVelocity2 = Math.cos(angle2) * 4;
+                 yVelocity2 = Math.sin(angle2) * 4;
             }else{
                 xVelocity2 = 0;
                 yVelocity2 = 0;
@@ -125,19 +133,67 @@ public class Trigorath extends GameObjects implements movable {
                 double xPoint = Intersection.getIntersectionPoint2().getX();
                 double yPoint = Intersection.getIntersectionPoint2().getY();
                 double angle3 =  Math.atan2(trigorathYPos - yPoint, trigorathXPos - xPoint);
-                double impactSpeed = ImpactSpeed.getImpactspeed(this);
-                xVelocity3 = Math.cos(angle3) * impactSpeed;
-                yVelocity3 = Math.sin(angle3) * impactSpeed;
+          //      double impactSpeed = ImpactSpeed.getImpactspeed(this);
+                xVelocity3 = Math.cos(angle3) * 4;
+                yVelocity3 = Math.sin(angle3) * 4;
             }else{
                 xVelocity3 = 0;
                 yVelocity3 = 0;
+            }
+            if(Intersection.getIntersectionPoint4()!=null){
+
+                double xPoint = Intersection.getIntersectionPoint4().getX();
+                double yPoint = Intersection.getIntersectionPoint4().getY();
+                double angle3 =  Math.atan2(trigorathYPos - yPoint, trigorathXPos - xPoint);
+            //    double impactSpeed = ImpactSpeed.getImpactspeed(this);
+                xVelocity4 = Math.cos(angle3) * 4;
+                yVelocity4 = Math.sin(angle3) * 4;
+            }else{
+                xVelocity4 = 0;
+                yVelocity4 = 0;
+            }
+            if(Intersection.getIntersectionPoint6()!=null){
+
+                double xPoint = Intersection.getIntersectionPoint6().getX();
+                double yPoint = Intersection.getIntersectionPoint6().getY();
+                double angle3 =  Math.atan2(trigorathYPos - yPoint, trigorathXPos - xPoint);
+             //   double impactSpeed = ImpactSpeed.getImpactspeed(this);
+                xVelocity6 = Math.cos(angle3) * 4;
+                yVelocity6 = Math.sin(angle3) * 4;
+            }else{
+                xVelocity6 = 0;
+                yVelocity6 = 0;
+            }
+            if(Intersection.getIntersectionPoint5()!=null){
+
+                double xPoint = Intersection.getIntersectionPoint5().getX();
+                double yPoint = Intersection.getIntersectionPoint5().getY();
+                double angle3 =  Math.atan2(trigorathYPos - yPoint, trigorathXPos - xPoint);
+             //   double impactSpeed = ImpactSpeed.getImpactspeed(this);
+                xVelocity5 = Math.cos(angle3) * 4;
+                yVelocity5 = Math.sin(angle3) * 4;
+            }else{
+                xVelocity5 = 0;
+                yVelocity5 = 0;
+            }
+            if(Intersection.getIntersectionPoint8()!=null){
+
+                double xPoint = Intersection.getIntersectionPoint8().getX();
+                double yPoint = Intersection.getIntersectionPoint8().getY();
+                double angle3 =  Math.atan2(trigorathYPos - yPoint, trigorathXPos - xPoint);
+                //   double impactSpeed = ImpactSpeed.getImpactspeed(this);
+                xVelocity8 = Math.cos(angle3) * 4;
+                yVelocity8 = Math.sin(angle3) * 4;
+            }else{
+                xVelocity8 = 0;
+                yVelocity8 = 0;
             }
 
             if (Math.abs(trigorathXPos - epsilonXPos) > 40 && Math.abs(trigorathYPos - epsilonYPos) > 40) {
 
                 speed = Constants.trigorathLongDistanceSpeed();
-                this.setxVelocity((int) ((int) (speed * Math.cos(angle))+xVelocity2+xVelocity3));
-                this.setyVelocity((int) ((int) (speed * Math.sin(angle))+yVelocity2+yVelocity3));
+                this.setxVelocity((int) ((int) (speed * Math.cos(angle))+xVelocity2+xVelocity3+xVelocity4+xVelocity5+xVelocity6+xVelocity8));
+                this.setyVelocity((int) ((int) (speed * Math.sin(angle))+yVelocity2+yVelocity3+yVelocity4+yVelocity5+yVelocity6+yVelocity8));
 
 
 
@@ -148,8 +204,8 @@ public class Trigorath extends GameObjects implements movable {
             } else {
 
                 speed = 2;
-                this.setxVelocity((int) ((int) (speed * Math.cos(angle))+xVelocity2+xVelocity3));
-                this.setyVelocity((int) ((int) (speed * Math.sin(angle)) + yVelocity2+yVelocity3));
+                this.setxVelocity((int) ((int) (speed * Math.cos(angle))+xVelocity2+xVelocity3+xVelocity4+xVelocity5+xVelocity6+xVelocity8));
+                this.setyVelocity((int) ((int) (speed * Math.sin(angle)) + yVelocity2+yVelocity3+yVelocity4+yVelocity5+yVelocity6+yVelocity8));
              //   speed -= Constants.trigorathAcceleration();
                 if (speed < 2) {
                     speed = 2;

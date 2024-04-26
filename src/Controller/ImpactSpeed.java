@@ -25,6 +25,9 @@ public class ImpactSpeed {
         }else if(Intersection.getIntersectionPoint2()!=null){
             point = Intersection.getIntersectionPoint2();
         }
+//        else if(Intersection.getIntersectionPoint4()!=null){
+//            point = Intersection.getIntersectionPoint4();
+//        }
 
             distance = Math.sqrt(Math.pow(gameObjects.getX() - point.getX(), 2) +
                     Math.pow(gameObjects.getY() - point.getY(), 2));

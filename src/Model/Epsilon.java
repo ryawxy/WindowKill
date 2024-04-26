@@ -22,7 +22,13 @@ public class Epsilon extends GameObjects implements movable {
     private double yVelocity2;
     private double xVelocity3;
     private double yVelocity3;
-    private ArrayList<Point2D> vertex = new ArrayList<>();
+    private double xVelocity4;
+    private double yVelocity4;
+    private double xVelocity5;
+    private double yVelocity5;
+    private double xVelocity8;
+    private double yVelocity8;
+    private ArrayList<Vertex> vertex = new ArrayList<>();
     private int vertexNumber;
 
 
@@ -49,7 +55,7 @@ public class Epsilon extends GameObjects implements movable {
             yVelocity2 = 0;
         }
 
-        if(Intersection.getIntersectionPoint2()!=null){
+        if(Intersection.getIntersectionPoint3()!=null){
 
             double xPoint = Intersection.getIntersectionPoint3().getX();
             double yPoint = Intersection.getIntersectionPoint3().getY();
@@ -61,35 +67,83 @@ public class Epsilon extends GameObjects implements movable {
             xVelocity3 = 0;
             yVelocity3 = 0;
         }
+        if(Intersection.getIntersectionPoint4()!=null){
+
+            double xPoint = Intersection.getIntersectionPoint4().getX();
+            double yPoint = Intersection.getIntersectionPoint4().getY();
+            double angle3 =  Math.atan2(getY() - yPoint, getX() - xPoint);
+            double impactSpeed = 4;
+            xVelocity4 = Math.cos(angle3) * 2;
+            yVelocity4 = Math.sin(angle3) * 2;
+        }else{
+            xVelocity4 = 0;
+            yVelocity4 = 0;
+        }
+        if(Intersection.getIntersectionPoint5()!=null){
+
+            double xPoint = Intersection.getIntersectionPoint5().getX();
+            double yPoint = Intersection.getIntersectionPoint5().getY();
+            double angle3 =  Math.atan2(getY() - yPoint, getX() - xPoint);
+            double impactSpeed = 4;
+            xVelocity5 = Math.cos(angle3) * 2;
+            yVelocity5 = Math.sin(angle3) * 2;
+        }else{
+            xVelocity5 = 0;
+            yVelocity5 = 0;
+        }
+        if(Intersection.getIntersectionPoint8()!=null){
+
+            double xPoint = Intersection.getIntersectionPoint8().getX();
+            double yPoint = Intersection.getIntersectionPoint8().getY();
+            double angle3 =  Math.atan2(getY() - yPoint, getX() - xPoint);
+            double impactSpeed = 4;
+            xVelocity8 = Math.cos(angle3) * 2;
+            yVelocity8 = Math.sin(angle3) * 2;
+        }else{
+            xVelocity8 = 0;
+            yVelocity8 = 0;
+        }
         if(getY()-radius<=0){
             yVelocity2=0;
           //  xVelocity2=0;
          //   xVelocity3=0;
             yVelocity3=0;
+            yVelocity4=0;
+            yVelocity5=0;
+            yVelocity8 = 0;
         }
         if(getY() + radius>= GamePanel.getFRAME_HEIGHT()) {
             yVelocity2=0;
          //   xVelocity2=0;
         //    xVelocity3=0;
             yVelocity3=0;
+            yVelocity4=0;
+            yVelocity5=0;
+            yVelocity8 = 0;
         }
         if(getX() - radius<=0) {
          //   yVelocity2=0;
             xVelocity2=0;
             xVelocity3=0;
          //   yVelocity3=0;
+            xVelocity4=0;
+            xVelocity5=0;
+            xVelocity8 = 0;
         }
         if(getX() + radius>= GamePanel.getFRAME_WIDTH()) {
          //   yVelocity2=0;
             xVelocity2=0;
             xVelocity3=0;
+            xVelocity4=0;
+            xVelocity5=0;
+            xVelocity8 = 0;
          //   yVelocity3=0;
         }
 
-        this.setX((int) (getX()+xVelocity+xVelocity2+xVelocity3));
-        this.setY((int) (getY()+yVelocity+yVelocity2+yVelocity3));
-        this.setxCenter( (getxCenter()+xVelocity+xVelocity2));
-        this.setyCenter( (getyCenter()+yVelocity+yVelocity2));
+        this.setX((int) (getX()+xVelocity+xVelocity2+xVelocity3+xVelocity4+xVelocity5+xVelocity8));
+        this.setY((int) (getY()+yVelocity+yVelocity2+yVelocity3+yVelocity4+yVelocity5+yVelocity8));
+        this.setxCenter( (getxCenter()+xVelocity+xVelocity2+xVelocity4+xVelocity5+xVelocity8));
+        this.setyCenter( (getyCenter()+yVelocity+yVelocity2+yVelocity4+yVelocity5+yVelocity8));
 
     }
 
@@ -157,11 +211,11 @@ public class Epsilon extends GameObjects implements movable {
 
     }
 
-    public ArrayList<Point2D> getVertex() {
+    public ArrayList<Vertex> getVertex() {
         return vertex;
     }
 
-    public void setVertex(ArrayList<Point2D> vertex) {
+    public void setVertex(ArrayList<Vertex> vertex) {
         this.vertex = vertex;
     }
 
@@ -173,15 +227,101 @@ public class Epsilon extends GameObjects implements movable {
         this.vertexNumber = vertexNumber;
     }
     public void addVertex() {
-        System.out.println(1111);
         vertex.clear();
         double angle = 2 * Math.PI / vertexNumber;
         for (int i = 0; i < vertexNumber; i++) {
             int dotX = (int) (getX() + radius / 2 + radius / 2 * Math.cos(i * angle));
             int dotY = (int) (getY() + radius / 2 + radius / 2 * Math.sin(i * angle));
-            vertex.add(new Point2D.Double(dotX,dotY));
+            vertex.add(new Vertex(dotX-2,dotY));
             System.out.println(vertex.size());
         }
     }
 
+    public void setxVelocity(double xVelocity) {
+        this.xVelocity = xVelocity;
+    }
+
+    public void setyVelocity(double yVelocity) {
+        this.yVelocity = yVelocity;
+    }
+
+    public double getxVelocity2() {
+        return xVelocity2;
+    }
+
+    public void setxVelocity2(double xVelocity2) {
+        this.xVelocity2 = xVelocity2;
+    }
+
+    public double getyVelocity2() {
+        return yVelocity2;
+    }
+
+    public void setyVelocity2(double yVelocity2) {
+        this.yVelocity2 = yVelocity2;
+    }
+
+    public double getxVelocity3() {
+        return xVelocity3;
+    }
+
+    public void setxVelocity3(double xVelocity3) {
+        this.xVelocity3 = xVelocity3;
+    }
+
+    public double getyVelocity3() {
+        return yVelocity3;
+    }
+
+    public void setyVelocity3(double yVelocity3) {
+        this.yVelocity3 = yVelocity3;
+    }
+
+    public double getxVelocity4() {
+        return xVelocity4;
+    }
+
+    public void setxVelocity4(double xVelocity4) {
+        this.xVelocity4 = xVelocity4;
+    }
+
+    public double getyVelocity4() {
+        return yVelocity4;
+    }
+
+    public void setyVelocity4(double yVelocity4) {
+        this.yVelocity4 = yVelocity4;
+    }
+
+    public double getxVelocity5() {
+        return xVelocity5;
+    }
+
+    public void setxVelocity5(double xVelocity5) {
+        this.xVelocity5 = xVelocity5;
+    }
+
+    public double getyVelocity5() {
+        return yVelocity5;
+    }
+
+    public void setyVelocity5(double yVelocity5) {
+        this.yVelocity5 = yVelocity5;
+    }
+
+    public double getxVelocity8() {
+        return xVelocity8;
+    }
+
+    public void setxVelocity8(double xVelocity8) {
+        this.xVelocity8 = xVelocity8;
+    }
+
+    public double getyVelocity8() {
+        return yVelocity8;
+    }
+
+    public void setyVelocity8(double yVelocity8) {
+        this.yVelocity8 = yVelocity8;
+    }
 }
