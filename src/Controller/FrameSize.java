@@ -18,9 +18,13 @@ public class FrameSize {
     }
     public void shrink (){
      minSize = 200;
-     if(GameLoop.isWin() && GamePanel.getEpsilon().getRadius()>=GamePanel.getFRAME_HEIGHT()){
+     if(GameLoop.isWin()  && GamePanel.getEpsilon().getRadius()>=GamePanel.getFRAME_HEIGHT()){
          minSize = 0;
      }
+     if(GameLoop.isLose()){
+         minSize = 0;
+     }
+
         if(GamePanel.getFRAME_WIDTH()>=minSize && GamePanel.getFRAME_HEIGHT()>=minSize){
 
             gamePanel.setFRAME_WIDTH(GamePanel.getFRAME_WIDTH()-2*Constants.shrinkAmount());

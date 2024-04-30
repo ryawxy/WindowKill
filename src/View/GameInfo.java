@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class GameInfo  {
 
-    private static int XP = 2000;
+    private  int XP = 2000;
 
     private static CurrentAbility currentAbility;
     private static boolean aresUnlocked;
@@ -20,11 +20,10 @@ public class GameInfo  {
 
     }
 
-    public static void setXP(int XP) {
-        GameInfo.XP = XP;
+    public void setXP(int XP) {this.XP = XP;
     }
 
-    public static int getXP() {
+    public  int getXP() {
         return XP;
     }
 

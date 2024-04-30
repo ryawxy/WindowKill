@@ -1,5 +1,7 @@
 package Controller;
 
+import View.Settings.SettingsFrame;
+
 import java.awt.*;
 
 public class Constants {
@@ -30,10 +32,27 @@ public class Constants {
         return 3;
     }
     public static int getShotGunSpeed(){
-        return 8;
+        if(SettingsFrame.getChosenSensitivity()==30) {
+            return 8;
+        }else if(SettingsFrame.getChosenSensitivity() == 20){
+            return 6;
+        } else if(SettingsFrame.getChosenSensitivity() == 10){
+            return 5;
+        }
+        return 6;
     }
     public static int epsilonAbsVelocity(){
-        return 4;
+
+        if(SettingsFrame.getChosenSensitivity()==30) {
+
+            return 5;
+        }else if(SettingsFrame.getChosenSensitivity() == 20){
+            return 4;
+        } else if(SettingsFrame.getChosenSensitivity() == 10){
+            return 3;
+        }
+
+        return 5;
     }
     public static int frameWidthForEpsilon(){
         return FRAME_WIDTH - 8;
@@ -79,6 +98,18 @@ public class Constants {
     }
     public static int squarantineAcceleration(){
         return 1;
+    }
+    public static int getSound(){
+        if(SettingsFrame.getChosenSound()==0){
+            return 0;
+        }else if(SettingsFrame.getChosenSound()==50){
+
+            return 50;
+        }else if(SettingsFrame.getChosenSound()==100){
+            return 100;
+        }
+
+        return 50;
     }
 
 

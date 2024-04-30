@@ -70,15 +70,22 @@ public class SettingsFrame extends JFrame  {
 
 
         //sound slider
-        sound = new JSlider(SwingConstants.HORIZONTAL,0,20,0);
-        sound.setMajorTickSpacing(10);
-        sound.setMinorTickSpacing(10);
+        sound = new JSlider(SwingConstants.HORIZONTAL,0,100,0);
+        sound.setMajorTickSpacing(50);
+        sound.setMinorTickSpacing(50);
         sound.setPaintTicks(true);
         sound.setPaintLabels(true);
         sound.setSnapToTicks(true);
         sound.setBounds(330,100,300,80);
         sound.setBorder(null);
         sound.setBackground(Color.WHITE);
+        sound.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                chosenSound = sound.getValue();
+
+            }
+        });
         label.add(sound);
 
         // keySensitivity text
@@ -92,7 +99,7 @@ public class SettingsFrame extends JFrame  {
         label.add(keySensitivityText);
 
         //keySensitivity slider
-        keySensitivity = new JSlider(SwingConstants.HORIZONTAL,0,20,0);
+        keySensitivity = new JSlider(SwingConstants.HORIZONTAL,10,30,30);
         keySensitivity.setMajorTickSpacing(10);
         keySensitivity.setMinorTickSpacing(10);
         keySensitivity.setPaintTicks(true);
@@ -101,6 +108,13 @@ public class SettingsFrame extends JFrame  {
         keySensitivity.setBounds(330,200,300,80);
         keySensitivity.setBorder(null);
         keySensitivity.setBackground(Color.WHITE);
+        keySensitivity.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                chosenSensitivity = keySensitivity.getValue();
+
+            }
+        });
         label.add(keySensitivity);
 
         //level text

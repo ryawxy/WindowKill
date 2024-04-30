@@ -4,6 +4,7 @@ import Controller.Constants;
 import Controller.ImpactSpeed;
 import Controller.Intersection;
 import Controller.KeyListener;
+import View.Game;
 import View.GamePanel;
 import View.ShopFrame;
 
@@ -43,7 +44,11 @@ public class Trigorath extends GameObjects implements movable {
     private double yVelocity6;
     private double xVelocity8;
     private double yVelocity8;
+    private double xVelocity9;
+    private double yVelocity9;
     private static  int HPDecrement = 5;
+    private static  int HPDecrement2 = 5;
+
     private final ArrayList<Collectible> collectibles = new ArrayList<>();
     public Trigorath(int x, int y) {
         super(x,y);
@@ -188,12 +193,24 @@ public class Trigorath extends GameObjects implements movable {
                 xVelocity8 = 0;
                 yVelocity8 = 0;
             }
+            if(Intersection.getIntersectionPoint9()!=null){
+
+                double xPoint = Intersection.getIntersectionPoint9().getX();
+                double yPoint = Intersection.getIntersectionPoint9().getY();
+                double angle3 =  Math.atan2(trigorathYPos - yPoint, trigorathXPos - xPoint);
+                //   double impactSpeed = ImpactSpeed.getImpactspeed(this);
+                xVelocity9 = Math.cos(angle3) * 5;
+                yVelocity9 = Math.sin(angle3) * 5;
+            }else{
+                xVelocity9 = 0;
+                yVelocity9 = 0;
+            }
 
             if (Math.abs(trigorathXPos - epsilonXPos) > 40 && Math.abs(trigorathYPos - epsilonYPos) > 40) {
 
                 speed = Constants.trigorathLongDistanceSpeed();
-                this.setxVelocity((int) ((int) (speed * Math.cos(angle))+xVelocity2+xVelocity3+xVelocity4+xVelocity5+xVelocity6+xVelocity8));
-                this.setyVelocity((int) ((int) (speed * Math.sin(angle))+yVelocity2+yVelocity3+yVelocity4+yVelocity5+yVelocity6+yVelocity8));
+                this.setxVelocity((int) ((int) (speed * Math.cos(angle))+xVelocity2+xVelocity3+xVelocity4+xVelocity5+xVelocity6+xVelocity8+xVelocity9));
+                this.setyVelocity((int) ((int) (speed * Math.sin(angle))+yVelocity2+yVelocity3+yVelocity4+yVelocity5+yVelocity6+yVelocity8+yVelocity9));
 
 
 
@@ -204,8 +221,8 @@ public class Trigorath extends GameObjects implements movable {
             } else {
 
                 speed = 2;
-                this.setxVelocity((int) ((int) (speed * Math.cos(angle))+xVelocity2+xVelocity3+xVelocity4+xVelocity5+xVelocity6+xVelocity8));
-                this.setyVelocity((int) ((int) (speed * Math.sin(angle)) + yVelocity2+yVelocity3+yVelocity4+yVelocity5+yVelocity6+yVelocity8));
+                this.setxVelocity((int) ((int) (speed * Math.cos(angle))+xVelocity2+xVelocity3+xVelocity4+xVelocity5+xVelocity6+xVelocity8+xVelocity9));
+                this.setyVelocity((int) ((int) (speed * Math.sin(angle)) + yVelocity2+yVelocity3+yVelocity4+yVelocity5+yVelocity6+yVelocity8+yVelocity9));
              //   speed -= Constants.trigorathAcceleration();
                 if (speed < 2) {
                     speed = 2;
@@ -251,11 +268,15 @@ public class Trigorath extends GameObjects implements movable {
         this.trigorathYPos = trigorathYPos;
     }
 
-    public void decreaseHP(){
-        setHP(getHP()-(HPDecrement));
+    public void decreaseHP(boolean meleeAttack){
+        if(!meleeAttack) setHP(getHP()-(HPDecrement));
+        else{
+            setHP(getHP()-HPDecrement2);
+        }
         if(getHP()<=0){
             setDead(true);
             setShowCollectibles(true);
+            Game.getSoundPlayer().playSoundEffect("src/Sound/death.wav");
 
 
             for(int i=0;i<getCollectibles().size();i++){
@@ -265,6 +286,8 @@ public class Trigorath extends GameObjects implements movable {
 
             }
 
+        }else{
+            Game.getSoundPlayer().playSoundEffect("src/Sound/hurt.wav");
         }
     }
 
@@ -313,5 +336,13 @@ public class Trigorath extends GameObjects implements movable {
 
     public static void setHPDecrement(int HPDecrement) {
         Trigorath.HPDecrement = HPDecrement;
+    }
+
+    public static int getHPDecrement2() {
+        return HPDecrement2;
+    }
+
+    public static void setHPDecrement2(int HPDecrement2) {
+        Trigorath.HPDecrement2 = HPDecrement2;
     }
 }

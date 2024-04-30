@@ -9,7 +9,7 @@ public class Vertex extends GameObjects implements movable{
 
     private double xVelocity;
     private double yVelocity;
-    private int radius = 7;
+    private int radius = 10;
     private double xCenter = getX()+radius;
     private double yCenter = getY()+radius;
     private double xVelocity2;
@@ -22,6 +22,8 @@ public class Vertex extends GameObjects implements movable{
     private double yVelocity5;
     private double xVelocity8;
     private double yVelocity8;
+    private double xVelocity9;
+    private double yVelocity9;
 
 
 
@@ -109,12 +111,14 @@ public class Vertex extends GameObjects implements movable{
         yVelocity5 = epsilon.getyVelocity5();
         xVelocity8 = epsilon.getxVelocity8();
         yVelocity8 = epsilon.getyVelocity8();
+        xVelocity9 = epsilon.getxVelocity9();
+        yVelocity9 = epsilon.getyVelocity9();
 
 
-        this.setX((int) (getX()+xVelocity+xVelocity2+xVelocity3+xVelocity4+xVelocity5+xVelocity8));
-        this.setY((int) (getY()+yVelocity+yVelocity2+yVelocity3+yVelocity4+yVelocity5+yVelocity8));
-        this.setxCenter( (getxCenter()+xVelocity+xVelocity2+xVelocity3+xVelocity4+xVelocity5+xVelocity8));
-        this.setyCenter( (getyCenter()+yVelocity+yVelocity2+yVelocity3+yVelocity4+yVelocity5+yVelocity8));
+        this.setX((int) (getX()+xVelocity+xVelocity2+xVelocity3+xVelocity4+xVelocity5+xVelocity8+xVelocity9));
+        this.setY((int) (getY()+yVelocity+yVelocity2+yVelocity3+yVelocity4+yVelocity5+yVelocity8+yVelocity9));
+        this.setxCenter( (getxCenter()+xVelocity+xVelocity2+xVelocity3+xVelocity4+xVelocity5+xVelocity8+xVelocity9));
+        this.setyCenter( (getyCenter()+yVelocity+yVelocity2+yVelocity3+yVelocity4+yVelocity5+yVelocity8+yVelocity9));
 
 
     }
@@ -160,4 +164,13 @@ public class Vertex extends GameObjects implements movable{
     }
 
 
+    @Override
+    public void setX(int x) {
+        super.setX(x);
+    }
+
+    @Override
+    public void setY(int y) {
+        super.setY(y);
+    }
 }

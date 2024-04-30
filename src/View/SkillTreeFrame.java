@@ -2,6 +2,7 @@ package View;
 
 import Controller.CurrentAbility;
 import Controller.MouseListener;
+import myproject.MyProject;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -26,6 +27,8 @@ public class SkillTreeFrame extends JFrame {
     JLabel transformation;
     JButton proteus;
     JButton exit;
+    private static int currentXP;
+    private GameInfo gameInfo;
 
     public SkillTreeFrame(){
 
@@ -73,7 +76,7 @@ public class SkillTreeFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!GameInfo.isAresUnlocked()) {
-                    if (GameInfo.getXP() < 750) {
+                    if (MyProject.getGameInfo().getXP() < 750) {
                         JOptionPane.showMessageDialog(SkillTreeFrame.this,
                                 "You don't have enough XP to unlock this ability.");
                     } else {
@@ -83,7 +86,8 @@ public class SkillTreeFrame extends JFrame {
                                 JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
                         if (purchase == 0) {
                             GameInfo.setAresUnlocked(true);
-                            GameInfo.setXP(GameInfo.getXP() - 750);
+                            MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP()-750);
+
                         }
                     }
                 }else{
@@ -142,17 +146,19 @@ public class SkillTreeFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(!GameInfo.isAcesoUnlocked()) {
-                    if (GameInfo.getXP() < 500) {
+                    if(MyProject.getGameInfo().getXP() < 500) {
                         JOptionPane.showMessageDialog(SkillTreeFrame.this,
                                 "You don't have enough XP to unlock this ability.");
                     } else {
 
                         int purchase = JOptionPane.showOptionDialog(SkillTreeFrame.this,
-                                "this ability costs 750 XP.DO you want to unlock it?", null, JOptionPane.DEFAULT_OPTION,
+                                "this ability costs 500 XP.DO you want to unlock it?", null, JOptionPane.DEFAULT_OPTION,
                                 JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
                         if (purchase == 0) {
                             GameInfo.setAcesoUnlocked(true);
-                            GameInfo.setXP(GameInfo.getXP() - 500);
+                            MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP()-500);
+
+
                         }
                     }
                 }else{
@@ -210,17 +216,20 @@ public class SkillTreeFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(!GameInfo.isProteusUnlocked()) {
-                    if (GameInfo.getXP() < 1000) {
+                    if (MyProject.getGameInfo().getXP() < 1000) {
                         JOptionPane.showMessageDialog(SkillTreeFrame.this,
                                 "You don't have enough XP to unlock this ability.");
                     } else {
 
                         int purchase = JOptionPane.showOptionDialog(SkillTreeFrame.this,
-                                "this ability costs 750 XP.DO you want to unlock it?", null, JOptionPane.DEFAULT_OPTION,
+                                "this ability costs 1000 XP.DO you want to unlock it?", null, JOptionPane.DEFAULT_OPTION,
                                 JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
                         if (purchase == 0) {
                             GameInfo.setProteusUnlocked(true);
-                            GameInfo.setXP(GameInfo.getXP() - 1000);
+
+                            MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP()-1000);
+
+                            System.out.println(currentXP);
                         }
                     }
                 }else{
@@ -270,4 +279,11 @@ public class SkillTreeFrame extends JFrame {
         label.add(exit);
     }
 
+    public static int getCurrentXP() {
+        return currentXP;
+    }
+
+    public static void setCurrentXP(int currentXP) {
+        SkillTreeFrame.currentXP = currentXP;
+    }
 }

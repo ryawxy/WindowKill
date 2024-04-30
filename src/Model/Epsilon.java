@@ -2,6 +2,7 @@ package Model;
 
 import Controller.ImpactSpeed;
 import Controller.Intersection;
+import View.Game;
 import View.GameInfo;
 import View.GamePanel;
 
@@ -17,7 +18,7 @@ public class Epsilon extends GameObjects implements movable {
     private double xCenter = getX()+radius;
     private double yCenter = getY()+radius;
     private int HP = 100;
-    private int XP = GameInfo.getXP();
+    private int XP = 2000;
     private double xVelocity2;
     private double yVelocity2;
     private double xVelocity3;
@@ -28,6 +29,8 @@ public class Epsilon extends GameObjects implements movable {
     private double yVelocity5;
     private double xVelocity8;
     private double yVelocity8;
+    private double xVelocity9;
+    private double yVelocity9;
     private ArrayList<Vertex> vertex = new ArrayList<>();
     private int vertexNumber;
 
@@ -37,6 +40,7 @@ public class Epsilon extends GameObjects implements movable {
         super(x, y);
         setX(x);
         setY(y);
+
 
     }
 
@@ -103,6 +107,18 @@ public class Epsilon extends GameObjects implements movable {
             xVelocity8 = 0;
             yVelocity8 = 0;
         }
+        if(Intersection.getIntersectionPoint9()!=null){
+
+            double xPoint = Intersection.getIntersectionPoint9().getX();
+            double yPoint = Intersection.getIntersectionPoint9().getY();
+            double angle3 =  Math.atan2(getY() - yPoint, getX() - xPoint);
+            double impactSpeed = 4;
+            xVelocity9 = Math.cos(angle3) * 2;
+            yVelocity9 = Math.sin(angle3) * 2;
+        }else{
+            xVelocity9 = 0;
+            yVelocity9 = 0;
+        }
         if(getY()-radius<=0){
             yVelocity2=0;
           //  xVelocity2=0;
@@ -111,6 +127,7 @@ public class Epsilon extends GameObjects implements movable {
             yVelocity4=0;
             yVelocity5=0;
             yVelocity8 = 0;
+            yVelocity9 = 0;
         }
         if(getY() + radius>= GamePanel.getFRAME_HEIGHT()) {
             yVelocity2=0;
@@ -120,6 +137,7 @@ public class Epsilon extends GameObjects implements movable {
             yVelocity4=0;
             yVelocity5=0;
             yVelocity8 = 0;
+            yVelocity9 = 0;
         }
         if(getX() - radius<=0) {
          //   yVelocity2=0;
@@ -129,6 +147,7 @@ public class Epsilon extends GameObjects implements movable {
             xVelocity4=0;
             xVelocity5=0;
             xVelocity8 = 0;
+            xVelocity9 = 0;
         }
         if(getX() + radius>= GamePanel.getFRAME_WIDTH()) {
          //   yVelocity2=0;
@@ -137,13 +156,14 @@ public class Epsilon extends GameObjects implements movable {
             xVelocity4=0;
             xVelocity5=0;
             xVelocity8 = 0;
+            xVelocity9 = 0;
          //   yVelocity3=0;
         }
 
-        this.setX((int) (getX()+xVelocity+xVelocity2+xVelocity3+xVelocity4+xVelocity5+xVelocity8));
-        this.setY((int) (getY()+yVelocity+yVelocity2+yVelocity3+yVelocity4+yVelocity5+yVelocity8));
-        this.setxCenter( (getxCenter()+xVelocity+xVelocity2+xVelocity4+xVelocity5+xVelocity8));
-        this.setyCenter( (getyCenter()+yVelocity+yVelocity2+yVelocity4+yVelocity5+yVelocity8));
+        this.setX((int) (getX()+xVelocity+xVelocity2+xVelocity3+xVelocity4+xVelocity5+xVelocity8+xVelocity9));
+        this.setY((int) (getY()+yVelocity+yVelocity2+yVelocity3+yVelocity4+yVelocity5+yVelocity8+yVelocity9));
+        this.setxCenter( (getxCenter()+xVelocity+xVelocity2+xVelocity4+xVelocity5+xVelocity8+xVelocity9));
+        this.setyCenter( (getyCenter()+yVelocity+yVelocity2+yVelocity4+yVelocity5+yVelocity8+yVelocity9));
 
     }
 
@@ -209,6 +229,10 @@ public class Epsilon extends GameObjects implements movable {
     public void decreaseHP(){
         setHP(getHP()-10);
 
+            Game.getSoundPlayer().playSoundEffect("src/Sound/epsilon.wav");
+
+
+
     }
 
     public ArrayList<Vertex> getVertex() {
@@ -230,12 +254,14 @@ public class Epsilon extends GameObjects implements movable {
         vertex.clear();
         double angle = 2 * Math.PI / vertexNumber;
         for (int i = 0; i < vertexNumber; i++) {
-            int dotX = (int) (getX() + radius / 2 + radius / 2 * Math.cos(i * angle));
-            int dotY = (int) (getY() + radius / 2 + radius / 2 * Math.sin(i * angle));
-            vertex.add(new Vertex(dotX-2,dotY));
-            System.out.println(vertex.size());
+            int dotX = (int) (getX() + (radius-10) / 2 + radius / 2 * Math.cos(i * angle));
+            int dotY = (int) (getY() + (radius-10) / 2 + radius / 2 * Math.sin(i *angle));
+            Vertex vertex1 = new Vertex(dotX,dotY);
+            vertex.add(vertex1);
+
         }
     }
+
 
     public void setxVelocity(double xVelocity) {
         this.xVelocity = xVelocity;
@@ -323,5 +349,21 @@ public class Epsilon extends GameObjects implements movable {
 
     public void setyVelocity8(double yVelocity8) {
         this.yVelocity8 = yVelocity8;
+    }
+
+    public double getxVelocity9() {
+        return xVelocity9;
+    }
+
+    public void setxVelocity9(double xVelocity9) {
+        this.xVelocity9 = xVelocity9;
+    }
+
+    public double getyVelocity9() {
+        return yVelocity9;
+    }
+
+    public void setyVelocity9(double yVelocity9) {
+        this.yVelocity9 = yVelocity9;
     }
 }

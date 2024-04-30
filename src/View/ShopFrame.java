@@ -1,6 +1,7 @@
 package View;
 
 import Controller.KeyListener;
+import myproject.MyProject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,7 +52,7 @@ public class ShopFrame extends JFrame {
         banish.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(GamePanel.getEpsilon().getXP()<100){
+                if(MyProject.getGameInfo().getXP()<100){
                     JOptionPane.showMessageDialog(ShopFrame.this,
                             "You don't have enough XP to purchase this item.");
                 }else{
@@ -61,7 +62,7 @@ public class ShopFrame extends JFrame {
                             JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
                     if(purchase == 0){
                         banishItem = true;
-                        GamePanel.getEpsilon().setXP(GamePanel.getEpsilon().getXP()-100);
+                        MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP()-100);
                     }
                 }
             }
@@ -79,7 +80,7 @@ public class ShopFrame extends JFrame {
         empower.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(GamePanel.getEpsilon().getXP()<75){
+                if(MyProject.getGameInfo().getXP()<75){
                     JOptionPane.showMessageDialog(ShopFrame.this,
                             "You don't have enough XP to purchase this item.");
                 }else{
@@ -89,7 +90,7 @@ public class ShopFrame extends JFrame {
                             JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
                     if(purchase == 0){
                         empowerItem = true;
-                        GamePanel.getEpsilon().setXP(GamePanel.getEpsilon().getXP()-75);
+                        MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP()-75);
                     }
                 }
             }
@@ -107,7 +108,7 @@ public class ShopFrame extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(GamePanel.getEpsilon().getXP()<50){
+                if(MyProject.getGameInfo().getXP()<50){
                     JOptionPane.showMessageDialog(ShopFrame.this,
                             "You don't have enough XP to purchase this item.");
                 }else{
@@ -115,7 +116,7 @@ public class ShopFrame extends JFrame {
                             "this item costs 50 XP.DO you want to purchase it?", null, JOptionPane.DEFAULT_OPTION,
                             JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
                     if(purchase == 0){
-                        GamePanel.getEpsilon().setXP(GamePanel.getEpsilon().getXP()-50);
+                        MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP()-50);
                         healItem = true;
                     }
                 }

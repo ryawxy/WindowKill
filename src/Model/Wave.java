@@ -6,38 +6,40 @@ import java.util.ArrayList;
 
 public class Wave {
 
-    public static ArrayList<Trigorath> wave1EasyTrigorath = new ArrayList<>();
-    public static ArrayList<Squarantine> wave1EasySquarantine = new ArrayList<>();
+    public  ArrayList<Trigorath> wave1EasyTrigorath = new ArrayList<>();
+    public  ArrayList<Squarantine> wave1EasySquarantine = new ArrayList<>();
 
-    public static ArrayList<Trigorath> wave1MediumTrigorath = new ArrayList<>();
-    public static ArrayList<Squarantine> wave1MediumSquarantine = new ArrayList<>();
+    public  ArrayList<Trigorath> wave1MediumTrigorath = new ArrayList<>();
+    public  ArrayList<Squarantine> wave1MediumSquarantine = new ArrayList<>();
 
-    public static ArrayList<Trigorath> wave1HardTrigorath = new ArrayList<>();
-    public static ArrayList<Squarantine> wave1HardSquarantine = new ArrayList<>();
+    public  ArrayList<Trigorath> wave1HardTrigorath = new ArrayList<>();
+    public  ArrayList<Squarantine> wave1HardSquarantine = new ArrayList<>();
 
-    public static ArrayList<Trigorath> wave2EasyTrigorath = new ArrayList<>();
-    public static ArrayList<Squarantine> wave2EasySquarantine = new ArrayList<>();
+    public  ArrayList<Trigorath> wave2EasyTrigorath = new ArrayList<>();
+    public  ArrayList<Squarantine> wave2EasySquarantine = new ArrayList<>();
 
-    public static ArrayList<Trigorath> wave2MediumTrigorath = new ArrayList<>();
-    public static ArrayList<Squarantine> wave2MediumSquarantine = new ArrayList<>();
+    public  ArrayList<Trigorath> wave2MediumTrigorath = new ArrayList<>();
+    public  ArrayList<Squarantine> wave2MediumSquarantine = new ArrayList<>();
 
-    public static ArrayList<Trigorath> wave2HardTrigorath = new ArrayList<>();
-    public static ArrayList<Squarantine> wave2HardSquarantine = new ArrayList<>();
-    public static ArrayList<Trigorath> wave3EasyTrigorath = new ArrayList<>();
+    public  ArrayList<Trigorath> wave2HardTrigorath = new ArrayList<>();
+    public  ArrayList<Squarantine> wave2HardSquarantine = new ArrayList<>();
+    public ArrayList<Trigorath> wave3EasyTrigorath = new ArrayList<>();
     public static ArrayList<Squarantine> wave3EasySquarantine = new ArrayList<>();
 
-    public static ArrayList<Trigorath> wave3MediumTrigorath = new ArrayList<>();
-    public static ArrayList<Squarantine> wave3MediumSquarantine = new ArrayList<>();
+    public ArrayList<Trigorath> wave3MediumTrigorath = new ArrayList<>();
+    public ArrayList<Squarantine> wave3MediumSquarantine = new ArrayList<>();
 
-    public static ArrayList<Trigorath> wave3HardTrigorath = new ArrayList<>();
-    public static ArrayList<Squarantine> wave3HardSquarantine = new ArrayList<>();
+    public ArrayList<Trigorath> wave3HardTrigorath = new ArrayList<>();
+    public ArrayList<Squarantine> wave3HardSquarantine = new ArrayList<>();
 
 
 
   static   Squarantine squarantine;
    static Trigorath trigorath;
 
-public static void initWave1(){
+public  void initWave1(){
+
+
     if(SettingsFrame.getChosenLevel()==0){
         int [] xPoints = {50,40,60};
         int [] yPoints = {20,40,40};
@@ -60,20 +62,20 @@ public static void initWave1(){
         squarantine.setyPoints(yPoints5);
         wave1EasySquarantine.add(squarantine);
 
-        trigorath = new Trigorath(50,33);
-        trigorath.setxPoints(xPoints);
-        trigorath.setyPoints(yPoints);
-        wave1EasyTrigorath.add(trigorath);
-
-        trigorath = new Trigorath(150,133);
-        trigorath.setxPoints(xPoints2);
-        trigorath.setyPoints(yPoints2);
-        wave1EasyTrigorath.add(trigorath);
-
-        trigorath = new Trigorath(250,233);
-        trigorath.setxPoints(xPoints3);
-        trigorath.setyPoints(yPoints3);
-        wave1EasyTrigorath.add(trigorath);
+//        trigorath = new Trigorath(50,33);
+//        trigorath.setxPoints(xPoints);
+//        trigorath.setyPoints(yPoints);
+//        wave1EasyTrigorath.add(trigorath);
+//
+//        trigorath = new Trigorath(150,133);
+//        trigorath.setxPoints(xPoints2);
+//        trigorath.setyPoints(yPoints2);
+//        wave1EasyTrigorath.add(trigorath);
+//
+//        trigorath = new Trigorath(250,233);
+//        trigorath.setxPoints(xPoints3);
+//        trigorath.setyPoints(yPoints3);
+//        wave1EasyTrigorath.add(trigorath);
     }
     if(SettingsFrame.getChosenLevel()==1){
         int [] xPoints = {50,40,60};
@@ -141,10 +143,10 @@ public static void initWave1(){
         squarantine.setyPoints(yPoints5);
         wave1HardSquarantine.add(squarantine);
 
-//        squarantine = new Squarantine(85,85);
-//        squarantine.setxPoints(xPoints4);
-//        squarantine.setyPoints(yPoints4);
-//        wave1HardSquarantine.add(squarantine);
+        squarantine = new Squarantine(85,85);
+        squarantine.setxPoints(xPoints4);
+        squarantine.setyPoints(yPoints4);
+        wave1HardSquarantine.add(squarantine);
 
         trigorath = new Trigorath(50,33);
         trigorath.setxPoints(xPoints);
@@ -161,15 +163,15 @@ public static void initWave1(){
         trigorath.setyPoints(yPoints3);
         wave1HardTrigorath.add(trigorath);
 
-//        trigorath = new Trigorath(450,433);
-//        trigorath.setxPoints(xPoints6);
-//        trigorath.setyPoints(yPoints6);
-//        wave1HardTrigorath.add(trigorath);
+        trigorath = new Trigorath(450,433);
+        trigorath.setxPoints(xPoints6);
+        trigorath.setyPoints(yPoints6);
+        wave1HardTrigorath.add(trigorath);
     }
 
 }
 
-    public static void initWave2(){
+    public void initWave2(){
         if(SettingsFrame.getChosenLevel()==0){
             int [] xPoints = {50,40,60};
             int [] yPoints = {20,40,40};
@@ -188,20 +190,20 @@ public static void initWave1(){
             squarantine.setyPoints(yPoints4);
             wave2EasySquarantine.add(squarantine);
 
-            squarantine = new Squarantine(285,285);
-            squarantine.setxPoints(xPoints5);
-            squarantine.setyPoints(yPoints5);
-            wave2EasySquarantine.add(squarantine);
-
-            trigorath = new Trigorath(50,33);
-            trigorath.setxPoints(xPoints);
-            trigorath.setyPoints(yPoints);
-            wave2EasyTrigorath.add(trigorath);
-
-            trigorath = new Trigorath(150,133);
-            trigorath.setxPoints(xPoints2);
-            trigorath.setyPoints(yPoints2);
-            wave2EasyTrigorath.add(trigorath);
+//            squarantine = new Squarantine(285,285);
+//            squarantine.setxPoints(xPoints5);
+//            squarantine.setyPoints(yPoints5);
+//            wave2EasySquarantine.add(squarantine);
+//
+//            trigorath = new Trigorath(50,33);
+//            trigorath.setxPoints(xPoints);
+//            trigorath.setyPoints(yPoints);
+//            wave2EasyTrigorath.add(trigorath);
+//
+//            trigorath = new Trigorath(150,133);
+//            trigorath.setxPoints(xPoints2);
+//            trigorath.setyPoints(yPoints2);
+//            wave2EasyTrigorath.add(trigorath);
 
 
         }
@@ -314,7 +316,7 @@ public static void initWave1(){
             wave2HardTrigorath.add(trigorath);
         }
     }
-    public static void initWave3(){
+    public void initWave3(){
         if(SettingsFrame.getChosenLevel()==0){
             int [] xPoints = {50,40,60};
             int [] yPoints = {20,40,40};
@@ -341,36 +343,36 @@ public static void initWave1(){
             squarantine.setxPoints(xPoints4);
             squarantine.setyPoints(yPoints4);
             wave3EasySquarantine.add(squarantine);
+//
+//            squarantine = new Squarantine(585,585);
+//            squarantine.setxPoints(xPoints7);
+//            squarantine.setyPoints(yPoints7);
+//            wave3EasySquarantine.add(squarantine);
 
-            squarantine = new Squarantine(585,585);
-            squarantine.setxPoints(xPoints7);
-            squarantine.setyPoints(yPoints7);
-            wave3EasySquarantine.add(squarantine);
-
-            trigorath = new Trigorath(50,33);
-            trigorath.setxPoints(xPoints);
-            trigorath.setyPoints(yPoints);
-            wave3EasyTrigorath.add(trigorath);
-
-            trigorath = new Trigorath(150,133);
-            trigorath.setxPoints(xPoints2);
-            trigorath.setyPoints(yPoints2);
-            wave3EasyTrigorath.add(trigorath);
-
-            trigorath = new Trigorath(250,233);
-            trigorath.setxPoints(xPoints3);
-            trigorath.setyPoints(yPoints3);
-            wave3EasyTrigorath.add(trigorath);
-
-            trigorath = new Trigorath(350,333);
-            trigorath.setxPoints(xPoints5);
-            trigorath.setyPoints(yPoints5);
-            wave3EasyTrigorath.add(trigorath);
-
-            trigorath = new Trigorath(450,433);
-            trigorath.setxPoints(xPoints6);
-            trigorath.setyPoints(yPoints6);
-            wave3EasyTrigorath.add(trigorath);
+//            trigorath = new Trigorath(50,33);
+//            trigorath.setxPoints(xPoints);
+//            trigorath.setyPoints(yPoints);
+//            wave3EasyTrigorath.add(trigorath);
+//
+//            trigorath = new Trigorath(150,133);
+//            trigorath.setxPoints(xPoints2);
+//            trigorath.setyPoints(yPoints2);
+//            wave3EasyTrigorath.add(trigorath);
+//
+//            trigorath = new Trigorath(250,233);
+//            trigorath.setxPoints(xPoints3);
+//            trigorath.setyPoints(yPoints3);
+//            wave3EasyTrigorath.add(trigorath);
+//
+//            trigorath = new Trigorath(350,333);
+//            trigorath.setxPoints(xPoints5);
+//            trigorath.setyPoints(yPoints5);
+//            wave3EasyTrigorath.add(trigorath);
+//
+//            trigorath = new Trigorath(450,433);
+//            trigorath.setxPoints(xPoints6);
+//            trigorath.setyPoints(yPoints6);
+//            wave3EasyTrigorath.add(trigorath);
         }
         if(SettingsFrame.getChosenLevel()==1){
             int [] xPoints = {50,40,60};

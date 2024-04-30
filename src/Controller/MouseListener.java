@@ -65,6 +65,7 @@ public class MouseListener extends MouseInputAdapter {
         }
     }
 
+
     public static int getTimer() {
         return timer;
     }

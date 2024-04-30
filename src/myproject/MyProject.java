@@ -1,7 +1,9 @@
 package myproject;
 
+import Controller.Constants;
 import Controller.GameLoop;
 
+import Model.Epsilon;
 import View.GameInfo;
 
 import View.GamePanel;
@@ -12,6 +14,8 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 public class MyProject {
+    static Epsilon epsilon;
+    private static GameInfo gameInfo;
     public MyProject() throws IOException {
         SettingsFrame.setKeyBinding("up",38);
         SettingsFrame.setKeyBinding("down", KeyEvent.VK_DOWN);
@@ -20,9 +24,20 @@ public class MyProject {
         SettingsFrame.setKeyBinding("shop",KeyEvent.VK_SPACE);
         SettingsFrame.setKeyBinding("ability",KeyEvent.VK_ENTER);
 
-       new GameInfo();
+        epsilon = new Epsilon(200,200);
+        epsilon.setRadius(Constants.getEpsilonRadius());
+       gameInfo = new GameInfo();
         new StarterMenu();
 
 
+
+    }
+
+    public static Epsilon getEpsilon() {
+        return epsilon;
+    }
+
+    public static GameInfo getGameInfo() {
+        return gameInfo;
     }
 }

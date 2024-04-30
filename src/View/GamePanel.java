@@ -4,14 +4,16 @@ import Controller.Constants;
 import Controller.GameLoop;
 import Controller.MouseListener;
 import Model.*;
+import myproject.MyProject;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.awt.geom.Point2D;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
-import View.GlassFrame;
 
 
 public class GamePanel extends JPanel {
@@ -20,55 +22,68 @@ public class GamePanel extends JPanel {
     private static Epsilon epsilon;
     private static ShotGun shotGun;
 
-    private static  ArrayList<Squarantine> squarantines = new ArrayList<>();
-    private static  ArrayList<Trigorath> trigoraths = new ArrayList<>();
-    private static   int FRAME_WIDTH = Constants.getFrameWidth();
-    private static   int FRAME_HEIGHT = Constants.getFrameHeight();
+    private static ArrayList<Squarantine> squarantines = new ArrayList<>();
+    private static ArrayList<Trigorath> trigoraths = new ArrayList<>();
+    private static int FRAME_WIDTH = 700;
+    private static int FRAME_HEIGHT = 700;
 
-    private Dimension SCREEN_SIZE = Constants.getFrameDimension();
+
+    private Dimension SCREEN_SIZE = new Dimension(700, 700);
     private MouseListener mouseListener;
+    private static double angle;
 
 
     public GamePanel() throws IOException {
 
 
-        epsilon = new Epsilon(200,200);
+//
+        epsilon = new Epsilon(200, 200);
         epsilon.setRadius(Constants.getEpsilonRadius());
+        epsilon.setXP(SkillTreeFrame.getCurrentXP());
 
         shotGun = new ShotGun((int) epsilon.getxCenter(), (int) epsilon.getyCenter());
         shotGun.setWidth(Constants.getShotGunWidth());
         shotGun.setHeight(Constants.getShotGunHeight());
-    //    ShotGun.getShots().add(shotGun);
-
-
+        //    ShotGun.getShots().add(shotGun);
 
 
         mouseListener = new MouseListener(this);
         addMouseListener(mouseListener);
 
-        setBorder(BorderFactory.createLineBorder(Color.black,5));
+        setBorder(BorderFactory.createLineBorder(Color.black, 5));
         setBackground(Color.BLACK);
         setSize(SCREEN_SIZE);
         setLocationToCenter(GlassFrame.getINSTANCE());
         GlassFrame.getINSTANCE().setContentPane(this);
 
-
-        this.addComponentListener(new ComponentAdapter() {
+        addMouseMotionListener(new MouseAdapter() {
             @Override
-            public void componentResized(ComponentEvent e) {
-                if(epsilon.getX()+epsilon.getRadius() > FRAME_WIDTH){
-                    epsilon.setX(FRAME_WIDTH - epsilon.getRadius());
-                } if(epsilon.getY() + epsilon.getRadius() > FRAME_HEIGHT){
-                    epsilon.setY(FRAME_HEIGHT - epsilon.getRadius());
-                }
+            public void mouseMoved(MouseEvent e) {
+                super.mouseMoved(e);
+                double dx = e.getX() - epsilon.getxCenter();
+                double dy = e.getY() - epsilon.getyCenter();
+                angle = Math.atan2(dy, dx);
 
-                repaint();
             }
         });
+
+//        this.addComponentListener(new ComponentAdapter() {
+//            @Override
+//            public void componentResized(ComponentEvent e) {
+//                if(epsilon.getX()+epsilon.getRadius() > FRAME_WIDTH){
+//                    epsilon.setX(FRAME_WIDTH - epsilon.getRadius());
+//                } if(epsilon.getY() + epsilon.getRadius() > FRAME_HEIGHT){
+//                    epsilon.setY(FRAME_HEIGHT - epsilon.getRadius());
+//                }
+//
+//                repaint();
+//            }
+//        });
 
         this.setLayout(null);
 
     }
+
     public void paintComponent(Graphics g) {
         Graphics2D g2D = (Graphics2D) g;
         super.paintComponent(g2D);
@@ -138,16 +153,32 @@ public class GamePanel extends JPanel {
         }
         //paint epsilons vertex
 
-        for(Vertex vertex : getEpsilon().getVertex()) {
+
+        //   for(int i=1;i<=epsilon.getVertex().size())
+        for (Vertex vertex : getEpsilon().getVertex()) {
+//            double angle2 = 2 * Math.PI / epsilon.getVertexNumber();
+//            vertex.setX((int) (epsilon.getX() + (epsilon.getRadius()-10) / 2 + epsilon.getRadius() / 2 * Math.cos(epsilon.getVertex().indexOf(vertex) * angle+angle2)));
+//            vertex.setY((int) (epsilon.getY() + (epsilon.getRadius()-10) / 2 + epsilon.getRadius() / 2 * Math.sin(epsilon.getVertex().indexOf(vertex) * angle+angle2)));
+
+//            double vertexAngle = angle + epsilon.getVertex().indexOf(vertex) * 2 * Math.PI / epsilon.getVertex().indexOf(vertex);
+//            vertex.setX((int) (epsilon.getxCenter() + epsilon.getRadius()/2 * Math.cos(vertexAngle)));
+//            vertex.setY((int) (epsilon.getyCenter() + epsilon.getRadius()/2 * Math.sin(vertexAngle)));
             g2D.setColor(Color.WHITE);
-            g2D.fillOval((int) (vertex.getX() ), (int) (vertex.getY() - 5), vertex.getRadius(), vertex.getRadius());
+            g2D.fillOval((int) (vertex.getX()), (int) (vertex.getY()), vertex.getRadius(), vertex.getRadius());
         }
+
+
+
 
 
         //paint Game info
         g2D.setColor(Color.WHITE);
-        g2D.drawString("✦"+epsilon.getXP(),5,20);
-        g2D.drawString("♥"+epsilon.getHP(),100,20);
+        g2D.drawString("✦"+MyProject.getGameInfo().getXP(),5,20);
+        if(epsilon.getHP()>=0) {
+            g2D.drawString("♥" + epsilon.getHP(), 100, 20);
+        }else{
+            g2D.drawString("♥" + 0, 100, 20);
+        }
         g2D.drawString(GameLoop.getMinutes()+":"+GameLoop.getSeconds(),195,20);
         g2D.drawString(GameInfo.getCurrentWave()+"/3",290,20);
     }
@@ -163,16 +194,16 @@ public class GamePanel extends JPanel {
         return FRAME_WIDTH;
     }
 
-    public  void setFRAME_WIDTH(int FRAME_WIDTH) {
-        this.FRAME_WIDTH = FRAME_WIDTH;
+    public static void setFRAME_WIDTH(int FRAME_WIDTH) {
+        GamePanel.FRAME_WIDTH = FRAME_WIDTH;
     }
 
     public static int getFRAME_HEIGHT() {
         return FRAME_HEIGHT;
     }
 
-    public void setFRAME_HEIGHT(int FRAME_HEIGHT) {
-        this.FRAME_HEIGHT = FRAME_HEIGHT;
+    public static void setFRAME_HEIGHT(int FRAME_HEIGHT) {
+        GamePanel.FRAME_HEIGHT = FRAME_HEIGHT;
     }
 
 
@@ -199,5 +230,9 @@ public class GamePanel extends JPanel {
             INSTANCE = new GamePanel();
         }
         return INSTANCE;
+    }
+
+    public static double getAngle() {
+        return angle;
     }
 }

@@ -1,14 +1,15 @@
 package View;
 
 import Controller.GameLoop;
-import Model.Game;
+import Controller.KeyListener;
+import Model.GlassFrame;
 import View.Settings.SettingsFrame;
+import myproject.MyProject;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -62,22 +63,41 @@ public class StarterMenu extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 dispose();
-                Robot robot= null;
-                try {
-                    robot = new Robot();
-                } catch (AWTException ex) {
-                    throw new RuntimeException(ex);
-                }
                 try {
                     game = new Game();
-                    gameLoop = new GameLoop(game);
-
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 } catch (AWTException ex) {
                     throw new RuntimeException(ex);
                 }
-            }
+
+                try {
+                    gameLoop = new GameLoop(game);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                if (!GameLoop.isGameDone()){
+
+                            gameLoop.start();
+                            gameLoop.elapsedTime();
+
+
+                        KeyListener.setPauseGame(false);
+
+
+            }else{
+                        KeyListener.setPauseGame(false);
+
+                        GamePanel.setFRAME_WIDTH(700);
+                        GamePanel.setFRAME_HEIGHT(700);
+                        GlassFrame.getINSTANCE().getContentPane().setLocation(450,100);
+                //    GamePanel.getEpsilon().setXP(gameLoop.getLastXP());
+                    GamePanel.getEpsilon().setHP(100);
+                        gameLoop.start();
+                        gameLoop.elapsedTime();
+                    }
+        }
         });
 
         //skill-tree Button
@@ -139,7 +159,9 @@ public class StarterMenu extends JFrame {
             }
 
         });
-        XP = new JButton("XP:"+GameInfo.getXP());
+
+            XP = new JButton("XP:" + MyProject.getGameInfo().getXP());
+
          fontStyle = new Font("Magneto",Font.BOLD,20);
         XP.setFont(fontStyle);
         XP.setForeground(fontClr);
