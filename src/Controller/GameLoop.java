@@ -302,6 +302,9 @@ public class GameLoop {
                             acesoTimer = 0;
                             win = false;
                             canUseAbility = false;
+                                 ShopFrame.setHealItem(false);
+                            ShopFrame.setBanishItem(false);
+                            ShopFrame.setEmpowerItem(false);
                             lastUsed =0;
                             deadS = 0;
                             deadT = 0;
@@ -357,6 +360,9 @@ public class GameLoop {
                             acesoTimer = 0;
                             win = false;
                           //  lose = false;
+                                 ShopFrame.setHealItem(false);
+                            ShopFrame.setBanishItem(false);
+                            ShopFrame.setEmpowerItem(false);
                             canUseAbility = false;
                             lastUsed = 0;
                             deadS = 0;
@@ -550,7 +556,7 @@ public class GameLoop {
                     if(ShopFrame.isBanishItem()){
                         banishTime++;
                     }
-                    if(banishTime>=20){
+                    if(banishTime>=40){
                         banishTime = 0;
                         ShopFrame.setBanishItem(false);
                     }
