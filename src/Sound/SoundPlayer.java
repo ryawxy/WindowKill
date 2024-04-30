@@ -1,20 +1,14 @@
 package Sound;
-import Controller.Constants;
+
 import View.Settings.SettingsFrame;
-
 import javax.sound.sampled.*;
-
 import java.io.File;
 import java.io.IOException;
 
 public class SoundPlayer {
-
-    Clip clip;
     private Clip backgroundMusic;
     private FloatControl volumeControl;
     private FloatControl volumeControl2;
-
-
 
     public void playBackgroundMusic() {
         try {

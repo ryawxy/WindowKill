@@ -1,8 +1,8 @@
 package View;
 
+import Controller.Game;
 import Controller.GameLoop;
 import Controller.KeyListener;
-import Model.GlassFrame;
 import View.Settings.SettingsFrame;
 import myproject.MyProject;
 
@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -19,7 +20,7 @@ public class StarterMenu extends JFrame {
     private final Dimension SCREEN_SIZE = new Dimension(MENU_WIDTH,MENU_HEIGHT);
     private final ImageIcon image;
     private final JLabel label;
-
+    private Robot robot ;
     JButton start;
     JButton skillTree;
     JButton settings;
@@ -32,12 +33,27 @@ public class StarterMenu extends JFrame {
     public StarterMenu(){
 
 
+//        Robot robot = null;
+//        try {
+//            robot = new Robot();
+//        } catch (AWTException ex) {
+//            throw new RuntimeException(ex);
+//        }
+//        robot.keyPress(KeyEvent.VK_WINDOWS);
+//        robot.keyPress(KeyEvent.VK_D);
+//        robot.keyRelease(KeyEvent.VK_WINDOWS);
+//        robot.keyRelease(KeyEvent.VK_D);
 
         this.setSize(SCREEN_SIZE);
         this.setTitle("Window Kill");
         this.setLocationRelativeTo(null);
         this.setUndecorated(true);
-//        this.setLayout(null);
+
+        try {
+            robot = new Robot();
+        } catch (AWTException e) {
+            throw new RuntimeException(e);
+        }
 
 
         image = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/Images/menu.jpg")));
@@ -62,8 +78,39 @@ public class StarterMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+//                Window[] windows = Window.getWindows();
+//                for(Window window : windows){
+//                    if(window instanceof  JFrame){
+//                        JFrame frame = (JFrame) window;
+//                        Component focusOwner = frame.getFocusOwner();
+//                        if(focusOwner!=null && !focusOwner.getClass().getName().contains("Window Kill") ){
+//                            try {
+//                                robot = new Robot();
+//                            } catch (AWTException ex) {
+//                                throw new RuntimeException(ex);
+//                            }
+//                            robot.keyPress(KeyEvent.VK_WINDOWS);
+//                            robot.keyPress(KeyEvent.VK_D);
+//                            robot.keyRelease(KeyEvent.VK_WINDOWS);
+//                            robot.keyRelease(KeyEvent.VK_D);
+//                        }
+//
+//                    }
+//                }
+
+//                try {
+//                    robot = new Robot();
+//                } catch (AWTException ex) {
+//                    throw new RuntimeException(ex);
+//                }
+//                robot.keyPress(KeyEvent.VK_WINDOWS);
+//                robot.keyPress(KeyEvent.VK_D);
+//                robot.keyRelease(KeyEvent.VK_WINDOWS);
+//                robot.keyRelease(KeyEvent.VK_D);
+
                 dispose();
                 try {
+
                     game = new Game();
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
@@ -78,6 +125,16 @@ public class StarterMenu extends JFrame {
                 }
 
                 if (!GameLoop.isGameDone()){
+//                    Robot robot = null;
+//                    try {
+//                        robot = new Robot();
+//                    } catch (AWTException ex) {
+//                        throw new RuntimeException(ex);
+//                    }
+//                    robot.keyPress(KeyEvent.VK_WINDOWS);
+//                    robot.keyPress(KeyEvent.VK_D);
+//                    robot.keyRelease(KeyEvent.VK_WINDOWS);
+//                    robot.keyRelease(KeyEvent.VK_D);
 
                             gameLoop.start();
                             gameLoop.elapsedTime();
@@ -87,12 +144,13 @@ public class StarterMenu extends JFrame {
 
 
             }else{
+
                         KeyListener.setPauseGame(false);
 
                         GamePanel.setFRAME_WIDTH(700);
                         GamePanel.setFRAME_HEIGHT(700);
                         GlassFrame.getINSTANCE().getContentPane().setLocation(450,100);
-                //    GamePanel.getEpsilon().setXP(gameLoop.getLastXP());
+
                     GamePanel.getEpsilon().setHP(100);
                         gameLoop.start();
                         gameLoop.elapsedTime();

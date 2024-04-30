@@ -1,8 +1,4 @@
-package View;
-
-import Controller.CurrentAbility;
-
-import javax.swing.*;
+package Controller;
 
 public class GameInfo  {
 

@@ -1,13 +1,12 @@
 package Model;
 
 import Controller.Constants;
-import Controller.ImpactSpeed;
 import Controller.Intersection;
-import Controller.KeyListener;
-import View.Game;
+import Controller.Game;
 import View.GamePanel;
 import View.ShopFrame;
 
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 public class Trigorath extends GameObjects implements movable {
@@ -110,6 +109,10 @@ public class Trigorath extends GameObjects implements movable {
 
         if (!isDead()) {
 
+            double xPoint2 = getX();
+            double yPoint2 = getY();
+            Point2D point2D = new Point2D.Double(xPoint2,yPoint2);
+
 
             epsilonXPos = epsilon.getX();
             epsilonYPos = epsilon.getY();
@@ -124,9 +127,19 @@ public class Trigorath extends GameObjects implements movable {
                 double xPoint = Intersection.getIntersectionPoint().getX();
                 double yPoint = Intersection.getIntersectionPoint().getY();
                 double angle2 =  Math.atan2(trigorathYPos - yPoint, trigorathXPos - xPoint);
-         //       double impactSpeed = ImpactSpeed.getImpactspeed(this);
-                 xVelocity2 = Math.cos(angle2) * 4;
-                 yVelocity2 = Math.sin(angle2) * 4;
+
+
+                double distance = point2D.distance(Intersection.getIntersectionPoint());
+                if(distance>=30) {
+                    xVelocity2 = Math.cos(angle2) * 4;
+                    yVelocity2 = Math.sin(angle2) * 4;
+                }else if(distance>=20 && distance<30){
+                    xVelocity2 = Math.cos(angle2) * 5;
+                    yVelocity2 = Math.sin(angle2) * 5;
+                }else if (distance>=10 && distance<=20){
+                    xVelocity2 = Math.cos(angle2) * 6;
+                    yVelocity2 = Math.sin(angle2) * 6;
+                }
             }else{
                 xVelocity2 = 0;
                 yVelocity2 = 0;
@@ -138,9 +151,18 @@ public class Trigorath extends GameObjects implements movable {
                 double xPoint = Intersection.getIntersectionPoint2().getX();
                 double yPoint = Intersection.getIntersectionPoint2().getY();
                 double angle3 =  Math.atan2(trigorathYPos - yPoint, trigorathXPos - xPoint);
-          //      double impactSpeed = ImpactSpeed.getImpactspeed(this);
-                xVelocity3 = Math.cos(angle3) * 4;
-                yVelocity3 = Math.sin(angle3) * 4;
+
+                double distance = point2D.distance(Intersection.getIntersectionPoint2());
+                if(distance>=30) {
+                    xVelocity3 = Math.cos(angle3) * 4;
+                    yVelocity3 = Math.sin(angle3) * 4;
+                }else if(distance>=20 && distance<30){
+                    xVelocity3 = Math.cos(angle3) * 5;
+                    yVelocity3 = Math.sin(angle3) * 5;
+                }else if (distance>=10 && distance<=20){
+                    xVelocity3 = Math.cos(angle3) * 6;
+                    yVelocity3 = Math.sin(angle3) * 6;
+                }
             }else{
                 xVelocity3 = 0;
                 yVelocity3 = 0;
@@ -150,9 +172,19 @@ public class Trigorath extends GameObjects implements movable {
                 double xPoint = Intersection.getIntersectionPoint4().getX();
                 double yPoint = Intersection.getIntersectionPoint4().getY();
                 double angle3 =  Math.atan2(trigorathYPos - yPoint, trigorathXPos - xPoint);
-            //    double impactSpeed = ImpactSpeed.getImpactspeed(this);
-                xVelocity4 = Math.cos(angle3) * 4;
-                yVelocity4 = Math.sin(angle3) * 4;
+
+                double distance = point2D.distance(Intersection.getIntersectionPoint4());
+
+                if(distance>=30) {
+                    xVelocity4 = Math.cos(angle3) * 4;
+                    yVelocity4 = Math.sin(angle3) * 4;
+                }else if(distance>=20 && distance<30){
+                    xVelocity4 = Math.cos(angle3) * 5;
+                    yVelocity4 = Math.sin(angle3) * 5;
+                }else if (distance>=10 && distance<=20){
+                    xVelocity4 = Math.cos(angle3) * 6;
+                    yVelocity4 = Math.sin(angle3) * 6;
+                }
             }else{
                 xVelocity4 = 0;
                 yVelocity4 = 0;
@@ -162,9 +194,19 @@ public class Trigorath extends GameObjects implements movable {
                 double xPoint = Intersection.getIntersectionPoint6().getX();
                 double yPoint = Intersection.getIntersectionPoint6().getY();
                 double angle3 =  Math.atan2(trigorathYPos - yPoint, trigorathXPos - xPoint);
-             //   double impactSpeed = ImpactSpeed.getImpactspeed(this);
-                xVelocity6 = Math.cos(angle3) * 4;
-                yVelocity6 = Math.sin(angle3) * 4;
+
+                double distance = point2D.distance(Intersection.getIntersectionPoint6());
+
+                if(distance>=30) {
+                    xVelocity6 = Math.cos(angle3) * 4;
+                    yVelocity6 = Math.sin(angle3) * 4;
+                }else if(distance>=20 && distance<30){
+                    xVelocity6 = Math.cos(angle3) * 5;
+                    yVelocity6 = Math.sin(angle3) * 5;
+                }else if (distance>=10 && distance<=20){
+                    xVelocity6 = Math.cos(angle3) * 6;
+                    yVelocity6 = Math.sin(angle3) * 6;
+                }
             }else{
                 xVelocity6 = 0;
                 yVelocity6 = 0;
@@ -174,9 +216,19 @@ public class Trigorath extends GameObjects implements movable {
                 double xPoint = Intersection.getIntersectionPoint5().getX();
                 double yPoint = Intersection.getIntersectionPoint5().getY();
                 double angle3 =  Math.atan2(trigorathYPos - yPoint, trigorathXPos - xPoint);
-             //   double impactSpeed = ImpactSpeed.getImpactspeed(this);
-                xVelocity5 = Math.cos(angle3) * 4;
-                yVelocity5 = Math.sin(angle3) * 4;
+
+                double distance = point2D.distance(Intersection.getIntersectionPoint5());
+
+                if(distance>=30) {
+                    xVelocity5 = Math.cos(angle3) * 4;
+                    yVelocity5 = Math.sin(angle3) * 4;
+                }else if(distance>=20 && distance<30){
+                    xVelocity5 = Math.cos(angle3) * 5;
+                    yVelocity5 = Math.sin(angle3) * 5;
+                }else if (distance>=10 && distance<=20){
+                    xVelocity5 = Math.cos(angle3) * 6;
+                    yVelocity5 = Math.sin(angle3) * 6;
+                }
             }else{
                 xVelocity5 = 0;
                 yVelocity5 = 0;
@@ -186,9 +238,19 @@ public class Trigorath extends GameObjects implements movable {
                 double xPoint = Intersection.getIntersectionPoint8().getX();
                 double yPoint = Intersection.getIntersectionPoint8().getY();
                 double angle3 =  Math.atan2(trigorathYPos - yPoint, trigorathXPos - xPoint);
-                //   double impactSpeed = ImpactSpeed.getImpactspeed(this);
-                xVelocity8 = Math.cos(angle3) * 4;
-                yVelocity8 = Math.sin(angle3) * 4;
+
+                double distance = point2D.distance(Intersection.getIntersectionPoint8());
+
+                if(distance>=30) {
+                    xVelocity8 = Math.cos(angle3) * 4;
+                    yVelocity8 = Math.sin(angle3) * 4;
+                }else if(distance>=20 && distance<30){
+                    xVelocity8 = Math.cos(angle3) * 5;
+                    yVelocity8 = Math.sin(angle3) * 5;
+                }else if (distance>=10 && distance<=20){
+                    xVelocity8 = Math.cos(angle3) * 6;
+                    yVelocity8 = Math.sin(angle3) * 6;
+                }
             }else{
                 xVelocity8 = 0;
                 yVelocity8 = 0;
@@ -198,9 +260,19 @@ public class Trigorath extends GameObjects implements movable {
                 double xPoint = Intersection.getIntersectionPoint9().getX();
                 double yPoint = Intersection.getIntersectionPoint9().getY();
                 double angle3 =  Math.atan2(trigorathYPos - yPoint, trigorathXPos - xPoint);
-                //   double impactSpeed = ImpactSpeed.getImpactspeed(this);
-                xVelocity9 = Math.cos(angle3) * 5;
-                yVelocity9 = Math.sin(angle3) * 5;
+
+                double distance = point2D.distance(Intersection.getIntersectionPoint9());
+
+                if(distance>=30) {
+                    xVelocity9 = Math.cos(angle3) * 4;
+                    yVelocity9 = Math.sin(angle3) * 4;
+                }else if(distance>=20 && distance<30){
+                    xVelocity9 = Math.cos(angle3) * 5;
+                    yVelocity9 = Math.sin(angle3) * 5;
+                }else if (distance>=10 && distance<=20){
+                    xVelocity9 = Math.cos(angle3) * 6;
+                    yVelocity9 = Math.sin(angle3) * 6;
+                }
             }else{
                 xVelocity9 = 0;
                 yVelocity9 = 0;

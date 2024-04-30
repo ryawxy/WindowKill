@@ -1,12 +1,10 @@
 package myproject;
 
 import Controller.Constants;
-import Controller.GameLoop;
 
 import Model.Epsilon;
-import View.GameInfo;
+import Controller.GameInfo;
 
-import View.GamePanel;
 import View.Settings.SettingsFrame;
 import View.StarterMenu;
 

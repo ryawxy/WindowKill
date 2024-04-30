@@ -2,7 +2,6 @@ package Controller;
 
 import Model.Epsilon;
 import Model.ShotGun;
-import View.GameInfo;
 import View.GamePanel;
 import View.Settings.SettingsFrame;
 import View.ShopFrame;

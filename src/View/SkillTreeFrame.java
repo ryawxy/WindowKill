@@ -1,7 +1,7 @@
 package View;
 
 import Controller.CurrentAbility;
-import Controller.MouseListener;
+import Controller.GameInfo;
 import myproject.MyProject;
 
 import javax.swing.*;

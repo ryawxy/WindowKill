@@ -4,26 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="added waves">
-      <change afterPath="$PROJECT_DIR$/src/Sound/Hedwig_s-Theme.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Sound/SoundPlayer.java" afterDir="false" />
+    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="added sound settings">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/FrameSize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FrameSize.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Intersection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Intersection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/MouseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MouseListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/KeyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/KeyListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Epsilon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Epsilon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/GlassFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/GlassFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Squarantine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Squarantine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Trigorath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Trigorath.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Vertex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Vertex.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Wave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Wave.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/GameInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/GameInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sound/SoundPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sound/SoundPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/GameInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/GlassFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GlassFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/Settings/SettingsFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Settings/SettingsFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/ShopFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ShopFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/SkillTreeFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/SkillTreeFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/StarterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/StarterMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/myproject/MyProject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/myproject/MyProject.java" afterDir="false" />
@@ -211,7 +206,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714120152071</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="added sound settings">
+      <option name="closed" value="true" />
+      <created>1714454036121</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1714454036121</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -240,6 +243,7 @@
     <MESSAGE value="added vertex for epsilon" />
     <MESSAGE value="impact mechanism for epsilon" />
     <MESSAGE value="added waves" />
-    <option name="LAST_COMMIT_MESSAGE" value="added waves" />
+    <MESSAGE value="added sound settings" />
+    <option name="LAST_COMMIT_MESSAGE" value="added sound settings" />
   </component>
 </project>

@@ -1,6 +1,7 @@
 package View;
 
 import Controller.Constants;
+import Controller.GameInfo;
 import Controller.GameLoop;
 import Controller.MouseListener;
 import Model.*;
@@ -8,10 +9,7 @@ import myproject.MyProject;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -36,7 +34,17 @@ public class GamePanel extends JPanel {
     public GamePanel() throws IOException {
 
 
-//
+
+//        Robot robot = null;
+//        try {
+//            robot = new Robot();
+//        } catch (AWTException ex) {
+//            throw new RuntimeException(ex);
+//        }
+//        robot.keyPress(KeyEvent.VK_WINDOWS);
+//        robot.keyPress(KeyEvent.VK_D);
+//        robot.keyRelease(KeyEvent.VK_WINDOWS);
+//        robot.keyRelease(KeyEvent.VK_D);
         epsilon = new Epsilon(200, 200);
         epsilon.setRadius(Constants.getEpsilonRadius());
         epsilon.setXP(SkillTreeFrame.getCurrentXP());
@@ -67,18 +75,25 @@ public class GamePanel extends JPanel {
             }
         });
 
-//        this.addComponentListener(new ComponentAdapter() {
-//            @Override
-//            public void componentResized(ComponentEvent e) {
-//                if(epsilon.getX()+epsilon.getRadius() > FRAME_WIDTH){
-//                    epsilon.setX(FRAME_WIDTH - epsilon.getRadius());
-//                } if(epsilon.getY() + epsilon.getRadius() > FRAME_HEIGHT){
-//                    epsilon.setY(FRAME_HEIGHT - epsilon.getRadius());
-//                }
-//
-//                repaint();
-//            }
-//        });
+        this.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                if(epsilon.getX()+epsilon.getRadius() > FRAME_WIDTH){
+                    epsilon.setX(FRAME_WIDTH - epsilon.getRadius());
+                    for(Vertex vertex : epsilon.getVertex()){
+                        vertex.setX(FRAME_WIDTH-epsilon.getRadius());
+                    }
+                } if(epsilon.getY() + epsilon.getRadius() > FRAME_HEIGHT){
+                    epsilon.setY(FRAME_HEIGHT - epsilon.getRadius());
+                    for(Vertex vertex : epsilon.getVertex()){
+                        vertex.setX(FRAME_HEIGHT-epsilon.getRadius());
+                    }
+                }
+
+
+                repaint();
+            }
+        });
 
         this.setLayout(null);
 
@@ -153,22 +168,14 @@ public class GamePanel extends JPanel {
         }
         //paint epsilons vertex
 
-
-        //   for(int i=1;i<=epsilon.getVertex().size())
         for (Vertex vertex : getEpsilon().getVertex()) {
-//            double angle2 = 2 * Math.PI / epsilon.getVertexNumber();
-//            vertex.setX((int) (epsilon.getX() + (epsilon.getRadius()-10) / 2 + epsilon.getRadius() / 2 * Math.cos(epsilon.getVertex().indexOf(vertex) * angle+angle2)));
-//            vertex.setY((int) (epsilon.getY() + (epsilon.getRadius()-10) / 2 + epsilon.getRadius() / 2 * Math.sin(epsilon.getVertex().indexOf(vertex) * angle+angle2)));
 
-//            double vertexAngle = angle + epsilon.getVertex().indexOf(vertex) * 2 * Math.PI / epsilon.getVertex().indexOf(vertex);
-//            vertex.setX((int) (epsilon.getxCenter() + epsilon.getRadius()/2 * Math.cos(vertexAngle)));
-//            vertex.setY((int) (epsilon.getyCenter() + epsilon.getRadius()/2 * Math.sin(vertexAngle)));
+            double vertexAngle = angle + epsilon.getVertex().indexOf(vertex) * 2 * Math.PI / epsilon.getVertexNumber();
+            vertex.setX((int) (epsilon.getxCenter() + epsilon.getRadius()/2 * Math.cos(vertexAngle))-18);
+            vertex.setY((int) (epsilon.getyCenter() + epsilon.getRadius()/2 * Math.sin(vertexAngle))-18);
             g2D.setColor(Color.WHITE);
             g2D.fillOval((int) (vertex.getX()), (int) (vertex.getY()), vertex.getRadius(), vertex.getRadius());
         }
-
-
-
 
 
         //paint Game info

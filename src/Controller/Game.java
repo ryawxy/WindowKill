@@ -1,5 +1,5 @@
 
-package View;
+package Controller;
 
 
 import Controller.KeyListener;
@@ -27,10 +27,18 @@ public class Game {
         keyListener = new KeyListener(gamePanel);
         mouseListener = new MouseListener(gamePanel);
         soundPlayer = new SoundPlayer();
-
-
         soundPlayer.playBackgroundMusic();
 
+//        Robot robot = null;
+//        try {
+//            robot = new Robot();
+//        } catch (AWTException ex) {
+//            throw new RuntimeException(ex);
+//        }
+//        robot.keyPress(KeyEvent.VK_WINDOWS);
+//        robot.keyPress(KeyEvent.VK_D);
+//        robot.keyRelease(KeyEvent.VK_WINDOWS);
+//        robot.keyRelease(KeyEvent.VK_D);
 
     }
     public GamePanel getGameFrame() {

@@ -2,7 +2,6 @@ package Model;
 
 import Controller.ImpactSpeed;
 import Controller.Intersection;
-import View.GameInfo;
 import View.GamePanel;
 
 public class Vertex extends GameObjects implements movable{

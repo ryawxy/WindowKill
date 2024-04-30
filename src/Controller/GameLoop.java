@@ -67,15 +67,9 @@ public class GameLoop {
     private static boolean win;
     private static int lastXP;
     private static boolean lose;
-    private SoundPlayer soundPlayer = new SoundPlayer();
     private boolean hasPlayed;
     //game over sound
-    private boolean hasPlayed2;
-    // enemy death sound
     private String [] option = {"menu"};
-
-
-
 
     public GameLoop(Game game) throws IOException {
         this.game = game;
@@ -104,7 +98,7 @@ public class GameLoop {
 
                 if (!KeyListener.getPauseGame()) {
 
-                    System.out.println(SettingsFrame.getChosenSound());
+
                     //waves
                     wave.initWave1();
                     if (!wave1Created) {
@@ -590,7 +584,7 @@ public class GameLoop {
                             if (intersection.checkCollision(epsilon.getxCenter(), epsilon.getyCenter(), epsilon.getRadius(), trigorath2)) {
                                 Intersection.setIntersectionPoint2(new Point2D.Double(epsilon.getxCenter(), epsilon.getyCenter()));
                                 Intersection.setIntersectionPoint3(new Point2D.Double(trigorath3.getX(), trigorath3.getY()));
-                                epsilon.decreaseHP();
+                                epsilon.decreaseHP(EnemyType.Trigorath);
 
                             }
                         }
@@ -625,7 +619,7 @@ public class GameLoop {
                             if (intersection.checkCollision(epsilon.getxCenter(), epsilon.getyCenter(), epsilon.getRadius(), squarantine2)) {
                                 Intersection.setIntersectionPoint2(new Point2D.Double(epsilon.getxCenter(), epsilon.getyCenter()));
                                 Intersection.setIntersectionPoint3(new Point2D.Double(squarantine3.getX(), squarantine3.getY()));
-                                epsilon.decreaseHP();
+                                epsilon.decreaseHP(EnemyType.Squarantine);
                             }
                         }
 
