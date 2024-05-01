@@ -689,7 +689,7 @@ public class GameLoop {
 
                         currentTime = System.currentTimeMillis();
 
-                        if( (currentTime - lastUsed)/(  1000)>=2){
+                        if( (currentTime - lastUsed)/(  60*1000)>=5){
                             if(MyProject.getGameInfo().getXP()>=100) {
                                 canUseAbility = true;
                                 MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP()-100);
