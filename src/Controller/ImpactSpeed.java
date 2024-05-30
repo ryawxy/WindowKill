@@ -20,11 +20,11 @@ public class ImpactSpeed {
 
     public static double getImpactspeed(GameObjects gameObjects) {
 
-        if(Intersection.getIntersectionPoint()!=null) {
-             point = Intersection.getIntersectionPoint();
-        }else if(Intersection.getIntersectionPoint2()!=null){
-            point = Intersection.getIntersectionPoint2();
-        }
+//        if(Intersection.getIntersectionPoint()!=null) {
+//             point = Intersection.getIntersectionPoint();
+//        }else if(Intersection.getIntersectionPoint2()!=null){
+//            point = Intersection.getIntersectionPoint2();
+//        }
 //        else if(Intersection.getIntersectionPoint4()!=null){
 //            point = Intersection.getIntersectionPoint4();
 //        }

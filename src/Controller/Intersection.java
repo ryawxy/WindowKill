@@ -27,6 +27,7 @@ public class Intersection {
     private static Point2D intersectionPoint7;
     private static Point2D intersectionPoint8;
     private static Point2D intersectionPoint9;
+    private static  ArrayList<IntersectionPoint> intersectionPoints;
 
     public Intersection(GamePanel gamePanel) throws IOException {
         this.gamePanel = gamePanel;
@@ -73,7 +74,8 @@ public class Intersection {
                 ShotGun shot = ShotGun.getShots().get(i);
                 if(shot.isVisible()) {
                     if (squarantine2.intersects(shot.getX(), shot.getY(), shot.getWidth(), shot.getHeight())) {
-                        intersectionPoint4 = new Point2D.Double(shot.getX(),shot.getY());
+                        IntersectionPoint point = new IntersectionPoint(new Point2D.Double(shot.getX(),shot.getY()),10);
+                        intersectionPoints.add(point);
                         shot.setVisible(false);
                         squarantine.decreaseHP(false);
                     }
@@ -96,7 +98,8 @@ public class Intersection {
                 ShotGun shot = ShotGun.getShots().get(i);
                 if(shot.isVisible()) {
                     if (trigorath2.intersects(shot.getX(), shot.getY(), shot.getWidth(), shot.getHeight())) {
-                        intersectionPoint4 = new Point2D.Double(shot.getX(),shot.getY());
+                        IntersectionPoint point = new IntersectionPoint( new Point2D.Double(shot.getX(),shot.getY()),10);
+                        intersectionPoints.add(point);
 
                         shot.setVisible(false);
                         trigorath.decreaseHP(false);
@@ -179,24 +182,15 @@ public class Intersection {
                     }
                 }
             }
-//            for(Squarantine squarantine : GamePanel.getSquarantine()){
-//                if(!squarantine.isDead()){
-//                    for(int j=0;j<4;j++){
-//                        points2.add(new Point2D.Double(squarantine.getxPoints()[j],squarantine.getyPoints()[j]));
-//                    }
-//                }
-//            }
             }
             for (Point2D point2D : points) {
                 if (trigorath2.contains(point2D)) {
+                    IntersectionPoint point = new IntersectionPoint(point2D,10);
+                    intersectionPoints.add(point);
                     intersectionPoint = point2D;
                 }
             }
-//            for (Point2D point2D : points2) {
-//                if (trigorath2.contains(point2D)) {
-//                    intersectionPoint9 = point2D;
-//                }
-//            }
+
         }
 
         for(Squarantine squarantine : GamePanel.getSquarantine()){
@@ -206,7 +200,8 @@ public class Intersection {
                     Rectangle squarantine3 = new Rectangle(squarantine1.getxPoints()[0],squarantine1.getyPoints()[0],20,20);
                     if(squarantine2.intersects(squarantine3)){
                         Rectangle intersection = squarantine2.intersection(squarantine3);
-                        intersectionPoint8 = new Point2D.Double(intersection.x,intersection.y);
+                        IntersectionPoint point = new IntersectionPoint( new Point2D.Double(intersection.x,intersection.y),10);
+                        intersectionPoints.add(point);
                     }
                 }
             }
@@ -219,7 +214,8 @@ public class Intersection {
         for (int i = 0; i < shape1.npoints; i++) {
             for (int j = 0; j < shape2.npoints; j++) {
                 if (shape1.contains(shape2.xpoints[j], shape2.ypoints[j])) {
-                    intersectionPoint9 = new Point2D.Double(shape2.xpoints[j], shape2.ypoints[j]);
+                    IntersectionPoint point = new IntersectionPoint(new Point2D.Double(shape2.xpoints[j], shape2.ypoints[j]),10);
+                    intersectionPoints.add(point);
 
                 }
             }
@@ -228,15 +224,6 @@ public class Intersection {
 
     }
 
-    public static Point2D getIntersectionPoint() {
-        return intersectionPoint;
-    }
-
-    public static void setIntersectionPoint(Point2D intersectionPoint) {
-        Intersection.intersectionPoint = intersectionPoint;
-    }
-
-
 public boolean checkCollision(int epsilonX,int epsilonY,int radius,Polygon polygon){
     Ellipse2D epsilon = new Ellipse2D.Double(epsilonX-radius,epsilonY-radius,radius,radius);
     Area epsilonArea = new Area(epsilon);
@@ -244,113 +231,26 @@ public boolean checkCollision(int epsilonX,int epsilonY,int radius,Polygon polyg
     epsilonArea.intersect(polygonArea);
     return !epsilonArea.isEmpty();
 }
-//public void checkMeleeAttack(){
-//        Point2D epsilonCenter = new Point2D.Double(GamePanel.getEpsilon().getxCenter(),GamePanel.getEpsilon().getyCenter());
-//
-//      for(Trigorath trigorath : GamePanel.getTrigoraths()) {
-//          for (int i = 0; i < 3; i++) {
-//              if (epsilonCenter.distance(trigorath.getxPoints()[i], trigorath.getyPoints()[i]) <= GamePanel.getEpsilon().getRadius()) {
-//
-//                  if(!GamePanel.getEpsilon().getVertex().isEmpty()) {
-//                      for (Vertex vertex : GamePanel.getEpsilon().getVertex()) {
-//                          Point2D vertexCenter = new Point2D.Double(vertex.getX(), vertex.getY());
-//                          if (vertexCenter.distance(trigorath.getxPoints()[i], trigorath.getyPoints()[i]) > vertex.getRadius()) {
-//                              GamePanel.getEpsilon().setHP(GamePanel.getEpsilon().getHP() - 10);
-//                              break;
-//                          }
-//                      }
-//                  }else{
-//                      GamePanel.getEpsilon().setHP(GamePanel.getEpsilon().getHP() - 10);
-//                      break;
-//                  }
-//              }
-//          }
-//      }
-//          for(Squarantine squarantine : GamePanel.getSquarantine()) {
-//              for (int i = 0; i < 4; i++) {
-//                  if (epsilonCenter.distance(squarantine.getxPoints()[i], squarantine.getyPoints()[i]) <= GamePanel.getEpsilon().getRadius()) {
-//                      if (!GamePanel.getEpsilon().getVertex().isEmpty()) {
-//                          for (Vertex vertex : GamePanel.getEpsilon().getVertex()) {
-//                              Point2D vertexCenter = new Point2D.Double(vertex.getX(), vertex.getY());
-//                              if (vertexCenter.distance(squarantine.getxPoints()[i], squarantine.getyPoints()[i]) > GamePanel.getEpsilon().getRadius()) {
-//                                  GamePanel.getEpsilon().setHP(GamePanel.getEpsilon().getHP() - 10);
-//                                  break;
-//                              }
-//                          }
-//                      }
-//                  }else{
-//                      GamePanel.getEpsilon().setHP(GamePanel.getEpsilon().getHP() - 10);
-//                      break;
-//                  }
-//              }
-//          }
-//
-//
-//
-//}
 
 
     public static Point2D getIntersectionPoint2() {
         return intersectionPoint2;
     }
 
-    public static void setIntersectionPoint2(Point2D intersectionPoint2) {
-        Intersection.intersectionPoint2 = intersectionPoint2;
-    }
 
     public static Point2D getIntersectionPoint3() {
         return intersectionPoint3;
     }
 
-    public static void setIntersectionPoint3(Point2D intersectionPoint3) {
-        Intersection.intersectionPoint3 = intersectionPoint3;
-    }
 
     public static Point2D getIntersectionPoint4() {
         return intersectionPoint4;
     }
 
-    public static void setIntersectionPoint4(Point2D intersectionPoint4) {
-        Intersection.intersectionPoint4 = intersectionPoint4;
-    }
 
-    public static Point2D getIntersectionPoint5() {
-        return intersectionPoint5;
-    }
 
-    public static void setIntersectionPoint5(Point2D intersectionPoint5) {
-        Intersection.intersectionPoint5 = intersectionPoint5;
-    }
-
-    public static Point2D getIntersectionPoint6() {
-        return intersectionPoint6;
-    }
-
-    public static void setIntersectionPoint6(Point2D intersectionPoint6) {
-        Intersection.intersectionPoint6 = intersectionPoint6;
-    }
-
-    public static Point2D getIntersectionPoint7() {
-        return intersectionPoint7;
-    }
-
-    public static void setIntersectionPoint7(Point2D intersectionPoint7) {
-        Intersection.intersectionPoint7 = intersectionPoint7;
-    }
-
-    public static Point2D getIntersectionPoint8() {
-        return intersectionPoint8;
-    }
-
-    public static void setIntersectionPoint8(Point2D intersectionPoint8) {
-        Intersection.intersectionPoint8 = intersectionPoint8;
-    }
-
-    public static Point2D getIntersectionPoint9() {
-        return intersectionPoint9;
-    }
-
-    public static void setIntersectionPoint9(Point2D intersectionPoint9) {
-        Intersection.intersectionPoint9 = intersectionPoint9;
+    public static ArrayList<IntersectionPoint> getIntersectionPoints(){
+        if(intersectionPoints==null) intersectionPoints = new ArrayList<>();
+        return intersectionPoints;
     }
 }

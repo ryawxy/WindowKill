@@ -33,18 +33,18 @@ public class Vertex extends GameObjects implements movable{
     @Override
     public void move() {
         Epsilon epsilon = GamePanel.getEpsilon();
-        if(Intersection.getIntersectionPoint()!=null){
-
-            double xPoint = Intersection.getIntersectionPoint().getX();
-            double yPoint = Intersection.getIntersectionPoint().getY();
-            double angle2 =  Math.atan2(getY() - yPoint, getX() - xPoint);
-            double impactSpeed = ImpactSpeed.getImpactspeed(this);
-            xVelocity2 = Math.cos(angle2) * 3;
-            yVelocity2 = Math.sin(angle2) * 3;
-        }else{
-            xVelocity2 = 0;
-            yVelocity2 = 0;
-        }
+//        if(Intersection.getIntersectionPoint()!=null){
+//
+//            double xPoint = Intersection.getIntersectionPoint().getX();
+//            double yPoint = Intersection.getIntersectionPoint().getY();
+//            double angle2 =  Math.atan2(getY() - yPoint, getX() - xPoint);
+//            double impactSpeed = ImpactSpeed.getImpactspeed(this);
+//            xVelocity2 = Math.cos(angle2) * 3;
+//            yVelocity2 = Math.sin(angle2) * 3;
+//        }else{
+//            xVelocity2 = 0;
+//            yVelocity2 = 0;
+//        }
 
         if(Intersection.getIntersectionPoint2()!=null){
 

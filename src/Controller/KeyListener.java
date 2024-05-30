@@ -75,8 +75,10 @@ public class KeyListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (epsilon.getY() - epsilon.getRadius() > 0) {
+
                     if (!downPressed) {
-                        epsilon.setyVelocity(-1 * absVelocity);
+
+                        epsilon.setyVelocity(-1 * absVelocity );
                         shotGun.setyVelocity(-1 * absVelocity);
 
                     }else {
@@ -109,7 +111,7 @@ public class KeyListener {
             public void actionPerformed(ActionEvent e) {
                 if(epsilon.getY() + epsilon.getRadius()< GamePanel.getFRAME_HEIGHT()) {
                     if (!upPressed) {
-                        epsilon.setyVelocity(absVelocity);
+                        epsilon.setyVelocity(absVelocity );
                         shotGun.setyVelocity(absVelocity);
                     }else {
                         epsilon.setyVelocity(0);
@@ -139,7 +141,7 @@ public class KeyListener {
             public void actionPerformed(ActionEvent e) {
                 if(epsilon.getX() - epsilon.getRadius()>0) {
                     if(!rightPressed) {
-                        epsilon.setxVelocity(-1 * absVelocity);
+                        epsilon.setxVelocity(-1 * absVelocity );
                         shotGun.setxVelocity(-1 * absVelocity);
                     }else {
                         epsilon.setxVelocity(0);
@@ -168,7 +170,7 @@ public class KeyListener {
             public void actionPerformed(ActionEvent e) {
                 if(epsilon.getX() + epsilon.getRadius()< GamePanel.getFRAME_WIDTH()) {
                     if(!leftPressed) {
-                        epsilon.setxVelocity(absVelocity);
+                        epsilon.setxVelocity(absVelocity );
                         shotGun.setxVelocity(absVelocity);
                     }else {
                         epsilon.setxVelocity(0);

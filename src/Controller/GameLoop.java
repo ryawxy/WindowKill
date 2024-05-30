@@ -476,7 +476,9 @@ public class GameLoop {
                             if (shotGun.getExpansion() < 20) {
                                 frameSize.expand(intersectionSide);
                                 shotGun.setExpansion(shotGun.getExpansion() + 1);
-                                Intersection.setIntersectionPoint5(new Point2D.Double(shotGun.getX(), shotGun.getY()));
+
+                                IntersectionPoint point = new IntersectionPoint(new Point2D.Double(shotGun.getX(), shotGun.getY()),10);
+                                Intersection.getIntersectionPoints().add(point);
                                 shotGun.setVisible(false);
                             }
                         }
@@ -497,60 +499,12 @@ public class GameLoop {
 
                     countTime++;
 
-                    if(Intersection.getIntersectionPoint()!=null){
-                        impactTimer++;
-                    }
-                    if(impactTimer>=10){
-                        impactTimer = 0;
-                        Intersection.setIntersectionPoint(null);
-                    }
-
-                    if(Intersection.getIntersectionPoint2()!=null){
-                        impactTimer2++;
-                    }
-
-                    if(impactTimer2>=10){
-                        impactTimer2 = 0;
-                        Intersection.setIntersectionPoint2(null);
-                        Intersection.setIntersectionPoint3(null);
-                    }
-                    if(Intersection.getIntersectionPoint4()!=null){
-                        impactTimer3++;
-                    }
-                    if (impactTimer3>=10){
-                        Intersection.setIntersectionPoint4(null);
-                        impactTimer3 = 0;
-                    }
-                    if(Intersection.getIntersectionPoint5()!=null){
-                        impactTimer4++;
-
-                    }
-                    if(impactTimer4>=40){
-                        impactTimer4= 0;
-                        Intersection.setIntersectionPoint5(null);
-                    }
-                    if(Intersection.getIntersectionPoint6()!=null){
-                        impactTimer5++;
-                    }
-
-                    if(impactTimer5>=10){
-                        Intersection.setIntersectionPoint6(null);
-                        Intersection.setIntersectionPoint7(null);
-                        impactTimer5 = 0;
-                    }
-                    if(Intersection.getIntersectionPoint8()!=null){
-                        impactTimer6++;
-                    }
-                    if(impactTimer6>=10){
-                        Intersection.setIntersectionPoint8(null);
-                        impactTimer6 = 0;
-                    }
-                    if(Intersection.getIntersectionPoint9()!=null){
-                        impactTimer7++;
-                    }
-                    if(impactTimer7>=10){
-                        Intersection.setIntersectionPoint9(null);
-                        impactTimer7 = 0;
+                    for(int i=0; i<Intersection.getIntersectionPoints().size();i++){
+                        IntersectionPoint point = Intersection.getIntersectionPoints().get(i);
+                        point.setElapsedTime(point.getElapsedTime()+1);
+                        if(point.getElapsedTime()>=point.getTime()){
+                            Intersection.getIntersectionPoints().remove(point);
+                        }
                     }
 
                     if(ShopFrame.isBanishItem()){
@@ -573,10 +527,8 @@ public class GameLoop {
                                 if (intersection.checkCollision((int) vertex.getxCenter(), (int) vertex.getyCenter(), vertex.getRadius(), trigorath2)) {
                                     VTCollision = true;
                                     trigorath.decreaseHP(true);
-                                    Intersection.setIntersectionPoint2(new Point2D.Double(vertex.getxCenter(), vertex.getyCenter()));
-                                    Intersection.setIntersectionPoint3(new Point2D.Double(trigorath.getX(), trigorath.getY()));
-
-
+                                    IntersectionPoint point = new IntersectionPoint(new Point2D.Double(trigorath.getX(), trigorath.getY()),10);
+                                    Intersection.getIntersectionPoints().add(point);
                                 }
                             }
                         }
@@ -588,8 +540,8 @@ public class GameLoop {
                             Polygon trigorath2 = new Polygon(trigorath3.getxPoints(), trigorath3.getyPoints(), 3);
                             //   if (!VTCollision) {
                             if (intersection.checkCollision(epsilon.getxCenter(), epsilon.getyCenter(), epsilon.getRadius(), trigorath2)) {
-                                Intersection.setIntersectionPoint2(new Point2D.Double(epsilon.getxCenter(), epsilon.getyCenter()));
-                                Intersection.setIntersectionPoint3(new Point2D.Double(trigorath3.getX(), trigorath3.getY()));
+                                IntersectionPoint point = new IntersectionPoint(new Point2D.Double(trigorath3.getX(), trigorath3.getY()),10);
+                                Intersection.getIntersectionPoints().add(point);
                                 epsilon.decreaseHP(EnemyType.Trigorath);
 
                             }
@@ -607,10 +559,8 @@ public class GameLoop {
 
                                     VSCollission = true;
                                     squarantine.decreaseHP(true);
-
-                                    Intersection.setIntersectionPoint2(new Point2D.Double(vertex.getxCenter(), vertex.getyCenter()));
-                                    Intersection.setIntersectionPoint3(new Point2D.Double(squarantine.getX(), squarantine.getY()));
-
+                                    IntersectionPoint point = new IntersectionPoint(new Point2D.Double(squarantine.getX(), squarantine.getY()),10);
+                                    Intersection.getIntersectionPoints().add(point);
 
                                 }
                             }
@@ -623,34 +573,13 @@ public class GameLoop {
                             Polygon squarantine2 = new Polygon(squarantine3.getxPoints(), squarantine3.getyPoints(), 4);
                             //       if (!VSCollission) {
                             if (intersection.checkCollision(epsilon.getxCenter(), epsilon.getyCenter(), epsilon.getRadius(), squarantine2)) {
-                                Intersection.setIntersectionPoint2(new Point2D.Double(epsilon.getxCenter(), epsilon.getyCenter()));
-                                Intersection.setIntersectionPoint3(new Point2D.Double(squarantine3.getX(), squarantine3.getY()));
+                                IntersectionPoint point = new IntersectionPoint(new Point2D.Double(squarantine3.getX(), squarantine3.getY()),10);
+                                Intersection.getIntersectionPoints().add(point);
                                 epsilon.decreaseHP(EnemyType.Squarantine);
                             }
                         }
 
                     }
-
-//                   for(Trigorath trigorath : GamePanel.getTrigoraths()){
-//                       if(trigorath.getHP()<=0){
-//                           if(!hasPlayed2) {
-//                               Game.getSoundPlayer().playSoundEffect("src/Sound/death.wav");
-//                               hasPlayed2 = true;
-//                           }
-//                       }
-//                   }
-//                    for(Squarantine squarantine: GamePanel.getSquarantine()){
-//                        if(squarantine.getHP()<=0){
-//                            if(!hasPlayed2) {
-//                                Game.getSoundPlayer().playSoundEffect("src/Sound/death.wav");
-//                                hasPlayed2 = true;
-//                            }
-//                        }
-//                    }
-//
-//
-//
-//                    hasPlayed2 = false;
                     if(canUseAbility){
 
                         if(GameInfo.getCurrentAbility().equals(CurrentAbility.Aceso)){
@@ -704,9 +633,6 @@ public class GameLoop {
                         KeyListener.setAbilityKeyPressed(false);
                     }
 
-
-
-
                     game.getGameFrame().repaint();
                 }
             }
@@ -718,63 +644,20 @@ public class GameLoop {
         return seconds;
     }
 
-    public static void setSeconds(int seconds) {
-        GameLoop.seconds = seconds;
-    }
-
     public static int getMinutes() {
         return minutes;
-    }
-
-    public static void setMinutes(int minutes) {
-        GameLoop.minutes = minutes;
     }
 
     public static boolean isWin() {
         return win;
     }
 
-    public static void setWin(boolean win) {
-        GameLoop.win = win;
-    }
-
-    public static boolean isVSCollission() {
-        return VSCollission;
-    }
-
-    public static void setVSCollission(boolean VSCollission) {
-        GameLoop.VSCollission = VSCollission;
-    }
-
-    public static boolean isVTCollision() {
-        return VTCollision;
-    }
-
-    public static void setVTCollision(boolean VTCollision) {
-        GameLoop.VTCollision = VTCollision;
-    }
-
     public static boolean isGameDone() {
         return gameDone;
-    }
-
-    public static void setGameDone(boolean gameDone) {
-        GameLoop.gameDone = gameDone;
-    }
-
-    public int getLastXP() {
-        return lastXP;
-    }
-
-    public void setLastXP(int lastXP) {
-        this.lastXP = lastXP;
     }
 
     public static boolean isLose() {
         return lose;
     }
 
-    public static void setLose(boolean lose) {
-        GameLoop.lose = lose;
-    }
 }

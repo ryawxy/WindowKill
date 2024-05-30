@@ -40,188 +40,53 @@ public class Epsilon extends GameObjects implements movable {
         setX(x);
         setY(y);
 
-
     }
 
     @Override
     public void move() {
 
+        xVelocity2 = 0;
+        yVelocity2 = 0;
+
         double xPoint2 = getX();
         double yPoint2 = getY();
         Point2D point2D = new Point2D.Double(xPoint2,yPoint2);
-        if(Intersection.getIntersectionPoint()!=null){
-
-            double xPoint = Intersection.getIntersectionPoint().getX();
-            double yPoint = Intersection.getIntersectionPoint().getY();
-            double angle2 =  Math.atan2(getY() - yPoint, getX() - xPoint);
 
 
-            double distance = point2D.distance(Intersection.getIntersectionPoint());
-            if(distance>=30) {
-                xVelocity2 = Math.cos(angle2) * 4;
-                yVelocity2 = Math.sin(angle2) * 4;
-            }else if(distance>=20 && distance<30){
-                xVelocity2 = Math.cos(angle2) * 5;
-                yVelocity2 = Math.sin(angle2) * 5;
-            }else if (distance>=10 && distance<=20){
-                xVelocity2 = Math.cos(angle2) * 6;
-                yVelocity2 = Math.sin(angle2) * 6;
-            }
-        }else{
-            xVelocity2 = 0;
-            yVelocity2 = 0;
-        }
+        for(IntersectionPoint point : Intersection.getIntersectionPoints()){
 
-        if(Intersection.getIntersectionPoint3()!=null){
-
-            double xPoint = Intersection.getIntersectionPoint3().getX();
-            double yPoint = Intersection.getIntersectionPoint3().getY();
+                        double xPoint = point.getPoint().getX();
+            double yPoint = point.getPoint().getY();
             double angle3 =  Math.atan2(getY() - yPoint, getX() - xPoint);
 
-            double distance = point2D.distance(Intersection.getIntersectionPoint3());
-            if(distance>=30) {
-                xVelocity3 = Math.cos(angle3) * 4;
-                yVelocity3 = Math.sin(angle3) * 4;
-            }else if(distance>=20 && distance<30){
-                xVelocity3 = Math.cos(angle3) * 5;
-                yVelocity3 = Math.sin(angle3) * 5;
-            }else if (distance>=10 && distance<=20){
-                xVelocity3 = Math.cos(angle3) * 6;
-                yVelocity3 = Math.sin(angle3) * 6;
-            }
-        }else{
-            xVelocity3 = 0;
-            yVelocity3 = 0;
-        }
-        if(Intersection.getIntersectionPoint4()!=null){
-
-            double xPoint = Intersection.getIntersectionPoint4().getX();
-            double yPoint = Intersection.getIntersectionPoint4().getY();
-            double angle3 =  Math.atan2(getY() - yPoint, getX() - xPoint);
-
-            double distance = point2D.distance(Intersection.getIntersectionPoint4());
-            if(distance>=30) {
-                xVelocity4 = Math.cos(angle3) * 4;
-                yVelocity4 = Math.sin(angle3) * 4;
-            }else if(distance>=20 && distance<30){
-                xVelocity4 = Math.cos(angle3) * 5;
-                yVelocity4 = Math.sin(angle3) * 5;
-            }else if (distance>=10 && distance<=20){
-                xVelocity4 = Math.cos(angle3) * 6;
-                yVelocity4 = Math.sin(angle3) * 6;
-            }
-        }else{
-            xVelocity4 = 0;
-            yVelocity4 = 0;
-        }
-        if(Intersection.getIntersectionPoint5()!=null){
-
-            double xPoint = Intersection.getIntersectionPoint5().getX();
-            double yPoint = Intersection.getIntersectionPoint5().getY();
-            double angle3 =  Math.atan2(getY() - yPoint, getX() - xPoint);
-
-            double distance = point2D.distance(Intersection.getIntersectionPoint5());
-            if(distance>=30) {
-                xVelocity5 = Math.cos(angle3) * 4;
-                yVelocity5 = Math.sin(angle3) * 4;
-            }else if(distance>=20 && distance<30){
-                xVelocity5 = Math.cos(angle3) * 5;
-                yVelocity5 = Math.sin(angle3) * 5;
-            }else if (distance>=10 && distance<=20){
-                xVelocity5 = Math.cos(angle3) * 6;
-                yVelocity5 = Math.sin(angle3) * 6;
-            }
-        }else{
-            xVelocity5 = 0;
-            yVelocity5 = 0;
-        }
-        if(Intersection.getIntersectionPoint8()!=null){
-
-            double xPoint = Intersection.getIntersectionPoint8().getX();
-            double yPoint = Intersection.getIntersectionPoint8().getY();
-            double angle3 =  Math.atan2(getY() - yPoint, getX() - xPoint);
-
-            double distance = point2D.distance(Intersection.getIntersectionPoint8());
-            if(distance>=30) {
-                xVelocity8 = Math.cos(angle3) * 4;
-                yVelocity8 = Math.sin(angle3) * 4;
-            }else if(distance>=20 && distance<30){
-                xVelocity8 = Math.cos(angle3) * 5;
-                yVelocity8 = Math.sin(angle3) * 5;
-            }else if (distance>=10 && distance<=20){
-                xVelocity8 = Math.cos(angle3) * 6;
-                yVelocity8 = Math.sin(angle3) * 6;
-            }
-        }else{
-            xVelocity8 = 0;
-            yVelocity8 = 0;
-        }
-        if(Intersection.getIntersectionPoint9()!=null){
-
-            double xPoint = Intersection.getIntersectionPoint9().getX();
-            double yPoint = Intersection.getIntersectionPoint9().getY();
-            double angle3 =  Math.atan2(getY() - yPoint, getX() - xPoint);
-
-            double distance = point2D.distance(Intersection.getIntersectionPoint9());
-            if(distance>=30) {
-                xVelocity9 = Math.cos(angle3) * 4;
-                yVelocity9 = Math.sin(angle3) * 4;
-            }else if(distance>=20 && distance<30){
-                xVelocity9 = Math.cos(angle3) * 5;
-                yVelocity9 = Math.sin(angle3) * 5;
-            }else if (distance>=10 && distance<=20){
-                xVelocity9 = Math.cos(angle3) * 6;
-                yVelocity9 = Math.sin(angle3) * 6;
-            }
-        }else{
-            xVelocity9 = 0;
-            yVelocity9 = 0;
+                            xVelocity2 += Math.cos(angle3) * 4;
+                yVelocity2 += Math.sin(angle3) * 4;
         }
         if(getY()-radius<=0){
-            yVelocity2=0;
-          //  xVelocity2=0;
-         //   xVelocity3=0;
-            yVelocity3=0;
-            yVelocity4=0;
-            yVelocity5=0;
-            yVelocity8 = 0;
-            yVelocity9 = 0;
+
+
+            yVelocity2 = 0;
         }
         if(getY() + radius>= GamePanel.getFRAME_HEIGHT()) {
-            yVelocity2=0;
-         //   xVelocity2=0;
-        //    xVelocity3=0;
-            yVelocity3=0;
-            yVelocity4=0;
-            yVelocity5=0;
-            yVelocity8 = 0;
-            yVelocity9 = 0;
+            yVelocity2 = 0;
+
         }
         if(getX() - radius<=0) {
-         //   yVelocity2=0;
-            xVelocity2=0;
-            xVelocity3=0;
-         //   yVelocity3=0;
-            xVelocity4=0;
-            xVelocity5=0;
-            xVelocity8 = 0;
-            xVelocity9 = 0;
+
+            xVelocity2 = 0;
+
         }
         if(getX() + radius>= GamePanel.getFRAME_WIDTH()) {
-         //   yVelocity2=0;
-            xVelocity2=0;
-            xVelocity3=0;
-            xVelocity4=0;
-            xVelocity5=0;
-            xVelocity8 = 0;
-            xVelocity9 = 0;
-         //   yVelocity3=0;
+
+            xVelocity2 = 0;
+
         }
 
-        this.setX((int) (getX()+xVelocity+xVelocity2+xVelocity3+xVelocity4+xVelocity5+xVelocity8+xVelocity9));
-        this.setY((int) (getY()+yVelocity+yVelocity2+yVelocity3+yVelocity4+yVelocity5+yVelocity8+yVelocity9));
-        this.setxCenter( (getxCenter()+xVelocity+xVelocity2+xVelocity4+xVelocity5+xVelocity8+xVelocity9));
-        this.setyCenter( (getyCenter()+yVelocity+yVelocity2+yVelocity4+yVelocity5+yVelocity8+yVelocity9));
+
+        this.setX((int) (getX()+xVelocity2+getxVelocity()));
+        this.setY((int) (getY()+yVelocity2+getyVelocity()));
+        this.setxCenter( (getxCenter()+xVelocity2+getxVelocity()));
+        this.setyCenter( (getyCenter()+yVelocity2+getyVelocity()));
 
     }
 
@@ -289,16 +154,10 @@ public class Epsilon extends GameObjects implements movable {
         else setHP(getHP()-10);
             Game.getSoundPlayer().playSoundEffect("src/Sound/epsilon.wav");
 
-
-
     }
 
     public ArrayList<Vertex> getVertex() {
         return vertex;
-    }
-
-    public void setVertex(ArrayList<Vertex> vertex) {
-        this.vertex = vertex;
     }
 
     public int getVertexNumber() {
@@ -320,108 +179,4 @@ public class Epsilon extends GameObjects implements movable {
         }
     }
 
-
-    public void setxVelocity(double xVelocity) {
-        this.xVelocity = xVelocity;
-    }
-
-    public void setyVelocity(double yVelocity) {
-        this.yVelocity = yVelocity;
-    }
-
-    public double getxVelocity2() {
-        return xVelocity2;
-    }
-
-    public void setxVelocity2(double xVelocity2) {
-        this.xVelocity2 = xVelocity2;
-    }
-
-    public double getyVelocity2() {
-        return yVelocity2;
-    }
-
-    public void setyVelocity2(double yVelocity2) {
-        this.yVelocity2 = yVelocity2;
-    }
-
-    public double getxVelocity3() {
-        return xVelocity3;
-    }
-
-    public void setxVelocity3(double xVelocity3) {
-        this.xVelocity3 = xVelocity3;
-    }
-
-    public double getyVelocity3() {
-        return yVelocity3;
-    }
-
-    public void setyVelocity3(double yVelocity3) {
-        this.yVelocity3 = yVelocity3;
-    }
-
-    public double getxVelocity4() {
-        return xVelocity4;
-    }
-
-    public void setxVelocity4(double xVelocity4) {
-        this.xVelocity4 = xVelocity4;
-    }
-
-    public double getyVelocity4() {
-        return yVelocity4;
-    }
-
-    public void setyVelocity4(double yVelocity4) {
-        this.yVelocity4 = yVelocity4;
-    }
-
-    public double getxVelocity5() {
-        return xVelocity5;
-    }
-
-    public void setxVelocity5(double xVelocity5) {
-        this.xVelocity5 = xVelocity5;
-    }
-
-    public double getyVelocity5() {
-        return yVelocity5;
-    }
-
-    public void setyVelocity5(double yVelocity5) {
-        this.yVelocity5 = yVelocity5;
-    }
-
-    public double getxVelocity8() {
-        return xVelocity8;
-    }
-
-    public void setxVelocity8(double xVelocity8) {
-        this.xVelocity8 = xVelocity8;
-    }
-
-    public double getyVelocity8() {
-        return yVelocity8;
-    }
-
-    public void setyVelocity8(double yVelocity8) {
-        this.yVelocity8 = yVelocity8;
-    }
-
-    public double getxVelocity9() {
-        return xVelocity9;
-    }
-
-    public void setxVelocity9(double xVelocity9) {
-        this.xVelocity9 = xVelocity9;
-    }
-
-    public double getyVelocity9() {
-        return yVelocity9;
-    }
-
-    public void setyVelocity9(double yVelocity9) {
-        this.yVelocity9 = yVelocity9;
-    }
 }

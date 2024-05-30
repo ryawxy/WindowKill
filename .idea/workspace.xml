@@ -5,23 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="added sound settings">
+      <change afterPath="$PROJECT_DIR$/src/Model/IntersectionPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_10_2024_4_50_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_10_2024_4_50_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_10_2024_4_56_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_10_2024_4_56_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_10_2024_5_11_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_10_2024_5_11_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_10_2024_5_16_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_10_2024_5_16_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_10_2024_5_20_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_4_10_2024_5_20_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameLoop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Intersection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Intersection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/KeyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/KeyListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Epsilon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Epsilon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GlassFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/GlassFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Squarantine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Squarantine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Trigorath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Trigorath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Vertex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Vertex.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Wave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Wave.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sound/SoundPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sound/SoundPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/GameInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/SkillTreeFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/SkillTreeFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/StarterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/StarterMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/myproject/MyProject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/myproject/MyProject.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +69,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Namazi/Ap2024/WindowKill2/src"
+    "last_opened_file_path": "C:/Users/Namazi/Ap2024/WindowKill"
   }
 }]]></component>
   <component name="RecentsManager">
