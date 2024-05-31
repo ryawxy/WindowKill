@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Epsilon;
+import Model.GameInfo;
 import Model.ShotGun;
 import View.GamePanel;
 import View.Settings.SettingsFrame;
@@ -36,8 +37,8 @@ public class KeyListener {
 
     public KeyListener(GamePanel gameFrame){
         this.gameFrame = gameFrame;
-        epsilon = GamePanel.getEpsilon();
-        shotGun = GamePanel.getShotGun();
+        epsilon = Game.getEpsilon();
+        shotGun = Game.getShotGun();
         createKeyBindings();
         createKeyActions();
 

@@ -1,7 +1,7 @@
 package View;
 
-import Controller.CurrentAbility;
-import Controller.GameInfo;
+import Model.CurrentAbility;
+import Model.GameInfo;
 import myproject.MyProject;
 
 import javax.swing.*;

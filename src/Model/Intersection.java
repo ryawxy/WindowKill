@@ -1,6 +1,6 @@
-package Controller;
+package Model;
 
-import Model.*;
+import Controller.Game;
 import View.GamePanel;
 import myproject.MyProject;
 
@@ -10,7 +10,6 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Intersection {
     GamePanel gamePanel;
@@ -66,8 +65,8 @@ public class Intersection {
         //check if a shot intersects with squarantine
         // if so decrease its HP
         // if its HP reaches 0 , it dies
-        for(int j = 0; j< GamePanel.getSquarantine().size(); j++) {
-            Squarantine squarantine = GamePanel.getSquarantine().get(j);
+        for(int j = 0; j< Game.getSquarantine().size(); j++) {
+            Squarantine squarantine = Game.getSquarantine().get(j);
             squarantine2 = new Polygon(squarantine.getxPoints(),squarantine.getyPoints(),3);
             if(!squarantine.isDead()){
             for (int i = 0; i < ShotGun.getShots().size(); i++) {
@@ -90,8 +89,8 @@ public class Intersection {
         // if so decrease its HP
         // if its HP reaches 0 , it dies
 
-        for(int j = 0; j< GamePanel.getTrigoraths().size(); j++) {
-            Trigorath trigorath = GamePanel.getTrigoraths().get(j);
+        for(int j = 0; j< Game.getTrigoraths().size(); j++) {
+            Trigorath trigorath = Game.getTrigoraths().get(j);
             trigorath2 = new Polygon(trigorath.getxPoints(),trigorath.getyPoints(),3);
             if(!trigorath.isDead()){
             for (int i = 0; i < ShotGun.getShots().size(); i++) {
@@ -115,9 +114,9 @@ public class Intersection {
         // check if epsilon intersects with collectibles
         // if so add to epsilons XP
 
-        Epsilon epsilon = GamePanel.getEpsilon();
+        Epsilon epsilon = Game.getEpsilon();
 
-        for(Trigorath trigorath : GamePanel.getTrigoraths()){
+        for(Trigorath trigorath : Game.getTrigoraths()){
             if(trigorath.isShowCollectibles()){
 
                 for(int i=0;i<trigorath.getCollectibles().size();i++){
@@ -142,7 +141,7 @@ public class Intersection {
             }
         }
 
-        for(Squarantine squarantine : GamePanel.getSquarantine()){
+        for(Squarantine squarantine : Game.getSquarantine()){
             if(squarantine.isShowCollectibles()){
 
                 for(int i=0;i<squarantine.getCollectibles().size();i++){
@@ -169,10 +168,10 @@ public class Intersection {
     public void enemyIntersection(){
         ArrayList<Point2D> points = new ArrayList<>();
         ArrayList<Point2D> points2 = new ArrayList<>();
-        for(Trigorath trigorath : GamePanel.getTrigoraths()){
+        for(Trigorath trigorath : Game.getTrigoraths()){
             Polygon trigorath2 = new Polygon(trigorath.getxPoints(), trigorath.getyPoints(), 3);
             if(!trigorath.isDead()){
-            for(Trigorath trigorath1 : GamePanel.getTrigoraths()) {
+            for(Trigorath trigorath1 : Game.getTrigoraths()) {
                 if(!trigorath1.isDead()) {
                     if (!trigorath.equals(trigorath1)) {
 
@@ -193,8 +192,8 @@ public class Intersection {
 
         }
 
-        for(Squarantine squarantine : GamePanel.getSquarantine()){
-            for(Squarantine squarantine1 : GamePanel.getSquarantine()){
+        for(Squarantine squarantine : Game.getSquarantine()){
+            for(Squarantine squarantine1 : Game.getSquarantine()){
                 if(!squarantine.equals(squarantine1)){
                     Rectangle squarantine2 = new Rectangle(squarantine.getxPoints()[0],squarantine.getyPoints()[0],20,20);
                     Rectangle squarantine3 = new Rectangle(squarantine1.getxPoints()[0],squarantine1.getyPoints()[0],20,20);

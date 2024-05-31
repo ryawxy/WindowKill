@@ -17,10 +17,6 @@ public class IntersectionPoint {
         return point;
     }
 
-    public void setPoint(Point2D point) {
-        this.point = point;
-    }
-
     public int getElapsedTime() {
         return elapsedTime;
     }

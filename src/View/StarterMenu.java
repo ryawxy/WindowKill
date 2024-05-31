@@ -1,7 +1,7 @@
 package View;
 
 import Controller.Game;
-import Controller.GameLoop;
+import Model.GameLoop;
 import Controller.KeyListener;
 import View.Settings.SettingsFrame;
 import myproject.MyProject;
@@ -10,7 +10,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -151,7 +150,7 @@ public class StarterMenu extends JFrame {
                         GamePanel.setFRAME_HEIGHT(700);
                         GlassFrame.getINSTANCE().getContentPane().setLocation(450,100);
 
-                    GamePanel.getEpsilon().setHP(100);
+                    Game.getEpsilon().setHP(100);
                         gameLoop.start();
                         gameLoop.elapsedTime();
                     }

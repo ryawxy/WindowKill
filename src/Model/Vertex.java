@@ -1,7 +1,6 @@
 package Model;
 
-import Controller.ImpactSpeed;
-import Controller.Intersection;
+import Controller.Game;
 import View.GamePanel;
 
 public class Vertex extends GameObjects implements movable{
@@ -32,7 +31,7 @@ public class Vertex extends GameObjects implements movable{
 
     @Override
     public void move() {
-        Epsilon epsilon = GamePanel.getEpsilon();
+        Epsilon epsilon = Game.getEpsilon();
 //        if(Intersection.getIntersectionPoint()!=null){
 //
 //            double xPoint = Intersection.getIntersectionPoint().getX();
@@ -102,22 +101,13 @@ public class Vertex extends GameObjects implements movable{
         yVelocity = epsilon.getyVelocity();
         xVelocity2 = epsilon.getxVelocity2();
         yVelocity2 = epsilon.getyVelocity2();
-        xVelocity3 = epsilon.getxVelocity3();
-        yVelocity3 = epsilon.getyVelocity3();
-        xVelocity4 = epsilon.getxVelocity4();
-        yVelocity4 = epsilon.getyVelocity4();
-        xVelocity5 = epsilon.getxVelocity5();
-        yVelocity5 = epsilon.getyVelocity5();
-        xVelocity8 = epsilon.getxVelocity8();
-        yVelocity8 = epsilon.getyVelocity8();
-        xVelocity9 = epsilon.getxVelocity9();
-        yVelocity9 = epsilon.getyVelocity9();
 
 
-        this.setX((int) (getX()+xVelocity+xVelocity2+xVelocity3+xVelocity4+xVelocity5+xVelocity8+xVelocity9));
-        this.setY((int) (getY()+yVelocity+yVelocity2+yVelocity3+yVelocity4+yVelocity5+yVelocity8+yVelocity9));
-        this.setxCenter( (getxCenter()+xVelocity+xVelocity2+xVelocity3+xVelocity4+xVelocity5+xVelocity8+xVelocity9));
-        this.setyCenter( (getyCenter()+yVelocity+yVelocity2+yVelocity3+yVelocity4+yVelocity5+yVelocity8+yVelocity9));
+
+        this.setX((int) (getX()+xVelocity+xVelocity2));
+        this.setY((int) (getY()+yVelocity+yVelocity2));
+        this.setxCenter( (getxCenter()+xVelocity+xVelocity2));
+        this.setyCenter( (getyCenter()+yVelocity+yVelocity2));
 
 
     }

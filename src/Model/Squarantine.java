@@ -1,9 +1,7 @@
 package Model;
 
 import Controller.Constants;
-import Controller.Intersection;
 import Controller.Game;
-import View.GamePanel;
 import View.ShopFrame;
 
 import java.awt.geom.Point2D;
@@ -39,7 +37,7 @@ public class Squarantine extends GameObjects implements movable {
 
     public Squarantine(int x, int y) {
         super(x, y);
-        epsilon = GamePanel.getEpsilon();
+        epsilon = Game.getEpsilon();
         initializeCollectibles();
     }
 
@@ -115,9 +113,10 @@ public class Squarantine extends GameObjects implements movable {
             double xPoint = point.getPoint().getX();
             double yPoint = point.getPoint().getY();
             double angle3 =  Math.atan2(getY() - yPoint, getX() - xPoint);
+            double distance = point2D.distance(point.getPoint());
 
-            xVelocity = Math.cos(angle3) * 4;
-            yVelocity = Math.sin(angle3) * 4;
+            xVelocity = Math.cos(angle3) * Constants.getImpactSpeed((int) distance);
+            yVelocity = Math.sin(angle3) * Constants.getImpactSpeed((int) distance);
         }
         this.setxVelocity((int) ((int) (speed * Math.cos(angle))+xVelocity));
         this.setyVelocity((int) ((int) (speed * Math.sin(angle))+yVelocity));

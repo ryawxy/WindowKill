@@ -1,7 +1,6 @@
 package Model;
 
-import Controller.ImpactSpeed;
-import Controller.Intersection;
+import Controller.Constants;
 import Controller.Game;
 import View.GamePanel;
 
@@ -20,16 +19,7 @@ public class Epsilon extends GameObjects implements movable {
     private int XP = 2000;
     private double xVelocity2;
     private double yVelocity2;
-    private double xVelocity3;
-    private double yVelocity3;
-    private double xVelocity4;
-    private double yVelocity4;
-    private double xVelocity5;
-    private double yVelocity5;
-    private double xVelocity8;
-    private double yVelocity8;
-    private double xVelocity9;
-    private double yVelocity9;
+
     private ArrayList<Vertex> vertex = new ArrayList<>();
     private int vertexNumber;
 
@@ -58,9 +48,10 @@ public class Epsilon extends GameObjects implements movable {
                         double xPoint = point.getPoint().getX();
             double yPoint = point.getPoint().getY();
             double angle3 =  Math.atan2(getY() - yPoint, getX() - xPoint);
+            double distance = point2D.distance(point.getPoint());
 
-                            xVelocity2 += Math.cos(angle3) * 4;
-                yVelocity2 += Math.sin(angle3) * 4;
+                            xVelocity2 += Math.cos(angle3) * Constants.getImpactSpeed((int) distance);
+                yVelocity2 += Math.sin(angle3) * Constants.getImpactSpeed((int) distance);
         }
         if(getY()-radius<=0){
 
@@ -154,6 +145,14 @@ public class Epsilon extends GameObjects implements movable {
         else setHP(getHP()-10);
             Game.getSoundPlayer().playSoundEffect("src/Sound/epsilon.wav");
 
+    }
+
+    public double getxVelocity2() {
+        return xVelocity2;
+    }
+
+    public double getyVelocity2() {
+        return yVelocity2;
     }
 
     public ArrayList<Vertex> getVertex() {

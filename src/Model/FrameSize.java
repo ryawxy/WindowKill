@@ -1,5 +1,9 @@
-package Controller;
+package Model;
 
+import Controller.Constants;
+import Controller.Game;
+import Model.Direction;
+import Model.GameLoop;
 import View.GamePanel;
 
 import java.awt.*;
@@ -18,7 +22,7 @@ public class FrameSize {
     }
     public void shrink (){
      minSize = 200;
-     if(GameLoop.isWin()  && GamePanel.getEpsilon().getRadius()>=GamePanel.getFRAME_HEIGHT()){
+     if(GameLoop.isWin()  && Game.getEpsilon().getRadius()>=GamePanel.getFRAME_HEIGHT()){
          minSize = 0;
      }
      if(GameLoop.isLose()){
@@ -27,7 +31,7 @@ public class FrameSize {
 
         if(GamePanel.getFRAME_WIDTH()>=minSize && GamePanel.getFRAME_HEIGHT()>=minSize){
 
-            gamePanel.setFRAME_WIDTH(GamePanel.getFRAME_WIDTH()-2*Constants.shrinkAmount());
+            gamePanel.setFRAME_WIDTH(GamePanel.getFRAME_WIDTH()-2* Constants.shrinkAmount());
             //   Constants.setFrameWidth(Constants.getFrameWidth()-2*Constants.shrinkAmount());
             gamePanel.setFRAME_HEIGHT(GamePanel.getFRAME_HEIGHT()-2*Constants.shrinkAmount());
             //   Constants.setFrameHeight(Constants.getFrameHeight()-2*Constants.shrinkAmount());

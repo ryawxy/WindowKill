@@ -3,7 +3,7 @@ package myproject;
 import Controller.Constants;
 
 import Model.Epsilon;
-import Controller.GameInfo;
+import Model.GameInfo;
 
 import View.Settings.SettingsFrame;
 import View.StarterMenu;

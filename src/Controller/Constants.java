@@ -111,6 +111,16 @@ public class Constants {
 
         return 50;
     }
+    public static int getImpactSpeed(int distance){
+
+        if(distance >=40){
+            return 3;
+        }else if(distance<=20){
+            return 4;
+        }else {
+            return 5;
+        }
+    }
 
 
 

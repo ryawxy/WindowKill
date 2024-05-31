@@ -24,8 +24,8 @@ public class MouseListener extends MouseInputAdapter {
     private static boolean shootinEmpowerMode;
     public MouseListener(GamePanel gamePanel){
         this.gamePanel = gamePanel;
-        shotGun = GamePanel.getShotGun();
-        epsilon = GamePanel.getEpsilon();
+        shotGun = Game.getShotGun();
+        epsilon = Game.getEpsilon();
 
     }
 
@@ -33,9 +33,9 @@ public class MouseListener extends MouseInputAdapter {
         mouseX = e.getX();
         mouseY = e.getY();
 
-        angle2 = Math.atan2(mouseY - GamePanel.getEpsilon().getY(), mouseX - GamePanel.getEpsilon().getX());
-        double fireX = GamePanel.getEpsilon().getX() + GamePanel.getEpsilon().getRadius() * Math.cos(angle2);
-        double fireY = GamePanel.getEpsilon().getY() + GamePanel.getEpsilon().getRadius() * Math.sin(angle2);
+        angle2 = Math.atan2(mouseY - Game.getEpsilon().getY(), mouseX - Game.getEpsilon().getX());
+        double fireX = Game.getEpsilon().getX() + Game.getEpsilon().getRadius() * Math.cos(angle2);
+        double fireY = Game.getEpsilon().getY() + Game.getEpsilon().getRadius() * Math.sin(angle2);
         angle = Math.atan2(mouseY - epsilon.getY(), mouseX - epsilon.getX());
         angleDegrees = Math.toDegrees(angle);
 

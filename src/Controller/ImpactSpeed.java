@@ -3,15 +3,14 @@ package Controller;
 import Model.GameObjects;
 import Model.Squarantine;
 import Model.Trigorath;
-import View.GamePanel;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 public class ImpactSpeed {
 
-    static ArrayList<Trigorath> trigoraths = GamePanel.getTrigoraths();
-    static ArrayList<Squarantine> squarantines = GamePanel.getSquarantine();
+    static ArrayList<Trigorath> trigoraths = Game.getTrigoraths();
+    static ArrayList<Squarantine> squarantines = Game.getSquarantine();
     static double distance;
     static int impactspeed;
     static Point2D point;

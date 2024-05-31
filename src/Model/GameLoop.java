@@ -1,7 +1,6 @@
-package Controller;
+package Model;
 
-import Model.*;
-import Sound.SoundPlayer;
+import Controller.*;
 import View.*;
 import View.Settings.SettingsFrame;
 import myproject.MyProject;
@@ -106,25 +105,25 @@ public class GameLoop {
 
                         if(SettingsFrame.getChosenLevel()==0) {
                             for (Squarantine squarantine : wave.wave1EasySquarantine) {
-                                GamePanel.getSquarantine().add(squarantine);
+                                Game.getSquarantine().add(squarantine);
 
                             }
                             for (Trigorath trigorath : wave.wave1EasyTrigorath) {
-                                GamePanel.getTrigoraths().add(trigorath);
+                                Game.getTrigoraths().add(trigorath);
                             }
                         }else        if(SettingsFrame.getChosenLevel()==1) {
                             for (Squarantine squarantine : wave.wave1MediumSquarantine) {
-                                GamePanel.getSquarantine().add(squarantine);
+                                Game.getSquarantine().add(squarantine);
                             }
                             for (Trigorath trigorath : wave.wave1MediumTrigorath) {
-                                GamePanel.getTrigoraths().add(trigorath);
+                                Game.getTrigoraths().add(trigorath);
                             }
                         }else  if(SettingsFrame.getChosenLevel()==2) {
                             for (Squarantine squarantine : wave.wave1HardSquarantine) {
-                                GamePanel.getSquarantine().add(squarantine);
+                                Game.getSquarantine().add(squarantine);
                             }
                             for (Trigorath trigorath : wave.wave1HardTrigorath) {
-                                GamePanel.getTrigoraths().add(trigorath);
+                                Game.getTrigoraths().add(trigorath);
                             }
                         }
                         wave1Created = true;
@@ -140,24 +139,24 @@ public class GameLoop {
 
                     //if wave 1 ended create wave2
                     if (!wave2Created) {
-                        for (Trigorath trigorath : GamePanel.getTrigoraths()) {
+                        for (Trigorath trigorath : Game.getTrigoraths()) {
                             if (trigorath.isDead()) {
                                 deadT++;
 
                             }
                         }
-                        for (Squarantine squarantine : GamePanel.getSquarantine()) {
+                        for (Squarantine squarantine : Game.getSquarantine()) {
                             if (squarantine.isDead()) {
                                 deadS++;
 
                             }
                         }
                     }
-                    if (deadT >= GamePanel.getTrigoraths().size() && deadS >= GamePanel.getSquarantine().size()) {
+                    if (deadT >= Game.getTrigoraths().size() && deadS >= Game.getSquarantine().size()) {
                         timeBetweenWave++;
                         if (timeBetweenWave > 500){
-                            GamePanel.getSquarantine().clear();
-                            GamePanel.getTrigoraths().clear();
+                            Game.getSquarantine().clear();
+                            Game.getTrigoraths().clear();
                             //    if(nextWave>=200) {
                             wave.initWave2();
                             if (!wave2Created && wave1Created) {
@@ -165,24 +164,24 @@ public class GameLoop {
 
                                 if(SettingsFrame.getChosenLevel()==0) {
                                     for (Squarantine squarantine : wave.wave2EasySquarantine) {
-                                        GamePanel.getSquarantine().add(squarantine);
+                                        Game.getSquarantine().add(squarantine);
                                     }
                                     for (Trigorath trigorath : wave.wave2EasyTrigorath) {
-                                        GamePanel.getTrigoraths().add(trigorath);
+                                        Game.getTrigoraths().add(trigorath);
                                     }
                                 }else        if(SettingsFrame.getChosenLevel()==1) {
                                     for (Squarantine squarantine : wave.wave2MediumSquarantine) {
-                                        GamePanel.getSquarantine().add(squarantine);
+                                        Game.getSquarantine().add(squarantine);
                                     }
                                     for (Trigorath trigorath : wave.wave2MediumTrigorath) {
-                                        GamePanel.getTrigoraths().add(trigorath);
+                                        Game.getTrigoraths().add(trigorath);
                                     }
                                 }else  if(SettingsFrame.getChosenLevel()==2) {
                                     for (Squarantine squarantine : wave.wave2HardSquarantine) {
-                                        GamePanel.getSquarantine().add(squarantine);
+                                        Game.getSquarantine().add(squarantine);
                                     }
                                     for (Trigorath trigorath : wave.wave2HardTrigorath) {
-                                        GamePanel.getTrigoraths().add(trigorath);
+                                        Game.getTrigoraths().add(trigorath);
                                     }
                                 }
                                 wave2Created = true;
@@ -195,25 +194,25 @@ public class GameLoop {
                     deadS = 0;
                     deadT =0 ;
                     if(!wave3Created) {
-                        for (Trigorath trigorath : GamePanel.getTrigoraths()) {
+                        for (Trigorath trigorath : Game.getTrigoraths()) {
                             if (trigorath.isDead()) {
                                 deadT++;
 
                             }
                         }
-                        for (Squarantine squarantine : GamePanel.getSquarantine()) {
+                        for (Squarantine squarantine : Game.getSquarantine()) {
                             if (squarantine.isDead()) {
                                 deadS++;
 
                             }
                         }
                     }
-                    if(deadT>=GamePanel.getTrigoraths().size() && deadS>=GamePanel.getSquarantine().size()) {
+                    if(deadT>= Game.getTrigoraths().size() && deadS>= Game.getSquarantine().size()) {
                         timeBetweenWave++;
                         if (timeBetweenWave > 500) {
 
-                            GamePanel.getSquarantine().clear();
-                            GamePanel.getTrigoraths().clear();
+                            Game.getSquarantine().clear();
+                            Game.getTrigoraths().clear();
 
                             wave.initWave3();
                             if (!wave3Created && wave2Created) {
@@ -221,24 +220,24 @@ public class GameLoop {
 
                                 if(SettingsFrame.getChosenLevel()==0) {
                                     for (Squarantine squarantine : Wave.wave3EasySquarantine) {
-                                        GamePanel.getSquarantine().add(squarantine);
+                                        Game.getSquarantine().add(squarantine);
                                     }
                                     for (Trigorath trigorath : wave.wave3EasyTrigorath) {
-                                        GamePanel.getTrigoraths().add(trigorath);
+                                        Game.getTrigoraths().add(trigorath);
                                     }
                                 }else        if(SettingsFrame.getChosenLevel()==1) {
                                     for (Squarantine squarantine : wave.wave3MediumSquarantine) {
-                                        GamePanel.getSquarantine().add(squarantine);
+                                        Game.getSquarantine().add(squarantine);
                                     }
                                     for (Trigorath trigorath : wave.wave3MediumTrigorath) {
-                                        GamePanel.getTrigoraths().add(trigorath);
+                                        Game.getTrigoraths().add(trigorath);
                                     }
                                 }else  if(SettingsFrame.getChosenLevel()==2) {
                                     for (Squarantine squarantine : wave.wave3HardSquarantine) {
-                                        GamePanel.getSquarantine().add(squarantine);
+                                        Game.getSquarantine().add(squarantine);
                                     }
                                     for (Trigorath trigorath : wave.wave3HardTrigorath) {
-                                        GamePanel.getTrigoraths().add(trigorath);
+                                        Game.getTrigoraths().add(trigorath);
                                     }
                                 }
                                 wave3Created = true;
@@ -251,23 +250,23 @@ public class GameLoop {
                     deadS = 0;
                     deadT =0 ;
                     if(wave3Created) {
-                        for (Trigorath trigorath : GamePanel.getTrigoraths()) {
+                        for (Trigorath trigorath : Game.getTrigoraths()) {
                             if (trigorath.isDead()) {
                                 deadT++;
 
                             }
                         }
-                        for (Squarantine squarantine : GamePanel.getSquarantine()) {
+                        for (Squarantine squarantine : Game.getSquarantine()) {
                             if (squarantine.isDead()) {
                                 deadS++;
 
                             }
                         }
                     }
-                    if(deadT>=GamePanel.getTrigoraths().size() && deadS>=GamePanel.getSquarantine().size()){
+                    if(deadT>= Game.getTrigoraths().size() && deadS>= Game.getSquarantine().size()){
                         win = true;
-                        if(GamePanel.getEpsilon().getRadius()<GamePanel.getFRAME_WIDTH() && GamePanel.getEpsilon().getRadius()<=GamePanel.getFRAME_HEIGHT()) {
-                            GamePanel.getEpsilon().setRadius(GamePanel.getEpsilon().getRadius() + 1);
+                        if(Game.getEpsilon().getRadius()<GamePanel.getFRAME_WIDTH() && Game.getEpsilon().getRadius()<=GamePanel.getFRAME_HEIGHT()) {
+                            Game.getEpsilon().setRadius(Game.getEpsilon().getRadius() + 1);
 
                         }
 
@@ -313,14 +312,14 @@ public class GameLoop {
                             GamePanel.setFRAME_WIDTH(700);
                             GamePanel.setFRAME_HEIGHT(700);
                             gameDone = true;
-                            lastXP = GamePanel.getEpsilon().getXP();
+                            lastXP = Game.getEpsilon().getXP();
                             KeyListener.setKeyPressedNumber(0);
                             KeyListener.setAbilityKeyPressed(false);
                             GameInfo.setCurrentAbility(null);
-                            GamePanel.getSquarantine().clear();
-                            GamePanel.getTrigoraths().clear();
+                            Game.getSquarantine().clear();
+                            Game.getTrigoraths().clear();
 
-                            GamePanel.getEpsilon().getVertex().clear();
+                            Game.getEpsilon().getVertex().clear();
                             hasPlayed = false;
                             timer.stop();
                             elapsedTimer.stop();
@@ -329,7 +328,7 @@ public class GameLoop {
 
                     }
 
-                    if(GamePanel.getEpsilon().getHP()<=0) lose = true;
+                    if(Game.getEpsilon().getHP()<=0) lose = true;
                     if(lose && !hasPlayed){
                         Game.getSoundPlayer().playSoundEffect("src/Sound/gameover.wav");
                         GamePanel.setFRAME_WIDTH(0);
@@ -371,14 +370,14 @@ public class GameLoop {
                             KeyListener.setPauseGame(true);
 
                             gameDone = true;
-                            lastXP = GamePanel.getEpsilon().getXP();
+                            lastXP = Game.getEpsilon().getXP();
                             KeyListener.setKeyPressedNumber(0);
                             KeyListener.setAbilityKeyPressed(false);
                             GameInfo.setCurrentAbility(null);
-                            SkillTreeFrame.setCurrentXP(GamePanel.getEpsilon().getXP());
-                            GamePanel.getEpsilon().getVertex().clear();
-                            GamePanel.getSquarantine().clear();
-                            GamePanel.getTrigoraths().clear();
+                            SkillTreeFrame.setCurrentXP(Game.getEpsilon().getXP());
+                            Game.getEpsilon().getVertex().clear();
+                            Game.getSquarantine().clear();
+                            Game.getTrigoraths().clear();
                             hasPlayed = false;
                             lose = false;
                             timer.stop();
@@ -415,18 +414,18 @@ public class GameLoop {
                         }
                     }
 
-                    for(int i=0;i<GamePanel.getSquarantine().size();i++) {
-                        Squarantine squarantine = GamePanel.getSquarantine().get(i);
+                    for(int i = 0; i< Game.getSquarantine().size(); i++) {
+                        Squarantine squarantine = Game.getSquarantine().get(i);
                         squarantine.move();
 
                     }
-                    for (int i = 0; i < GamePanel.getTrigoraths().size(); i++) {
-                        Trigorath trigorath = GamePanel.getTrigoraths().get(i);
+                    for (int i = 0; i < Game.getTrigoraths().size(); i++) {
+                        Trigorath trigorath = Game.getTrigoraths().get(i);
                         trigorath.move();
 
                     }
-                    GamePanel.getEpsilon().move();
-                    for(Vertex vertex : GamePanel.getEpsilon().getVertex()){
+                    Game.getEpsilon().move();
+                    for(Vertex vertex : Game.getEpsilon().getVertex()){
                         vertex.move();
                     }
 
@@ -436,9 +435,9 @@ public class GameLoop {
                     intersection.epsilonIntersectsCollectible();
                     //      intersection.epsilonIntersectEnemy();
                     intersection.enemyIntersection();
-                    for(Trigorath trigorath : GamePanel.getTrigoraths()){
+                    for(Trigorath trigorath : Game.getTrigoraths()){
                         Polygon trigorath2 = new Polygon(trigorath.getxPoints(),trigorath.getyPoints(),3);
-                        for(Squarantine squarantine : GamePanel.getSquarantine()){
+                        for(Squarantine squarantine : Game.getSquarantine()){
                             Polygon squarantine2 = new Polygon(squarantine.getxPoints(),squarantine.getyPoints(),4);
                             intersection.getIntersectionPoint(trigorath2,squarantine2);
                         }
@@ -488,7 +487,7 @@ public class GameLoop {
 
 
                     //if trigorath is dead show its collectibles for 10 seconds
-                    for (Trigorath trigorath : GamePanel.getTrigoraths()) {
+                    for (Trigorath trigorath : Game.getTrigoraths()) {
                         if (trigorath.isShowCollectibles()) {
                             trigorath.setTimer(trigorath.getTimer() + 1);
                             if (trigorath.getTimer() > 300) {
@@ -515,13 +514,13 @@ public class GameLoop {
                         ShopFrame.setBanishItem(false);
                     }
                     if(ShopFrame.isHealItem()){
-                        GamePanel.getEpsilon().setHP(GamePanel.getEpsilon().getHP()+10);
+                        Game.getEpsilon().setHP(Game.getEpsilon().getHP()+10);
                         ShopFrame.setHealItem(false);
                     }
-                    for(Trigorath trigorath:GamePanel.getTrigoraths() ) {
+                    for(Trigorath trigorath: Game.getTrigoraths() ) {
                         if (!trigorath.isDead()) {
                             VTCollision = false;
-                            Epsilon epsilon = GamePanel.getEpsilon();
+                            Epsilon epsilon = Game.getEpsilon();
                             Polygon trigorath2 = new Polygon(trigorath.getxPoints(), trigorath.getyPoints(), 3);
                             for (Vertex vertex : epsilon.getVertex()) {
                                 if (intersection.checkCollision((int) vertex.getxCenter(), (int) vertex.getyCenter(), vertex.getRadius(), trigorath2)) {
@@ -533,10 +532,10 @@ public class GameLoop {
                             }
                         }
                     }
-                    for(Trigorath trigorath3:GamePanel.getTrigoraths() ) {
+                    for(Trigorath trigorath3: Game.getTrigoraths() ) {
                         if (!trigorath3.isDead()) {
 
-                            Epsilon epsilon = GamePanel.getEpsilon();
+                            Epsilon epsilon = Game.getEpsilon();
                             Polygon trigorath2 = new Polygon(trigorath3.getxPoints(), trigorath3.getyPoints(), 3);
                             //   if (!VTCollision) {
                             if (intersection.checkCollision(epsilon.getxCenter(), epsilon.getyCenter(), epsilon.getRadius(), trigorath2)) {
@@ -549,10 +548,10 @@ public class GameLoop {
                     }
 
 
-                    for(Squarantine squarantine:GamePanel.getSquarantine() ) {
+                    for(Squarantine squarantine: Game.getSquarantine() ) {
                         if (!squarantine.isDead()) {
                             VSCollission = false;
-                            Epsilon epsilon = GamePanel.getEpsilon();
+                            Epsilon epsilon = Game.getEpsilon();
                             Polygon squarantine2 = new Polygon(squarantine.getxPoints(), squarantine.getyPoints(), 4);
                             for (Vertex vertex : epsilon.getVertex()) {
                                 if (intersection.checkCollision((int) vertex.getxCenter(), (int) vertex.getyCenter(), vertex.getRadius(), squarantine2)) {
@@ -566,10 +565,10 @@ public class GameLoop {
                             }
                         }
                     }
-                    for(Squarantine squarantine3:GamePanel.getSquarantine() ){
+                    for(Squarantine squarantine3: Game.getSquarantine() ){
                         if(!squarantine3.isDead()) {
                             VSCollission = false;
-                            Epsilon epsilon = GamePanel.getEpsilon();
+                            Epsilon epsilon = Game.getEpsilon();
                             Polygon squarantine2 = new Polygon(squarantine3.getxPoints(), squarantine3.getyPoints(), 4);
                             //       if (!VSCollission) {
                             if (intersection.checkCollision(epsilon.getxCenter(), epsilon.getyCenter(), epsilon.getRadius(), squarantine2)) {
@@ -587,8 +586,8 @@ public class GameLoop {
 
                             if((currentTime - acesoTimer)/(1000)>=1) {
                                 for(int i=1;i<=KeyListener.getKeyPressedNumber();i++) {
-                                    if (GamePanel.getEpsilon().getHP() < 100) {
-                                        GamePanel.getEpsilon().setHP(GamePanel.getEpsilon().getHP() + 1);
+                                    if (Game.getEpsilon().getHP() < 100) {
+                                        Game.getEpsilon().setHP(Game.getEpsilon().getHP() + 1);
                                         acesoTimer = currentTime;
                                     }
                                 }
@@ -603,8 +602,8 @@ public class GameLoop {
                             canUseAbility = false;
                         }else if(GameInfo.getCurrentAbility().equals(CurrentAbility.Proteus)){
 
-                            GamePanel.getEpsilon().setVertexNumber(GamePanel.getEpsilon().getVertexNumber()+1);
-                            GamePanel.getEpsilon().addVertex();
+                            Game.getEpsilon().setVertexNumber(Game.getEpsilon().getVertexNumber()+1);
+                            Game.getEpsilon().addVertex();
 
 
                             canUseAbility = false;
