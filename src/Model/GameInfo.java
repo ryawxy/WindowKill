@@ -6,6 +6,8 @@ public class GameInfo  {
 
     private static CurrentAbility currentAbility;
     private static boolean aresUnlocked;
+
+
     private static boolean acesoUnlocked;
     private static boolean proteusUnlocked;
     private static boolean canActivateAbility = true;

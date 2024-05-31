@@ -10,6 +10,7 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class SkillTreeFrame extends JFrame {
@@ -22,13 +23,23 @@ public class SkillTreeFrame extends JFrame {
     private String[] option = {"yes","no"};
     JLabel attack;
     JButton ares;
+    JButton astrape;
+    JButton cerberus;
     JLabel defence;
     JButton aceso;
+    JButton melampus;
+    JButton chiron;
+    JButton athena;
     JLabel transformation;
     JButton proteus;
+    JButton empusa;
+    JButton dolus;
     JButton exit;
+    private final ArrayList<JButton> attackButtons = new ArrayList<>();
+    private final ArrayList<JButton> defenceButtons = new ArrayList<>();
+    private final ArrayList<JButton> transformationButtons = new ArrayList<>();
+
     private static int currentXP;
-    private GameInfo gameInfo;
 
     public SkillTreeFrame(){
 
@@ -44,34 +55,47 @@ public class SkillTreeFrame extends JFrame {
         this.add(label);
         label.setOpaque(false);
 
+
+        ares = new JButton("Ares");
+        astrape = new JButton("Astrape");
+        cerberus = new JButton("Cerberus");
+
+        attackButtons.add(ares);
+        attackButtons.add(astrape);
+        attackButtons.add(cerberus);
+
+
 //attack ability
-        Font fontStyle = new Font("Magneto",Font.BOLD,40);
+        Font fontStyle = new Font("Magneto",Font.BOLD,30);
         attack = new JLabel("Attack");
         attack.setFont(fontStyle);
         Color fontClr = Color.BLACK;
         attack.setForeground(fontClr);
         Color backClr = Color.WHITE;
         attack.setBackground(backClr);
-        attack.setBounds(30,100,170,50);
+        attack.setBounds(25,100,170,50);
         label.add(attack);
 
-//ares button
-        ares = new JButton("Ares");
-         fontStyle = new Font("Algerian",Font.BOLD,30);
-        ares.setFont(fontStyle);
-         fontClr = Color.WHITE;
-        ares.setForeground(fontClr);
-        if(!GameInfo.isAresUnlocked()) backClr = Color.GRAY;
-        else{
-            backClr = Color.BLACK;
+        //attack buttons
+        for(int i=0; i<attackButtons.size(); i++){
+            JButton button = attackButtons.get(i);
+            fontStyle = new Font("Algerian",Font.BOLD,20);
+            button.setFont(fontStyle);
+            fontClr = Color.WHITE;
+            button.setForeground(fontClr);
+            if(!GameInfo.isAresUnlocked()) backClr = Color.GRAY;
+            else{
+                backClr = Color.BLACK;
+            }
+            button.setBackground(backClr);
+            button.setBorderPainted(false);
+            button.setFocusPainted(false);
+            button.setBounds(160+i*130,80,120,80);
+            button.setBorder(null);
+            label.add(button);
+
         }
-        ares.setBackground(backClr);
-        ares.setBorderPainted(false);
-        //  start.setContentAreaFilled(false);
-        ares.setFocusPainted(false);
-        ares.setBounds(280,80,150,80);
-        ares.setBorder(null);
-      //  ares.setContentAreaFilled(false);
+
         ares.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -112,36 +136,47 @@ public class SkillTreeFrame extends JFrame {
             }
         });
 
-        label.add(ares);
+
 
         //defence ability
-         fontStyle = new Font("Magneto",Font.BOLD,40);
+         fontStyle = new Font("Magneto",Font.BOLD,30);
         defence = new JLabel("Defence");
         defence.setFont(fontStyle);
          fontClr = Color.BLACK;
         defence.setForeground(fontClr);
          backClr = Color.WHITE;
         defence.setBackground(backClr);
-        defence.setBounds(30,200,200,50);
+        defence.setBounds(25,200,200,50);
         label.add(defence);
 
-//aceso button
         aceso = new JButton("Aceso");
-        fontStyle = new Font("Algerian",Font.BOLD,30);
-        aceso.setFont(fontStyle);
-        fontClr = Color.WHITE;
-        aceso.setForeground(fontClr);
-        if(!GameInfo.isAcesoUnlocked()) backClr = Color.GRAY;
-        else{
-            backClr = Color.BLACK;
+        melampus = new JButton("Melampus");
+        chiron = new JButton("Chiron");
+        athena = new JButton("Athena");
+
+        defenceButtons.add(aceso);
+        defenceButtons.add(melampus);
+        defenceButtons.add(chiron);
+        defenceButtons.add(athena);
+//defence buttons
+        for(int i=0; i<defenceButtons.size(); i++){
+            JButton button = defenceButtons.get(i);
+            fontStyle = new Font("Algerian",Font.BOLD,20);
+            button.setFont(fontStyle);
+            fontClr = Color.WHITE;
+            button.setForeground(fontClr);
+            if(!GameInfo.isAresUnlocked()) backClr = Color.GRAY;
+            else{
+                backClr = Color.BLACK;
+            }
+            button.setBackground(backClr);
+            button.setBorderPainted(false);
+            button.setFocusPainted(false);
+            button.setBounds(160+i*130,180,120,80);
+            button.setBorder(null);
+            label.add(button);
+
         }
-        aceso.setBackground(backClr);
-        aceso.setBorderPainted(false);
-        //  start.setContentAreaFilled(false);
-        aceso.setFocusPainted(false);
-        aceso.setBounds(280,180,150,80);
-        aceso.setBorder(null);
-        //  ares.setContentAreaFilled(false);
         aceso.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -183,10 +218,10 @@ public class SkillTreeFrame extends JFrame {
             }
         });
 
-        label.add(aceso);
+
 
         //transformation ability
-        fontStyle = new Font("Magneto",Font.BOLD,40);
+        fontStyle = new Font("Magneto",Font.BOLD,30);
         transformation = new JLabel("Transform");
         transformation.setFont(fontStyle);
         fontClr = Color.BLACK;
@@ -196,21 +231,35 @@ public class SkillTreeFrame extends JFrame {
         transformation.setBounds(30,300,250,50);
         label.add(transformation);
 
-//proteus button
+
         proteus = new JButton("Proteus");
-        fontStyle = new Font("Algerian",Font.BOLD,30);
-        proteus.setFont(fontStyle);
-        fontClr = Color.WHITE;
-        proteus.setForeground(fontClr);
-        if(!GameInfo.isProteusUnlocked()) backClr = Color.GRAY;
-        else{
-            backClr = Color.BLACK;
+        empusa = new JButton("Empusa");
+        dolus = new JButton("Dolus");
+
+        transformationButtons.add(proteus);
+        transformationButtons.add(empusa);
+        transformationButtons.add(dolus);
+
+        //transformation buttons
+        for(int i=0; i<transformationButtons.size(); i++){
+            JButton button = transformationButtons.get(i);
+            fontStyle = new Font("Algerian",Font.BOLD,20);
+            button.setFont(fontStyle);
+            fontClr = Color.WHITE;
+            button.setForeground(fontClr);
+            if(!GameInfo.isAresUnlocked()) backClr = Color.GRAY;
+            else{
+                backClr = Color.BLACK;
+            }
+            button.setBackground(backClr);
+            button.setBorderPainted(false);
+            button.setFocusPainted(false);
+            button.setBounds(290+i*130,280,120,80);
+            button.setBorder(null);
+            label.add(button);
+
         }
-        proteus.setBackground(backClr);
-        proteus.setBorderPainted(false);
-        proteus.setFocusPainted(false);
-        proteus.setBounds(280,280,150,80);
-        proteus.setBorder(null);
+
 
         proteus.addActionListener(new ActionListener() {
             @Override
@@ -228,8 +277,6 @@ public class SkillTreeFrame extends JFrame {
                             GameInfo.setProteusUnlocked(true);
 
                             MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP()-1000);
-
-                            System.out.println(currentXP);
                         }
                     }
                 }else{
@@ -254,7 +301,7 @@ public class SkillTreeFrame extends JFrame {
             }
         });
 
-        label.add(proteus);
+
 
         //exit button
         exit = new JButton("Exit");
@@ -265,7 +312,6 @@ public class SkillTreeFrame extends JFrame {
         backClr = new Color(100,100,200);
         exit.setBackground(backClr);
         exit.setBorderPainted(false);
-        //  start.setContentAreaFilled(false);
         exit.setFocusPainted(false);
         exit.setBounds(600,600,80,80);
         exit.setBorder(null);

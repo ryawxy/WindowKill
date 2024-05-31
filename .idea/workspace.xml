@@ -4,35 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="made collisions cleaner">
-      <change afterPath="$PROJECT_DIR$/src/Model/Drawable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/EpsilonView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/GameInfoView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/ShotGunView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/SquarantineView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/TrigorathView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/VertexView.java" afterDir="false" />
+    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="made paint methods cleaner">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CurrentAbility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/CurrentAbility.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Direction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/FrameSize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/FrameSize.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GameInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ImpactSpeed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ImpactSpeed.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Intersection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Intersection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/KeyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/KeyListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/MouseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MouseListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Epsilon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Epsilon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/IntersectionPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/IntersectionPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Squarantine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Squarantine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Trigorath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Trigorath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Vertex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Vertex.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/GameInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/SkillTreeFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/SkillTreeFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/StarterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/StarterMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/myproject/MyProject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/myproject/MyProject.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +40,7 @@
     </excluded-from-favorite>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="masterV2.0" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -83,7 +58,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "masterV2.0",
+    "git-widget-placeholder": "SkillTreeV2.0",
     "last_opened_file_path": "C:/Users/Namazi/Ap2024/puzzle5"
   }
 }]]></component>
@@ -237,7 +212,23 @@
       <option name="project" value="LOCAL" />
       <updated>1717095490220</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="made paint methods cleaner">
+      <option name="closed" value="true" />
+      <created>1717167729736</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1717167729736</updated>
+    </task>
+    <task id="LOCAL-00017" summary="made paint methods cleaner">
+      <option name="closed" value="true" />
+      <created>1717167734907</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1717167734907</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -268,6 +259,7 @@
     <MESSAGE value="added waves" />
     <MESSAGE value="added sound settings" />
     <MESSAGE value="made collisions cleaner" />
-    <option name="LAST_COMMIT_MESSAGE" value="made collisions cleaner" />
+    <MESSAGE value="made paint methods cleaner" />
+    <option name="LAST_COMMIT_MESSAGE" value="made paint methods cleaner" />
   </component>
 </project>
