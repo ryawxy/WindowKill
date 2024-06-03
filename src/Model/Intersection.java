@@ -31,6 +31,7 @@ public class Intersection {
     public Intersection(GamePanel gamePanel) throws IOException {
         this.gamePanel = gamePanel;
     }
+    public Intersection(){}
 
     public Direction shotIntersectsFrame(ShotGun shotGun) {
 
@@ -73,10 +74,10 @@ public class Intersection {
                 ShotGun shot = ShotGun.getShots().get(i);
                 if(shot.isVisible()) {
                     if (squarantine2.intersects(shot.getX(), shot.getY(), shot.getWidth(), shot.getHeight())) {
-                        IntersectionPoint point = new IntersectionPoint(new Point2D.Double(shot.getX(),shot.getY()),10);
+                        IntersectionPoint point = new IntersectionPoint(new Point2D.Double(shot.getX(),shot.getY()),10,false,true,shot,squarantine);
                         intersectionPoints.add(point);
                         shot.setVisible(false);
-                        squarantine.decreaseHP(false);
+                        squarantine.decreaseHP(5);
                     }
                 }
 
@@ -97,11 +98,11 @@ public class Intersection {
                 ShotGun shot = ShotGun.getShots().get(i);
                 if(shot.isVisible()) {
                     if (trigorath2.intersects(shot.getX(), shot.getY(), shot.getWidth(), shot.getHeight())) {
-                        IntersectionPoint point = new IntersectionPoint( new Point2D.Double(shot.getX(),shot.getY()),10);
+                        IntersectionPoint point = new IntersectionPoint( new Point2D.Double(shot.getX(),shot.getY()),10,false,true,shot,trigorath);
                         intersectionPoints.add(point);
 
                         shot.setVisible(false);
-                        trigorath.decreaseHP(false);
+                        trigorath.decreaseHP(5);
                     }
                 }
 
@@ -168,6 +169,7 @@ public class Intersection {
     public void enemyIntersection(){
         ArrayList<Point2D> points = new ArrayList<>();
         ArrayList<Point2D> points2 = new ArrayList<>();
+        Trigorath t = new Trigorath(10,100);
         for(Trigorath trigorath : Game.getTrigoraths()){
             Polygon trigorath2 = new Polygon(trigorath.getxPoints(), trigorath.getyPoints(), 3);
             if(!trigorath.isDead()){
@@ -180,11 +182,12 @@ public class Intersection {
                         }
                     }
                 }
+                t = trigorath1;
             }
             }
             for (Point2D point2D : points) {
                 if (trigorath2.contains(point2D)) {
-                    IntersectionPoint point = new IntersectionPoint(point2D,10);
+                    IntersectionPoint point = new IntersectionPoint(point2D,10,false,false,trigorath,t);
                     intersectionPoints.add(point);
                     intersectionPoint = point2D;
                 }
@@ -199,7 +202,7 @@ public class Intersection {
                     Rectangle squarantine3 = new Rectangle(squarantine1.getxPoints()[0],squarantine1.getyPoints()[0],20,20);
                     if(squarantine2.intersects(squarantine3)){
                         Rectangle intersection = squarantine2.intersection(squarantine3);
-                        IntersectionPoint point = new IntersectionPoint( new Point2D.Double(intersection.x,intersection.y),10);
+                        IntersectionPoint point = new IntersectionPoint( new Point2D.Double(intersection.x,intersection.y),10,false,false,squarantine1,squarantine);
                         intersectionPoints.add(point);
                     }
                 }
@@ -208,14 +211,20 @@ public class Intersection {
 
 
     }
-    public void  getIntersectionPoint(Polygon shape1, Polygon shape2) {
+    public void  getIntersectionPoint() {
+        for(Trigorath trigorath : Game.getTrigoraths()){
+            for(Squarantine squarantine : Game.getSquarantine()){
+                Polygon trigorath1 = new Polygon(trigorath.getxPoints(), trigorath.getyPoints(), 3);
+                Polygon squarantine1 = new Polygon(squarantine.getxPoints(), squarantine.getyPoints(), 4);
 
-        for (int i = 0; i < shape1.npoints; i++) {
-            for (int j = 0; j < shape2.npoints; j++) {
-                if (shape1.contains(shape2.xpoints[j], shape2.ypoints[j])) {
-                    IntersectionPoint point = new IntersectionPoint(new Point2D.Double(shape2.xpoints[j], shape2.ypoints[j]),10);
-                    intersectionPoints.add(point);
+                for (int i = 0; i < trigorath1.npoints; i++) {
+                    for (int j = 0; j < squarantine1.npoints; j++) {
+                        if (trigorath1.contains(squarantine1.xpoints[j], squarantine1.ypoints[j])) {
+                            IntersectionPoint point = new IntersectionPoint(new Point2D.Double(squarantine1.xpoints[j], squarantine1.ypoints[j]),30,false,false,trigorath,squarantine);
+                            intersectionPoints.add(point);
 
+                        }
+                    }
                 }
             }
         }

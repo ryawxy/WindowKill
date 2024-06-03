@@ -51,9 +51,5 @@ public class GameObjects extends JLabel {
     public void setHeight(int height) {
         this.height = height;
     }
-
-
-    public void setBackground(BufferedImage background) {
-        this.background = background;
-    }
+    public void decreaseHP(int decrement){}
 }

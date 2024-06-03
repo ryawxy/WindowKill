@@ -1,21 +1,13 @@
 
 package Controller;
 
-
-import Controller.KeyListener;
-import Controller.MouseListener;
-import Model.Epsilon;
-import Model.ShotGun;
-import Model.Squarantine;
-import Model.Trigorath;
+import Model.*;
 import Sound.SoundPlayer;
 import View.*;
-
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class Game {
@@ -29,11 +21,15 @@ public class Game {
     private static TrigorathView trigorathView;
     private static SquarantineView squarantineView;
     private static VertexView vertexView;
+    private static CerberusView cerberusView;
     private static GameInfoView gameInfoView;
     protected GamePanel gamePanel;
     protected KeyListener keyListener;
     protected MouseListener mouseListener;
     private static SoundPlayer soundPlayer;
+    private static HashMap<Ability,Integer> skillTreeAbilities;
+    private static ArrayList<Ability> currentAbilities;
+    private  static ArrayList<Cerberus> cerberuses;
 
     public Game() throws IOException, AWTException {
 
@@ -45,6 +41,8 @@ public class Game {
         shotGun.setWidth(Constants.getShotGunWidth());
         shotGun.setHeight(Constants.getShotGunHeight());
 
+        cerberuses = new ArrayList<>();
+
 
         squarantines = new ArrayList<>();
         trigoraths = new ArrayList<>();
@@ -55,6 +53,20 @@ public class Game {
         squarantineView = new SquarantineView();
         vertexView = new VertexView();
         gameInfoView = new GameInfoView();
+        cerberusView = new CerberusView();
+        currentAbilities = new ArrayList<>();
+
+        skillTreeAbilities = new HashMap<>();
+        skillTreeAbilities.put(Ability.Ares,0);
+        skillTreeAbilities.put(Ability.Astrape,0);
+        skillTreeAbilities.put(Ability.Cerberus,0);
+        skillTreeAbilities.put(Ability.Aceso,0);
+        skillTreeAbilities.put(Ability.Melampus,0);
+        skillTreeAbilities.put(Ability.Chiron,0);
+        skillTreeAbilities.put(Ability.Proteus,0);
+        skillTreeAbilities.put(Ability.Dolus,0);
+        skillTreeAbilities.put(Ability.Empusa,0);
+
 
         gamePanel = new GamePanel();
         keyListener = new KeyListener(gamePanel);
@@ -111,5 +123,13 @@ public class Game {
 
     public static GameInfoView getGameInfoView() {
         return gameInfoView;
+    }
+
+    public static ArrayList<Cerberus> getCerberuses() {
+        return cerberuses;
+    }
+
+    public static CerberusView getCerberusView() {
+        return cerberusView;
     }
 }

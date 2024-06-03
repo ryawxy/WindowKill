@@ -1,6 +1,8 @@
 package View;
 
-import Model.CurrentAbility;
+import Controller.Game;
+import Controller.SkillTreeController;
+import Model.Ability;
 import Model.GameInfo;
 import myproject.MyProject;
 
@@ -15,34 +17,35 @@ import java.util.Objects;
 
 public class SkillTreeFrame extends JFrame {
 
-    private final int SkillTree_WIDTH = 700;
-    private final int SkillTree_HEIGHT = 700;
-    private final Dimension SCREEN_SIZE = new Dimension(SkillTree_WIDTH,SkillTree_HEIGHT);
     ImageIcon image;
     JLabel label;
     private String[] option = {"yes","no"};
-    JLabel attack;
-    JButton ares;
-    JButton astrape;
-    JButton cerberus;
-    JLabel defence;
-    JButton aceso;
-    JButton melampus;
-    JButton chiron;
-    JButton athena;
-    JLabel transformation;
-    JButton proteus;
-    JButton empusa;
-    JButton dolus;
-    JButton exit;
+   private JLabel attack;
+   private JButton ares;
+   private JButton astrape;
+   private JButton cerberus;
+    private JLabel defence;
+    private JButton aceso;
+  private JButton melampus;
+    private JButton chiron;
+   private JButton athena;
+   private JLabel transformation;
+    private JButton proteus;
+    private JButton empusa;
+   private JButton dolus;
+   private final JButton exit;
     private final ArrayList<JButton> attackButtons = new ArrayList<>();
     private final ArrayList<JButton> defenceButtons = new ArrayList<>();
     private final ArrayList<JButton> transformationButtons = new ArrayList<>();
+    private SkillTreeController skillTreeController = new SkillTreeController();
 
     private static int currentXP;
 
     public SkillTreeFrame(){
 
+        int skillTree_WIDTH = 700;
+        int skillTree_HEIGHT = 700;
+        Dimension SCREEN_SIZE = new Dimension(skillTree_WIDTH, skillTree_HEIGHT);
         this.setSize(SCREEN_SIZE);
         this.setTitle("Window Kill");
         this.setLocationRelativeTo(null);
@@ -82,8 +85,9 @@ public class SkillTreeFrame extends JFrame {
             fontStyle = new Font("Algerian",Font.BOLD,20);
             button.setFont(fontStyle);
             fontClr = Color.WHITE;
+
             button.setForeground(fontClr);
-            if(!GameInfo.isAresUnlocked()) backClr = Color.GRAY;
+            if(!GameInfo.getAttackLocks().get(button.getText())) backClr = Color.GRAY;
             else{
                 backClr = Color.BLACK;
             }
@@ -94,48 +98,74 @@ public class SkillTreeFrame extends JFrame {
             button.setBorder(null);
             label.add(button);
 
-        }
+            int finalI = i;
+            button.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    boolean canUnlock = true;
+                    if (!GameInfo.getAttackLocks().get(button.getText())) {
 
-        ares.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (!GameInfo.isAresUnlocked()) {
-                    if (MyProject.getGameInfo().getXP() < 750) {
-                        JOptionPane.showMessageDialog(SkillTreeFrame.this,
-                                "You don't have enough XP to unlock this ability.");
+                        for (int j = finalI - 1; j >= 0; j--) {
+
+                            if (!GameInfo.getAttackLocks().get(GameInfo.getAttackLocks().keySet().toArray()[j])) {
+
+                                canUnlock = false;
+                                break;
+                            }
+                        }
+
+                        if (canUnlock) {
+
+                            if (MyProject.getGameInfo().getXP() < skillTreeController.getItemsXP().get(button.getText())) {
+                                JOptionPane.showMessageDialog(SkillTreeFrame.this,
+                                        "You don't have enough XP to unlock this ability.");
+                            } else {
+
+                                int purchase = JOptionPane.showOptionDialog(SkillTreeFrame.this,
+                                        "this ability costs" + skillTreeController.getItemsXP().get(button.getText()) +
+                                                " XP.DO you want to unlock it?", null, JOptionPane.DEFAULT_OPTION,
+                                        JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
+                                if (purchase == 0) {
+                                    GameInfo.getAttackLocks().replace(button.getText(), true);
+
+
+                                    MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() - skillTreeController.getItemsXP().get(button.getText()));
+                                }
+                            }
+
+
+                        } else {
+                            JOptionPane.showMessageDialog(SkillTreeFrame.this,
+                                    "You haven't unlocked past abilities yet.");
+                        }
                     } else {
-
                         int purchase = JOptionPane.showOptionDialog(SkillTreeFrame.this,
-                                "this ability costs 750 XP.DO you want to unlock it?", null, JOptionPane.DEFAULT_OPTION,
+                                "Do you want to use this ability?", null, JOptionPane.DEFAULT_OPTION,
                                 JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
                         if (purchase == 0) {
-                            GameInfo.setAresUnlocked(true);
-                            MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP()-750);
 
+                            GameInfo.getCurrentAbility().put(Ability.valueOf(button.getText()), true);
                         }
                     }
-                }else{
-                    int purchase = JOptionPane.showOptionDialog(SkillTreeFrame.this,
-                            "Do you want to use this ability?", null, JOptionPane.DEFAULT_OPTION,
-                            JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
-                    if (purchase == 0) {
+                }
 
-                        GameInfo.setCurrentAbility(CurrentAbility.Ares);
+
+            });
+            button.addChangeListener(new ChangeListener() {
+                @Override
+                public void stateChanged(ChangeEvent e) {
+
+                    if(GameInfo.getAttackLocks().get(button.getText())){
+
+
+                        button.setBackground(Color.BLACK);
                     }
                 }
-            }
-        });
-        ares.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
+            });
 
-                if(GameInfo.isAresUnlocked()){
+            label.add(button);
 
-                    ares.setBackground(Color.BLACK);
-                }
-            }
-        });
-
+        }
 
 
         //defence ability
@@ -159,66 +189,93 @@ public class SkillTreeFrame extends JFrame {
         defenceButtons.add(chiron);
         defenceButtons.add(athena);
 //defence buttons
-        for(int i=0; i<defenceButtons.size(); i++){
+        for(int i=0; i<defenceButtons.size(); i++) {
             JButton button = defenceButtons.get(i);
-            fontStyle = new Font("Algerian",Font.BOLD,20);
+            fontStyle = new Font("Algerian", Font.BOLD, 20);
             button.setFont(fontStyle);
             fontClr = Color.WHITE;
             button.setForeground(fontClr);
-            if(!GameInfo.isAresUnlocked()) backClr = Color.GRAY;
-            else{
+
+            if (!GameInfo.getDefenceLocks().get(button.getText())) backClr = Color.GRAY;
+            else {
                 backClr = Color.BLACK;
             }
             button.setBackground(backClr);
             button.setBorderPainted(false);
             button.setFocusPainted(false);
-            button.setBounds(160+i*130,180,120,80);
+            button.setBounds(160 + i * 130, 180, 120, 80);
             button.setBorder(null);
             label.add(button);
 
-        }
-        aceso.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(!GameInfo.isAcesoUnlocked()) {
-                    if(MyProject.getGameInfo().getXP() < 500) {
-                        JOptionPane.showMessageDialog(SkillTreeFrame.this,
-                                "You don't have enough XP to unlock this ability.");
-                    } else {
+            int finalI = i;
+            button.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
 
-                        int purchase = JOptionPane.showOptionDialog(SkillTreeFrame.this,
-                                "this ability costs 500 XP.DO you want to unlock it?", null, JOptionPane.DEFAULT_OPTION,
-                                JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
-                        if (purchase == 0) {
-                            GameInfo.setAcesoUnlocked(true);
-                            MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP()-500);
+                    boolean canUnlock = true;
+                    if (!GameInfo.getDefenceLocks().get(button.getText())) {
+                        for (int j = finalI - 1; j >= 0; j--) {
+
+                            if (!GameInfo.getDefenceLocks().get(GameInfo.getDefenceLocks().keySet().toArray()[j])) {
+
+                                canUnlock = false;
+                                break;
+                            }
+
+                            if (button.getText().equals(String.valueOf(Ability.Athena))) {
+                                if (!GameInfo.getAttackLocks().get(String.valueOf(Ability.Astrape))) canUnlock = false;
+                                break;
+                            }
 
 
                         }
-                    }
-                }else{
-                    int purchase = JOptionPane.showOptionDialog(SkillTreeFrame.this,
-                            "Do you want to use this ability?", null, JOptionPane.DEFAULT_OPTION,
-                            JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
-                    if (purchase == 0) {
+                        if (canUnlock) {
+                            if (MyProject.getGameInfo().getXP() < skillTreeController.getItemsXP().get(button.getText())) {
+                                JOptionPane.showMessageDialog(SkillTreeFrame.this,
+                                        "You don't have enough XP to unlock this ability.");
+                            } else {
 
-                        GameInfo.setCurrentAbility(CurrentAbility.Aceso);
+                                int purchase = JOptionPane.showOptionDialog(SkillTreeFrame.this,
+                                        "this ability costs" + skillTreeController.getItemsXP().get(button.getText()) +
+                                                " XP.DO you want to unlock it?", null, JOptionPane.DEFAULT_OPTION,
+                                        JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
+                                if (purchase == 0) {
+
+                                    GameInfo.getDefenceLocks().replace(button.getText(),false,true);
+
+                                    MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() - skillTreeController.getItemsXP().get(button.getText()));
+                                }
+                            }
+                        }else{
+                            JOptionPane.showMessageDialog(SkillTreeFrame.this,
+                                    "You haven't unlocked past abilities yet.");
+                        }
+                        } else {
+                            int purchase = JOptionPane.showOptionDialog(SkillTreeFrame.this,
+                                    "Do you want to use this ability?", null, JOptionPane.DEFAULT_OPTION,
+                                    JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
+                            if (purchase == 0) {
+
+                                GameInfo.getCurrentAbility().put(Ability.valueOf(button.getText()), true);
+                            }
+
                     }
                 }
-            }
-        });
-        aceso.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
+            });
 
-                if(GameInfo.isAcesoUnlocked()){
+            button.addChangeListener(new ChangeListener() {
+                @Override
+                public void stateChanged(ChangeEvent e) {
 
-                    aceso.setBackground(Color.BLACK);
+                    if(GameInfo.getDefenceLocks().get(button.getText())){
+
+                        button.setBackground(Color.BLACK);
+                    }
                 }
-            }
-        });
+            });
 
-
+            label.add(button);
+        }
 
         //transformation ability
         fontStyle = new Font("Magneto",Font.BOLD,30);
@@ -247,7 +304,7 @@ public class SkillTreeFrame extends JFrame {
             button.setFont(fontStyle);
             fontClr = Color.WHITE;
             button.setForeground(fontClr);
-            if(!GameInfo.isAresUnlocked()) backClr = Color.GRAY;
+            if(!GameInfo.getTrnsformLocks().get(button.getText())) backClr = Color.GRAY;
             else{
                 backClr = Color.BLACK;
             }
@@ -256,53 +313,69 @@ public class SkillTreeFrame extends JFrame {
             button.setFocusPainted(false);
             button.setBounds(290+i*130,280,120,80);
             button.setBorder(null);
+
+            int finalI = i;
+            button.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                    boolean canUnlock = true;
+                    if(!GameInfo.getTrnsformLocks().get(button.getText())) {
+
+                        for (int j = finalI - 1; j >= 0; j--) {
+
+                            if (!GameInfo.getTrnsformLocks().get(GameInfo.getTrnsformLocks().keySet().toArray()[j])) {
+
+                                canUnlock = false;
+                                break;
+                            }
+                        }
+                        if(canUnlock) {
+                            if (MyProject.getGameInfo().getXP() < skillTreeController.getItemsXP().get(button.getText())) {
+                                JOptionPane.showMessageDialog(SkillTreeFrame.this,
+                                        "You don't have enough XP to unlock this ability.");
+                            } else {
+
+                                int purchase = JOptionPane.showOptionDialog(SkillTreeFrame.this,
+                                        "this ability costs" + skillTreeController.getItemsXP().get(button.getText()) +
+                                                " XP.DO you want to unlock it?", null, JOptionPane.DEFAULT_OPTION,
+                                        JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
+                                if (purchase == 0) {
+                                    GameInfo.getTrnsformLocks().put(button.getText(), true);
+
+
+                                    MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() - skillTreeController.getItemsXP().get(button.getText()));
+                                }
+                            }
+                        }else{
+                            JOptionPane.showMessageDialog(SkillTreeFrame.this,
+                                    "You haven't unlocked past abilities yet.");
+                        }
+                    }else{
+                        int purchase = JOptionPane.showOptionDialog(SkillTreeFrame.this,
+                                "Do you want to use this ability?", null, JOptionPane.DEFAULT_OPTION,
+                                JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
+                        if (purchase == 0) {
+
+                            GameInfo.getCurrentAbility().put(Ability.valueOf(button.getText()),true);
+                        }
+                    }
+                }
+            });
+            button.addChangeListener(new ChangeListener() {
+                @Override
+                public void stateChanged(ChangeEvent e) {
+
+                    if(GameInfo.getTrnsformLocks().get(button.getText())){
+
+                        button.setBackground(Color.BLACK);
+                    }
+                }
+            });
+
             label.add(button);
 
         }
-
-
-        proteus.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(!GameInfo.isProteusUnlocked()) {
-                    if (MyProject.getGameInfo().getXP() < 1000) {
-                        JOptionPane.showMessageDialog(SkillTreeFrame.this,
-                                "You don't have enough XP to unlock this ability.");
-                    } else {
-
-                        int purchase = JOptionPane.showOptionDialog(SkillTreeFrame.this,
-                                "this ability costs 1000 XP.DO you want to unlock it?", null, JOptionPane.DEFAULT_OPTION,
-                                JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
-                        if (purchase == 0) {
-                            GameInfo.setProteusUnlocked(true);
-
-                            MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP()-1000);
-                        }
-                    }
-                }else{
-                    int purchase = JOptionPane.showOptionDialog(SkillTreeFrame.this,
-                            "Do you want to use this ability?", null, JOptionPane.DEFAULT_OPTION,
-                            JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
-                    if (purchase == 0) {
-
-                        GameInfo.setCurrentAbility(CurrentAbility.Proteus);
-                    }
-                }
-            }
-        });
-        proteus.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-
-                if(GameInfo.isProteusUnlocked()){
-
-                    proteus.setBackground(Color.BLACK);
-                }
-            }
-        });
-
-
-
         //exit button
         exit = new JButton("Exit");
         fontStyle = new Font("Algerian",Font.BOLD,30);

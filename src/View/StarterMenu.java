@@ -31,18 +31,6 @@ public class StarterMenu extends JFrame {
 
     public StarterMenu(){
 
-
-//        Robot robot = null;
-//        try {
-//            robot = new Robot();
-//        } catch (AWTException ex) {
-//            throw new RuntimeException(ex);
-//        }
-//        robot.keyPress(KeyEvent.VK_WINDOWS);
-//        robot.keyPress(KeyEvent.VK_D);
-//        robot.keyRelease(KeyEvent.VK_WINDOWS);
-//        robot.keyRelease(KeyEvent.VK_D);
-
         this.setSize(SCREEN_SIZE);
         this.setTitle("Window Kill");
         this.setLocationRelativeTo(null);
@@ -77,36 +65,6 @@ public class StarterMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-//                Window[] windows = Window.getWindows();
-//                for(Window window : windows){
-//                    if(window instanceof  JFrame){
-//                        JFrame frame = (JFrame) window;
-//                        Component focusOwner = frame.getFocusOwner();
-//                        if(focusOwner!=null && !focusOwner.getClass().getName().contains("Window Kill") ){
-//                            try {
-//                                robot = new Robot();
-//                            } catch (AWTException ex) {
-//                                throw new RuntimeException(ex);
-//                            }
-//                            robot.keyPress(KeyEvent.VK_WINDOWS);
-//                            robot.keyPress(KeyEvent.VK_D);
-//                            robot.keyRelease(KeyEvent.VK_WINDOWS);
-//                            robot.keyRelease(KeyEvent.VK_D);
-//                        }
-//
-//                    }
-//                }
-
-//                try {
-//                    robot = new Robot();
-//                } catch (AWTException ex) {
-//                    throw new RuntimeException(ex);
-//                }
-//                robot.keyPress(KeyEvent.VK_WINDOWS);
-//                robot.keyPress(KeyEvent.VK_D);
-//                robot.keyRelease(KeyEvent.VK_WINDOWS);
-//                robot.keyRelease(KeyEvent.VK_D);
-
                 dispose();
                 try {
 
@@ -124,24 +82,12 @@ public class StarterMenu extends JFrame {
                 }
 
                 if (!GameLoop.isGameDone()){
-//                    Robot robot = null;
-//                    try {
-//                        robot = new Robot();
-//                    } catch (AWTException ex) {
-//                        throw new RuntimeException(ex);
-//                    }
-//                    robot.keyPress(KeyEvent.VK_WINDOWS);
-//                    robot.keyPress(KeyEvent.VK_D);
-//                    robot.keyRelease(KeyEvent.VK_WINDOWS);
-//                    robot.keyRelease(KeyEvent.VK_D);
+
 
                             gameLoop.start();
                             gameLoop.elapsedTime();
 
-
                         KeyListener.setPauseGame(false);
-
-
             }else{
 
                         KeyListener.setPauseGame(false);

@@ -161,11 +161,9 @@ public class Squarantine extends GameObjects implements movable {
             moveTowardsEpsilon();
         }
     }
-    public void decreaseHP(boolean meleeAttack){
-        if(!meleeAttack) setHP(getHP()-(HPDecrement));
-        else{
-            setHP(getHP()-HPDecrement2);
-        }
+    public void decreaseHP(int decrement){
+
+        setHP(getHP()-decrement);
         if(getHP()<=0){
             Game.getSoundPlayer().playSoundEffect("src/Sound/death.wav");
             setDead(true);

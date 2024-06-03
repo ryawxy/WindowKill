@@ -92,6 +92,9 @@ public class GamePanel extends JPanel {
 
         //paint Game info
         Game.getGameInfoView().paint(g2D);
+
+        //paint Cerberuses
+        Game.getCerberusView().paint(g2D);
     }
 
     public static int getFRAME_WIDTH() {

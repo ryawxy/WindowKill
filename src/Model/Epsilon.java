@@ -2,11 +2,13 @@ package Model;
 
 import Controller.Constants;
 import Controller.Game;
+import Controller.KeyListener;
 import View.GamePanel;
 
 import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Epsilon extends GameObjects implements movable {
 
@@ -22,8 +24,6 @@ public class Epsilon extends GameObjects implements movable {
 
     private ArrayList<Vertex> vertex = new ArrayList<>();
     private int vertexNumber;
-
-
 
     public Epsilon(int x, int y) throws IOException {
         super(x, y);
@@ -137,14 +137,27 @@ public class Epsilon extends GameObjects implements movable {
     public void setXP(int XP) {
         this.XP = XP;
     }
-    public void increaseXP(){
-        setXP(getXP()+5);
+    public void increaseXP(int increment){
+        setXP(getXP()+increment);
     }
-    public void decreaseHP(EnemyType enemyType){
-        if(enemyType.equals(EnemyType.Squarantine)) setHP(getHP()-6);
-        else setHP(getHP()-10);
-            Game.getSoundPlayer().playSoundEffect("src/Sound/epsilon.wav");
 
+    public void increaseHP(int increment){setHP(getHP()+increment);}
+    public void decreaseHP(EnemyType enemyType,boolean meleeAttack){
+
+        if(GameInfo.getCurrentAbility().containsKey(Ability.Melampus) && KeyListener.getKeyPressedNumber()>0) {
+            Random random = new Random();
+            int x = random.nextInt(100);
+            if(x<5*KeyListener.getKeyPressedNumber()) {
+                if (enemyType.equals(EnemyType.Squarantine) && meleeAttack) setHP(getHP() - 6);
+                if (enemyType.equals(EnemyType.Trigorath) && meleeAttack) setHP(getHP() - 10);
+
+
+            }
+        }else{
+            if (enemyType.equals(EnemyType.Squarantine) && meleeAttack) setHP(getHP() - 6);
+            if (enemyType.equals(EnemyType.Trigorath) && meleeAttack) setHP(getHP() - 10);
+        }
+        Game.getSoundPlayer().playSoundEffect("src/Sound/epsilon.wav");
     }
 
     public double getxVelocity2() {

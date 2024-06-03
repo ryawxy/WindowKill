@@ -1,28 +1,25 @@
 package Model;
 
 import Controller.Game;
-import View.GamePanel;
 
-public class Vertex extends GameObjects implements movable{
+public class Cerberus extends GameObjects implements movable {
 
     private double xVelocity;
     private double yVelocity;
-    private int radius = 10;
-    private double xCenter = getX()+radius;
-    private double yCenter = getY()+radius;
     private double xVelocity2;
     private double yVelocity2;
+    private int radius = 6;
+    private double xCenter = getX()+radius;
+    private double yCenter = getY()+radius;
 
-
-
-    public Vertex(int x, int y) {
+    public Cerberus(int x, int y) {
         super(x, y);
     }
 
     @Override
     public void move() {
-        Epsilon epsilon = Game.getEpsilon();
 
+        Epsilon epsilon = Game.getEpsilon();
 
         xVelocity = epsilon.getxVelocity();
         yVelocity = epsilon.getyVelocity();
@@ -30,13 +27,27 @@ public class Vertex extends GameObjects implements movable{
         yVelocity2 = epsilon.getyVelocity2();
 
 
-
         this.setX((int) (getX()+xVelocity+xVelocity2));
         this.setY((int) (getY()+yVelocity+yVelocity2));
         this.setxCenter( (getxCenter()+xVelocity+xVelocity2));
         this.setyCenter( (getyCenter()+yVelocity+yVelocity2));
 
+    }
 
+    public double getxVelocity() {
+        return xVelocity;
+    }
+
+    public void setxVelocity(double xVelocity) {
+        this.xVelocity = xVelocity;
+    }
+
+    public double getyVelocity() {
+        return yVelocity;
+    }
+
+    public void setyVelocity(double yVelocity) {
+        this.yVelocity = yVelocity;
     }
 
     public int getRadius() {
@@ -63,14 +74,4 @@ public class Vertex extends GameObjects implements movable{
         this.yCenter = yCenter;
     }
 
-
-    @Override
-    public void setX(int x) {
-        super.setX(x);
-    }
-
-    @Override
-    public void setY(int y) {
-        super.setY(y);
-    }
 }

@@ -163,11 +163,9 @@ public class Trigorath extends GameObjects implements movable {
 
         }
     }
-    public void decreaseHP(boolean meleeAttack){
-        if(!meleeAttack) setHP(getHP()-(HPDecrement));
-        else{
-            setHP(getHP()-HPDecrement2);
-        }
+    public void decreaseHP(int decrement){
+
+        setHP(getHP()-decrement);
         if(getHP()<=0){
             setDead(true);
             setShowCollectibles(true);

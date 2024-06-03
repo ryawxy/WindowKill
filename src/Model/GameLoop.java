@@ -28,28 +28,8 @@ public class GameLoop {
     //amount of time since shooting the next fire
     private int empowerTime;
     //amount of time that has passed since empower item is activated
-    private int impactTimer;
-    //amount of time the has passed since enemy collision
-    private int impactTimer2;
-    //amount of time the has passed since collision with epsilon
-    private int impactTimer3;
-    //amount of time the has passed since enemy collision with shotgun
-    private int impactTimer4;
-    //amount of time the has passed since frame collision with shotgun
-    private int impactTimer5;
-    //amount of time the has passed since enemy collision with epsilons vertex
-    private int impactTimer6;
-    //amount of time the has passed since squarantines collision
-    private int impactTimer7;
-    //amount of time the has passed since squarantine and trigorath collision
     private int banishTime;
     //amount of time the has passed since banish item is activated
-    private long currentTime;
-    private long lastUsed = 0;
-    // last time ability key activated
-    private boolean canUseAbility;
-    private long acesoTimer = 0;
-    // last time HP added
     private Timer elapsedTimer;
     private static int seconds;
     private static int minutes;
@@ -69,6 +49,7 @@ public class GameLoop {
     private boolean hasPlayed;
     //game over sound
     private String [] option = {"menu"};
+    private SkillTreeController skillTreeController = new SkillTreeController();
 
     public GameLoop(Game game) throws IOException {
         this.game = game;
@@ -298,13 +279,14 @@ public class GameLoop {
                             seconds = 0;
                             minutes = 0;
                             banishTime = 0;
-                            acesoTimer = 0;
                             win = false;
-                            canUseAbility = false;
                                  ShopFrame.setHealItem(false);
                             ShopFrame.setBanishItem(false);
                             ShopFrame.setEmpowerItem(false);
-                            lastUsed =0;
+                            skillTreeController.setCanUseAbility(false);
+                            skillTreeController.setCurrentTime(0);
+                            skillTreeController.setLastUsed(0);
+                            skillTreeController.setAcesoTimer(0);
                             deadS = 0;
                             deadT = 0;
                             intersectionSide = null;
@@ -315,7 +297,7 @@ public class GameLoop {
                             lastXP = Game.getEpsilon().getXP();
                             KeyListener.setKeyPressedNumber(0);
                             KeyListener.setAbilityKeyPressed(false);
-                            GameInfo.setCurrentAbility(null);
+                            GameInfo.getCurrentAbility().clear();
                             Game.getSquarantine().clear();
                             Game.getTrigoraths().clear();
 
@@ -346,7 +328,6 @@ public class GameLoop {
 
                         if (purchase == 0) {
 
-
                             new StarterMenu();
                             Game.getSoundPlayer().stopBackgroundMusic();
                             wave1Created = false;
@@ -356,14 +337,14 @@ public class GameLoop {
                             seconds = 0;
                             minutes = 0;
                             banishTime = 0;
-                            acesoTimer = 0;
+                            skillTreeController.setAcesoTimer(0);
                             win = false;
-                          //  lose = false;
                                  ShopFrame.setHealItem(false);
                             ShopFrame.setBanishItem(false);
                             ShopFrame.setEmpowerItem(false);
-                            canUseAbility = false;
-                            lastUsed = 0;
+                            skillTreeController.setCanUseAbility(false);
+                            skillTreeController.setCurrentTime(0);
+                            skillTreeController.setLastUsed(0);
                             deadS = 0;
                             deadT = 0;
                             intersectionSide = null;
@@ -373,7 +354,7 @@ public class GameLoop {
                             lastXP = Game.getEpsilon().getXP();
                             KeyListener.setKeyPressedNumber(0);
                             KeyListener.setAbilityKeyPressed(false);
-                            GameInfo.setCurrentAbility(null);
+                            GameInfo.getCurrentAbility().clear();
                             SkillTreeFrame.setCurrentXP(Game.getEpsilon().getXP());
                             Game.getEpsilon().getVertex().clear();
                             Game.getSquarantine().clear();
@@ -383,8 +364,6 @@ public class GameLoop {
                             timer.stop();
                             elapsedTimer.stop();
 
-
-
                         }
                     }
 
@@ -393,7 +372,6 @@ public class GameLoop {
                     if (!ShopFrame.isEmpowerItem()) {
                         for (ShotGun shotGun : ShotGun.getShots()) {
                             shotGun.move();
-
                         }
                     } else {
                         empowerTime++;
@@ -425,9 +403,11 @@ public class GameLoop {
 
                     }
                     Game.getEpsilon().move();
+
                     for(Vertex vertex : Game.getEpsilon().getVertex()){
                         vertex.move();
                     }
+                    for(Cerberus cerberus : Game.getCerberuses()) cerberus.move();
 
                     intersection.shotIntersectsSquarantine();
                     intersection.shotIntersectsTrigorath();
@@ -435,13 +415,14 @@ public class GameLoop {
                     intersection.epsilonIntersectsCollectible();
                     //      intersection.epsilonIntersectEnemy();
                     intersection.enemyIntersection();
-                    for(Trigorath trigorath : Game.getTrigoraths()){
-                        Polygon trigorath2 = new Polygon(trigorath.getxPoints(),trigorath.getyPoints(),3);
-                        for(Squarantine squarantine : Game.getSquarantine()){
-                            Polygon squarantine2 = new Polygon(squarantine.getxPoints(),squarantine.getyPoints(),4);
-                            intersection.getIntersectionPoint(trigorath2,squarantine2);
-                        }
-                    }
+//                    for(Trigorath trigorath : Game.getTrigoraths()){
+//                        Polygon trigorath2 = new Polygon(trigorath.getxPoints(),trigorath.getyPoints(),3);
+//                        for(Squarantine squarantine : Game.getSquarantine()){
+//                            Polygon squarantine2 = new Polygon(squarantine.getxPoints(),squarantine.getyPoints(),4);
+//                            intersection.getIntersectionPoint(trigorath2,squarantine2);
+//                        }
+//                    }
+                    intersection.getIntersectionPoint();
 
 
 
@@ -476,14 +457,15 @@ public class GameLoop {
                                 frameSize.expand(intersectionSide);
                                 shotGun.setExpansion(shotGun.getExpansion() + 1);
 
-                                IntersectionPoint point = new IntersectionPoint(new Point2D.Double(shotGun.getX(), shotGun.getY()),10);
+                                IntersectionPoint point = new IntersectionPoint(new Point2D.Double(shotGun.getX(), shotGun.getY()),10,false,false,null,shotGun);
                                 Intersection.getIntersectionPoints().add(point);
                                 shotGun.setVisible(false);
                             }
                         }
                     }
 
-
+                    skillTreeController.ableToUseAbility();
+                    skillTreeController.activate();
 
 
                     //if trigorath is dead show its collectibles for 10 seconds
@@ -525,8 +507,8 @@ public class GameLoop {
                             for (Vertex vertex : epsilon.getVertex()) {
                                 if (intersection.checkCollision((int) vertex.getxCenter(), (int) vertex.getyCenter(), vertex.getRadius(), trigorath2)) {
                                     VTCollision = true;
-                                    trigorath.decreaseHP(true);
-                                    IntersectionPoint point = new IntersectionPoint(new Point2D.Double(trigorath.getX(), trigorath.getY()),10);
+                                    trigorath.decreaseHP(5);
+                                    IntersectionPoint point = new IntersectionPoint(new Point2D.Double(trigorath.getX(), trigorath.getY()),10,false,true,vertex,trigorath);
                                     Intersection.getIntersectionPoints().add(point);
                                 }
                             }
@@ -539,9 +521,10 @@ public class GameLoop {
                             Polygon trigorath2 = new Polygon(trigorath3.getxPoints(), trigorath3.getyPoints(), 3);
                             //   if (!VTCollision) {
                             if (intersection.checkCollision(epsilon.getxCenter(), epsilon.getyCenter(), epsilon.getRadius(), trigorath2)) {
-                                IntersectionPoint point = new IntersectionPoint(new Point2D.Double(trigorath3.getX(), trigorath3.getY()),10);
+                                IntersectionPoint point = new IntersectionPoint(new Point2D.Double(trigorath3.getX(), trigorath3.getY()),30,true,false,trigorath3,epsilon);
                                 Intersection.getIntersectionPoints().add(point);
-                                epsilon.decreaseHP(EnemyType.Trigorath);
+                                boolean melee = point.isMeleeAttack();
+                                epsilon.decreaseHP(EnemyType.Trigorath,melee);
 
                             }
                         }
@@ -557,8 +540,8 @@ public class GameLoop {
                                 if (intersection.checkCollision((int) vertex.getxCenter(), (int) vertex.getyCenter(), vertex.getRadius(), squarantine2)) {
 
                                     VSCollission = true;
-                                    squarantine.decreaseHP(true);
-                                    IntersectionPoint point = new IntersectionPoint(new Point2D.Double(squarantine.getX(), squarantine.getY()),10);
+                                    squarantine.decreaseHP(10);
+                                    IntersectionPoint point = new IntersectionPoint(new Point2D.Double(squarantine.getX(), squarantine.getY()),10,false,true,vertex,squarantine);
                                     Intersection.getIntersectionPoints().add(point);
 
                                 }
@@ -572,65 +555,16 @@ public class GameLoop {
                             Polygon squarantine2 = new Polygon(squarantine3.getxPoints(), squarantine3.getyPoints(), 4);
                             //       if (!VSCollission) {
                             if (intersection.checkCollision(epsilon.getxCenter(), epsilon.getyCenter(), epsilon.getRadius(), squarantine2)) {
-                                IntersectionPoint point = new IntersectionPoint(new Point2D.Double(squarantine3.getX(), squarantine3.getY()),10);
+                                IntersectionPoint point = new IntersectionPoint(new Point2D.Double(squarantine3.getX(), squarantine3.getY()),10,true,false,epsilon,squarantine3);
                                 Intersection.getIntersectionPoints().add(point);
-                                epsilon.decreaseHP(EnemyType.Squarantine);
+                                boolean melee = point.isMeleeAttack();
+                                epsilon.decreaseHP(EnemyType.Squarantine,melee);
                             }
                         }
 
                     }
-                    if(canUseAbility){
-
-                        if(GameInfo.getCurrentAbility().equals(CurrentAbility.Aceso)){
-                            currentTime = System.currentTimeMillis();
-
-                            if((currentTime - acesoTimer)/(1000)>=1) {
-                                for(int i=1;i<=KeyListener.getKeyPressedNumber();i++) {
-                                    if (Game.getEpsilon().getHP() < 100) {
-                                        Game.getEpsilon().setHP(Game.getEpsilon().getHP() + 1);
-                                        acesoTimer = currentTime;
-                                    }
-                                }
-
-                            }
-
-                        }else if(GameInfo.getCurrentAbility().equals(CurrentAbility.Ares)){
-                            Trigorath.setHPDecrement(Trigorath.getHPDecrement()+2*KeyListener.getKeyPressedNumber());
-                            Squarantine.setHPDecrement(Trigorath.getHPDecrement()+2*KeyListener.getKeyPressedNumber());
-                            Trigorath.setHPDecrement2(Trigorath.getHPDecrement2()+2*KeyListener.getKeyPressedNumber());
-                            Squarantine.setHPDecrement2(Trigorath.getHPDecrement2()+2*KeyListener.getKeyPressedNumber());
-                            canUseAbility = false;
-                        }else if(GameInfo.getCurrentAbility().equals(CurrentAbility.Proteus)){
-
-                            Game.getEpsilon().setVertexNumber(Game.getEpsilon().getVertexNumber()+1);
-                            Game.getEpsilon().addVertex();
 
 
-                            canUseAbility = false;
-                        }
-
-
-
-                    }
-
-                    if(KeyListener.isAbilityKeyPressed()){
-
-                        currentTime = System.currentTimeMillis();
-
-                        if( (currentTime - lastUsed)/(  60*1000)>=5){
-                            if(MyProject.getGameInfo().getXP()>=100) {
-                                canUseAbility = true;
-                                MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP()-100);
-
-                                lastUsed = currentTime;
-                            }else{
-                                KeyListener.setKeyPressedNumber(KeyListener.getKeyPressedNumber()-1);
-                            }
-                        }else{
-                            KeyListener.setKeyPressedNumber(KeyListener.getKeyPressedNumber()-1);
-                        }
-                        KeyListener.setAbilityKeyPressed(false);
-                    }
 
                     game.getGameFrame().repaint();
                 }

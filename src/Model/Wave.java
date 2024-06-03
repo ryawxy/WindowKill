@@ -56,21 +56,21 @@ public  void initWave1(){
         int [] xPoints5 = {175,195,195,175};
         int [] yPoints5 = {175,175,195,195};
 
-
-        squarantine = new Squarantine(185,185);
-        squarantine.setxPoints(xPoints5);
-        squarantine.setyPoints(yPoints5);
-        wave1EasySquarantine.add(squarantine);
-
-        trigorath = new Trigorath(50,33);
-        trigorath.setxPoints(xPoints);
-        trigorath.setyPoints(yPoints);
-        wave1EasyTrigorath.add(trigorath);
-
-        trigorath = new Trigorath(150,133);
-        trigorath.setxPoints(xPoints2);
-        trigorath.setyPoints(yPoints2);
-        wave1EasyTrigorath.add(trigorath);
+//
+//        squarantine = new Squarantine(185,185);
+//        squarantine.setxPoints(xPoints5);
+//        squarantine.setyPoints(yPoints5);
+//        wave1EasySquarantine.add(squarantine);
+//
+//        trigorath = new Trigorath(50,33);
+//        trigorath.setxPoints(xPoints);
+//        trigorath.setyPoints(yPoints);
+//        wave1EasyTrigorath.add(trigorath);
+//
+//        trigorath = new Trigorath(150,133);
+//        trigorath.setxPoints(xPoints2);
+//        trigorath.setyPoints(yPoints2);
+//        wave1EasyTrigorath.add(trigorath);
 
         trigorath = new Trigorath(250,233);
         trigorath.setxPoints(xPoints3);
