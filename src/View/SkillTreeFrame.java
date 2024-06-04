@@ -123,7 +123,7 @@ public class SkillTreeFrame extends JFrame {
 
                                 int purchase = JOptionPane.showOptionDialog(SkillTreeFrame.this,
                                         "this ability costs" + skillTreeController.getItemsXP().get(button.getText()) +
-                                                " XP.DO you want to unlock it?", null, JOptionPane.DEFAULT_OPTION,
+                                                " XP.Do you want to unlock it?", null, JOptionPane.DEFAULT_OPTION,
                                         JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
                                 if (purchase == 0) {
                                     GameInfo.getAttackLocks().replace(button.getText(), true);

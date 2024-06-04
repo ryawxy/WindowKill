@@ -1,6 +1,8 @@
 package Controller;
 
 import Model.Epsilon;
+import Model.GameInfo;
+import Model.ShopItem;
 import Model.ShotGun;
 import View.GamePanel;
 import View.ShopFrame;
@@ -39,7 +41,7 @@ public class MouseListener extends MouseInputAdapter {
         angle = Math.atan2(mouseY - epsilon.getY(), mouseX - epsilon.getX());
         angleDegrees = Math.toDegrees(angle);
 
-        if (!ShopFrame.isEmpowerItem()) {
+        if (!GameInfo.getCurrentShopItem().containsKey(ShopItem.Empower)) {
             ShotGun.addShot((int) fireX, (int) fireY, Constants.getShotGunHeight(), Constants.getShotGunWidth());
 
             ShotGun.getShots().getLast().setxVelocity((int) (speed * Math.cos(angle)));

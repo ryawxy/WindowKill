@@ -30,6 +30,7 @@ public class Game {
     private static HashMap<Ability,Integer> skillTreeAbilities;
     private static ArrayList<Ability> currentAbilities;
     private  static ArrayList<Cerberus> cerberuses;
+    private static ArrayList<GameObjects> enemies;
 
     public Game() throws IOException, AWTException {
 
@@ -46,6 +47,9 @@ public class Game {
 
         squarantines = new ArrayList<>();
         trigoraths = new ArrayList<>();
+
+        enemies = new ArrayList<>();
+
 
         epsilonView = new EpsilonView();
         shotGunView = new ShotGunView();
@@ -131,5 +135,9 @@ public class Game {
 
     public static CerberusView getCerberusView() {
         return cerberusView;
+    }
+
+    public static ArrayList<GameObjects> getEnemies() {
+        return enemies;
     }
 }

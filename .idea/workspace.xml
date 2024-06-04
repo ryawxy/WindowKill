@@ -5,26 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="added structure to the updated skillTree">
-      <change afterPath="$PROJECT_DIR$/src/Controller/SkillTreeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Cerberus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/CerberusView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/ShopController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/ShopItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/CurrentAbility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Ability.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Epsilon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Epsilon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/MouseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MouseListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SkillTreeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SkillTreeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/GameInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameLoop.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/GameObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameObjects.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Intersection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Intersection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/IntersectionPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/IntersectionPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/ShotGun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ShotGun.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Squarantine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Squarantine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Trigorath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Trigorath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Vertex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Vertex.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Wave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Wave.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/ShopFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ShopFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/SkillTreeFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/SkillTreeFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/StarterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/StarterMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,10 +29,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="package-info" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -57,7 +52,7 @@
     </excluded-from-favorite>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="masterV2.0" />
+        <entry key="$PROJECT_DIR$" value="shopV2.0" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -71,14 +66,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;SkillTreeV2.0&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/MinGW/window&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "shopV2.0",
+    "last_opened_file_path": "C:/MinGW/window"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Namazi\Ap2024\WindowKill2\src" />

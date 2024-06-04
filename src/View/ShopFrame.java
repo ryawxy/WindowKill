@@ -1,12 +1,16 @@
 package View;
 
 import Controller.KeyListener;
+import Controller.ShopController;
+import Model.GameInfo;
+import Model.ShopItem;
 import myproject.MyProject;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class ShopFrame extends JFrame {
@@ -16,14 +20,17 @@ public class ShopFrame extends JFrame {
     private final Dimension SCREEN_SIZE = new Dimension(SHOP_WIDTH,SHOP_HEIGHT);
     private final ImageIcon image;
     private JLabel label;
-    private JButton banish;
-    private JButton empower;
-    private JButton heal;
+    private JButton banish,empower,heal,dismay,slumber,slaughter;
     private JButton exit;
+    private ArrayList<JButton> buttons;
     private static boolean healItem;
     private static boolean empowerItem;
     private static boolean banishItem;
     private String[] option = {"yes","no"};
+    private Font fontStyle;
+    private Color fontClr;
+    private  Color backClr;
+    private ShopController shopController = new ShopController();
 
     public ShopFrame(){
 
@@ -32,97 +39,74 @@ public class ShopFrame extends JFrame {
         this.setLocationRelativeTo(null);
         this.setUndecorated(true);
         this.setVisible(true);
+        buttons = new ArrayList<>();
 
         image = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/Images/shop.jpg")));
         label = new JLabel(image);
         label.setSize(SCREEN_SIZE);
         this.add(label);
 
-        //banish button
-        banish = new JButton("O'Hephaestus,Banish");
-        Font fontStyle = new Font("Imprint MT Shadow",Font.BOLD,30);
-        banish.setFont(fontStyle);
-        Color fontClr = Color.WHITE;
-        banish.setForeground(fontClr);
-        Color backClr = Color.BLACK;
-        banish.setBackground(backClr);
-        banish.setBorderPainted(false);
-        banish.setFocusPainted(false);
-        banish.setBounds(200,100,400,80);
-        banish.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(MyProject.getGameInfo().getXP()<100){
-                    JOptionPane.showMessageDialog(ShopFrame.this,
-                            "You don't have enough XP to purchase this item.");
-                }else{
+        banish = new JButton("Banish");
+        empower = new JButton("Empower");
+        heal = new JButton("Heal");
+        dismay = new JButton("Dismay");
+        slumber = new JButton("Slumber");
+        slaughter = new JButton("Slaughter");
 
-                    int purchase = JOptionPane.showOptionDialog(ShopFrame.this,
-                            "this item costs 100 XP.DO you want to purchase it?", null, JOptionPane.DEFAULT_OPTION,
-                            JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
-                    if(purchase == 0){
-                        banishItem = true;
-                        MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP()-100);
+        buttons.add(banish);
+        buttons.add(empower);
+        buttons.add(heal);
+        buttons.add(dismay);
+        buttons.add(slumber);
+        buttons.add(slaughter);
+
+
+            for(int i=0; i<buttons.size(); i++) {
+                JButton button = buttons.get(i);
+                fontStyle = new Font("Imprint MT Shadow", Font.BOLD, 30);
+                button.setFont(fontStyle);
+                fontClr = Color.WHITE;
+                button.setForeground(fontClr);
+                backClr = Color.BLACK;
+                button.setBackground(backClr);
+                button.setBorderPainted(false);
+                button.setFocusPainted(false);
+                button.setBounds(200, 50 +i*100, 400, 80);
+                label.add(button);
+                button.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                        if(button.getText().equals(String.valueOf(ShopItem.Slaughter))){
+
+                            if(!ShopController.isCanUse()){
+                                JOptionPane.showMessageDialog(ShopFrame.this,
+                                        "You have to wait longer to purchase this item again");
+
+                            }
+                        }
+                        int XP = shopController.getItemsXP().get(button.getText());
+                        if(MyProject.getGameInfo().getXP()<XP){
+                            JOptionPane.showMessageDialog(ShopFrame.this,
+                                    "You don't have enough XP to purchase this item.");
+                        }else{
+
+                            boolean available = !button.getText().equals(String.valueOf(ShopItem.Slaughter)) || ShopController.isCanUse();
+                            if(available) {
+                                int purchase = JOptionPane.showOptionDialog(ShopFrame.this,
+                                        "This item costs" + XP
+                                                + "XP.Do you want to purchase it?", null, JOptionPane.DEFAULT_OPTION,
+                                        JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
+                                if (purchase == 0) {
+                                    GameInfo.getCurrentShopItem().put(ShopItem.valueOf(button.getText()), true);
+                                    MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() - XP);
+                                }
+                            }
+
+                        }
                     }
-                }
+                });
             }
-        });
-
-
-        //empower button
-        empower = new JButton("O'Athena,Empower");
-        empower.setFont(fontStyle);
-        empower.setForeground(fontClr);
-        empower.setBackground(backClr);
-        empower.setBorderPainted(false);
-        empower.setFocusPainted(false);
-        empower.setBounds(200,210,400,80);
-        empower.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(MyProject.getGameInfo().getXP()<75){
-                    JOptionPane.showMessageDialog(ShopFrame.this,
-                            "You don't have enough XP to purchase this item.");
-                }else{
-
-                    int purchase = JOptionPane.showOptionDialog(ShopFrame.this,
-                            "this item costs 75 XP.DO you want to purchase it?", null, JOptionPane.DEFAULT_OPTION,
-                            JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
-                    if(purchase == 0){
-                        empowerItem = true;
-                        MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP()-75);
-                    }
-                }
-            }
-        });
-
-        //heal button
-        heal = new JButton("O'Opollo,Heal");
-        heal.setFont(fontStyle);
-        heal.setForeground(fontClr);
-        heal.setBackground(backClr);
-        heal.setBorderPainted(false);
-        heal.setFocusPainted(false);
-        heal.setBounds(200,320,400,80);
-        heal.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(MyProject.getGameInfo().getXP()<50){
-                    JOptionPane.showMessageDialog(ShopFrame.this,
-                            "You don't have enough XP to purchase this item.");
-                }else{
-                    int purchase = JOptionPane.showOptionDialog(ShopFrame.this,
-                            "this item costs 50 XP.DO you want to purchase it?", null, JOptionPane.DEFAULT_OPTION,
-                            JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
-                    if(purchase == 0){
-                        MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP()-50);
-                        healItem = true;
-                    }
-                }
-            }
-        });
-
         //exit button
         exit = new JButton("exit");
         exit.setFont(fontStyle);
@@ -130,7 +114,8 @@ public class ShopFrame extends JFrame {
         exit.setBackground(backClr);
         exit.setBorderPainted(false);
         exit.setFocusPainted(false);
-        exit.setBounds(200,430,400,80);
+        exit.setBounds(10,630,100,60);
+        label.add(exit);
         exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -139,12 +124,6 @@ public class ShopFrame extends JFrame {
 
             }
         });
-
-
-        label.add(banish);
-        label.add(empower);
-        label.add(heal);
-        label.add(exit);
         label.setLayout(null);
         label.setVisible(true);
 

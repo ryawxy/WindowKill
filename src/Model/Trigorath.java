@@ -14,8 +14,6 @@ public class Trigorath extends GameObjects implements movable {
     private int [] xPoints = {0,0,0};
     private int [] yPoints = {0,0,0};
     private int HP = 15;
-    private int HPPerAttack;
-    // number of HP it costs from epsilon per each attack
     private final Epsilon epsilon;
     private int epsilonXPos;
     private int epsilonYPos;
@@ -79,13 +77,6 @@ public class Trigorath extends GameObjects implements movable {
     public void setHP(int HP) {
         this.HP = HP;
     }
-    public int getHPPerAttack() {
-        return HPPerAttack;
-    }
-
-    public void setHPPerAttack(int HPPerAttack) {
-        this.HPPerAttack = HPPerAttack;
-    }
 
     @Override
     public void move() {
@@ -141,7 +132,7 @@ public class Trigorath extends GameObjects implements movable {
                 }
             }
             //if banish item is activated move in the opposite direction
-            if(ShopFrame.isBanishItem()){
+            if(GameInfo.getCurrentShopItem().containsKey(ShopItem.Banish)){
                 this.setxVelocity((int) (getxVelocity()*-1));
                 this.setyVelocity((int) (getyVelocity()*-1));
             }

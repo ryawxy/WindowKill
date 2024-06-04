@@ -6,8 +6,8 @@ public class ShotGun extends GameObjects implements movable{
 
     private int width;
     private int height;
-    private int xVelocity;
-    private int yVelocity;
+    private double xVelocity;
+    private double yVelocity;
     private boolean onFire;
     private static final ArrayList<ShotGun> shot = new ArrayList<>();
     private int expansion;
@@ -23,8 +23,8 @@ public class ShotGun extends GameObjects implements movable{
 
     @Override
     public void move() {
-        setX(getX()+xVelocity);
-        setY(getY()+yVelocity);
+        setX((int) (getX()+xVelocity));
+        setY((int) (getY()+yVelocity));
     }
 
     @Override
@@ -47,7 +47,7 @@ public class ShotGun extends GameObjects implements movable{
         this.height = height;
     }
 
-    public int getxVelocity() {
+    public double getxVelocity() {
         return xVelocity;
     }
 
@@ -55,7 +55,7 @@ public class ShotGun extends GameObjects implements movable{
         this.xVelocity = xVelocity;
     }
 
-    public int getyVelocity() {
+    public double getyVelocity() {
         return yVelocity;
     }
 

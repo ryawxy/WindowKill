@@ -8,8 +8,8 @@ public class GameObjects extends JLabel {
     private int y;
     private int width;
     private int height;
-    protected BufferedImage background;
-
+    private double xVelocity;
+    private double yVelocity;
     public GameObjects(int x, int y){
 
         this.x = x;
@@ -52,4 +52,20 @@ public class GameObjects extends JLabel {
         this.height = height;
     }
     public void decreaseHP(int decrement){}
+
+    public double getxVelocity() {
+        return xVelocity;
+    }
+
+    public void setxVelocity(double xVelocity) {
+        this.xVelocity = xVelocity;
+    }
+
+    public double getyVelocity() {
+        return yVelocity;
+    }
+
+    public void setyVelocity(double yVelocity) {
+        this.yVelocity = yVelocity;
+    }
 }

@@ -123,7 +123,7 @@ public class Squarantine extends GameObjects implements movable {
 
 
         //if banish item is activated move in the opposite direction
-        if(ShopFrame.isBanishItem()){
+        if(GameInfo.getCurrentShopItem().containsKey(ShopItem.Banish)){
             this.setxVelocity((int) (getxVelocity()*-1));
             this.setyVelocity((int) (getyVelocity()*-1));
         }

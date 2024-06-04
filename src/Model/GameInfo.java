@@ -1,20 +1,13 @@
 package Model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Map;
+
 
 public class GameInfo  {
-
     private  int XP = 10000;
-
     private static HashMap<Ability,Boolean> currentAbility = new HashMap<>();
-    private static boolean aresUnlocked;
-
-
-    private static boolean acesoUnlocked;
-    private static boolean proteusUnlocked;
+    private static HashMap<ShopItem,Boolean> currentShopItem = new HashMap<>();
     private static LinkedHashMap<String,Boolean> trnsformLocks = new LinkedHashMap<>();
     private static LinkedHashMap<String,Boolean> defenceLocks = new LinkedHashMap<>();
     private static LinkedHashMap<String,Boolean> attackLocks = new LinkedHashMap<>();
@@ -50,31 +43,6 @@ public class GameInfo  {
         return currentAbility;
     }
 
-    public static void setCurrentAbility(HashMap<Ability,Boolean> currentAbility) {
-        GameInfo.currentAbility = currentAbility;
-    }
-
-    public static boolean isAresUnlocked() {
-        return aresUnlocked;
-    }
-
-    public static void setAresUnlocked(boolean aresUnlocked) {
-        GameInfo.aresUnlocked = aresUnlocked;
-    }
-
-    public static boolean isAcesoUnlocked() {
-        return acesoUnlocked;
-    }
-
-    public static void setAcesoUnlocked(boolean acesoUnlocked) {
-        GameInfo.acesoUnlocked = acesoUnlocked;
-    }
-
-
-    public static void setProteusUnlocked(boolean proteusUnlocked) {
-        GameInfo.proteusUnlocked = proteusUnlocked;
-    }
-
     public static int getCurrentWave() {
         return currentWave;
     }
@@ -93,5 +61,9 @@ public class GameInfo  {
 
     public static LinkedHashMap<String, Boolean> getDefenceLocks() {
         return defenceLocks;
+    }
+
+    public static HashMap<ShopItem, Boolean> getCurrentShopItem() {
+        return currentShopItem;
     }
 }
