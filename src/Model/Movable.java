@@ -1,5 +1,5 @@
 package Model;
 
-public interface movable {
+public interface Movable {
     public void move();
 }

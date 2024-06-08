@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Epsilon extends GameObjects implements movable {
+public class Epsilon extends GameObjects implements Movable {
 
     private double xVelocity;
     private double yVelocity;
@@ -158,6 +158,9 @@ public class Epsilon extends GameObjects implements movable {
             if (enemyType.equals(EnemyType.Trigorath) && meleeAttack) setHP(getHP() - 10);
         }
         Game.getSoundPlayer().playSoundEffect("src/Sound/epsilon.wav");
+    }
+    public void decreaseHP(int decrement){
+        setHP(getHP()-decrement);
     }
 
     public double getxVelocity2() {

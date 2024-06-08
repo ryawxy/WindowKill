@@ -121,6 +121,12 @@ public class Constants {
             return 5;
         }
     }
+    public static int necropickWidth(){
+        return 50;
+    }
+    public static int omenoctWidth(){
+        return 10;
+    }
 
 
 

@@ -2,6 +2,7 @@ package Model;
 
 import javax.swing.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class GameObjects extends JLabel {
     private int x;
@@ -10,6 +11,8 @@ public class GameObjects extends JLabel {
     private int height;
     private double xVelocity;
     private double yVelocity;
+    private boolean showCollectibles;
+    private ArrayList<Collectible> collectibles = new ArrayList<>();
     public GameObjects(int x, int y){
 
         this.x = x;
@@ -67,5 +70,17 @@ public class GameObjects extends JLabel {
 
     public void setyVelocity(double yVelocity) {
         this.yVelocity = yVelocity;
+    }
+
+    public boolean isShowCollectibles() {
+        return showCollectibles;
+    }
+
+    public void setShowCollectibles(boolean showCollectibles) {
+        this.showCollectibles = showCollectibles;
+    }
+
+    public ArrayList<Collectible> getCollectibles() {
+        return collectibles;
     }
 }

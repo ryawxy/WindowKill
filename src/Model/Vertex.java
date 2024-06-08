@@ -1,9 +1,8 @@
 package Model;
 
 import Controller.Game;
-import View.GamePanel;
 
-public class Vertex extends GameObjects implements movable{
+public class Vertex extends GameObjects implements Movable {
 
     private double xVelocity;
     private double yVelocity;

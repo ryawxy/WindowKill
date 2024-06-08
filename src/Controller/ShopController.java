@@ -10,7 +10,7 @@ public class ShopController {
 
     private HashMap<String,Integer> itemsXP;
     private int banishTimer;
-    private int index=ShotGun.getShots().size()-3;
+    private int index=Game.getShots().size()-3;
     //balls shooting one by on in empower mode
     private int time=3;
     //amount of time since shooting the next fire
@@ -61,10 +61,10 @@ public class ShopController {
                 time++;
 
                 for (int i = 0; i <= index; i++) {
-                    ShotGun.getShots().get(i).move();
+                    Game.getShots().get(i).move();
                 }
                 if (time >= 2) {
-                    if (index <= ShotGun.getShots().size() - 2) {
+                    if (index <= Game.getShots().size() - 2) {
                         index++;
                         time = 0;
                     }

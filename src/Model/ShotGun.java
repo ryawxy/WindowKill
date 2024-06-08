@@ -1,15 +1,12 @@
 package Model;
 
-import java.util.ArrayList;
-
-public class ShotGun extends GameObjects implements movable{
+public class ShotGun extends GameObjects implements Movable {
 
     private int width;
     private int height;
     private double xVelocity;
     private double yVelocity;
     private boolean onFire;
-    private static final ArrayList<ShotGun> shot = new ArrayList<>();
     private int expansion;
     // time interval that each shot expands the frame
     private boolean visible = true;
@@ -61,16 +58,6 @@ public class ShotGun extends GameObjects implements movable{
 
     public void setyVelocity(int yVelocity) {
         this.yVelocity = yVelocity;
-    }
-
-    public static ArrayList<ShotGun> getShots(){
-        return shot;
-    }
-    public static void addShot(int x,int y, int height, int width){
-        ShotGun shotGun = new ShotGun(x,y);
-        shotGun.setWidth(width);
-        shotGun.setHeight(height);
-        shot.add(shotGun);
     }
 
     public boolean isOnFire() {

@@ -12,10 +12,13 @@ import java.util.HashMap;
 
 public class Game {
 
+    private static final ArrayList<ShotGun> shot = new ArrayList<>();
     private static Epsilon epsilon;
     private static ShotGun shotGun;
     private static ArrayList<Squarantine> squarantines;
     private static ArrayList<Trigorath> trigoraths;
+    private static ArrayList<Necropick> necropicks;
+    private static ArrayList<Omenoct> omenocts;
     private static EpsilonView epsilonView;
     private static ShotGunView shotGunView;
     private static TrigorathView trigorathView;
@@ -23,6 +26,8 @@ public class Game {
     private static VertexView vertexView;
     private static CerberusView cerberusView;
     private static GameInfoView gameInfoView;
+    private static NecropickView necropickView;
+    private static OmenoctView omenoctView;
     protected GamePanel gamePanel;
     protected KeyListener keyListener;
     protected MouseListener mouseListener;
@@ -47,6 +52,8 @@ public class Game {
 
         squarantines = new ArrayList<>();
         trigoraths = new ArrayList<>();
+        necropicks = new ArrayList<>();
+        omenocts = new ArrayList<>();
 
         enemies = new ArrayList<>();
 
@@ -58,6 +65,8 @@ public class Game {
         vertexView = new VertexView();
         gameInfoView = new GameInfoView();
         cerberusView = new CerberusView();
+        necropickView = new NecropickView();
+        omenoctView = new OmenoctView();
         currentAbilities = new ArrayList<>();
 
         skillTreeAbilities = new HashMap<>();
@@ -71,12 +80,14 @@ public class Game {
         skillTreeAbilities.put(Ability.Dolus,0);
         skillTreeAbilities.put(Ability.Empusa,0);
 
-
+        OmenoctPanel omenoctPanel = new OmenoctPanel();
         gamePanel = new GamePanel();
+
         keyListener = new KeyListener(gamePanel);
         mouseListener = new MouseListener(gamePanel);
         soundPlayer = new SoundPlayer();
         soundPlayer.playBackgroundMusic();
+
 
 
     }
@@ -95,6 +106,17 @@ public class Game {
 
     public static ArrayList<Trigorath> getTrigoraths(){
         return trigoraths;
+    }
+
+    public static ArrayList<ShotGun> getShots(){
+        return shot;
+    }
+
+    public static void addShot(int x, int y, int height, int width){
+        ShotGun shotGun = new ShotGun(x,y);
+        shotGun.setWidth(width);
+        shotGun.setHeight(height);
+        shot.add(shotGun);
     }
 
     public GamePanel getGameFrame() {
@@ -139,5 +161,21 @@ public class Game {
 
     public static ArrayList<GameObjects> getEnemies() {
         return enemies;
+    }
+
+    public static NecropickView getNecropickView() {
+        return necropickView;
+    }
+
+    public static ArrayList<Necropick> getNecropicks() {
+        return necropicks;
+    }
+
+    public static ArrayList<Omenoct> getOmenocts() {
+        return omenocts;
+    }
+
+    public static OmenoctView getOmenoctView() {
+        return omenoctView;
     }
 }

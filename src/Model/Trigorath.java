@@ -2,12 +2,12 @@ package Model;
 
 import Controller.Constants;
 import Controller.Game;
-import View.ShopFrame;
 
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
-public class Trigorath extends GameObjects implements movable {
+public class Trigorath extends GameObjects implements Movable {
 
     private double xVelocity;
     private double yVelocity;
@@ -228,5 +228,29 @@ public class Trigorath extends GameObjects implements movable {
 
     public static void setHPDecrement2(int HPDecrement2) {
         Trigorath.HPDecrement2 = HPDecrement2;
+    }
+    public int getWidth(){
+
+        Point2D vertex1 = new Point2D.Double(xPoints[0],yPoints[0]);
+        Point2D vertex2 = new Point2D.Double(xPoints[1],yPoints[1]);
+        return (int) 20;
+
+    }
+    public int getHeight(){
+
+        Point2D vertex1 = new Point2D.Double(xPoints[0],yPoints[0]);
+        Point2D vertex2 = new Point2D.Double(xPoints[1],yPoints[1]);
+        return (int) 20;
+
+    }
+
+    @Override
+    public int getX() {
+        return xPoints[1];
+    }
+
+    @Override
+    public int getY() {
+        return yPoints[0];
     }
 }

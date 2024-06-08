@@ -2,7 +2,7 @@ package Model;
 
 import Controller.Game;
 
-public class Cerberus extends GameObjects implements movable {
+public class Cerberus extends GameObjects implements Movable {
 
     private double xVelocity;
     private double yVelocity;

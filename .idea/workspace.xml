@@ -4,22 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="added structure to the updated skillTree">
-      <change afterPath="$PROJECT_DIR$/src/Controller/ShopController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/ShopItem.java" afterDir="false" />
+    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="added structure to shopV2.0">
+      <change afterPath="$PROJECT_DIR$/src/Model/Necropick.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Omenoct.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/NecropickView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/OmenoctPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/OmenoctView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Constants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/MouseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MouseListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SkillTreeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SkillTreeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GameInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ShopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ShopController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Cerberus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Cerberus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Epsilon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Epsilon.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameLoop.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/GameObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameObjects.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Intersection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Intersection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/ShotGun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ShotGun.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Squarantine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Squarantine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Trigorath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Trigorath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Vertex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Vertex.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Wave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Wave.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/ShopFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ShopFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/SkillTreeFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/SkillTreeFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/movable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Movable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/ShotGunView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ShotGunView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,10 +38,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="package-info" />
         <option value="Interface" />
         <option value="Class" />
-        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -52,7 +61,7 @@
     </excluded-from-favorite>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="shopV2.0" />
+        <entry key="$PROJECT_DIR$" value="masterV2.0" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -70,8 +79,8 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "shopV2.0",
-    "last_opened_file_path": "C:/MinGW/window"
+    "git-widget-placeholder": "necropick",
+    "last_opened_file_path": "C:/inetpub/puzzle5"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -248,7 +257,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717170418129</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="added structure to shopV2.0">
+      <option name="closed" value="true" />
+      <created>1717488270113</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1717488270113</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -281,6 +298,7 @@
     <MESSAGE value="made collisions cleaner" />
     <MESSAGE value="made paint methods cleaner" />
     <MESSAGE value="added structure to the updated skillTree" />
-    <option name="LAST_COMMIT_MESSAGE" value="added structure to the updated skillTree" />
+    <MESSAGE value="added structure to shopV2.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="added structure to shopV2.0" />
   </component>
 </project>

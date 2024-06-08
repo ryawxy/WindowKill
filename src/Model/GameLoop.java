@@ -22,7 +22,7 @@ public class GameLoop {
     private Direction intersectionSide;
     private int countTime;
     // amount of time that has passed since the game has started
-    private int index=ShotGun.getShots().size()-3;
+    private int index= Game.getShots().size()-3;
     //balls shooting one by on in empower mode
     private int time=3;
     //amount of time since shooting the next fire
@@ -48,12 +48,15 @@ public class GameLoop {
     private static boolean lose;
     private boolean hasPlayed;
     //game over sound
-    private ShopController shopController = new ShopController();
     private String [] option = {"menu"};
     private SkillTreeController skillTreeController = new SkillTreeController();
+    private ShopController shopController = new ShopController();
 
     public GameLoop(Game game) throws IOException {
         this.game = game;
+    //    start();
+   //     elapsedTime();
+
     }
     public void elapsedTime(){
         elapsedTimer = new Timer(1000, new ActionListener() {
@@ -91,6 +94,14 @@ public class GameLoop {
                             for (Trigorath trigorath : wave.wave1EasyTrigorath) {
                                 Game.getTrigoraths().add(trigorath);
                                 Game.getEnemies().add(trigorath);
+                            }
+                            for(Necropick necropick : wave.wave1EasyNecropicks){
+                                Game.getNecropicks().add(necropick);
+                                Game.getEnemies().add(necropick);
+                            }
+                            for(Omenoct omenoct : wave.wave1EasyOmenoct){
+                                Game.getOmenocts().add(omenoct);
+                                Game.getEnemies().add(omenoct);
                             }
                         }else        if(SettingsFrame.getChosenLevel()==1) {
                             for (Squarantine squarantine : wave.wave1MediumSquarantine) {
@@ -390,10 +401,11 @@ public class GameLoop {
 
 
                     if (!ShopFrame.isEmpowerItem()) {
-                        for (ShotGun shotGun : ShotGun.getShots()) {
+                        for (ShotGun shotGun : Game.getShots()) {
                             shotGun.move();
                         }
                     }
+
                     for(int i = 0; i< Game.getSquarantine().size(); i++) {
                         Squarantine squarantine = Game.getSquarantine().get(i);
                         squarantine.move();
@@ -411,20 +423,11 @@ public class GameLoop {
                     }
                     for(Cerberus cerberus : Game.getCerberuses()) cerberus.move();
 
-                    intersection.shotIntersectsSquarantine();
-                    intersection.shotIntersectsTrigorath();
-                    //    intersection.shotIntersectsSquarantine();
+                    intersection.shotIntersectsEntity();
                     intersection.epsilonIntersectsCollectible();
-                    //      intersection.epsilonIntersectEnemy();
                     intersection.enemyIntersection();
-//                    for(Trigorath trigorath : Game.getTrigoraths()){
-//                        Polygon trigorath2 = new Polygon(trigorath.getxPoints(),trigorath.getyPoints(),3);
-//                        for(Squarantine squarantine : Game.getSquarantine()){
-//                            Polygon squarantine2 = new Polygon(squarantine.getxPoints(),squarantine.getyPoints(),4);
-//                            intersection.getIntersectionPoint(trigorath2,squarantine2);
-//                        }
-//                    }
                     intersection.getIntersectionPoint();
+                    intersection.vertexIntersectsNecropick();
 
 
 
@@ -437,18 +440,15 @@ public class GameLoop {
                     //shrinkage starts after 10 seconds
                     if (countTime >= 700 ) {
 
-                        frameSize.shrink();
+                      //  frameSize.shrink();
                     }
-
-
-
 
 
                     //check if a shot intersects with frame edges
                     // if so expansion starts from that side for a second
                     // and impact mechanism activates from that point
 
-                    for(ShotGun shotGun : ShotGun.getShots()){
+                    for(ShotGun shotGun : Game.getShots()){
                         if(shotGun.isVisible()) intersectionSide = intersection.shotIntersectsFrame(shotGun);
                         if (intersectionSide != null) {
 
@@ -476,6 +476,14 @@ public class GameLoop {
                             }
                         }
                     }
+                    for (Necropick necropick : Game.getNecropicks()) {
+                        if (necropick.isShowCollectibles()) {
+                            necropick.setTimer(necropick.getTimer() + 1);
+                            if (necropick.getTimer() > 500) {
+                                necropick.setShowCollectibles(false);
+                            }
+                        }
+                    }
 
                     countTime++;
 
@@ -486,9 +494,8 @@ public class GameLoop {
                             Intersection.getIntersectionPoints().remove(point);
                         }
                     }
-
                     shopController.activate();
-                    shopController.canUSe();
+                    ShopController.canUSe();
 
                     for(Trigorath trigorath: Game.getTrigoraths() ) {
                         if (!trigorath.isDead()) {
@@ -555,7 +562,21 @@ public class GameLoop {
 
                     }
 
-                    System.out.println(ShopController.isCanUse());
+
+
+                    for(Necropick necropick : Game.getNecropicks()){
+                        necropick.visible();
+                        necropick.move();
+                        necropick.shoot();
+
+                      //  System.out.println(necropick.getCollectibles().size());
+                    }
+
+
+
+
+
+
                     game.getGameFrame().repaint();
                 }
             }

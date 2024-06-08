@@ -31,7 +31,7 @@ public class Main {
                 throw new RuntimeException(e);
             }
 
-            System.out.println(String.valueOf(Ability.Ares));
+
 
         });
 

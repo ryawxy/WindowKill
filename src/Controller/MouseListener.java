@@ -42,26 +42,26 @@ public class MouseListener extends MouseInputAdapter {
         angleDegrees = Math.toDegrees(angle);
 
         if (!GameInfo.getCurrentShopItem().containsKey(ShopItem.Empower)) {
-            ShotGun.addShot((int) fireX, (int) fireY, Constants.getShotGunHeight(), Constants.getShotGunWidth());
+            Game.addShot((int) fireX, (int) fireY, Constants.getShotGunHeight(), Constants.getShotGunWidth());
 
-            ShotGun.getShots().getLast().setxVelocity((int) (speed * Math.cos(angle)));
-            ShotGun.getShots().getLast().setyVelocity((int) (speed * Math.sin(angle)));
-            ShotGun.getShots().getLast().setOnFire(true);
+            Game.getShots().getLast().setxVelocity((int) (speed * Math.cos(angle)));
+            Game.getShots().getLast().setyVelocity((int) (speed * Math.sin(angle)));
+            Game.getShots().getLast().setOnFire(true);
 
         }else{
 
             shootinEmpowerMode = true;
             for(int i=0;i<3;i++){
-                ShotGun.addShot((int) fireX, (int) fireY, Constants.getShotGunHeight(), Constants.getShotGunWidth());
+                Game.addShot((int) fireX, (int) fireY, Constants.getShotGunHeight(), Constants.getShotGunWidth());
             }
 
-            for(int j=ShotGun.getShots().size()-3;j<=ShotGun.getShots().size()-1;j++){
+            for(int j = Game.getShots().size()-3; j<= Game.getShots().size()-1; j++){
 
 
-                ShotGun.getShots().get(j).setxVelocity((int) (speed * Math.cos(angle)));
-                ShotGun.getShots().get(j).setyVelocity((int) (speed * Math.sin(angle)));
+                Game.getShots().get(j).setxVelocity((int) (speed * Math.cos(angle)));
+                Game.getShots().get(j).setyVelocity((int) (speed * Math.sin(angle)));
 
-                ShotGun.getShots().get(j).setOnFire(true);
+                Game.getShots().get(j).setOnFire(true);
 
             }
         }

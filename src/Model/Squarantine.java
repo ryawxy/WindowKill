@@ -2,13 +2,12 @@ package Model;
 
 import Controller.Constants;
 import Controller.Game;
-import View.ShopFrame;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Squarantine extends GameObjects implements movable {
+public class Squarantine extends GameObjects implements Movable {
 
     private double xVelocity;
     private double yVelocity;
@@ -208,6 +207,15 @@ public class Squarantine extends GameObjects implements movable {
     public static void setHPDecrement2(int HPDecrement2) {
         Squarantine.HPDecrement2 = HPDecrement2;
     }
+    public int getWidth(){
+
+        return xPoints[1]-xPoints[0];
+    }
+    public int getHeight(){
+
+        return xPoints[1]-xPoints[0];
+    }
+
 }
 
 

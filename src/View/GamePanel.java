@@ -32,7 +32,7 @@ public class GamePanel extends JPanel {
         addMouseListener(mouseListener);
 
         setBorder(BorderFactory.createLineBorder(Color.black, 5));
-        setBackground(Color.BLACK);
+        setBackground(new Color(0,0,0));
         setSize(SCREEN_SIZE);
         setLocationToCenter(GlassFrame.getINSTANCE());
         GlassFrame.getINSTANCE().setContentPane(this);
@@ -95,6 +95,10 @@ public class GamePanel extends JPanel {
 
         //paint Cerberuses
         Game.getCerberusView().paint(g2D);
+
+        Game.getNecropickView().paint(g2D);
+
+        Game.getOmenoctView().paint(g2D);
     }
 
     public static int getFRAME_WIDTH() {

@@ -1,5 +1,7 @@
 package Model;
 
+import View.NecropickView;
+import View.OmenoctView;
 import View.Settings.SettingsFrame;
 
 import java.util.ArrayList;
@@ -8,6 +10,8 @@ public class Wave {
 
     public  ArrayList<Trigorath> wave1EasyTrigorath = new ArrayList<>();
     public  ArrayList<Squarantine> wave1EasySquarantine = new ArrayList<>();
+    public  ArrayList<Necropick> wave1EasyNecropicks = new ArrayList<>();
+    public  ArrayList<Omenoct> wave1EasyOmenoct = new ArrayList<>();
 
     public  ArrayList<Trigorath> wave1MediumTrigorath = new ArrayList<>();
     public  ArrayList<Squarantine> wave1MediumSquarantine = new ArrayList<>();
@@ -56,6 +60,13 @@ public  void initWave1(){
         int [] xPoints5 = {175,195,195,175};
         int [] yPoints5 = {175,175,195,195};
 
+        int[] xPoints6 = {170,160,140,130,140,160};
+        int[] yPoints6 = {150, (int) (150+20*Math.sqrt(3)/2),(int) (150+20*Math.sqrt(3)/2),150,(int) (150+-20*Math.sqrt(3)/2),(int) (150-20*Math.sqrt(3)/2)};
+
+        Omenoct omenoct = new Omenoct(150,150);
+        omenoct.setxPoints(xPoints6);
+        omenoct.setyPoints(yPoints6);
+        wave1EasyOmenoct.add(omenoct);
 //
 //        squarantine = new Squarantine(185,185);
 //        squarantine.setxPoints(xPoints5);
@@ -76,6 +87,9 @@ public  void initWave1(){
         trigorath.setxPoints(xPoints3);
         trigorath.setyPoints(yPoints3);
         wave1EasyTrigorath.add(trigorath);
+
+        Necropick necropick = new Necropick(300,300);
+        wave1EasyNecropicks.add(necropick);
     }
     if(SettingsFrame.getChosenLevel()==1){
         int [] xPoints = {50,40,60};

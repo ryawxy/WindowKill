@@ -1,7 +1,10 @@
 package Model;
 
+import Controller.Constants;
 import Controller.Game;
+import Controller.ShopController;
 import View.GamePanel;
+import View.NecropickView;
 import myproject.MyProject;
 
 import java.awt.*;
@@ -16,137 +19,142 @@ public class Intersection {
 
     private Polygon squarantine2;
     private Polygon trigorath2;
-    private boolean intersect;
-    private static Point2D intersectionPoint;
-    private static Point2D intersectionPoint2;
-    private static Point2D intersectionPoint3;
-    private static Point2D intersectionPoint4;
-    private static Point2D intersectionPoint5;
-    private static Point2D intersectionPoint6;
-    private static Point2D intersectionPoint7;
-    private static Point2D intersectionPoint8;
-    private static Point2D intersectionPoint9;
-    private static  ArrayList<IntersectionPoint> intersectionPoints;
+
+    private static ArrayList<IntersectionPoint> intersectionPoints;
 
     public Intersection(GamePanel gamePanel) throws IOException {
         this.gamePanel = gamePanel;
     }
-    public Intersection(){}
+
+    public Intersection() {
+    }
 
     public Direction shotIntersectsFrame(ShotGun shotGun) {
 
-      //    if(shotGun.isVisible()) {
+        //    if(shotGun.isVisible()) {
         if (shotGun.getX() >= GamePanel.getFRAME_WIDTH()) {
             return Direction.RIGHT;
         }
         if (shotGun.getY() >= GamePanel.getFRAME_HEIGHT()) {
-         //   if(shotGun.isVisible()) {
+            //   if(shotGun.isVisible()) {
             //    shotGun.setVisible(false);
-                return Direction.DOWN;
+            return Direction.DOWN;
 
         }
         if (shotGun.getX() <= 0) {
-         //   if(shotGun.isVisible()) {
+            //   if(shotGun.isVisible()) {
             //    shotGun.setVisible(false);
-                return Direction.LEFT;
-           // }
+            return Direction.LEFT;
+            // }
         }
         if (shotGun.getY() <= 0) {
-         //   if(shotGun.isVisible()) {
-           //     shotGun.setVisible(false);
-                return Direction.UP;
-        //    }
-                }
+            //   if(shotGun.isVisible()) {
+            //     shotGun.setVisible(false);
+            return Direction.UP;
+            //    }
+        }
 
         return null;
     }
 
-
-    public void shotIntersectsSquarantine(){
+    public void shotIntersectsEntity(){
         //check if a shot intersects with squarantine
         // if so decrease its HP
         // if its HP reaches 0 , it dies
-        for(int j = 0; j< Game.getSquarantine().size(); j++) {
+        for (int j = 0; j < Game.getSquarantine().size(); j++) {
             Squarantine squarantine = Game.getSquarantine().get(j);
-            squarantine2 = new Polygon(squarantine.getxPoints(),squarantine.getyPoints(),3);
-            if(!squarantine.isDead()){
-            for (int i = 0; i < ShotGun.getShots().size(); i++) {
-                ShotGun shot = ShotGun.getShots().get(i);
-                if(shot.isVisible()) {
-                    if (squarantine2.intersects(shot.getX(), shot.getY(), shot.getWidth(), shot.getHeight())) {
-                        IntersectionPoint point = new IntersectionPoint(new Point2D.Double(shot.getX(),shot.getY()),10,false,true,shot,squarantine);
-                        intersectionPoints.add(point);
-                        shot.setVisible(false);
-                        squarantine.decreaseHP(5);
+            squarantine2 = new Polygon(squarantine.getxPoints(), squarantine.getyPoints(), 3);
+            if (!squarantine.isDead()) {
+                for (int i = 0; i < Game.getShots().size(); i++) {
+                    ShotGun shot = Game.getShots().get(i);
+                    if (shot.isVisible()) {
+                        if (squarantine2.intersects(shot.getX(), shot.getY(), shot.getWidth(), shot.getHeight())) {
+                            IntersectionPoint point = new IntersectionPoint(new Point2D.Double(shot.getX(), shot.getY()), 10, false, true, shot, squarantine);
+                            intersectionPoints.add(point);
+                            shot.setVisible(false);
+                            squarantine.decreaseHP(5);
+                        }
                     }
-                }
 
                 }
             }
         }
-    }
-    public void shotIntersectsTrigorath(){
-        //check if a shot intersects with trigorath
-        // if so decrease its HP
-        // if its HP reaches 0 , it dies
-
         for(int j = 0; j< Game.getTrigoraths().size(); j++) {
             Trigorath trigorath = Game.getTrigoraths().get(j);
             trigorath2 = new Polygon(trigorath.getxPoints(),trigorath.getyPoints(),3);
             if(!trigorath.isDead()){
-            for (int i = 0; i < ShotGun.getShots().size(); i++) {
-                ShotGun shot = ShotGun.getShots().get(i);
-                if(shot.isVisible()) {
-                    if (trigorath2.intersects(shot.getX(), shot.getY(), shot.getWidth(), shot.getHeight())) {
-                        IntersectionPoint point = new IntersectionPoint( new Point2D.Double(shot.getX(),shot.getY()),10,false,true,shot,trigorath);
-                        intersectionPoints.add(point);
+                for (int i = 0; i < Game.getShots().size(); i++) {
+                    ShotGun shot = Game.getShots().get(i);
+                    if(shot.isVisible()) {
+                        if (trigorath2.intersects(shot.getX(), shot.getY(), shot.getWidth(), shot.getHeight())) {
+                            IntersectionPoint point = new IntersectionPoint( new Point2D.Double(shot.getX(),shot.getY()),10,false,true,shot,trigorath);
+                            intersectionPoints.add(point);
 
-                        shot.setVisible(false);
-                        trigorath.decreaseHP(5);
+                            shot.setVisible(false);
+                            trigorath.decreaseHP(5);
+                        }
                     }
-                }
 
                 }
             }
         }
+        Epsilon epsilon = Game.getEpsilon();
+        for (Necropick necropick : Game.getNecropicks()) {
+            for (ShotGun shotGun : necropick.getShots()) {
+                Rectangle epsilon1 = new Rectangle(epsilon.getX(), epsilon.getY(), epsilon.getRadius(), epsilon.getRadius());
+                Rectangle shot = new Rectangle(shotGun.getX(), shotGun.getY(), Constants.getShotGunWidth(), Constants.getShotGunHeight());
+                if (shotGun.isVisible()) {
+                    if (epsilon1.intersects(shot)) {
+                        Game.getEpsilon().decreaseHP(5);
+                        shotGun.setVisible(false);
+                        IntersectionPoint point = new IntersectionPoint(new Point2D.Double(epsilon.getX(), epsilon.getY()), 10, false, false, epsilon, necropick);
+                        intersectionPoints.add(point);
+                    }
+                    for(GameObjects enemy : Game.getEnemies()){
+                        if(!enemy.equals(necropick)) {
+                            Rectangle enemy1 = new Rectangle(enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight());
 
+                            if (enemy1.intersects(shot)) {
+
+                                IntersectionPoint point = new IntersectionPoint(new Point2D.Double(shotGun.getX(), shotGun.getY()), 10, false, false, necropick, enemy);
+                                intersectionPoints.add(point);
+                                shotGun.setVisible(false);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        for(Necropick necropick : Game.getNecropicks()){
+            for(ShotGun shotGun : Game.getShots()){
+                Rectangle neropick1 = new Rectangle(necropick.getX(),necropick.getY(), Constants.necropickWidth(),Constants.necropickWidth());
+                Rectangle shot = new Rectangle(shotGun.getX(),shotGun.getY(),shotGun.getWidth(),shotGun.getHeight());
+                if(shotGun.isVisible()){
+                    if(neropick1.intersects(shot)) {
+
+                        shotGun.setVisible(false);
+                        necropick.decreaseHP(2);
+
+
+                    }
+
+                }
+            }
+        }
     }
+
+
     public void epsilonIntersectsCollectible(){
         // check if epsilon intersects with collectibles
         // if so add to epsilons XP
 
         Epsilon epsilon = Game.getEpsilon();
 
-        for(Trigorath trigorath : Game.getTrigoraths()){
-            if(trigorath.isShowCollectibles()){
 
-                for(int i=0;i<trigorath.getCollectibles().size();i++){
-                    Collectible collectible = trigorath.getCollectibles().get(i);
-                    Ellipse2D epsilonShape = new Ellipse2D.Double(epsilon.getX()-epsilon.getRadius(),
-                            epsilon.getY()-epsilon.getRadius(),
-                            2*epsilon.getRadius(),2*epsilon.getRadius());
-                    Ellipse2D collectibleShape = new Ellipse2D.Double(collectible.getX()-collectible.getRadius(),
-                            collectible.getY()-collectible.getRadius(),
-                            2*collectible.getRadius(),2*collectible.getRadius());
-                    Area epsilonArea = new Area(epsilonShape);
-                    Area collectibleArea = new Area(collectibleShape);
-                    epsilonArea.intersect(collectibleArea);
-
-                    if(!epsilonArea.isEmpty()){
-                        MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP()+5);
-                        trigorath.getCollectibles().remove(collectible);
-                    }
-
-
-                }
-            }
-        }
-
-        for(Squarantine squarantine : Game.getSquarantine()){
-            if(squarantine.isShowCollectibles()){
-
-                for(int i=0;i<squarantine.getCollectibles().size();i++){
-                    Collectible collectible = squarantine.getCollectibles().get(i);
+        for(GameObjects enemy : Game.getEnemies()){
+            if(enemy.isShowCollectibles()){
+                for(int i=0; i<enemy.getCollectibles().size(); i++){
+                    Collectible collectible = enemy.getCollectibles().get(i);
 
                     Ellipse2D epsilonShape = new Ellipse2D.Double(epsilon.getX()-epsilon.getRadius(),
                             epsilon.getY()-epsilon.getRadius(),
@@ -159,12 +167,17 @@ public class Intersection {
                     epsilonArea.intersect(collectibleArea);
 
                     if(!epsilonArea.isEmpty()){
-                        MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP()+5);
-                        squarantine.getCollectibles().remove(collectible);
+                        if(enemy instanceof Necropick){
+                            MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP()+2);
+                        }else {
+                            MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 5);
+                        }
+                        enemy.getCollectibles().remove(collectible);
                     }
                 }
             }
         }
+
     }
     public void enemyIntersection(){
         ArrayList<Point2D> points = new ArrayList<>();
@@ -189,7 +202,7 @@ public class Intersection {
                 if (trigorath2.contains(point2D)) {
                     IntersectionPoint point = new IntersectionPoint(point2D,10,false,false,trigorath,t);
                     intersectionPoints.add(point);
-                    intersectionPoint = point2D;
+
                 }
             }
 
@@ -208,6 +221,7 @@ public class Intersection {
                 }
             }
         }
+
 
 
     }
@@ -229,7 +243,6 @@ public class Intersection {
             }
         }
 
-
     }
 
 public boolean checkCollision(int epsilonX,int epsilonY,int radius,Polygon polygon){
@@ -239,23 +252,19 @@ public boolean checkCollision(int epsilonX,int epsilonY,int radius,Polygon polyg
     epsilonArea.intersect(polygonArea);
     return !epsilonArea.isEmpty();
 }
-
-
-    public static Point2D getIntersectionPoint2() {
-        return intersectionPoint2;
-    }
-
-
-    public static Point2D getIntersectionPoint3() {
-        return intersectionPoint3;
-    }
-
-
-    public static Point2D getIntersectionPoint4() {
-        return intersectionPoint4;
-    }
-
-
+public void vertexIntersectsNecropick(){
+        for(Vertex vertex : Game.getEpsilon().getVertex()){
+            for(Necropick necropick : Game.getNecropicks()){
+                Rectangle vertex1 = new Rectangle(vertex.getX(),vertex.getY(),vertex.getRadius(),vertex.getRadius());
+                Rectangle necropick1 = new Rectangle(necropick.getX(),necropick.getY(),Constants.necropickWidth(),Constants.necropickWidth());
+                if(vertex1.intersects(necropick1)){
+                    necropick.decreaseHP(10);
+                    IntersectionPoint point = new IntersectionPoint(new Point2D.Double(necropick.getX(),necropick.getY()),10,true,false,Game.getEpsilon(),necropick);
+                    intersectionPoints.add(point);
+                }
+            }
+        }
+}
 
     public static ArrayList<IntersectionPoint> getIntersectionPoints(){
         if(intersectionPoints==null) intersectionPoints = new ArrayList<>();

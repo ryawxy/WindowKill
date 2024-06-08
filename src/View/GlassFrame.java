@@ -18,16 +18,6 @@ public final class GlassFrame extends JFrame {
         setVisible(true);
         setLayout(null);
         setTitle("Window Kill");
-//        Robot robot = null;
-//        try {
-//            robot = new Robot();
-//        } catch (AWTException ex) {
-//            throw new RuntimeException(ex);
-//        }
-//        robot.keyPress(KeyEvent.VK_WINDOWS);
-//        robot.keyPress(KeyEvent.VK_D);
-//        robot.keyRelease(KeyEvent.VK_WINDOWS);
-//        robot.keyRelease(KeyEvent.VK_D);
 
     }
     public static GlassFrame getINSTANCE(){
