@@ -31,8 +31,8 @@ public class Squarantine extends GameObjects implements Movable {
     // show collectibles only for 10 seconds
     private static int HPDecrement = 5;
     private static int HPDecrement2 = 10;
-
     private final ArrayList<Collectible> collectibles = new ArrayList<>();
+
 
     public Squarantine(int x, int y) {
         super(x, y);
@@ -193,6 +193,14 @@ public class Squarantine extends GameObjects implements Movable {
         collectibles.add(collectible1);
 
     }
+    public void invisibleCollectible(){
+        if (isShowCollectibles()) {
+            setTimer(getTimer() + 1);
+            if (getTimer() > 500) {
+                setShowCollectibles(false);
+            }
+        }
+    }
 
     public ArrayList<Collectible> getCollectibles() {
         return collectibles;
@@ -216,6 +224,18 @@ public class Squarantine extends GameObjects implements Movable {
         return xPoints[1]-xPoints[0];
     }
 
+    public int getTimer() {
+        return timer;
+    }
+
+    public void setTimer(int timer) {
+        this.timer = timer;
+    }
+
+    @Override
+    public boolean isAttackByMelee() {
+        return true;
+    }
 }
 
 

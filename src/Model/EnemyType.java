@@ -1,5 +1,5 @@
 package Model;
 
 public enum EnemyType {
-    Trigorath,Squarantine
+    Trigorath,Squarantine,Omenoct
 }

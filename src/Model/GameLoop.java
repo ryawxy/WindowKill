@@ -1,6 +1,7 @@
 package Model;
 
 import Controller.*;
+import Model.omenoct.Omenoct;
 import View.*;
 import View.Settings.SettingsFrame;
 import myproject.MyProject;
@@ -102,6 +103,7 @@ public class GameLoop {
                             for(Omenoct omenoct : wave.wave1EasyOmenoct){
                                 Game.getOmenocts().add(omenoct);
                                 Game.getEnemies().add(omenoct);
+
                             }
                         }else        if(SettingsFrame.getChosenLevel()==1) {
                             for (Squarantine squarantine : wave.wave1MediumSquarantine) {
@@ -428,6 +430,7 @@ public class GameLoop {
                     intersection.enemyIntersection();
                     intersection.getIntersectionPoint();
                     intersection.vertexIntersectsNecropick();
+                    intersection.vertexIntersectsOmenoct();
 
 
 
@@ -467,23 +470,7 @@ public class GameLoop {
                     skillTreeController.activate();
 
 
-                    //if trigorath is dead show its collectibles for 10 seconds
-                    for (Trigorath trigorath : Game.getTrigoraths()) {
-                        if (trigorath.isShowCollectibles()) {
-                            trigorath.setTimer(trigorath.getTimer() + 1);
-                            if (trigorath.getTimer() > 300) {
-                                trigorath.setShowCollectibles(false);
-                            }
-                        }
-                    }
-                    for (Necropick necropick : Game.getNecropicks()) {
-                        if (necropick.isShowCollectibles()) {
-                            necropick.setTimer(necropick.getTimer() + 1);
-                            if (necropick.getTimer() > 500) {
-                                necropick.setShowCollectibles(false);
-                            }
-                        }
-                    }
+                    for(GameObjects enemy : Game.getEnemies()) enemy.invisibleCollectible();
 
                     countTime++;
 
@@ -523,6 +510,21 @@ public class GameLoop {
                                 Intersection.getIntersectionPoints().add(point);
                                 boolean melee = point.isMeleeAttack();
                                 epsilon.decreaseHP(EnemyType.Trigorath,melee);
+
+                            }
+                        }
+                    }
+                    for(Omenoct omenoct: Game.getOmenocts() ) {
+                        if (!omenoct.isDead()) {
+
+                            Epsilon epsilon = Game.getEpsilon();
+                            Polygon trigorath2 = new Polygon(omenoct.getxPoints(), omenoct.getyPoints(), 6);
+                            //   if (!VTCollision) {
+                            if (intersection.checkCollision(epsilon.getxCenter(), epsilon.getyCenter(), epsilon.getRadius(), trigorath2)) {
+                                IntersectionPoint point = new IntersectionPoint(new Point2D.Double(omenoct.getX(), omenoct.getY()),30,true,false,omenoct,epsilon);
+                                Intersection.getIntersectionPoints().add(point);
+                                boolean melee = point.isMeleeAttack();
+                                epsilon.decreaseHP(EnemyType.Omenoct,melee);
 
                             }
                         }
@@ -568,8 +570,12 @@ public class GameLoop {
                         necropick.visible();
                         necropick.move();
                         necropick.shoot();
+                    }
 
-                      //  System.out.println(necropick.getCollectibles().size());
+                    for(Omenoct omenoct : Game.getOmenocts()){
+                        omenoct.chooseSide();
+                        omenoct.move();
+                        omenoct.shoot();
                     }
 
 

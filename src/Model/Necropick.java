@@ -164,6 +164,14 @@ public class Necropick extends GameObjects implements Movable {
 
         }
     }
+    public void invisibleCollectible(){
+        if (isShowCollectibles()) {
+            setTimer(getTimer() + 1);
+            if (getTimer() > 500) {
+                setShowCollectibles(false);
+            }
+        }
+    }
 
     public int getTimer() {
         return timer;
@@ -179,5 +187,20 @@ public class Necropick extends GameObjects implements Movable {
 
     public ArrayList<ShotGun> getShots() {
         return shots;
+    }
+
+    @Override
+    public boolean isAttackByMelee() {
+        return true;
+    }
+
+    @Override
+    public int getWidth() {
+        return Constants.necropickWidth();
+    }
+
+    @Override
+    public int getHeight() {
+        return Constants.necropickWidth();
     }
 }

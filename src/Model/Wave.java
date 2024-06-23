@@ -1,7 +1,6 @@
 package Model;
 
-import View.NecropickView;
-import View.OmenoctView;
+import Model.omenoct.Omenoct;
 import View.Settings.SettingsFrame;
 
 import java.util.ArrayList;
@@ -60,10 +59,10 @@ public  void initWave1(){
         int [] xPoints5 = {175,195,195,175};
         int [] yPoints5 = {175,175,195,195};
 
-        int[] xPoints6 = {170,160,140,130,140,160};
-        int[] yPoints6 = {150, (int) (150+20*Math.sqrt(3)/2),(int) (150+20*Math.sqrt(3)/2),150,(int) (150+-20*Math.sqrt(3)/2),(int) (150-20*Math.sqrt(3)/2)};
+        int[] xPoints6 = {370,360,340,330,340,360};
+        int[] yPoints6 = {350, (int) (350+20*Math.sqrt(3)/2),(int) (350+20*Math.sqrt(3)/2),350,(int) (350-20*Math.sqrt(3)/2),(int) (350-20*Math.sqrt(3)/2)};
 
-        Omenoct omenoct = new Omenoct(150,150);
+        Omenoct omenoct = new Omenoct(350,350);
         omenoct.setxPoints(xPoints6);
         omenoct.setyPoints(yPoints6);
         wave1EasyOmenoct.add(omenoct);

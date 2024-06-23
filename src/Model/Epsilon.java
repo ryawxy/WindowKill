@@ -150,12 +150,14 @@ public class Epsilon extends GameObjects implements Movable {
             if(x<5*KeyListener.getKeyPressedNumber()) {
                 if (enemyType.equals(EnemyType.Squarantine) && meleeAttack) setHP(getHP() - 6);
                 if (enemyType.equals(EnemyType.Trigorath) && meleeAttack) setHP(getHP() - 10);
+                if (enemyType.equals(EnemyType.Omenoct) && meleeAttack) setHP(getHP() - 8);
 
 
             }
         }else{
             if (enemyType.equals(EnemyType.Squarantine) && meleeAttack) setHP(getHP() - 6);
             if (enemyType.equals(EnemyType.Trigorath) && meleeAttack) setHP(getHP() - 10);
+            if (enemyType.equals(EnemyType.Omenoct) && meleeAttack) setHP(getHP() - 8);
         }
         Game.getSoundPlayer().playSoundEffect("src/Sound/epsilon.wav");
     }

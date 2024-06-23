@@ -4,6 +4,7 @@ import Controller.Game;
 import Model.Drawable;
 import Model.Necropick;
 import Model.ShotGun;
+import Model.omenoct.Omenoct;
 
 import java.awt.*;
 
@@ -32,6 +33,20 @@ public class ShotGunView implements Drawable {
                 }
             }
             }
+
+            }
+        }
+        for(Omenoct omenoct : Game.getOmenocts()){
+            if(!omenoct.isDead()){
+                if(omenoct.isVisible()){
+                    for(ShotGun shotGun : omenoct.getShots()) {
+                        g.setColor(new Color(255, 151, 215));
+                        if (shotGun.isVisible()) {
+                            g.fillRect(shotGun.getX(), shotGun.getY(),
+                                    shotGun.getWidth(), shotGun.getHeight());
+                        }
+                    }
+                }
 
             }
         }

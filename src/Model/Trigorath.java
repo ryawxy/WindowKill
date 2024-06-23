@@ -28,7 +28,6 @@ public class Trigorath extends GameObjects implements Movable {
 
     private static  int HPDecrement = 5;
     private static  int HPDecrement2 = 5;
-
     private final ArrayList<Collectible> collectibles = new ArrayList<>();
     public Trigorath(int x, int y) {
         super(x,y);
@@ -243,6 +242,14 @@ public class Trigorath extends GameObjects implements Movable {
         return (int) 20;
 
     }
+    public void invisibleCollectible(){
+        if(isShowCollectibles()) {
+            setTimer(getTimer() + 1);
+            if (getTimer() > 300) {
+                setShowCollectibles(false);
+            }
+        }
+    }
 
     @Override
     public int getX() {
@@ -252,5 +259,10 @@ public class Trigorath extends GameObjects implements Movable {
     @Override
     public int getY() {
         return yPoints[0];
+    }
+
+    @Override
+    public boolean isAttackByMelee() {
+        return true;
     }
 }

@@ -26,6 +26,7 @@ public class OmenoctPanel extends JPanel {
 
         GlassFrame.getINSTANCE().add(this);
 
+
     }
 
     @Override
@@ -33,6 +34,6 @@ public class OmenoctPanel extends JPanel {
         super.printComponent(g);
         Graphics2D g2D = (Graphics2D) g;
         Game.getOmenoctView().paint(g2D);
-        System.out.println(this.getX()+" "+this.getWidth());;
+        System.out.println(this.getX()+" "+this.getWidth());
     }
 }

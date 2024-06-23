@@ -35,7 +35,7 @@ public class GamePanel extends JPanel {
         setBackground(new Color(0,0,0));
         setSize(SCREEN_SIZE);
         setLocationToCenter(GlassFrame.getINSTANCE());
-        GlassFrame.getINSTANCE().setContentPane(this);
+        GlassFrame.getINSTANCE().add(this);
 
         addMouseMotionListener(new MouseAdapter() {
             @Override

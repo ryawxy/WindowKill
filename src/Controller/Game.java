@@ -2,6 +2,7 @@
 package Controller;
 
 import Model.*;
+import Model.omenoct.Omenoct;
 import Sound.SoundPlayer;
 import View.*;
 import java.awt.*;
@@ -80,7 +81,7 @@ public class Game {
         skillTreeAbilities.put(Ability.Dolus,0);
         skillTreeAbilities.put(Ability.Empusa,0);
 
-        OmenoctPanel omenoctPanel = new OmenoctPanel();
+
         gamePanel = new GamePanel();
 
         keyListener = new KeyListener(gamePanel);

@@ -215,7 +215,7 @@ public class SkillTreeController {
             currentTime = System.currentTimeMillis();
 
 
-            if( (currentTime - lastUsed)/(1000*60)>=5){
+            if( (currentTime - lastUsed)/(1000)>=2){
                 if(MyProject.getGameInfo().getXP()>=100) {
 
                     for(Ability ability : GameInfo.getCurrentAbility().keySet()) canUse.replace(ability,true);

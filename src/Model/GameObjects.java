@@ -13,6 +13,10 @@ public class GameObjects extends JLabel {
     private double yVelocity;
     private boolean showCollectibles;
     private ArrayList<Collectible> collectibles = new ArrayList<>();
+    private boolean attackByMelee;
+    private ArrayList<ShotGun> shots = new ArrayList<>();
+    private int HP;
+
     public GameObjects(int x, int y){
 
         this.x = x;
@@ -82,5 +86,18 @@ public class GameObjects extends JLabel {
 
     public ArrayList<Collectible> getCollectibles() {
         return collectibles;
+    }
+    public void invisibleCollectible(){}
+
+    public boolean isAttackByMelee() {
+        return attackByMelee;
+    }
+
+    public ArrayList<ShotGun> getShots() {
+        return shots;
+    }
+
+    public int getHP() {
+        return HP;
     }
 }
