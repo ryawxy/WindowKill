@@ -2,8 +2,7 @@ package Model;
 
 import Controller.Constants;
 import Controller.Game;
-import Model.Direction;
-import Model.GameLoop;
+import Model.enums.Direction;
 import View.GamePanel;
 
 import java.awt.*;

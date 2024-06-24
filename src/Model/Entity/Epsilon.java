@@ -1,8 +1,11 @@
-package Model;
+package Model.Entity;
 
 import Controller.Constants;
 import Controller.Game;
 import Controller.KeyListener;
+import Model.*;
+import Model.enums.Ability;
+import Model.enums.EnemyType;
 import View.GamePanel;
 
 import java.awt.geom.Point2D;
@@ -142,7 +145,7 @@ public class Epsilon extends GameObjects implements Movable {
     }
 
     public void increaseHP(int increment){setHP(getHP()+increment);}
-    public void decreaseHP(EnemyType enemyType,boolean meleeAttack){
+    public void decreaseHP(EnemyType enemyType, boolean meleeAttack){
 
         if(GameInfo.getCurrentAbility().containsKey(Ability.Melampus) && KeyListener.getKeyPressedNumber()>0) {
             Random random = new Random();

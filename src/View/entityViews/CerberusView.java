@@ -1,7 +1,7 @@
-package View;
+package View.entityViews;
 
 import Controller.Game;
-import Model.Cerberus;
+import Model.Entity.Cerberus;
 import Model.Drawable;
 
 import java.awt.*;

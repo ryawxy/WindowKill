@@ -1,10 +1,10 @@
 package Controller;
 
-import Model.Epsilon;
+import Model.Entity.Epsilon;
 import Model.GameInfo;
-import Model.ShotGun;
+import Model.Entity.ShotGun;
 import View.GamePanel;
-import View.Settings.SettingsFrame;
+import View.SettingsFrame;
 import View.ShopFrame;
 
 import javax.swing.*;

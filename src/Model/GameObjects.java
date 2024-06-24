@@ -1,7 +1,8 @@
 package Model;
 
+import Model.Entity.ShotGun;
+
 import javax.swing.*;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class GameObjects extends JLabel {

@@ -1,7 +1,8 @@
 package Controller;
 
 import Model.*;
-import View.ShopFrame;
+import Model.Entity.ShotGun;
+import Model.enums.ShopItem;
 
 import java.util.HashMap;
 
@@ -78,7 +79,7 @@ public class ShopController {
         } if(GameInfo.getCurrentShopItem().containsKey(ShopItem.Slaughter)&& canUse){
 
             for(IntersectionPoint point : Intersection.getIntersectionPoints()){
-                if(point.getEntity1() instanceof  ShotGun){
+                if(point.getEntity1() instanceof ShotGun){
 
                     if(point.getEntity2()!=null){
                         point.getEntity2().decreaseHP(50);

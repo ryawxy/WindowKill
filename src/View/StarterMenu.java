@@ -3,7 +3,6 @@ package View;
 import Controller.Game;
 import Model.GameLoop;
 import Controller.KeyListener;
-import View.Settings.SettingsFrame;
 import myproject.MyProject;
 
 import javax.swing.*;

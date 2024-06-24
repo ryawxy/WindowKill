@@ -1,8 +1,9 @@
-package Model.omenoct;
+package Model.Entity;
 
 import Controller.Constants;
 import Controller.Game;
 import Model.*;
+import Model.enums.Side;
 import View.GamePanel;
 
 import java.util.ArrayList;

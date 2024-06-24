@@ -1,8 +1,8 @@
-package View;
+package View.entityViews;
 
 import Controller.Game;
 import Model.Drawable;
-import Model.Vertex;
+import Model.Entity.Vertex;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;

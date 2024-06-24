@@ -1,8 +1,7 @@
 package View;
 
-import Controller.Game;
 import Controller.SkillTreeController;
-import Model.Ability;
+import Model.enums.Ability;
 import Model.GameInfo;
 import myproject.MyProject;
 

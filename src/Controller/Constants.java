@@ -1,6 +1,6 @@
 package Controller;
 
-import View.Settings.SettingsFrame;
+import View.SettingsFrame;
 
 import java.awt.*;
 
@@ -126,6 +126,18 @@ public class Constants {
     }
     public static int omenoctWidth(){
         return 10;
+    }
+    public static int miniArchmireWidth(){
+        return 50;
+    }
+    public static int miniArchmireHeight(){
+        return 30;
+    }
+    public static int largeArchmireWidth(){
+        return 75;
+    }
+    public static int largeArchmireHeight(){
+        return 45;
     }
 
 

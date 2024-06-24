@@ -1,4 +1,7 @@
-package Model;
+package Model.Entity;
+
+import Model.GameObjects;
+import Model.Movable;
 
 public class ShotGun extends GameObjects implements Movable {
 

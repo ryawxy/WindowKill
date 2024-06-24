@@ -2,10 +2,10 @@ package myproject;
 
 import Controller.Constants;
 
-import Model.Epsilon;
+import Model.Entity.Epsilon;
 import Model.GameInfo;
 
-import View.Settings.SettingsFrame;
+import View.SettingsFrame;
 import View.StarterMenu;
 
 import java.awt.event.KeyEvent;

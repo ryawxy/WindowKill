@@ -1,6 +1,9 @@
-package Model;
+package Model.Entity;
 
 import Controller.Game;
+import Model.Entity.Epsilon;
+import Model.GameObjects;
+import Model.Movable;
 
 public class Cerberus extends GameObjects implements Movable {
 

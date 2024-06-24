@@ -1,9 +1,11 @@
 package Model;
 
 import Controller.*;
-import Model.omenoct.Omenoct;
+import Model.Entity.*;
+import Model.enums.Direction;
+import Model.enums.EnemyType;
 import View.*;
-import View.Settings.SettingsFrame;
+import View.SettingsFrame;
 import myproject.MyProject;
 
 import javax.swing.*;
@@ -77,7 +79,6 @@ public class GameLoop {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-
                 if (!KeyListener.getPauseGame()) {
 
 
@@ -103,6 +104,11 @@ public class GameLoop {
                             for(Omenoct omenoct : wave.wave1EasyOmenoct){
                                 Game.getOmenocts().add(omenoct);
                                 Game.getEnemies().add(omenoct);
+
+                            }
+                            for(Archmire archmire : wave.wave1EasyArchmire){
+                                Game.getArchmires().add(archmire);
+                                Game.getEnemies().add(archmire);
 
                             }
                         }else        if(SettingsFrame.getChosenLevel()==1) {
@@ -428,9 +434,9 @@ public class GameLoop {
                     intersection.shotIntersectsEntity();
                     intersection.epsilonIntersectsCollectible();
                     intersection.enemyIntersection();
-                    intersection.getIntersectionPoint();
                     intersection.vertexIntersectsNecropick();
                     intersection.vertexIntersectsOmenoct();
+                   intersection.AOEIntersection();
 
 
 
@@ -576,6 +582,11 @@ public class GameLoop {
                         omenoct.chooseSide();
                         omenoct.move();
                         omenoct.shoot();
+                    }
+                    for(Archmire archmire : Game.getArchmires()){
+                        archmire.move();
+                        archmire.fadeFootprint();
+
                     }
 
 

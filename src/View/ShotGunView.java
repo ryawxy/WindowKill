@@ -2,9 +2,9 @@ package View;
 
 import Controller.Game;
 import Model.Drawable;
-import Model.Necropick;
-import Model.ShotGun;
-import Model.omenoct.Omenoct;
+import Model.Entity.Necropick;
+import Model.Entity.ShotGun;
+import Model.Entity.Omenoct;
 
 import java.awt.*;
 

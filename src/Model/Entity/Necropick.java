@@ -1,7 +1,8 @@
-package Model;
+package Model.Entity;
 
 import Controller.Constants;
 import Controller.Game;
+import Model.*;
 
 import java.util.ArrayList;
 import java.util.Random;

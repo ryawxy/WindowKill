@@ -1,5 +1,8 @@
 package Model;
 
+import Model.enums.Ability;
+import Model.enums.ShopItem;
+
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 

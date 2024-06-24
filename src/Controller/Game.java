@@ -2,9 +2,12 @@
 package Controller;
 
 import Model.*;
-import Model.omenoct.Omenoct;
+import Model.Entity.*;
+import Model.enums.Ability;
 import Sound.SoundPlayer;
 import View.*;
+import View.entityViews.*;
+
 import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,6 +23,7 @@ public class Game {
     private static ArrayList<Trigorath> trigoraths;
     private static ArrayList<Necropick> necropicks;
     private static ArrayList<Omenoct> omenocts;
+    private static ArrayList<Archmire> archmires;
     private static EpsilonView epsilonView;
     private static ShotGunView shotGunView;
     private static TrigorathView trigorathView;
@@ -29,6 +33,7 @@ public class Game {
     private static GameInfoView gameInfoView;
     private static NecropickView necropickView;
     private static OmenoctView omenoctView;
+    private static ArchmireView archmireView;
     protected GamePanel gamePanel;
     protected KeyListener keyListener;
     protected MouseListener mouseListener;
@@ -55,6 +60,7 @@ public class Game {
         trigoraths = new ArrayList<>();
         necropicks = new ArrayList<>();
         omenocts = new ArrayList<>();
+        archmires = new ArrayList<>();
 
         enemies = new ArrayList<>();
 
@@ -68,6 +74,7 @@ public class Game {
         cerberusView = new CerberusView();
         necropickView = new NecropickView();
         omenoctView = new OmenoctView();
+        archmireView = new ArchmireView();
         currentAbilities = new ArrayList<>();
 
         skillTreeAbilities = new HashMap<>();
@@ -178,5 +185,13 @@ public class Game {
 
     public static OmenoctView getOmenoctView() {
         return omenoctView;
+    }
+
+    public static ArrayList<Archmire> getArchmires() {
+        return archmires;
+    }
+
+    public static ArchmireView getArchmireView() {
+        return archmireView;
     }
 }

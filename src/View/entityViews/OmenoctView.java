@@ -1,9 +1,9 @@
-package View;
+package View.entityViews;
 
 import Controller.Game;
 import Model.Collectible;
 import Model.Drawable;
-import Model.omenoct.Omenoct;
+import Model.Entity.Omenoct;
 
 import java.awt.*;
 import java.util.ArrayList;

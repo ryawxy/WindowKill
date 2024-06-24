@@ -1,10 +1,11 @@
 package Controller;
 
 import Model.*;
+import Model.Entity.*;
+import Model.enums.Ability;
 import myproject.MyProject;
 
 import java.awt.*;
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;

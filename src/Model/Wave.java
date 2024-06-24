@@ -1,7 +1,8 @@
 package Model;
 
-import Model.omenoct.Omenoct;
-import View.Settings.SettingsFrame;
+import Model.Entity.*;
+import Model.enums.Size;
+import View.SettingsFrame;
 
 import java.util.ArrayList;
 
@@ -11,6 +12,7 @@ public class Wave {
     public  ArrayList<Squarantine> wave1EasySquarantine = new ArrayList<>();
     public  ArrayList<Necropick> wave1EasyNecropicks = new ArrayList<>();
     public  ArrayList<Omenoct> wave1EasyOmenoct = new ArrayList<>();
+    public  ArrayList<Archmire> wave1EasyArchmire = new ArrayList<>();
 
     public  ArrayList<Trigorath> wave1MediumTrigorath = new ArrayList<>();
     public  ArrayList<Squarantine> wave1MediumSquarantine = new ArrayList<>();
@@ -86,6 +88,9 @@ public  void initWave1(){
         trigorath.setxPoints(xPoints3);
         trigorath.setyPoints(yPoints3);
         wave1EasyTrigorath.add(trigorath);
+
+        Archmire archmire = new Archmire(50,50, Size.MINI);
+        wave1EasyArchmire.add(archmire);
 
         Necropick necropick = new Necropick(300,300);
         wave1EasyNecropicks.add(necropick);

@@ -1,12 +1,8 @@
 package View;
 
-import Controller.Constants;
 import Controller.Game;
-import Model.GameInfo;
-import Model.GameLoop;
+import Model.Entity.Vertex;
 import Controller.MouseListener;
-import Model.*;
-import myproject.MyProject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,9 +11,7 @@ import java.io.IOException;
 
 
 public class GamePanel extends JPanel {
-
     static GamePanel INSTANCE;
-
     private static int FRAME_WIDTH = 700;
     private static int FRAME_HEIGHT = 700;
     private Dimension SCREEN_SIZE = new Dimension(700, 700);
@@ -76,6 +70,10 @@ public class GamePanel extends JPanel {
         Graphics2D g2D = (Graphics2D) g;
         super.paintComponent(g2D);
 
+        Game.getNecropickView().paint(g2D);
+
+        Game.getArchmireView().paint(g2D);
+
         //paint epsilon
         Game.getEpsilonView().paint(g2D);
 
@@ -96,9 +94,11 @@ public class GamePanel extends JPanel {
         //paint Cerberuses
         Game.getCerberusView().paint(g2D);
 
-        Game.getNecropickView().paint(g2D);
+
 
         Game.getOmenoctView().paint(g2D);
+
+
     }
 
     public static int getFRAME_WIDTH() {

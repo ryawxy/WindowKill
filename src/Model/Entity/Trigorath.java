@@ -1,9 +1,10 @@
-package Model;
+package Model.Entity;
 
 import Controller.Constants;
 import Controller.Game;
+import Model.*;
+import Model.enums.ShopItem;
 
-import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 

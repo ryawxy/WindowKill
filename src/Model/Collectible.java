@@ -1,5 +1,7 @@
 package Model;
 
+import Model.enums.EnemyType;
+
 public class Collectible extends GameObjects  {
 
     private int width;

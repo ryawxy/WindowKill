@@ -1,11 +1,10 @@
 package Controller;
 
-import Model.Epsilon;
+import Model.Entity.Epsilon;
 import Model.GameInfo;
-import Model.ShopItem;
-import Model.ShotGun;
+import Model.enums.ShopItem;
+import Model.Entity.ShotGun;
 import View.GamePanel;
-import View.ShopFrame;
 
 import javax.swing.event.MouseInputAdapter;
 import java.awt.event.MouseEvent;

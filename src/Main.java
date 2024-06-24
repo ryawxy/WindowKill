@@ -1,11 +1,8 @@
 
 
-import Model.Ability;
 import myproject.MyProject;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 public class Main {

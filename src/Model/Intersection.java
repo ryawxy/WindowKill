@@ -2,8 +2,10 @@ package Model;
 
 import Controller.Constants;
 import Controller.Game;
-import Model.omenoct.Omenoct;
-import Model.omenoct.Side;
+import Model.Entity.*;
+import Model.enums.Direction;
+import Model.enums.Side;
+import Model.enums.Size;
 import View.GamePanel;
 import myproject.MyProject;
 
@@ -21,6 +23,10 @@ public class Intersection {
     private Polygon trigorath2;
 
     private static ArrayList<IntersectionPoint> intersectionPoints;
+    private static long lastTime,lastTime2;
+    //AOE
+    private static long lastTime3,lastTime4;
+    //Drown
 
     public Intersection(GamePanel gamePanel) throws IOException {
         this.gamePanel = gamePanel;
@@ -70,7 +76,7 @@ public class Intersection {
                     if(shotGun.isVisible()){
                         if(epsilon1.intersects(shot)){
                             if(enemy instanceof Omenoct) Game.getEpsilon().decreaseHP(4);
-                            else if(enemy instanceof  Necropick) Game.getEpsilon().decreaseHP(5);
+                            else if(enemy instanceof Necropick) Game.getEpsilon().decreaseHP(5);
                             shotGun.setVisible(false);
                             IntersectionPoint point = new IntersectionPoint(new Point2D.Double(epsilon.getX(), epsilon.getY()), 10, false, false, epsilon, enemy);
                             intersectionPoints.add(point);
@@ -124,12 +130,6 @@ public class Intersection {
         //enemy shots enemy
         // TODO:which enemy shots can intersect other enemies??
 
-
-
-
-
-
-
     }
 
 
@@ -156,13 +156,16 @@ public class Intersection {
                     epsilonArea.intersect(collectibleArea);
 
                     if(!epsilonArea.isEmpty()){
-                        if(enemy instanceof Necropick){
-                            MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP()+2);
-                        }else if(enemy instanceof Omenoct){
-                            MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP()+4);
-                        }
-                        else {
-                            MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 5);
+                        switch (enemy) {
+                            case Necropick necropick ->
+                                    MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 2);
+                            case Omenoct omenoct -> MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 4);
+                            case Archmire archmire -> {
+                                if (archmire.getsize().equals(Size.LARGE))
+                                    MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 6);
+                                else MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 3);
+                            }
+                            default -> MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 5);
                         }
                         enemy.getCollectibles().remove(collectible);
                     }
@@ -213,10 +216,25 @@ public class Intersection {
             }
         }
 
+        for(GameObjects enemy1 : Game.getEnemies()){
+            for(GameObjects enemy2 : Game.getEnemies() ){
+                if(!(enemy1 instanceof Trigorath && enemy2 instanceof Squarantine) && !(enemy1 instanceof Squarantine && enemy2 instanceof Trigorath)
+                && !(enemy1 instanceof Trigorath && enemy2 instanceof Trigorath) && !(enemy1 instanceof Squarantine && enemy2 instanceof Squarantine)){
+                if(!enemy1.equals(enemy2)) {
+                    if (enemy1.isVisible() && enemy2.isVisible()) {
+                        Rectangle e1 = new Rectangle(enemy1.getX(), enemy1.getY(), enemy1.getWidth(), enemy1.getHeight());
+                        Rectangle e2 = new Rectangle(enemy2.getX(), enemy2.getY(), enemy2.getWidth(), enemy2.getHeight());
+                        if (e1.intersects(e2)) {
+                            IntersectionPoint point = new IntersectionPoint(new Point2D.Double(enemy1.getX(), enemy1.getY()), 10, false, false, enemy1, enemy2);
+                            intersectionPoints.add(point);
+                        }
+                    }
+                }
+                }
 
 
-    }
-    public void  getIntersectionPoint() {
+            }
+        }
         for(Trigorath trigorath : Game.getTrigoraths()){
             for(Squarantine squarantine : Game.getSquarantine()){
                 Polygon trigorath1 = new Polygon(trigorath.getxPoints(), trigorath.getyPoints(), 3);
@@ -270,6 +288,81 @@ public void vertexIntersectsNecropick(){
             }
         }
     }
+    public void AOEIntersection() {
+        for (Archmire archmire : Game.getArchmires()) {
+            for (Footprint footprint : archmire.getFootprint()) {
+                if (footprint.isVisible()) {
+                    Point2D footprintCenter;
+                    Point2D archmireCenter;
+                    double arcRadius;
+                    double arcRadius1;
+                    Point2D enemyCenter;
+                    Point2D epsilonCenter;
+                    if (archmire.getsize().equals(Size.MINI)){
+                        footprintCenter = new Point2D.Double(footprint.getPosition().getX() + (double) Constants.miniArchmireWidth() / 2,
+                                footprint.getPosition().getY() + (double) Constants.miniArchmireHeight() / 2);
+                    archmireCenter = new Point2D.Double(archmire.getX() + (double) Constants.miniArchmireWidth() / 2,
+                            archmire.getY() + (double) Constants.miniArchmireHeight() / 2);}
+                    else {
+                        footprintCenter = new Point2D.Double(footprint.getPosition().getX() + (double) Constants.largeArchmireWidth() / 2,
+                                footprint.getPosition().getY() + (double) Constants.largeArchmireHeight() / 2);
+                        archmireCenter = new Point2D.Double(archmire.getX() + (double) Constants.largeArchmireWidth() / 2,
+                                archmire.getY() + (double) Constants.largeArchmireHeight() / 2);
+                    }
+                     epsilonCenter = new Point2D.Double(Game.getEpsilon().getxCenter(), Game.getEpsilon().getyCenter());
+
+                    if (archmire.getsize().equals(Size.MINI)) {
+                        arcRadius = Constants.miniArchmireWidth();
+                        arcRadius1 = Constants.miniArchmireHeight();
+                    } else {
+                        arcRadius = Constants.largeArchmireWidth();
+                        arcRadius1 = Constants.largeArchmireHeight();
+                    }
+                        long currentTime = System.currentTimeMillis();
+                        if (epsilonCenter.distance(footprintCenter) <= Math.abs(arcRadius - (double) Game.getEpsilon().getRadius() / 2) ||
+                                epsilonCenter.distance(footprintCenter) <= Math.abs(arcRadius1 - (double) Game.getEpsilon().getRadius() / 2)) {
+                            if ((currentTime - lastTime) / 1000 >= 1) {
+                                lastTime = currentTime;
+                                Game.getEpsilon().setHP(Game.getEpsilon().getHP() - 2);
+                            }
+                        }
+                    if (epsilonCenter.distance(archmireCenter) <= Math.abs(arcRadius - (double) Game.getEpsilon().getRadius() / 2) ||
+                            epsilonCenter.distance(footprintCenter) <= Math.abs(arcRadius1 - (double) Game.getEpsilon().getRadius() / 2)) {
+                        if ((currentTime - lastTime3) / 1000 >= 1) {
+                            lastTime3 = currentTime;
+                            Game.getEpsilon().setHP(Game.getEpsilon().getHP() - 10);
+                        }
+                    }
+
+                        for (GameObjects enemy : Game.getEnemies()) {
+                            if (!enemy.equals(archmire)) {
+                                enemyCenter = new Point2D.Double(enemy.getX() + (double) enemy.getWidth() / 2, enemy.getY() + (double) enemy.getHeight() / 2);
+
+                                double distance = enemyCenter.distance(footprintCenter);
+                                if(distance <= Math.abs(arcRadius1- (double) enemy.getWidth() /2) || distance <= Math.abs(arcRadius1- (double) enemy.getHeight() /2)
+                                || distance <= Math.abs(arcRadius - (double) enemy.getWidth() /2) || distance <= Math.abs(enemy.getHeight()/2)){
+                                    if ((currentTime - lastTime2) / 1000 >= 1) {
+                                        lastTime2 = currentTime;
+                                        enemy.decreaseHP(2);
+                                    }
+                                }
+                                double distance2 = enemyCenter.distance(archmireCenter);
+                                if(distance2 <= Math.abs(arcRadius1- (double) enemy.getWidth() /2) || distance2 <= Math.abs(arcRadius1- (double) enemy.getHeight() /2)
+                                        || distance2 <= Math.abs(arcRadius - (double) enemy.getWidth() /2) || distance2 <= Math.abs(enemy.getHeight()/2)){
+                                    if ((currentTime - lastTime4) / 1000 >= 1) {
+                                        lastTime4 = currentTime;
+                                        enemy.decreaseHP(10);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                }
+            }
+
+
+
 
 
     public static ArrayList<IntersectionPoint> getIntersectionPoints(){

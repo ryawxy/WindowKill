@@ -1,8 +1,8 @@
 package Controller;
 
 import Model.GameObjects;
-import Model.Squarantine;
-import Model.Trigorath;
+import Model.Entity.Squarantine;
+import Model.Entity.Trigorath;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;

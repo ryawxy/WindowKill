@@ -1,8 +1,8 @@
-package View;
+package View.entityViews;
 
 import Controller.Game;
 import Model.Drawable;
-import Model.Epsilon;
+import Model.Entity.Epsilon;
 
 import java.awt.*;
 

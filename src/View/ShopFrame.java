@@ -3,7 +3,7 @@ package View;
 import Controller.KeyListener;
 import Controller.ShopController;
 import Model.GameInfo;
-import Model.ShopItem;
+import Model.enums.ShopItem;
 import myproject.MyProject;
 
 import javax.swing.*;

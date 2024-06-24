@@ -1,6 +1,6 @@
-package View.Settings;
+package View;
 
-import View.StarterMenu;
+import Controller.KeyCodeCapture;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;

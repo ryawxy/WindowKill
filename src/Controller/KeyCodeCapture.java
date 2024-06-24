@@ -1,4 +1,6 @@
-package View.Settings;
+package Controller;
+
+import View.SettingsFrame;
 
 import javax.swing.*;
 
