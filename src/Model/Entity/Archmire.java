@@ -32,7 +32,7 @@ public class Archmire extends GameObjects implements Movable {
     public void move() {
 
            xVelocity = 0;
-        yVelocity = 0;
+        yVelocity = 1;
 
         setX((int) (getX() + xVelocity));
         setY((int) (getY() + yVelocity));
@@ -48,9 +48,15 @@ public class Archmire extends GameObjects implements Movable {
     public void fadeFootprint() {
         for (Footprint footprint : footprints) {
 
-            footprint.setTimer(footprint.getTimer() + 1);
+            while (isVisible()) {
 
-            if (footprint.getTimer() >= 500) footprint.setVisible(false);
+                footprint.setTimer(footprint.getTimer() + 1);
+
+
+                System.out.println(footprints.get(0).getTimer());
+                if (footprint.getTimer() >= 500) setVisible(false);
+            }
+
         }
     }
 

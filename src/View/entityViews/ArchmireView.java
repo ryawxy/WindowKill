@@ -20,7 +20,8 @@ public class ArchmireView implements Drawable {
                 for (Footprint footprint : archmire.getFootprint()) {
                     if (footprint.getPosition().getX() != archmire.getX() || footprint.getPosition().getY() != archmire.getY()) {
                         if (footprint.isVisible()) {
-                            g.setColor(new Color(164, 200, 217));
+
+                            g.setColor(Footprint.getColor());
                             if (archmire.getsize().equals(Size.MINI)) {
                                 g.fillOval((int) footprint.getPosition().getX(), (int) footprint.getPosition().getY(), Constants.miniArchmireWidth(), Constants.miniArchmireHeight());
                             }else g.fillOval((int) footprint.getPosition().getX(), (int) footprint.getPosition().getY(), Constants.largeArchmireWidth(), Constants.largeArchmireHeight());

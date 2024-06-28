@@ -4,28 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="added structure to shopV2.0">
-      <change afterPath="$PROJECT_DIR$/src/Model/omenoct/Omenoct.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/omenoct/Side.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_6_4_2024_12_12_PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_6_4_2024_12_12_PM__Changes_.xml" beforeDir="false" />
+    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="Archmire footprint">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SkillTreeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SkillTreeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/EnemyType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/EnemyType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Epsilon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Epsilon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GameObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameObjects.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Intersection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Intersection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Necropick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Necropick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Omenoct.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Squarantine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Squarantine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Trigorath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Trigorath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Wave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Wave.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/OmenoctPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/OmenoctPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/OmenoctView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/OmenoctView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/ShotGunView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ShotGunView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Entity/Archmire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Entity/Archmire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Entity/Footprint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Entity/Footprint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/entityViews/ArchmireView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/entityViews/ArchmireView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +41,7 @@
     </excluded-from-favorite>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="masterV2.0" />
+        <entry key="$PROJECT_DIR$" value="barricados" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -72,14 +55,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;masterV2.0&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/inetpub/puzzle5&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "archmire",
+    "last_opened_file_path": "C:/inetpub/puzzle5"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Namazi\Ap2024\WindowKill2\src" />
@@ -262,7 +245,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717488270113</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Archmire footprint">
+      <option name="closed" value="true" />
+      <created>1719571995764</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1719571995764</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -296,6 +287,18 @@
     <MESSAGE value="made paint methods cleaner" />
     <MESSAGE value="added structure to the updated skillTree" />
     <MESSAGE value="added structure to shopV2.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="added structure to shopV2.0" />
+    <MESSAGE value="Archmire footprint" />
+    <option name="LAST_COMMIT_MESSAGE" value="Archmire footprint" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/View/GlassFrame.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
