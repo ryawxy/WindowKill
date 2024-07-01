@@ -8,15 +8,18 @@ import View.GamePanel;
 import View.GlassFrame;
 import View.entityViews.Barricados.BarricadosFrame;
 
-import java.awt.*;
+
 import java.io.IOException;
-import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 public class FrameSize {
 
     GamePanel gamePanel;
     private int newX;
     private int newY;
+
+    private int deltaWidth;
+    private int deltaHeight;
     private int minSize;
 
     public FrameSize(GamePanel gamePanel) throws IOException {
@@ -32,17 +35,52 @@ public class FrameSize {
          minSize = 0;
      }
 
+        ArrayList<Direction> overlapSides = FrameIntersection.overlapSides(GlassFrame.getINSTANCE());
+
         if(GlassFrame.getINSTANCE().getWidth()>=minSize && GlassFrame.getINSTANCE().getHeight()>=minSize && gamePanel.getWidth()>=minSize
         && gamePanel.getHeight()>=minSize){
 
 
-            newX = GlassFrame.getINSTANCE().getX() + Constants.shrinkAmount();
-            newY = GlassFrame.getINSTANCE().getY() + Constants.shrinkAmount();
 
-            GlassFrame.getINSTANCE().setSize(GlassFrame.getINSTANCE().getWidth()-2*Constants.shrinkAmount(),
-                    GlassFrame.getINSTANCE().getHeight()-2*Constants.shrinkAmount());
+            if((overlapSides.contains(Direction.LEFT) && !overlapSides.contains(Direction.RIGHT)) ||
+                    (!overlapSides.contains(Direction.LEFT) && overlapSides.contains(Direction.RIGHT))){
+                deltaWidth = Constants.shrinkAmount();
+                newX = GlassFrame.getINSTANCE().getX();
+            }
+            if(!overlapSides.contains(Direction.LEFT) && !overlapSides.contains(Direction.RIGHT)){
+                deltaWidth = 2*Constants.shrinkAmount();
+                newX = GlassFrame.getINSTANCE().getX() + Constants.shrinkAmount();
+            }
+            if(overlapSides.contains(Direction.LEFT) && overlapSides.contains(Direction.RIGHT)){
+                deltaWidth = 0;
+                newX = GlassFrame.getINSTANCE().getX();
+
+            }
+
+            if((overlapSides.contains(Direction.UP) && !overlapSides.contains(Direction.DOWN)) ||
+                    (!overlapSides.contains(Direction.UP) && overlapSides.contains(Direction.DOWN))){
+                deltaHeight = Constants.shrinkAmount();
+                newY = GlassFrame.getINSTANCE().getY();
+            }
+            if(!overlapSides.contains(Direction.UP) && !overlapSides.contains(Direction.DOWN)){
+                deltaHeight = 2*Constants.shrinkAmount();
+                newY = GlassFrame.getINSTANCE().getY() + Constants.shrinkAmount();
+            }
+            if(overlapSides.contains(Direction.UP) && overlapSides.contains(Direction.DOWN)){
+                deltaHeight = 0;
+                newY = GlassFrame.getINSTANCE().getY();
+            }
+
+
+
+
+
+
+
+            GlassFrame.getINSTANCE().setSize(GlassFrame.getINSTANCE().getWidth()-deltaWidth,
+                    GlassFrame.getINSTANCE().getHeight()-deltaHeight);
             GlassFrame.getINSTANCE().setLocation(newX,newY);
-            gamePanel.setSize(gamePanel.getWidth()-2*Constants.shrinkAmount(),gamePanel.getHeight()-2*Constants.shrinkAmount());
+            gamePanel.setSize(gamePanel.getWidth()-deltaWidth,gamePanel.getHeight()-deltaHeight);
 
         }
     }

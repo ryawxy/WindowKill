@@ -118,16 +118,21 @@ public class GameLoop {
 
                             for(Barricados barricados : wave.wave1EasyBarricados){
                             BarricadosFrame barricadosFrame = new BarricadosFrame(300,300, BarricadosType.T2);
-                          //  BarricadosFrame barricadosFrame1 = new BarricadosFrame(250,200);
+                            BarricadosFrame barricadosFrame1 = new BarricadosFrame(500,30, BarricadosType.T2);
+                       //         BarricadosFrame barricadosFrame2 = new BarricadosFrame(500,600, BarricadosType.T2);
+                        //        BarricadosFrame barricadosFrame3 = new BarricadosFrame(1000,300, BarricadosType.T2);
                               Game.getBarricadosFrames().add(barricadosFrame);
-                        //    Game.getBarricadosFrames().add(barricadosFrame1);
-
+                            Game.getBarricadosFrames().add(barricadosFrame1);
+                       //         Game.getBarricadosFrames().add(barricadosFrame2);
+                        //        Game.getBarricadosFrames().add(barricadosFrame3);
                             Game.getFrames().add(barricadosFrame);
-                       //    Game.getFrames().add(barricadosFrame1);
-//
+                           Game.getFrames().add(barricadosFrame1);
+                    //            Game.getFrames().add(barricadosFrame2);
+                    //            Game.getFrames().add(barricadosFrame3);
+
                                Game.getBarricados().add(barricados);
-////                                Game.getEnemies().add(barricados);
-//
+                                Game.getEnemies().add(barricados);
+
                            }
                         }else        if(SettingsFrame.getChosenLevel()==1) {
                             for (Squarantine squarantine : wave.wave1MediumSquarantine) {
@@ -439,7 +444,7 @@ public class GameLoop {
                     }
                     for (int i = 0; i < Game.getTrigoraths().size(); i++) {
                         Trigorath trigorath = Game.getTrigoraths().get(i);
-                       trigorath.move();
+                 //      trigorath.move();
 
                     }
                     Game.getEpsilon().move();
@@ -466,9 +471,9 @@ public class GameLoop {
                         throw new RuntimeException(ex);
                     }
                     //shrinkage starts after 10 seconds
-                    if (countTime >= 100 ) {
+                    if (countTime >= 50 ) {
 
-                    //    frameSize.shrink();
+                        frameSize.shrink();
                     }
 
 
@@ -549,6 +554,7 @@ public class GameLoop {
                         }
 
                     }
+
 
 
                     Game.getGameFrame().repaint();

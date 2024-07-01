@@ -21,7 +21,7 @@ public class BarricadosPanel extends JPanel {
 
      this.setSize(x,y);
      this.setLocation(xLoc,yLoc);
-     this.setBackground(Color.BLACK);
+     this.setBackground(Color.WHITE);
 
 }
 

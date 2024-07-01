@@ -2,11 +2,13 @@ package Model;
 
 import Controller.Game;
 import Model.Entity.Trigorath;
+import Model.enums.Direction;
 import View.GlassFrame;
 import View.entityViews.Barricados.BarricadosFrame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class FrameIntersection {
 
@@ -40,10 +42,10 @@ public class FrameIntersection {
 
                 if (trigorath.intersects(bounds2)) {
 
-                    System.out.println("333333333333");
+
                     if (!trigorath.intersects(bounds1)) {
 
-                        System.out.println("********************");
+
                         entity.setLocalFrame(frame);
                         entity.setPreviousLocalFrame(previousFrame);
 
@@ -83,6 +85,20 @@ public class FrameIntersection {
 
             }
         }
+    }
+    public static ArrayList<Direction> overlapSides(JFrame frame){
+
+        ArrayList<Direction> sides = new ArrayList<>();
+
+        for(JFrame frame2 : Game.getFrames()){
+
+            if(frame2.getX()+frame2.getWidth()>=frame.getX() && frame2.getX()<frame.getX())  sides.add(Direction.LEFT);
+            if(frame2.getX()<=frame.getX()+frame.getWidth() && frame2.getX()+frame2.getWidth()>frame.getX()+frame.getWidth()) sides.add(Direction.RIGHT);
+            if(frame2.getY()+frame2.getHeight()>=frame.getY() && frame2.getY()<frame.getY()) sides.add(Direction.UP);
+            if(frame2.getY()<=frame.getY()+frame.getHeight() && frame2.getY()+frame2.getHeight()>frame.getY()+frame.getHeight()) sides.add(Direction.DOWN);
+
+        }
+        return sides;
     }
 
 
