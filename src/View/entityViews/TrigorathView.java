@@ -43,10 +43,26 @@ public class TrigorathView implements Drawable {
 
                 Polygon global = new Polygon(globalX, globalY, 3);
 
-                if (global.intersects(bounds)) {
+                if(trigorath1.getLocalFrames().size()==1) {
+                    if (global.intersects(bounds)) {
 
+                        g.setColor(Color.YELLOW);
+                        g.drawPolygon(trigorath1.getLocalxPoints(), trigorath1.getLocalyPoints(), 3);
+                    }
+                }else{
                     g.setColor(Color.YELLOW);
-                    g.drawPolygon(trigorath1.getLocalxPoints(), trigorath1.getLocalyPoints(), 3);
+
+                    int [] xpoint = new int[3];
+                    int [] ypoint = new int[3];
+                    for(int j=0;j<3;j++){
+
+                        xpoint[j] = globalX[j]-bounds.x;
+                        ypoint[j] = globalY[j]-bounds.y;
+                        g.drawPolygon(xpoint,ypoint,3);
+
+
+                    }
+
                 }
             }else {
                     if (trigorath1.isShowCollectibles()) {

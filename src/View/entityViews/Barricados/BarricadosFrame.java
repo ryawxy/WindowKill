@@ -11,8 +11,9 @@ import java.awt.*;
 public class BarricadosFrame extends JFrame implements FrameType {
     private final Barricados barricados;
     private final Rectangle bounds;
+    BarricadosType barricadosType;
 
-    public BarricadosFrame(int x,int y){
+    public BarricadosFrame(int x,int y,BarricadosType barricadosType){
         this.setSize(200,200);
         this.setBackground(Color.BLACK);
         this.setLocation(x,y);
@@ -26,7 +27,9 @@ public class BarricadosFrame extends JFrame implements FrameType {
         this.setVisible(true);
         barricados = new Barricados(15,15);
         barricados.setLocalFrame(this);
+        barricados.setType(barricadosType);
         bounds = new Rectangle(getX(),getY(),getWidth(),getHeight());
+        this.barricadosType = barricadosType;
 
     }
 
@@ -37,7 +40,7 @@ public class BarricadosFrame extends JFrame implements FrameType {
 
     @Override
     public boolean solid() {
-        return barricados.getType().equals(BarricadosType.TYPE_2);
+        return barricados.getType().equals(BarricadosType.T2);
     }
 
     @Override
@@ -49,4 +52,7 @@ public class BarricadosFrame extends JFrame implements FrameType {
         return barricados;
     }
 
+    public BarricadosType getBarricadosType() {
+        return barricadosType;
+    }
 }

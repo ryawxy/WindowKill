@@ -2,6 +2,7 @@ package Model;
 
 import Controller.*;
 import Model.Entity.*;
+import Model.enums.BarricadosType;
 import Model.enums.Direction;
 import Model.enums.EnemyType;
 import View.*;
@@ -116,15 +117,15 @@ public class GameLoop {
                             }
 
                             for(Barricados barricados : wave.wave1EasyBarricados){
-                            BarricadosFrame barricadosFrame = new BarricadosFrame(300,300);
-                      //      BarricadosFrame barricadosFrame1 = new BarricadosFrame(200,400);
+                            BarricadosFrame barricadosFrame = new BarricadosFrame(200,300, BarricadosType.T2);
+                          //  BarricadosFrame barricadosFrame1 = new BarricadosFrame(250,200);
                               Game.getBarricadosFrames().add(barricadosFrame);
-                     //       Game.getBarricadosFrames().add(barricadosFrame1);
+                        //    Game.getBarricadosFrames().add(barricadosFrame1);
 
                             Game.getFrames().add(barricadosFrame);
-                  //          Game.getFrames().add(barricadosFrame1);
+                       //    Game.getFrames().add(barricadosFrame1);
 //
-                                Game.getBarricados().add(barricados);
+                           //     Game.getBarricados().add(barricados);
 ////                                Game.getEnemies().add(barricados);
 //
                            }
@@ -438,7 +439,7 @@ public class GameLoop {
                     }
                     for (int i = 0; i < Game.getTrigoraths().size(); i++) {
                         Trigorath trigorath = Game.getTrigoraths().get(i);
-                       trigorath.move();
+         //              trigorath.move();
 
                     }
                     Game.getEpsilon().move();

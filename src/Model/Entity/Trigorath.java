@@ -39,11 +39,13 @@ public class Trigorath extends GameObjects implements Movable {
 
     private int[] localxPoints =  xPoints;
     private int[] localyPoints = yPoints;
+    private ArrayList<JFrame> localFrames = new ArrayList<>();
     public Trigorath(int x, int y) {
         super(x,y);
 
         epsilon = Game.getEpsilon();
 
+        localFrames.add(GlassFrame.getINSTANCE());
         initializeCollectibles();
         localxPoints = xPoints;
         localyPoints = yPoints;
@@ -334,5 +336,10 @@ public class Trigorath extends GameObjects implements Movable {
 
     public void setLocalyPoints(int[] localyPoints) {
         this.localyPoints = localyPoints;
+    }
+
+    @Override
+    public ArrayList<JFrame> getLocalFrames() {
+        return localFrames;
     }
 }

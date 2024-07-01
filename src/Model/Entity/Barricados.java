@@ -11,16 +11,18 @@ public class Barricados extends GameObjects  {
     BarricadosType type;
     BarricadosFrame localFrame;
     BarricadosView barricadosView;
+    BarricadosType barricadosType;
     public Barricados(int x, int y) {
         super(x, y);
 
+    //    barricadosType = getLocalFrame().getBarricadosType();
     }
 
     public BarricadosType getType() {
         return type;
     }
 
-    public void setType(BarricadosType barricadosType) {
+    public void setType(BarricadosType type) {
         this.type = type;
     }
 
@@ -45,5 +47,15 @@ public class Barricados extends GameObjects  {
     @Override
     public int getHeight() {
         return Constants.barricadosWidth();
+    }
+
+    @Override
+    public int getX() {
+        return super.getX();
+    }
+
+    @Override
+    public int getY() {
+        return super.getY();
     }
 }

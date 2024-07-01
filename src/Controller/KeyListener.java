@@ -17,15 +17,11 @@ public class KeyListener {
     Epsilon epsilon;
     ShotGun shotGun;
     GamePanel gameFrame;
-    SettingsFrame settingsFrame;
     private boolean upPressed;
     private boolean downPressed;
     private boolean leftPressed;
     private boolean rightPressed;
-
     private final int absVelocity = Constants.epsilonAbsVelocity();
-    private int mouseXPose;
-    private int mouseYPose;
     private static boolean pauseGame;
     private static boolean activate;
     //activates chosen ability;
@@ -75,7 +71,7 @@ public class KeyListener {
         actionMap.put("upPress", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-     //           if (epsilon.getY() - epsilon.getRadius() > 0) {
+                if (epsilon.getLocalY() - epsilon.getRadius() > 0) {
 
                     if (!downPressed) {
 
@@ -87,11 +83,11 @@ public class KeyListener {
                         shotGun.setyVelocity(0);
                     }
 
-  //              }
-//                else {
-//                    epsilon.setyVelocity(0);
-//                    shotGun.setyVelocity(0);
-//                }
+                }
+                else {
+                    epsilon.setyVelocity(0);
+                    shotGun.setyVelocity(0);
+                }
                 upPressed = true;
             }
 
@@ -111,7 +107,7 @@ public class KeyListener {
         actionMap.put("downPress", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-  //              if(epsilon.getY() + epsilon.getRadius()< GamePanel.getFRAME_HEIGHT()) {
+                if(epsilon.getLocalY() + epsilon.getRadius()< epsilon.getLocalFrame().getY()+epsilon.getLocalFrame().getHeight()) {
                     if (!upPressed) {
                         epsilon.setyVelocity(absVelocity );
                         shotGun.setyVelocity(absVelocity);
@@ -119,11 +115,11 @@ public class KeyListener {
                         epsilon.setyVelocity(0);
                         shotGun.setyVelocity(0);
                     }
- //               }
-//                else {
-//                    epsilon.setyVelocity(0);
-//                    shotGun.setyVelocity(0);
-//                }
+                }
+                else {
+                    epsilon.setyVelocity(0);
+                    shotGun.setyVelocity(0);
+                }
                 downPressed = true;
             }
 
@@ -142,7 +138,7 @@ public class KeyListener {
         actionMap.put("leftPress", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                if(epsilon.getX() - epsilon.getRadius()>0) {
+                if(epsilon.getLocalX() - epsilon.getRadius()>0) {
                     if(!rightPressed) {
                         epsilon.setxVelocity(-1 * absVelocity );
                         shotGun.setxVelocity(-1 * absVelocity);
@@ -150,11 +146,11 @@ public class KeyListener {
                         epsilon.setxVelocity(0);
                         shotGun.setxVelocity(0);
                     }
- //               }
-//                else{
-//                    epsilon.setxVelocity(0);
-//                    shotGun.setxVelocity(0);
-//                }
+                }
+                else{
+                    epsilon.setxVelocity(0);
+                    shotGun.setxVelocity(0);
+                }
                 leftPressed = true;
             }
         });
@@ -172,7 +168,7 @@ public class KeyListener {
         actionMap.put("rightPress", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
- //               if(epsilon.getX() + epsilon.getRadius()< GamePanel.getFRAME_WIDTH()) {
+               if(epsilon.getLocalX() + epsilon.getRadius()< epsilon.getLocalFrame().getX()+epsilon.getLocalFrame().getWidth()) {
                     if(!leftPressed) {
                         epsilon.setxVelocity(absVelocity );
                         shotGun.setxVelocity(absVelocity);
@@ -180,11 +176,11 @@ public class KeyListener {
                         epsilon.setxVelocity(0);
                         shotGun.setxVelocity(0);
                     }
- //               }
-//                else {
-//                    epsilon.setxVelocity(0);
-//                    shotGun.setxVelocity(0);
-//                }
+                }
+                else {
+                    epsilon.setxVelocity(0);
+                    shotGun.setxVelocity(0);
+                }
                 rightPressed = true;
 
             }
@@ -224,22 +220,6 @@ public class KeyListener {
 
     public static void setPauseGame(boolean pauseGame) {
         KeyListener.pauseGame = pauseGame;
-    }
-
-    public static boolean isActivate() {
-        return activate;
-    }
-
-    public static void setActivate(boolean activate) {
-        KeyListener.activate = activate;
-    }
-
-    public static boolean isCanUseAbility() {
-        return canUseAbility;
-    }
-
-    public static void setCanUseAbility(boolean canUseAbility) {
-        KeyListener.canUseAbility = canUseAbility;
     }
 
     public static boolean isAbilityKeyPressed() {

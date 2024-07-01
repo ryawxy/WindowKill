@@ -24,6 +24,7 @@ public class GameObjects extends JLabel {
     private JFrame previousLocalFrame;
     private int globalX;
     private int globalY;
+    private ArrayList<JFrame> localFrames = new ArrayList<>();
 
     public GameObjects(int x, int y){
 
@@ -156,5 +157,9 @@ public class GameObjects extends JLabel {
 
     public void setGlobalY(int globalY) {
         this.globalY = globalY;
+    }
+
+    public ArrayList<JFrame> getLocalFrames() {
+        return localFrames;
     }
 }
