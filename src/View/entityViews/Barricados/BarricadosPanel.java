@@ -4,6 +4,7 @@ import Controller.Constants;
 import Controller.Game;
 import Model.Entity.Epsilon;
 import Model.Entity.ShotGun;
+import Model.enums.BarricadosType;
 import View.GlassFrame;
 import View.ShotGunView;
 import View.entityViews.EpsilonView;
@@ -15,13 +16,17 @@ import java.awt.*;
 public class BarricadosPanel extends JPanel {
 
     Rectangle bounds;
-    BarricadosView barricadosView = new BarricadosView();
     JFrame itsFrame;
-    public  BarricadosPanel(int x,int y,int xLoc,int yLoc) {
+    BarricadosType barricadosType;
+    BarricadosView barricadosView;
+
+    public  BarricadosPanel(int x, int y, BarricadosType barricadosType) {
 
      this.setSize(x,y);
-     this.setLocation(xLoc,yLoc);
-     this.setBackground(Color.WHITE);
+     this.barricadosType = barricadosType;
+     this.setBackground(Color.BLACK);
+    barricadosView = new BarricadosView(barricadosType);
+
 
 }
 
@@ -29,8 +34,8 @@ public class BarricadosPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         Graphics2D g2D = (Graphics2D) g;
         super.paintComponent(g2D);
-
         g2D.setColor(Color.RED);
+
         barricadosView.paint(g2D);
 
 
@@ -44,11 +49,6 @@ public class BarricadosPanel extends JPanel {
         trigorathView.paint(g2D);
 
 
-    }
-
-
-    public Rectangle getBound() {
-        return bounds;
     }
 
     public void setBound(Rectangle bounds) {

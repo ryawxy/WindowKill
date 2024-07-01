@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="added invisibility to Barricados">
+    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="shrinkage mechanism for non-isometric frames">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/FrameIntersection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/FrameIntersection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/FrameSize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/FrameSize.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameLoop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/entityViews/Barricados/BarricadosFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/entityViews/Barricados/BarricadosFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/entityViews/Barricados/BarricadosPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/entityViews/Barricados/BarricadosPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/entityViews/Barricados/BarricadosView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/entityViews/Barricados/BarricadosView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,7 +285,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719847833715</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="shrinkage mechanism for non-isometric frames">
+      <option name="closed" value="true" />
+      <created>1719851754569</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1719851754569</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -325,7 +332,8 @@
     <MESSAGE value="made epsilon transition better" />
     <MESSAGE value="created barricads type2" />
     <MESSAGE value="added invisibility to Barricados" />
-    <option name="LAST_COMMIT_MESSAGE" value="added invisibility to Barricados" />
+    <MESSAGE value="shrinkage mechanism for non-isometric frames" />
+    <option name="LAST_COMMIT_MESSAGE" value="shrinkage mechanism for non-isometric frames" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

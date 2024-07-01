@@ -19,7 +19,7 @@ public class BarricadosFrame extends JFrame implements FrameType {
         this.setLocation(x,y);
         this.setUndecorated(true);
         this.setTitle("Barricados frame");
-        BarricadosPanel barricadosPanel = new BarricadosPanel(200,200,x,y);
+        BarricadosPanel barricadosPanel = new BarricadosPanel(200,200,barricadosType);
         this.setContentPane(barricadosPanel);
         this.getContentPane().setLocation(x,y);
         barricadosPanel.setBound(new Rectangle(x,y,200,200));
