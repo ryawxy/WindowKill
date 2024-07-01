@@ -449,29 +449,29 @@ public void vertexIntersectsNecropick(){
                     }
 
                 }
-                for(BarricadosFrame barricadosFrame: Game.getBarricadosFrames()){
-                    Epsilon epsilon = Game.getEpsilon();
-                    Barricados barricados = barricadosFrame.getBarricados();
-
-                    if(epsilon.getLocalFrame().equals(barricadosFrame)) {
-                        Rectangle barricados1 = new Rectangle(barricados.getX(), barricados.getY(), barricados.getWidth(), barricados.getHeight());
-                        Rectangle epsilon1 = new Rectangle(epsilon.getLocalX(), epsilon.getLocalY()
-                                , epsilon.getWidth(), epsilon.getHeight());
-
-
-
-                        if (epsilon1.intersects(barricados1)) {
-
-
-                            IntersectionPoint intersectionPoint = new IntersectionPoint(new Point2D.Double(barricados.getX()+
-                                    (double) Constants.barricadosWidth() /2,
-                                    barricados.getY()+ (double) Constants.barricadosWidth() /2),
-                                    10, false, false, barricados, epsilon);
-                            intersectionPoints.add(intersectionPoint);
-                        }
-                    }
-
-                }
+//                for(BarricadosFrame barricadosFrame: Game.getBarricadosFrames()){
+//                    Epsilon epsilon = Game.getEpsilon();
+//                    Barricados barricados = barricadosFrame.getBarricados();
+//
+//                    if(epsilon.getLocalFrame().equals(barricadosFrame)) {
+//                        Rectangle barricados1 = new Rectangle(barricados.getX(), barricados.getY(), barricados.getWidth(), barricados.getHeight());
+//                        Rectangle epsilon1 = new Rectangle(epsilon.getLocalX(), epsilon.getLocalY()
+//                                , epsilon.getWidth(), epsilon.getHeight());
+//
+//
+//
+//                        if (epsilon1.intersects(barricados1)) {
+//
+//
+//                            IntersectionPoint intersectionPoint = new IntersectionPoint(new Point2D.Double(barricados.getX()+
+//                                    (double) Constants.barricadosWidth() /2,
+//                                    barricados.getY()+ (double) Constants.barricadosWidth() /2),
+//                                    10, false, false, barricados, epsilon);
+//                            intersectionPoints.add(intersectionPoint);
+//                        }
+//                    }
+//
+//                }
             }
 
 

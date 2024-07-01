@@ -28,6 +28,7 @@ public class BarricadosFrame extends JFrame implements FrameType {
         barricados = new Barricados(15,15);
         barricados.setLocalFrame(this);
         barricados.setType(barricadosType);
+        barricados.setItsFrame(this);
         bounds = new Rectangle(getX(),getY(),getWidth(),getHeight());
         this.barricadosType = barricadosType;
 
@@ -54,5 +55,9 @@ public class BarricadosFrame extends JFrame implements FrameType {
 
     public BarricadosType getBarricadosType() {
         return barricadosType;
+    }
+
+    public void invisible(){
+        if(!barricados.isVisible()) dispose();
     }
 }

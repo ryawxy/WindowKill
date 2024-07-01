@@ -76,7 +76,9 @@ public class FrameSize {
                 boolean valid = true;
                 for (BarricadosFrame barricadosFrame : Game.getBarricadosFrames()) {
                     if (barricadosFrame.getBarricados().getType().equals(BarricadosType.T2)) {
+
                         if (barricadosFrame.getX() + barricadosFrame.getWidth() <= GlassFrame.getINSTANCE().getX()) {
+
                             if (GlassFrame.getINSTANCE().getX() - (Constants.expandAmount() / 2) <= barricadosFrame.getX() + barricadosFrame.getWidth()) {
                                 valid = false;
                             }

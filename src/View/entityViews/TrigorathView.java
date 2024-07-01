@@ -58,10 +58,9 @@ public class TrigorathView implements Drawable {
 
                         xpoint[j] = globalX[j]-bounds.x;
                         ypoint[j] = globalY[j]-bounds.y;
-                        g.drawPolygon(xpoint,ypoint,3);
-
 
                     }
+                    g.drawPolygon(xpoint,ypoint,3);
 
                 }
             }else {

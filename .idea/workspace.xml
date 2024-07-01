@@ -4,17 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="made epsilon transition better">
+    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="created barricads type2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/KeyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/KeyListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Entity/Barricados.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Entity/Barricados.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/Trigorath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Entity/Trigorath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/FrameIntersection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/FrameIntersection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/FrameSize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/FrameSize.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GameObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameObjects.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/ObjectsIntersection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ObjectsIntersection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/enums/BarricadosType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/enums/BarricadosType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/entityViews/Barricados/BarricadosFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/entityViews/Barricados/BarricadosFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/entityViews/Barricados/BarricadosPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/entityViews/Barricados/BarricadosPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/entityViews/TrigorathView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/entityViews/TrigorathView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -276,7 +274,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719823532720</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="created barricads type2">
+      <option name="closed" value="true" />
+      <created>1719843854408</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1719843854408</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -313,7 +319,8 @@
     <MESSAGE value="Archmire footprint" />
     <MESSAGE value="epsilon moves between glassframe and barricados frame" />
     <MESSAGE value="made epsilon transition better" />
-    <option name="LAST_COMMIT_MESSAGE" value="made epsilon transition better" />
+    <MESSAGE value="created barricads type2" />
+    <option name="LAST_COMMIT_MESSAGE" value="created barricads type2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
