@@ -78,7 +78,7 @@ public class ShopController {
 
         } if(GameInfo.getCurrentShopItem().containsKey(ShopItem.Slaughter)&& canUse){
 
-            for(IntersectionPoint point : Intersection.getIntersectionPoints()){
+            for(IntersectionPoint point : ObjectsIntersection.getIntersectionPoints()){
                 if(point.getEntity1() instanceof ShotGun){
 
                     if(point.getEntity2()!=null){

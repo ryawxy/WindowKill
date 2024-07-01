@@ -4,6 +4,9 @@ import Controller.Game;
 import Model.Entity.Epsilon;
 import Model.GameObjects;
 import Model.Movable;
+import View.GlassFrame;
+
+import javax.swing.*;
 
 public class Cerberus extends GameObjects implements Movable {
 
@@ -14,6 +17,10 @@ public class Cerberus extends GameObjects implements Movable {
     private int radius = 6;
     private double xCenter = getX()+radius;
     private double yCenter = getY()+radius;
+    private int localX = getX();
+    private int localY = getY();
+    private JFrame localFrame = Game.getEpsilon().getLocalFrame();
+    private JFrame previousLocalFrame = Game.getEpsilon().getPreviousLocalFrame();
 
     public Cerberus(int x, int y) {
         super(x, y);
@@ -77,4 +84,33 @@ public class Cerberus extends GameObjects implements Movable {
         this.yCenter = yCenter;
     }
 
+    @Override
+    public int getGlobalX() {
+        return super.getGlobalX();
+    }
+
+    @Override
+    public int getGlobalY() {
+        return super.getGlobalY();
+    }
+
+    @Override
+    public int getLocalX() {
+        return localX;
+    }
+
+    @Override
+    public int getLocalY() {
+        return localY;
+    }
+
+    @Override
+    public JFrame getLocalFrame() {
+        return localFrame;
+    }
+
+    @Override
+    public JFrame getPreviousLocalFrame() {
+        return previousLocalFrame;
+    }
 }

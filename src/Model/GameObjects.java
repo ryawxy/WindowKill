@@ -1,6 +1,7 @@
 package Model;
 
 import Model.Entity.ShotGun;
+import View.GlassFrame;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -8,6 +9,8 @@ import java.util.ArrayList;
 public class GameObjects extends JLabel {
     private int x;
     private int y;
+    private int localX;
+    private int localY;
     private int width;
     private int height;
     private double xVelocity;
@@ -17,11 +20,16 @@ public class GameObjects extends JLabel {
     private boolean attackByMelee;
     private ArrayList<ShotGun> shots = new ArrayList<>();
     private int HP;
+    private JFrame localFrame;
+    private JFrame previousLocalFrame;
+    private int globalX;
+    private int globalY;
 
     public GameObjects(int x, int y){
 
         this.x = x;
         this.y = y;
+
     }
 
     @Override
@@ -100,5 +108,53 @@ public class GameObjects extends JLabel {
 
     public int getHP() {
         return HP;
+    }
+
+    public int getLocalX() {
+        return localX;
+    }
+
+    public void setLocalX(int localX) {
+        this.localX = localX;
+    }
+
+    public int getLocalY() {
+        return localY;
+    }
+
+    public void setLocalY(int localY) {
+        this.localY = localY;
+    }
+
+    public JFrame getLocalFrame() {
+        return localFrame;
+    }
+
+    public void setLocalFrame(JFrame localFrame) {
+        this.localFrame = localFrame;
+    }
+
+    public JFrame getPreviousLocalFrame() {
+        return previousLocalFrame;
+    }
+
+    public void setPreviousLocalFrame(JFrame previousLocalFrame) {
+        this.previousLocalFrame = previousLocalFrame;
+    }
+
+    public int getGlobalX() {
+        return getLocalX()+getX() ;
+    }
+
+    public void setGlobalX(int globalX) {
+        this.globalX = globalX;
+    }
+
+    public int getGlobalY() {
+        return getLocalY()+getY();
+    }
+
+    public void setGlobalY(int globalY) {
+        this.globalY = globalY;
     }
 }

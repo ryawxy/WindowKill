@@ -7,7 +7,11 @@ import Model.enums.Ability;
 import Sound.SoundPlayer;
 import View.*;
 import View.entityViews.*;
+import View.entityViews.Barricados.BarricadosFrame;
+import View.entityViews.Barricados.BarricadosPanel;
+import View.entityViews.Barricados.BarricadosView;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,6 +28,7 @@ public class Game {
     private static ArrayList<Necropick> necropicks;
     private static ArrayList<Omenoct> omenocts;
     private static ArrayList<Archmire> archmires;
+    private static ArrayList<Barricados> barricados;
     private static EpsilonView epsilonView;
     private static ShotGunView shotGunView;
     private static TrigorathView trigorathView;
@@ -34,7 +39,8 @@ public class Game {
     private static NecropickView necropickView;
     private static OmenoctView omenoctView;
     private static ArchmireView archmireView;
-    protected GamePanel gamePanel;
+
+    protected static GamePanel gamePanel;
     protected KeyListener keyListener;
     protected MouseListener mouseListener;
     private static SoundPlayer soundPlayer;
@@ -42,10 +48,12 @@ public class Game {
     private static ArrayList<Ability> currentAbilities;
     private  static ArrayList<Cerberus> cerberuses;
     private static ArrayList<GameObjects> enemies;
-
+    private static ArrayList<BarricadosFrame> barricadosFrames = new ArrayList<>();
+    private static ArrayList<JFrame> frames = new ArrayList<>();
     public Game() throws IOException, AWTException {
 
-       epsilon = new Epsilon(200, 200);
+        frames.add(GlassFrame.getINSTANCE());
+       epsilon = new Epsilon(100, 100);
         epsilon.setRadius(Constants.getEpsilonRadius());
        epsilon.setXP(SkillTreeFrame.getCurrentXP());
 
@@ -61,12 +69,13 @@ public class Game {
         necropicks = new ArrayList<>();
         omenocts = new ArrayList<>();
         archmires = new ArrayList<>();
+        barricados = new ArrayList<>();
 
         enemies = new ArrayList<>();
 
 
-        epsilonView = new EpsilonView();
-        shotGunView = new ShotGunView();
+       // epsilonView = new EpsilonView();
+//        shotGunView = new ShotGunView();
         trigorathView = new TrigorathView();
         squarantineView = new SquarantineView();
         vertexView = new VertexView();
@@ -75,6 +84,7 @@ public class Game {
         necropickView = new NecropickView();
         omenoctView = new OmenoctView();
         archmireView = new ArchmireView();
+
         currentAbilities = new ArrayList<>();
 
         skillTreeAbilities = new HashMap<>();
@@ -127,7 +137,7 @@ public class Game {
         shot.add(shotGun);
     }
 
-    public GamePanel getGameFrame() {
+    public static GamePanel getGameFrame() {
         return gamePanel;
     }
 
@@ -193,5 +203,21 @@ public class Game {
 
     public static ArchmireView getArchmireView() {
         return archmireView;
+    }
+
+    public static ArrayList<Barricados> getBarricados() {
+        return barricados;
+    }
+
+    public static ArrayList<BarricadosFrame> getBarricadosFrames() {
+        return barricadosFrames;
+    }
+
+    public static ArrayList<JFrame> getFrames() {
+        return frames;
+    }
+
+    public static void setFrames(ArrayList<JFrame> frames) {
+        Game.frames = frames;
     }
 }

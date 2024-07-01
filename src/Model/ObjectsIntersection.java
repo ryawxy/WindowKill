@@ -4,9 +4,11 @@ import Controller.Constants;
 import Controller.Game;
 import Model.Entity.*;
 import Model.enums.Direction;
+import Model.enums.EnemyType;
 import Model.enums.Side;
 import Model.enums.Size;
 import View.GamePanel;
+import View.GlassFrame;
 import myproject.MyProject;
 
 import java.awt.*;
@@ -16,11 +18,13 @@ import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Intersection {
+public class ObjectsIntersection {
     GamePanel gamePanel;
 
     private Polygon squarantine2;
     private Polygon trigorath2;
+    private static boolean VSCollission;
+    private static  boolean VTCollision;
 
     private static ArrayList<IntersectionPoint> intersectionPoints;
     private static long lastTime,lastTime2;
@@ -28,20 +32,20 @@ public class Intersection {
     private static long lastTime3,lastTime4;
     //Drown
 
-    public Intersection(GamePanel gamePanel) throws IOException {
+    public ObjectsIntersection(GamePanel gamePanel) throws IOException {
         this.gamePanel = gamePanel;
     }
 
-    public Intersection() {
+    public ObjectsIntersection() {
     }
 
     public Direction shotIntersectsFrame(ShotGun shotGun) {
 
         //    if(shotGun.isVisible()) {
-        if (shotGun.getX() >= GamePanel.getFRAME_WIDTH()) {
+        if (shotGun.getX() >= Game.getEpsilon().getLocalFrame().getWidth()) {
             return Direction.RIGHT;
         }
-        if (shotGun.getY() >= GamePanel.getFRAME_HEIGHT()) {
+        if (shotGun.getY() >= Game.getEpsilon().getLocalFrame().getHeight()) {
             //   if(shotGun.isVisible()) {
             //    shotGun.setVisible(false);
             return Direction.DOWN;
@@ -96,6 +100,7 @@ public class Intersection {
                 if(shotGun.isVisible()) {
                     if (enemy1.intersects(shot)) {
 
+                        System.out.println(222222);
                         enemy.decreaseHP(5);
                         shotGun.setVisible(false);
                         IntersectionPoint point = new IntersectionPoint(new Point2D.Double(shotGun.getX(), shotGun.getY()), 10, false, false, epsilon, enemy);
@@ -358,6 +363,105 @@ public void vertexIntersectsNecropick(){
                         }
                     }
                 }
+                }
+            }
+            public void epsilonIntersectsEnemy(){
+                for(Trigorath trigorath: Game.getTrigoraths() ) {
+                    if (!trigorath.isDead()) {
+                        VTCollision = false;
+                        Epsilon epsilon = Game.getEpsilon();
+                        Polygon trigorath2 = new Polygon(trigorath.getxPoints(), trigorath.getyPoints(), 3);
+                        for (Vertex vertex : epsilon.getVertex()) {
+                            if (checkCollision((int) vertex.getxCenter(), (int) vertex.getyCenter(), vertex.getRadius(), trigorath2)) {
+                                VTCollision = true;
+                                trigorath.decreaseHP(5);
+                                IntersectionPoint point = new IntersectionPoint(new Point2D.Double(trigorath.getX(), trigorath.getY()),10,false,true,vertex,trigorath);
+                                ObjectsIntersection.getIntersectionPoints().add(point);
+                            }
+                        }
+                    }
+                }
+                for(Trigorath trigorath3: Game.getTrigoraths() ) {
+                    if (!trigorath3.isDead()) {
+
+                        Epsilon epsilon = Game.getEpsilon();
+                        Polygon trigorath2 = new Polygon(trigorath3.getxPoints(), trigorath3.getyPoints(), 3);
+                        //   if (!VTCollision) {
+                        if (checkCollision(epsilon.getxCenter(), epsilon.getyCenter(), epsilon.getRadius(), trigorath2)) {
+                            IntersectionPoint point = new IntersectionPoint(new Point2D.Double(trigorath3.getX(), trigorath3.getY()),30,true,false,trigorath3,epsilon);
+                            ObjectsIntersection.getIntersectionPoints().add(point);
+                            boolean melee = point.isMeleeAttack();
+                            epsilon.decreaseHP(EnemyType.Trigorath,melee);
+
+                        }
+                    }
+                }
+                for(Omenoct omenoct: Game.getOmenocts() ) {
+                    if (!omenoct.isDead()) {
+
+                        Epsilon epsilon = Game.getEpsilon();
+                        Polygon trigorath2 = new Polygon(omenoct.getxPoints(), omenoct.getyPoints(), 6);
+                        //   if (!VTCollision) {
+                        if (checkCollision(epsilon.getxCenter(), epsilon.getyCenter(), epsilon.getRadius(), trigorath2)) {
+                            IntersectionPoint point = new IntersectionPoint(new Point2D.Double(omenoct.getX(), omenoct.getY()),30,true,false,omenoct,epsilon);
+                            ObjectsIntersection.getIntersectionPoints().add(point);
+                            boolean melee = point.isMeleeAttack();
+                            epsilon.decreaseHP(EnemyType.Omenoct,melee);
+
+                        }
+                    }
+                }
+
+
+                for(Squarantine squarantine: Game.getSquarantine() ) {
+                    if (!squarantine.isDead()) {
+                        VSCollission = false;
+                        Epsilon epsilon = Game.getEpsilon();
+                        Polygon squarantine2 = new Polygon(squarantine.getxPoints(), squarantine.getyPoints(), 4);
+                        for (Vertex vertex : epsilon.getVertex()) {
+                            if (checkCollision((int) vertex.getxCenter(), (int) vertex.getyCenter(), vertex.getRadius(), squarantine2)) {
+
+                                VSCollission = true;
+                                squarantine.decreaseHP(10);
+                                IntersectionPoint point = new IntersectionPoint(new Point2D.Double(squarantine.getX(), squarantine.getY()),10,false,true,vertex,squarantine);
+                                ObjectsIntersection.getIntersectionPoints().add(point);
+
+                            }
+                        }
+                    }
+                }
+                for(Squarantine squarantine3: Game.getSquarantine() ){
+                    if(!squarantine3.isDead()) {
+                        VSCollission = false;
+                        Epsilon epsilon = Game.getEpsilon();
+                        Polygon squarantine2 = new Polygon(squarantine3.getxPoints(), squarantine3.getyPoints(), 4);
+                        //       if (!VSCollission) {
+                        if (checkCollision(epsilon.getxCenter(), epsilon.getyCenter(), epsilon.getRadius(), squarantine2)) {
+                            IntersectionPoint point = new IntersectionPoint(new Point2D.Double(squarantine3.getX(), squarantine3.getY()),10,true,false,epsilon,squarantine3);
+                            ObjectsIntersection.getIntersectionPoints().add(point);
+                            boolean melee = point.isMeleeAttack();
+                            epsilon.decreaseHP(EnemyType.Squarantine,melee);
+                        }
+                    }
+
+                }
+                for(Barricados barricados : Game.getBarricados()){
+                    Epsilon epsilon = Game.getEpsilon();
+                    System.out.println(epsilon.getLocalFrame().getTitle()+"  "+barricados.getLocalFrame().getTitle());
+                    if(epsilon.getLocalFrame().equals(barricados.getLocalFrame())) {
+                        Rectangle barricados1 = new Rectangle(barricados.getX(), barricados.getY(), barricados.getWidth(), barricados.getHeight());
+                        Rectangle epsilon1 = new Rectangle(epsilon.getLocalX(), epsilon.getLocalY()
+                                , epsilon.getWidth(), epsilon.getHeight());
+
+
+                        if (epsilon1.intersects(barricados1)) {
+
+                            IntersectionPoint intersectionPoint = new IntersectionPoint(new Point2D.Double(epsilon.getxCenter(), epsilon.getyCenter()),
+                                    10, false, false, barricados, epsilon);
+                            intersectionPoints.add(intersectionPoint);
+                        }
+                    }
+
                 }
             }
 

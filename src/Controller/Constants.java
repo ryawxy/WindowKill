@@ -79,7 +79,7 @@ public class Constants {
         return 1;
     }
     public static int expandAmount(){
-        return 2;
+        return 4;
     }
     public static int trigorathLongDistanceSpeed(){
         return 3;
@@ -114,11 +114,11 @@ public class Constants {
     public static int getImpactSpeed(int distance){
 
         if(distance >=40){
-            return 3;
+            return 2;
         }else if(distance<=20){
-            return 4;
+            return 3;
         }else {
-            return 5;
+            return 4;
         }
     }
     public static int necropickWidth(){
@@ -139,7 +139,9 @@ public class Constants {
     public static int largeArchmireHeight(){
         return 45;
     }
-
+    public static int barricadosWidth(){
+        return 100;
+    }
 
 
 }

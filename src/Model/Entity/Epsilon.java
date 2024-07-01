@@ -6,11 +6,13 @@ import Controller.KeyListener;
 import Model.*;
 import Model.enums.Ability;
 import Model.enums.EnemyType;
-import View.GamePanel;
+import View.GlassFrame;
 
+import javax.swing.*;
 import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 public class Epsilon extends GameObjects implements Movable {
@@ -24,15 +26,28 @@ public class Epsilon extends GameObjects implements Movable {
     private int XP = 2000;
     private double xVelocity2;
     private double yVelocity2;
+    private int localX = getX();
+    private int localY = getY();
+    private JFrame localFrame = GlassFrame.getINSTANCE();
+    private JFrame previousLocalFrame = GlassFrame.getINSTANCE();
 
     private ArrayList<Vertex> vertex = new ArrayList<>();
     private int vertexNumber;
-
+    private int width;
+    private int height;
+    private int globalX;
+    private int globalY;
+    private ArrayList<JFrame> localFrames = new ArrayList<>();
+    private HashMap<JFrame,Point2D> frameLocalPosition = new HashMap<>();
     public Epsilon(int x, int y) throws IOException {
         super(x, y);
         setX(x);
         setY(y);
+        localX = getX();
+        localY = getY();
 
+        localFrames.add(GlassFrame.getINSTANCE());
+        frameLocalPosition.put(GlassFrame.getINSTANCE(),new Point2D.Double(getX(),getY()));
     }
 
     @Override
@@ -46,7 +61,7 @@ public class Epsilon extends GameObjects implements Movable {
         Point2D point2D = new Point2D.Double(xPoint2,yPoint2);
 
 
-        for(IntersectionPoint point : Intersection.getIntersectionPoints()){
+        for(IntersectionPoint point : ObjectsIntersection.getIntersectionPoints()){
 
                         double xPoint = point.getPoint().getX();
             double yPoint = point.getPoint().getY();
@@ -56,21 +71,21 @@ public class Epsilon extends GameObjects implements Movable {
                             xVelocity2 += Math.cos(angle3) * Constants.getImpactSpeed((int) distance);
                 yVelocity2 += Math.sin(angle3) * Constants.getImpactSpeed((int) distance);
         }
-        if(getY()-radius<=0){
+        if(localFrame.getY()-radius<=0){
 
 
             yVelocity2 = 0;
         }
-        if(getY() + radius>= GamePanel.getFRAME_HEIGHT()) {
+        if(localFrame.getY() + radius>= localFrame.getHeight()) {
             yVelocity2 = 0;
 
         }
-        if(getX() - radius<=0) {
+        if(localFrame.getX() - radius<=0) {
 
             xVelocity2 = 0;
 
         }
-        if(getX() + radius>= GamePanel.getFRAME_WIDTH()) {
+        if(localFrame.getX() + radius>= localFrame.getWidth()) {
 
             xVelocity2 = 0;
 
@@ -81,6 +96,9 @@ public class Epsilon extends GameObjects implements Movable {
         this.setY((int) (getY()+yVelocity2+getyVelocity()));
         this.setxCenter( (getxCenter()+xVelocity2+getxVelocity()));
         this.setyCenter( (getyCenter()+yVelocity2+getyVelocity()));
+        this.setLocalX((int) (getLocalX()+xVelocity2+getxVelocity()));
+        this.setLocalY((int) (getLocalY()+yVelocity2+getyVelocity()));
+
 
     }
 
@@ -199,4 +217,87 @@ public class Epsilon extends GameObjects implements Movable {
         }
     }
 
+    @Override
+    public int getLocalX() {
+        return localX;
+    }
+
+    @Override
+    public void setLocalX(int localX) {
+        this.localX = localX;
+    }
+
+    @Override
+    public int getLocalY() {
+        return localY;
+    }
+
+    @Override
+    public void setLocalY(int localY) {
+        this.localY = localY;
+    }
+
+    @Override
+    public JFrame getLocalFrame() {
+        return localFrame;
+    }
+
+    @Override
+    public void setLocalFrame(JFrame localFrame) {
+        this.localFrame = localFrame;
+    }
+
+    @Override
+    public JFrame getPreviousLocalFrame() {
+        return previousLocalFrame;
+    }
+
+    @Override
+    public void setPreviousLocalFrame(JFrame previousLocalFrame) {
+        this.previousLocalFrame = previousLocalFrame;
+    }
+
+    @Override
+    public int getHeight() {
+        return getRadius();
+    }
+
+    @Override
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    @Override
+    public int getWidth() {
+        return getRadius();
+    }
+
+    @Override
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getGlobalX() {
+        return localX+localFrame.getX();
+    }
+
+    public int getGlobalY() {
+        return localY+localFrame.getY();
+    }
+
+    public ArrayList<JFrame> getLocalFrames() {
+        return localFrames;
+    }
+
+    public void setLocalFrames(ArrayList<JFrame> localFrames) {
+        this.localFrames = localFrames;
+    }
+
+    public HashMap<JFrame, Point2D> getFrameLocalPosition() {
+        return frameLocalPosition;
+    }
+
+    public void setFrameLocalPosition(HashMap<JFrame, Point2D> frameLocalPosition) {
+        this.frameLocalPosition = frameLocalPosition;
+    }
 }

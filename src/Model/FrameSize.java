@@ -4,6 +4,7 @@ import Controller.Constants;
 import Controller.Game;
 import Model.enums.Direction;
 import View.GamePanel;
+import View.GlassFrame;
 
 import java.awt.*;
 import java.io.IOException;
@@ -20,7 +21,7 @@ public class FrameSize {
         this.gamePanel = gamePanel;
     }
     public void shrink (){
-     minSize = 200;
+     minSize = 400;
      if(GameLoop.isWin()  && Game.getEpsilon().getRadius()>=GamePanel.getFRAME_HEIGHT()){
          minSize = 0;
      }
@@ -28,58 +29,56 @@ public class FrameSize {
          minSize = 0;
      }
 
-        if(GamePanel.getFRAME_WIDTH()>=minSize && GamePanel.getFRAME_HEIGHT()>=minSize){
+        if(GlassFrame.getINSTANCE().getWidth()>=minSize && GlassFrame.getINSTANCE().getHeight()>=minSize && gamePanel.getWidth()>=minSize
+        && gamePanel.getHeight()>=minSize){
 
-            gamePanel.setFRAME_WIDTH(GamePanel.getFRAME_WIDTH()-2* Constants.shrinkAmount());
-            //   Constants.setFrameWidth(Constants.getFrameWidth()-2*Constants.shrinkAmount());
-            gamePanel.setFRAME_HEIGHT(GamePanel.getFRAME_HEIGHT()-2*Constants.shrinkAmount());
-            //   Constants.setFrameHeight(Constants.getFrameHeight()-2*Constants.shrinkAmount());
-            newX = gamePanel.getX() + Constants.shrinkAmount();
-            newY = gamePanel.getY() + Constants.shrinkAmount();
-            gamePanel.setSize(GamePanel.getFRAME_WIDTH(), GamePanel.getFRAME_HEIGHT());
-            //    Constants.setScreenSize(new Dimension(Constants.getFrameWidth(),Constants.getFrameHeight()));
-            gamePanel.setBounds(newX,newY, GamePanel.getFRAME_WIDTH(), GamePanel.getFRAME_HEIGHT());
-            //  GameFrame.getPanel().setBounds(newX,newY,gameFrame.getFRAME_WIDTH(),gameFrame.getFRAME_HEIGHT());
-            //   gamePanel.getRootPane().setSize(GamePanel.getFRAME_WIDTH(), GamePanel.getFRAME_HEIGHT());
-            //  GameFrame.getPanel().setSize(gameFrame.getFRAME_WIDTH(),gameFrame.getFRAME_HEIGHT());
+
+            newX = GlassFrame.getINSTANCE().getX() + Constants.shrinkAmount();
+            newY = GlassFrame.getINSTANCE().getY() + Constants.shrinkAmount();
+
+            GlassFrame.getINSTANCE().setSize(GlassFrame.getINSTANCE().getWidth()-2*Constants.shrinkAmount(),
+                    GlassFrame.getINSTANCE().getHeight()-2*Constants.shrinkAmount());
+            GlassFrame.getINSTANCE().setLocation(newX,newY);
+            gamePanel.setSize(gamePanel.getWidth()-2*Constants.shrinkAmount(),gamePanel.getHeight()-2*Constants.shrinkAmount());
+
         }
     }
-    public void expand(Direction direction){
+    public  void expand(Direction direction) {
 
-        //expand game frame from right side
-        if(direction.equals(Direction.RIGHT)){
-            gamePanel.setFRAME_WIDTH(GamePanel.getFRAME_WIDTH()+Constants.expandAmount());
-            Constants.setFrameWidth(GamePanel.getFRAME_WIDTH()+Constants.expandAmount());
-            gamePanel.setSize(GamePanel.getFRAME_WIDTH(), GamePanel.getFRAME_HEIGHT());
-            Constants.setScreenSize(new Dimension(Constants.getFrameWidth(),Constants.getFrameHeight()));
-            gamePanel.setLocation(gamePanel.getX()+1, gamePanel.getY());
+        if (Game.getEpsilon().getLocalFrame() instanceof GlassFrame) {
+            //expand game frame from right side
+            if (direction.equals(Direction.RIGHT)) {
+
+                GlassFrame.getINSTANCE().setSize(GlassFrame.getINSTANCE().getWidth() + Constants.expandAmount(), GlassFrame.getINSTANCE().getHeight());
+                gamePanel.setSize(gamePanel.getWidth() + Constants.expandAmount(), gamePanel.getHeight());
+
+                GlassFrame.getINSTANCE().setLocation(GlassFrame.getINSTANCE().getX() + Constants.expandAmount() / 2, GlassFrame.getINSTANCE().getY());
+
+            }
+            //expand game frame from left side
+            if (direction.equals(Direction.LEFT)) {
+
+                GlassFrame.getINSTANCE().setSize(GlassFrame.getINSTANCE().getWidth() + Constants.expandAmount(), GlassFrame.getINSTANCE().getHeight());
+                gamePanel.setSize(gamePanel.getWidth() + Constants.expandAmount(), gamePanel.getHeight());
+
+                GlassFrame.getINSTANCE().setLocation(GlassFrame.getINSTANCE().getX() - (Constants.expandAmount() / 2), GlassFrame.getINSTANCE().getY());
+            }
+            //expand game frame from downside
+            if (direction.equals(Direction.DOWN)) {
+
+                GlassFrame.getINSTANCE().setSize(GlassFrame.getINSTANCE().getWidth(), GlassFrame.getINSTANCE().getHeight() + Constants.expandAmount());
+                gamePanel.setSize(gamePanel.getWidth(), gamePanel.getHeight() + Constants.expandAmount());
+                GlassFrame.getINSTANCE().setLocation(GlassFrame.getINSTANCE().getX(), GlassFrame.getINSTANCE().getY() + Constants.expandAmount() / 2);
+            }
+            //expand game frame from upside
+            if (direction.equals(Direction.UP)) {
+
+                GlassFrame.getINSTANCE().setSize(GlassFrame.getINSTANCE().getWidth(), GlassFrame.getINSTANCE().getHeight() + Constants.expandAmount());
+                gamePanel.setSize(gamePanel.getWidth(), gamePanel.getHeight() + Constants.expandAmount());
+                GlassFrame.getINSTANCE().setLocation(GlassFrame.getINSTANCE().getX(), GlassFrame.getINSTANCE().getY() - (Constants.expandAmount() / 2));
+            }
 
         }
-        //expand game frame from left side
-        if(direction.equals(Direction.LEFT)){
-            gamePanel.setFRAME_WIDTH(GamePanel.getFRAME_WIDTH()+Constants.expandAmount());
-            Constants.setFrameWidth(GamePanel.getFRAME_WIDTH()+Constants.expandAmount());
-            gamePanel.setSize(GamePanel.getFRAME_WIDTH(), GamePanel.getFRAME_HEIGHT());
-            Constants.setScreenSize(new Dimension(Constants.getFrameWidth(),Constants.getFrameHeight()));
-            gamePanel.setLocation(gamePanel.getX()-(Constants.expandAmount()+1), gamePanel.getY());
-        }
-        //expand game frame from downside
-        if(direction.equals(Direction.DOWN)){
-            gamePanel.setFRAME_HEIGHT(GamePanel.getFRAME_HEIGHT()+Constants.expandAmount());
-            Constants.setFrameHeight(GamePanel.getFRAME_HEIGHT()+Constants.expandAmount());
-            gamePanel.setSize(GamePanel.getFRAME_WIDTH(), GamePanel.getFRAME_HEIGHT());
-            Constants.setScreenSize(new Dimension(Constants.getFrameWidth(),Constants.getFrameHeight()));
-            gamePanel.setLocation(gamePanel.getX(), gamePanel.getY()+1);
-        }
-        //expand game frame from upside
-        if(direction.equals(Direction.UP)){
-            gamePanel.setFRAME_HEIGHT(GamePanel.getFRAME_HEIGHT()+Constants.expandAmount());
-            Constants.setFrameHeight(GamePanel.getFRAME_HEIGHT()+Constants.expandAmount());
-            gamePanel.setSize(GamePanel.getFRAME_WIDTH(), GamePanel.getFRAME_HEIGHT());
-            Constants.setScreenSize(new Dimension(Constants.getFrameWidth(),Constants.getFrameHeight()));
-            gamePanel.setLocation(gamePanel.getX(), gamePanel.getY()-(Constants.expandAmount()+1));
-        }
-
     }
 
 }

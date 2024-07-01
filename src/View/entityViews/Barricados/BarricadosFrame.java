@@ -1,0 +1,51 @@
+package View.entityViews.Barricados;
+
+import Model.Entity.Barricados;
+import Model.FrameType;
+import Model.enums.BarricadosType;
+
+import javax.swing.*;
+import java.awt.*;
+
+
+public class BarricadosFrame extends JFrame implements FrameType {
+    private Barricados barricados;
+    private Rectangle bounds;
+
+    public BarricadosFrame(int x,int y){
+        this.setSize(200,200);
+        this.setBackground(Color.BLACK);
+        this.setLocation(x,y);
+        this.setUndecorated(true);
+        this.setTitle("Barricados frame");
+        BarricadosPanel barricadosPanel = new BarricadosPanel(200,200,x,y);
+        this.setContentPane(barricadosPanel);
+        this.getContentPane().setLocation(x,y);
+        barricadosPanel.setBound(new Rectangle(x,y,200,200));
+        barricadosPanel.setItsFrame(this);
+        this.setVisible(true);
+        barricados = new Barricados(15,15);
+        barricados.setLocalFrame(this);
+        bounds = new Rectangle(getX(),getY(),getWidth(),getHeight());
+
+    }
+
+    @Override
+    public boolean isometric() {
+        return true;
+    }
+
+    @Override
+    public boolean solid() {
+        return barricados.getType().equals(BarricadosType.TYPE_2);
+    }
+
+    @Override
+    public Rectangle getBound() {
+        return bounds;
+    }
+
+    public Barricados getBarricados() {
+        return barricados;
+    }
+}

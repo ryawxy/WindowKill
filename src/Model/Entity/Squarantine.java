@@ -4,7 +4,9 @@ import Controller.Constants;
 import Controller.Game;
 import Model.*;
 import Model.enums.ShopItem;
+import View.GlassFrame;
 
+import javax.swing.*;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Random;
@@ -34,6 +36,10 @@ public class Squarantine extends GameObjects implements Movable {
     private static int HPDecrement = 5;
     private static int HPDecrement2 = 10;
     private final ArrayList<Collectible> collectibles = new ArrayList<>();
+    private int localX = getX();
+    private int localY = getY();
+    private JFrame localFrame = GlassFrame.getINSTANCE();
+    private JFrame previousLocalFrame = GlassFrame.getINSTANCE();
 
 
     public Squarantine(int x, int y) {
@@ -109,7 +115,7 @@ public class Squarantine extends GameObjects implements Movable {
 
         angle = (int) Math.atan2(epsilonYPos-squarantineYPos,epsilonXPos-squarantineXPos);
 
-        for(IntersectionPoint point : Intersection.getIntersectionPoints()){
+        for(IntersectionPoint point : ObjectsIntersection.getIntersectionPoints()){
 
             double xPoint = point.getPoint().getX();
             double yPoint = point.getPoint().getY();
@@ -237,6 +243,56 @@ public class Squarantine extends GameObjects implements Movable {
     @Override
     public boolean isAttackByMelee() {
         return true;
+    }
+
+    @Override
+    public int getGlobalX() {
+        return super.getGlobalX();
+    }
+
+    @Override
+    public int getGlobalY() {
+        return super.getGlobalY();
+    }
+
+    @Override
+    public int getLocalX() {
+        return localX;
+    }
+
+    @Override
+    public void setLocalX(int localX) {
+        this.localX = localX;
+    }
+
+    @Override
+    public int getLocalY() {
+        return localY;
+    }
+
+    @Override
+    public void setLocalY(int localY) {
+        this.localY = localY;
+    }
+
+    @Override
+    public JFrame getLocalFrame() {
+        return localFrame;
+    }
+
+    @Override
+    public void setLocalFrame(JFrame localFrame) {
+        this.localFrame = localFrame;
+    }
+
+    @Override
+    public JFrame getPreviousLocalFrame() {
+        return previousLocalFrame;
+    }
+
+    @Override
+    public void setPreviousLocalFrame(JFrame previousLocalFrame) {
+        this.previousLocalFrame = previousLocalFrame;
     }
 }
 

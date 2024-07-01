@@ -6,6 +6,8 @@ import Model.enums.Direction;
 import Model.enums.EnemyType;
 import View.*;
 import View.SettingsFrame;
+import View.entityViews.Barricados.BarricadosFrame;
+import View.entityViews.Barricados.BarricadosPanel;
 import myproject.MyProject;
 
 import javax.swing.*;
@@ -21,7 +23,7 @@ public class GameLoop {
     private Game game;
     private  Timer timer;
     private FrameSize frameSize;
-    private Intersection intersection;
+    private ObjectsIntersection objectsIntersection;
     private Direction intersectionSide;
     private int countTime;
     // amount of time that has passed since the game has started
@@ -39,8 +41,7 @@ public class GameLoop {
     private boolean wave1Created;
     private boolean wave2Created;
     private boolean wave3Created;
-    private static boolean VSCollission;
-    private static  boolean VTCollision;
+
     private static boolean gameDone;
     private Wave wave = new Wave();
     int deadS;
@@ -54,6 +55,8 @@ public class GameLoop {
     private String [] option = {"menu"};
     private SkillTreeController skillTreeController = new SkillTreeController();
     private ShopController shopController = new ShopController();
+    private FrameIntersection frameIntersection = new FrameIntersection();
+
 
     public GameLoop(Game game) throws IOException {
         this.game = game;
@@ -111,6 +114,20 @@ public class GameLoop {
                                 Game.getEnemies().add(archmire);
 
                             }
+
+                            for(Barricados barricados : wave.wave1EasyBarricados){
+                            BarricadosFrame barricadosFrame = new BarricadosFrame(300,300);
+                      //      BarricadosFrame barricadosFrame1 = new BarricadosFrame(200,400);
+                              Game.getBarricadosFrames().add(barricadosFrame);
+                     //       Game.getBarricadosFrames().add(barricadosFrame1);
+
+                            Game.getFrames().add(barricadosFrame);
+                  //          Game.getFrames().add(barricadosFrame1);
+//
+                                Game.getBarricados().add(barricados);
+////                                Game.getEnemies().add(barricados);
+//
+                           }
                         }else        if(SettingsFrame.getChosenLevel()==1) {
                             for (Squarantine squarantine : wave.wave1MediumSquarantine) {
                                 Game.getSquarantine().add(squarantine);
@@ -135,7 +152,7 @@ public class GameLoop {
                     }
 
                     try {
-                        intersection = new Intersection(game.getGameFrame());
+                        objectsIntersection = new ObjectsIntersection(Game.getGameFrame());
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
@@ -421,7 +438,7 @@ public class GameLoop {
                     }
                     for (int i = 0; i < Game.getTrigoraths().size(); i++) {
                         Trigorath trigorath = Game.getTrigoraths().get(i);
-                        trigorath.move();
+                    //    trigorath.move();
 
                     }
                     Game.getEpsilon().move();
@@ -431,12 +448,13 @@ public class GameLoop {
                     }
                     for(Cerberus cerberus : Game.getCerberuses()) cerberus.move();
 
-                    intersection.shotIntersectsEntity();
-                    intersection.epsilonIntersectsCollectible();
-                    intersection.enemyIntersection();
-                    intersection.vertexIntersectsNecropick();
-                    intersection.vertexIntersectsOmenoct();
-                   intersection.AOEIntersection();
+                    objectsIntersection.shotIntersectsEntity();
+                    objectsIntersection.epsilonIntersectsCollectible();
+                    objectsIntersection.enemyIntersection();
+                    objectsIntersection.vertexIntersectsNecropick();
+                    objectsIntersection.vertexIntersectsOmenoct();
+                   objectsIntersection.AOEIntersection();
+                   objectsIntersection.epsilonIntersectsEnemy();
 
 
 
@@ -447,9 +465,9 @@ public class GameLoop {
                         throw new RuntimeException(ex);
                     }
                     //shrinkage starts after 10 seconds
-                    if (countTime >= 700 ) {
+                    if (countTime >= 100 ) {
 
-                      //  frameSize.shrink();
+                    //    frameSize.shrink();
                     }
 
 
@@ -458,15 +476,16 @@ public class GameLoop {
                     // and impact mechanism activates from that point
 
                     for(ShotGun shotGun : Game.getShots()){
-                        if(shotGun.isVisible()) intersectionSide = intersection.shotIntersectsFrame(shotGun);
+
+                        if(shotGun.isVisible()) intersectionSide = objectsIntersection.shotIntersectsFrame(shotGun);
                         if (intersectionSide != null) {
 
-                            if (shotGun.getExpansion() < 20) {
+                            if (shotGun.getExpansion() < 15) {
                                 frameSize.expand(intersectionSide);
                                 shotGun.setExpansion(shotGun.getExpansion() + 1);
 
-                                IntersectionPoint point = new IntersectionPoint(new Point2D.Double(shotGun.getX(), shotGun.getY()),10,false,false,null,shotGun);
-                                Intersection.getIntersectionPoints().add(point);
+                                IntersectionPoint point = new IntersectionPoint(new Point2D.Double(shotGun.getX(), shotGun.getY()),7,false,false,null,shotGun);
+                                ObjectsIntersection.getIntersectionPoints().add(point);
                                 shotGun.setVisible(false);
                             }
                         }
@@ -480,95 +499,15 @@ public class GameLoop {
 
                     countTime++;
 
-                    for(int i=0; i<Intersection.getIntersectionPoints().size();i++){
-                        IntersectionPoint point = Intersection.getIntersectionPoints().get(i);
+                    for(int i = 0; i< ObjectsIntersection.getIntersectionPoints().size(); i++){
+                        IntersectionPoint point = ObjectsIntersection.getIntersectionPoints().get(i);
                         point.setElapsedTime(point.getElapsedTime()+1);
                         if(point.getElapsedTime()>=point.getTime()){
-                            Intersection.getIntersectionPoints().remove(point);
+                            ObjectsIntersection.getIntersectionPoints().remove(point);
                         }
                     }
                     shopController.activate();
                     ShopController.canUSe();
-
-                    for(Trigorath trigorath: Game.getTrigoraths() ) {
-                        if (!trigorath.isDead()) {
-                            VTCollision = false;
-                            Epsilon epsilon = Game.getEpsilon();
-                            Polygon trigorath2 = new Polygon(trigorath.getxPoints(), trigorath.getyPoints(), 3);
-                            for (Vertex vertex : epsilon.getVertex()) {
-                                if (intersection.checkCollision((int) vertex.getxCenter(), (int) vertex.getyCenter(), vertex.getRadius(), trigorath2)) {
-                                    VTCollision = true;
-                                    trigorath.decreaseHP(5);
-                                    IntersectionPoint point = new IntersectionPoint(new Point2D.Double(trigorath.getX(), trigorath.getY()),10,false,true,vertex,trigorath);
-                                    Intersection.getIntersectionPoints().add(point);
-                                }
-                            }
-                        }
-                    }
-                    for(Trigorath trigorath3: Game.getTrigoraths() ) {
-                        if (!trigorath3.isDead()) {
-
-                            Epsilon epsilon = Game.getEpsilon();
-                            Polygon trigorath2 = new Polygon(trigorath3.getxPoints(), trigorath3.getyPoints(), 3);
-                            //   if (!VTCollision) {
-                            if (intersection.checkCollision(epsilon.getxCenter(), epsilon.getyCenter(), epsilon.getRadius(), trigorath2)) {
-                                IntersectionPoint point = new IntersectionPoint(new Point2D.Double(trigorath3.getX(), trigorath3.getY()),30,true,false,trigorath3,epsilon);
-                                Intersection.getIntersectionPoints().add(point);
-                                boolean melee = point.isMeleeAttack();
-                                epsilon.decreaseHP(EnemyType.Trigorath,melee);
-
-                            }
-                        }
-                    }
-                    for(Omenoct omenoct: Game.getOmenocts() ) {
-                        if (!omenoct.isDead()) {
-
-                            Epsilon epsilon = Game.getEpsilon();
-                            Polygon trigorath2 = new Polygon(omenoct.getxPoints(), omenoct.getyPoints(), 6);
-                            //   if (!VTCollision) {
-                            if (intersection.checkCollision(epsilon.getxCenter(), epsilon.getyCenter(), epsilon.getRadius(), trigorath2)) {
-                                IntersectionPoint point = new IntersectionPoint(new Point2D.Double(omenoct.getX(), omenoct.getY()),30,true,false,omenoct,epsilon);
-                                Intersection.getIntersectionPoints().add(point);
-                                boolean melee = point.isMeleeAttack();
-                                epsilon.decreaseHP(EnemyType.Omenoct,melee);
-
-                            }
-                        }
-                    }
-
-
-                    for(Squarantine squarantine: Game.getSquarantine() ) {
-                        if (!squarantine.isDead()) {
-                            VSCollission = false;
-                            Epsilon epsilon = Game.getEpsilon();
-                            Polygon squarantine2 = new Polygon(squarantine.getxPoints(), squarantine.getyPoints(), 4);
-                            for (Vertex vertex : epsilon.getVertex()) {
-                                if (intersection.checkCollision((int) vertex.getxCenter(), (int) vertex.getyCenter(), vertex.getRadius(), squarantine2)) {
-
-                                    VSCollission = true;
-                                    squarantine.decreaseHP(10);
-                                    IntersectionPoint point = new IntersectionPoint(new Point2D.Double(squarantine.getX(), squarantine.getY()),10,false,true,vertex,squarantine);
-                                    Intersection.getIntersectionPoints().add(point);
-
-                                }
-                            }
-                        }
-                    }
-                    for(Squarantine squarantine3: Game.getSquarantine() ){
-                        if(!squarantine3.isDead()) {
-                            VSCollission = false;
-                            Epsilon epsilon = Game.getEpsilon();
-                            Polygon squarantine2 = new Polygon(squarantine3.getxPoints(), squarantine3.getyPoints(), 4);
-                            //       if (!VSCollission) {
-                            if (intersection.checkCollision(epsilon.getxCenter(), epsilon.getyCenter(), epsilon.getRadius(), squarantine2)) {
-                                IntersectionPoint point = new IntersectionPoint(new Point2D.Double(squarantine3.getX(), squarantine3.getY()),10,true,false,epsilon,squarantine3);
-                                Intersection.getIntersectionPoints().add(point);
-                                boolean melee = point.isMeleeAttack();
-                                epsilon.decreaseHP(EnemyType.Squarantine,melee);
-                            }
-                        }
-
-                    }
 
 
 
@@ -589,12 +528,35 @@ public class GameLoop {
 
                     }
 
+                    for(JFrame frame : Game.getFrames()) {
+                        if (!frame.equals(Game.getEpsilon().getLocalFrame())) {
+                            frameIntersection.changeLocalFrame(frame, Game.getEpsilon());
+                        }
+                    }
+                    for(ShotGun shotGun : Game.getShots()) {
+                        for (JFrame frame : Game.getFrames()) {
+                            if (!frame.equals(Game.getEpsilon().getLocalFrame())) {
+                                frameIntersection.changeLocalFrame(frame, shotGun);
+                            }
+                        }
+                    }
+
+
+                    Game.getGameFrame().repaint();
+                    for(BarricadosFrame barricadosFrame : Game.getBarricadosFrames()) {
+                        barricadosFrame.getContentPane().repaint();
 
 
 
 
 
-                    game.getGameFrame().repaint();
+
+
+
+
+                    }
+
+
                 }
             }
         });

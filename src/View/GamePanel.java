@@ -1,8 +1,10 @@
 package View;
 
 import Controller.Game;
+import Model.Entity.Epsilon;
 import Model.Entity.Vertex;
 import Controller.MouseListener;
+import View.entityViews.EpsilonView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,9 +29,12 @@ public class GamePanel extends JPanel {
 
         setBorder(BorderFactory.createLineBorder(Color.black, 5));
         setBackground(new Color(0,0,0));
-        setSize(SCREEN_SIZE);
-        setLocationToCenter(GlassFrame.getINSTANCE());
+
+     //   setLocationToCenter(GlassFrame.getINSTANCE());
+        setSize(700,700);
+
         GlassFrame.getINSTANCE().add(this);
+
 
         addMouseMotionListener(new MouseAdapter() {
             @Override
@@ -75,10 +80,15 @@ public class GamePanel extends JPanel {
         Game.getArchmireView().paint(g2D);
 
         //paint epsilon
-        Game.getEpsilonView().paint(g2D);
+
+        EpsilonView epsilonView = new EpsilonView(GlassFrame.getINSTANCE());
+            epsilonView.paint(g2D);
+
+
 
         //paint epsilon's shotGun
-        Game.getShotGunView().paint(g2D);
+        ShotGunView shotGunView = new ShotGunView(GlassFrame.getINSTANCE());
+        shotGunView.paint(g2D);
 
         //paint trigorath
         Game.getTrigorathView().paint(g2D);

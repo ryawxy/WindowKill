@@ -5,7 +5,9 @@ import Model.Collectible;
 import Model.GameObjects;
 import Model.Movable;
 import Model.enums.Size;
+import View.GlassFrame;
 
+import javax.swing.*;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
@@ -20,12 +22,18 @@ public class Archmire extends GameObjects implements Movable {
     private double yVelocity;
     private Size size;
     private final ArrayList<Footprint> footprints;
+    private JFrame localFrame = GlassFrame.getINSTANCE();
+    private JFrame previousLocalFrame = GlassFrame.getINSTANCE();
+    private int localX;
+    private int localY;
 
     public Archmire(int x, int y, Size size) {
         super(x, y);
         this.size = size;
         footprints = new ArrayList<>();
         initializeCollectibles();
+        setLocalX(getX());
+        setLocalY(getY());
     }
 
     @Override
@@ -53,7 +61,7 @@ public class Archmire extends GameObjects implements Movable {
                 footprint.setTimer(footprint.getTimer() + 1);
 
 
-                System.out.println(footprints.get(0).getTimer());
+
                 if (footprint.getTimer() >= 500) setVisible(false);
             }
 
@@ -192,5 +200,35 @@ public class Archmire extends GameObjects implements Movable {
 
     public ArrayList<Footprint> getFootprints() {
         return footprints;
+    }
+
+    @Override
+    public int getLocalX() {
+        return localX;
+    }
+
+    @Override
+    public int getLocalY() {
+        return localY;
+    }
+
+    @Override
+    public JFrame getLocalFrame() {
+        return localFrame;
+    }
+
+    @Override
+    public JFrame getPreviousLocalFrame() {
+        return previousLocalFrame;
+    }
+
+    @Override
+    public int getGlobalX() {
+        return super.getGlobalX();
+    }
+
+    @Override
+    public int getGlobalY() {
+        return super.getGlobalY();
     }
 }

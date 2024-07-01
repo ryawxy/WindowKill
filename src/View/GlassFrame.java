@@ -6,14 +6,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-public final class GlassFrame extends JFrame {
+public  class GlassFrame extends JFrame {
 
     private static GlassFrame INSTANCE;
 
+    private static int FRAME_WIDTH = 700;
+    private static int FRAME_HEIGHT = 700;
+
     private GlassFrame() throws HeadlessException{
         setUndecorated(true);
-        setBackground(new Color(0,0,0,100));
-        setSize(Constants.glassFrameDimension());
+        setBackground(Color.BLACK);
+        setSize(700,700);
         setLocationRelativeTo(null);
         setVisible(true);
         setLayout(null);
@@ -33,5 +36,21 @@ public final class GlassFrame extends JFrame {
     public void closeFrame(){
         Window window = SwingUtilities.getWindowAncestor(this);
         window.dispose();
+    }
+
+    public static int getFrameWidth() {
+        return FRAME_WIDTH;
+    }
+
+    public static void setFrameWidth(int frameWidth) {
+        FRAME_WIDTH = frameWidth;
+    }
+
+    public static int getFrameHeight() {
+        return FRAME_HEIGHT;
+    }
+
+    public static void setFrameHeight(int frameHeight) {
+        FRAME_HEIGHT = frameHeight;
     }
 }

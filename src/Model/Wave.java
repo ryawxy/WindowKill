@@ -3,6 +3,8 @@ package Model;
 import Model.Entity.*;
 import Model.enums.Size;
 import View.SettingsFrame;
+import View.entityViews.Barricados.BarricadosFrame;
+import View.entityViews.Barricados.BarricadosPanel;
 
 import java.util.ArrayList;
 
@@ -13,6 +15,7 @@ public class Wave {
     public  ArrayList<Necropick> wave1EasyNecropicks = new ArrayList<>();
     public  ArrayList<Omenoct> wave1EasyOmenoct = new ArrayList<>();
     public  ArrayList<Archmire> wave1EasyArchmire = new ArrayList<>();
+    public  ArrayList<Barricados> wave1EasyBarricados = new ArrayList<>();
 
     public  ArrayList<Trigorath> wave1MediumTrigorath = new ArrayList<>();
     public  ArrayList<Squarantine> wave1MediumSquarantine = new ArrayList<>();
@@ -36,6 +39,7 @@ public class Wave {
 
     public ArrayList<Trigorath> wave3HardTrigorath = new ArrayList<>();
     public ArrayList<Squarantine> wave3HardSquarantine = new ArrayList<>();
+    public ArrayList<BarricadosPanel> barricadosPanels = new ArrayList<>();
 
 
 
@@ -67,7 +71,7 @@ public  void initWave1(){
         Omenoct omenoct = new Omenoct(350,350);
         omenoct.setxPoints(xPoints6);
         omenoct.setyPoints(yPoints6);
-        wave1EasyOmenoct.add(omenoct);
+ //       wave1EasyOmenoct.add(omenoct);
 //
 //        squarantine = new Squarantine(185,185);
 //        squarantine.setxPoints(xPoints5);
@@ -90,10 +94,15 @@ public  void initWave1(){
         wave1EasyTrigorath.add(trigorath);
 
         Archmire archmire = new Archmire(50,50, Size.MINI);
-        wave1EasyArchmire.add(archmire);
+     //   wave1EasyArchmire.add(archmire);
 
         Necropick necropick = new Necropick(300,300);
-        wave1EasyNecropicks.add(necropick);
+    //    wave1EasyNecropicks.add(necropick);
+
+        Barricados barricados = new Barricados(100,100);
+        wave1EasyBarricados.add(barricados);
+    //    BarricadosPanel panel = new BarricadosPanel();
+    //    barricadosPanels.add(panel);
     }
     if(SettingsFrame.getChosenLevel()==1){
         int [] xPoints = {50,40,60};

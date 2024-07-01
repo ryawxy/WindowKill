@@ -4,7 +4,9 @@ import Controller.Constants;
 import Controller.Game;
 import Model.*;
 import Model.enums.ShopItem;
+import View.GlassFrame;
 
+import javax.swing.*;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
@@ -26,10 +28,15 @@ public class Trigorath extends GameObjects implements Movable {
     private boolean showCollectibles;
     private int timer;
     // show collectibles only for 10 seconds
+    private int localX = getX();
+    private int localY = getY();
+    private JFrame localFrame = GlassFrame.getINSTANCE();
+    private JFrame previousLocalFrame = GlassFrame.getINSTANCE();
 
     private static  int HPDecrement = 5;
     private static  int HPDecrement2 = 5;
     private final ArrayList<Collectible> collectibles = new ArrayList<>();
+
     public Trigorath(int x, int y) {
         super(x,y);
 
@@ -98,7 +105,7 @@ public class Trigorath extends GameObjects implements Movable {
 
             angle = (int) Math.atan2(epsilonYPos - trigorathYPos, epsilonXPos - trigorathXPos);
 
-            for(IntersectionPoint point : Intersection.getIntersectionPoints()){
+            for(IntersectionPoint point : ObjectsIntersection.getIntersectionPoints()){
 
                 double xPoint = point.getPoint().getX();
                 double yPoint = point.getPoint().getY();
@@ -265,5 +272,35 @@ public class Trigorath extends GameObjects implements Movable {
     @Override
     public boolean isAttackByMelee() {
         return true;
+    }
+
+    @Override
+    public JFrame getLocalFrame() {
+        return localFrame;
+    }
+
+    @Override
+    public void setLocalFrame(JFrame localFrame) {
+        this.localFrame = localFrame;
+    }
+
+    @Override
+    public JFrame getPreviousLocalFrame() {
+        return previousLocalFrame;
+    }
+
+    @Override
+    public void setPreviousLocalFrame(JFrame previousLocalFrame) {
+        this.previousLocalFrame = previousLocalFrame;
+    }
+
+    @Override
+    public int getGlobalX() {
+        return super.getGlobalX();
+    }
+
+    @Override
+    public int getGlobalY() {
+        return super.getGlobalY();
     }
 }

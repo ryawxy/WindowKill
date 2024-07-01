@@ -2,6 +2,9 @@ package Model.Entity;
 
 import Model.GameObjects;
 import Model.Movable;
+import View.GlassFrame;
+
+import javax.swing.*;
 
 public class ShotGun extends GameObjects implements Movable {
 
@@ -13,6 +16,10 @@ public class ShotGun extends GameObjects implements Movable {
     private int expansion;
     // time interval that each shot expands the frame
     private boolean visible = true;
+    private JFrame localFrame = GlassFrame.getINSTANCE();
+    private JFrame previousLocalFrame = GlassFrame.getINSTANCE();
+    private int localX = getX();
+    private int localY = getY();
 
 
     public ShotGun(int x, int y) {
@@ -87,5 +94,55 @@ public class ShotGun extends GameObjects implements Movable {
     @Override
     public void setVisible(boolean visible) {
         this.visible = visible;
+    }
+
+    @Override
+    public JFrame getLocalFrame() {
+        return localFrame;
+    }
+
+    @Override
+    public void setLocalFrame(JFrame localFrame) {
+        this.localFrame = localFrame;
+    }
+
+    @Override
+    public JFrame getPreviousLocalFrame() {
+        return previousLocalFrame;
+    }
+
+    @Override
+    public void setPreviousLocalFrame(JFrame previousLocalFrame) {
+        this.previousLocalFrame = previousLocalFrame;
+    }
+
+    @Override
+    public int getLocalX() {
+        return localX;
+    }
+
+    @Override
+    public void setLocalX(int localX) {
+        this.localX = localX;
+    }
+
+    @Override
+    public int getLocalY() {
+        return localY;
+    }
+
+    @Override
+    public void setLocalY(int localY) {
+        this.localY = localY;
+    }
+
+    @Override
+    public int getGlobalX() {
+        return super.getGlobalX();
+    }
+
+    @Override
+    public int getGlobalY() {
+        return super.getGlobalY();
     }
 }

@@ -22,7 +22,7 @@ public class SkillTreeController {
 
     private HashMap<Ability,Boolean> canUse = new HashMap<>();
     private boolean addCeberus;
-    Intersection intersection = new Intersection();
+    ObjectsIntersection objectsIntersection = new ObjectsIntersection();
     private long cerberusTimer;
     private long currentTime2;
 
@@ -127,7 +127,7 @@ public class SkillTreeController {
              if(GameInfo.getCurrentAbility().containsKey(Ability.Melampus)){
 //                     Random random = new Random();
 //                     int x;
-//                     for(IntersectionPoint point : Intersection.getIntersectionPoints()) {
+//                     for(IntersectionPoint point : ObjectsIntersection.getIntersectionPoints()) {
 //                         x = random.nextInt(100);
 //                         if(point.isMeleeAttack()) {
 //                             point.setMeleeAttack(false);
@@ -136,7 +136,7 @@ public class SkillTreeController {
              } if(GameInfo.getCurrentAbility().containsKey(Ability.Chiron)){
                  if(canUse.get(Ability.Chiron)){
 
-                     for(IntersectionPoint point : Intersection.getIntersectionPoints()){
+                     for(IntersectionPoint point : ObjectsIntersection.getIntersectionPoints()){
 
                          if(point.isEnemyAttack()) {
 
@@ -161,7 +161,7 @@ public class SkillTreeController {
                      for (Trigorath trigorath : Game.getTrigoraths()) {
                          for (Cerberus cerberus : Game.getCerberuses()) {
                              Polygon trigorath1 = new Polygon(trigorath.getxPoints(), trigorath.getyPoints(), 3);
-                             if (intersection.checkCollision(cerberus.getX(), cerberus.getY(), cerberus.getRadius(), trigorath1)) {
+                             if (objectsIntersection.checkCollision(cerberus.getX(), cerberus.getY(), cerberus.getRadius(), trigorath1)) {
 
                                  currentTime2 = System.currentTimeMillis();
                                  
@@ -176,7 +176,7 @@ public class SkillTreeController {
                      for (Squarantine squarantine : Game.getSquarantine()) {
                          for (Cerberus cerberus : Game.getCerberuses()) {
                              Polygon squarantine1 = new Polygon(squarantine.getxPoints(), squarantine.getyPoints(), 4);
-                             if (intersection.checkCollision(cerberus.getX(), cerberus.getY(), cerberus.getRadius(), squarantine1)) {
+                             if (objectsIntersection.checkCollision(cerberus.getX(), cerberus.getY(), cerberus.getRadius(), squarantine1)) {
 
                                  currentTime2 = System.currentTimeMillis();
 
@@ -193,7 +193,7 @@ public class SkillTreeController {
                  }
              if(GameInfo.getCurrentAbility().containsKey(Ability.Astrape)){
                 if(canUse.get(Ability.Astrape)){
-                    for(IntersectionPoint point : Intersection.getIntersectionPoints()){
+                    for(IntersectionPoint point : ObjectsIntersection.getIntersectionPoints()){
 
                         if(point.getEntity1() instanceof Epsilon ){
                             point.getEntity2().decreaseHP(2*KeyListener.getKeyPressedNumber());

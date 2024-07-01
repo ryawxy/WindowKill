@@ -5,7 +5,9 @@ import Controller.Game;
 import Model.*;
 import Model.enums.Side;
 import View.GamePanel;
+import View.GlassFrame;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -26,6 +28,10 @@ public class Omenoct extends GameObjects implements Movable {
     private int timer;
     private Side side;
     private long shotPerTime;
+    private int localX = getX();
+    private int localY = getY();
+    private JFrame localFrame = GlassFrame.getINSTANCE();
+    private JFrame previousLocalFrame = GlassFrame.getINSTANCE();
 
     public Omenoct(int x, int y) {
         super(x, y);
@@ -315,5 +321,55 @@ public class Omenoct extends GameObjects implements Movable {
     @Override
     public int getHeight() {
         return Constants.omenoctWidth();
+    }
+
+    @Override
+    public int getLocalX() {
+        return localX;
+    }
+
+    @Override
+    public void setLocalX(int localX) {
+        this.localX = localX;
+    }
+
+    @Override
+    public int getLocalY() {
+        return localY;
+    }
+
+    @Override
+    public void setLocalY(int localY) {
+        this.localY = localY;
+    }
+
+    @Override
+    public JFrame getLocalFrame() {
+        return localFrame;
+    }
+
+    @Override
+    public void setLocalFrame(JFrame localFrame) {
+        this.localFrame = localFrame;
+    }
+
+    @Override
+    public JFrame getPreviousLocalFrame() {
+        return previousLocalFrame;
+    }
+
+    @Override
+    public void setPreviousLocalFrame(JFrame previousLocalFrame) {
+        this.previousLocalFrame = previousLocalFrame;
+    }
+
+    @Override
+    public int getGlobalX() {
+        return super.getGlobalX();
+    }
+
+    @Override
+    public int getGlobalY() {
+        return super.getGlobalY();
     }
 }
