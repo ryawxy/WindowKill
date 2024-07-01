@@ -37,12 +37,16 @@ public class Trigorath extends GameObjects implements Movable {
     private static  int HPDecrement2 = 5;
     private final ArrayList<Collectible> collectibles = new ArrayList<>();
 
+    private int[] localxPoints =  xPoints;
+    private int[] localyPoints = yPoints;
     public Trigorath(int x, int y) {
         super(x,y);
 
         epsilon = Game.getEpsilon();
 
         initializeCollectibles();
+        localxPoints = xPoints;
+        localyPoints = yPoints;
     }
 
     public double getxVelocity() {
@@ -148,9 +152,19 @@ public class Trigorath extends GameObjects implements Movable {
             xPoints[1] += (int) getxVelocity();
             xPoints[2] += (int) getxVelocity();
 
+
+            localxPoints[0] += (int) getxVelocity();
+            localxPoints[1] += (int) getxVelocity();
+            localxPoints[2] += (int) getxVelocity();
+
             yPoints[0] += (int) getyVelocity();
             yPoints[1] += (int) getyVelocity();
             yPoints[2] += (int) getyVelocity();
+
+            localyPoints[0] += (int) getyVelocity();
+            localyPoints[1] += (int) getyVelocity();
+            localyPoints[2] += (int) getyVelocity();
+
 
             trigorathXPos += (int) getxVelocity();
             trigorathYPos += (int) getyVelocity();
@@ -159,6 +173,8 @@ public class Trigorath extends GameObjects implements Movable {
             this.setX((int) (getX() + getxVelocity()));
             this.setY((int) (getY() + getyVelocity()));
 
+            this.setLocalX((int) (getLocalX() + getxVelocity()));
+            this.setLocalY((int) (getLocalY() + getyVelocity()));
         }
     }
     public void decreaseHP(int decrement){
@@ -302,5 +318,21 @@ public class Trigorath extends GameObjects implements Movable {
     @Override
     public int getGlobalY() {
         return super.getGlobalY();
+    }
+
+    public int[] getLocalxPoints() {
+        return localxPoints;
+    }
+
+    public void setLocalxPoints(int[] localxPoints) {
+        this.localxPoints = localxPoints;
+    }
+
+    public int[] getLocalyPoints() {
+        return localyPoints;
+    }
+
+    public void setLocalyPoints(int[] localyPoints) {
+        this.localyPoints = localyPoints;
     }
 }

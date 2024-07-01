@@ -14,6 +14,6 @@ public class BarricadosView implements Drawable {
     @Override
     public void paint(Graphics2D g) {
         g.setColor(Color.RED);
-        g.fillRect(15,15, Constants.barricadosWidth(),Constants.barricadosWidth());
+        g.fillRect(40,40, Constants.barricadosWidth(),Constants.barricadosWidth());
     }
 }

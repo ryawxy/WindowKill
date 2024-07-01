@@ -9,6 +9,7 @@ import Model.enums.Side;
 import Model.enums.Size;
 import View.GamePanel;
 import View.GlassFrame;
+import View.entityViews.Barricados.BarricadosFrame;
 import myproject.MyProject;
 
 import java.awt.*;
@@ -385,13 +386,16 @@ public void vertexIntersectsNecropick(){
                     if (!trigorath3.isDead()) {
 
                         Epsilon epsilon = Game.getEpsilon();
-                        Polygon trigorath2 = new Polygon(trigorath3.getxPoints(), trigorath3.getyPoints(), 3);
+                        if(trigorath3.getLocalFrame().equals(epsilon.getLocalFrame())){
+
+                            Polygon trigorath2 = new Polygon(trigorath3.getxPoints(), trigorath3.getyPoints(), 3);
                         //   if (!VTCollision) {
                         if (checkCollision(epsilon.getxCenter(), epsilon.getyCenter(), epsilon.getRadius(), trigorath2)) {
-                            IntersectionPoint point = new IntersectionPoint(new Point2D.Double(trigorath3.getX(), trigorath3.getY()),30,true,false,trigorath3,epsilon);
+                            IntersectionPoint point = new IntersectionPoint(new Point2D.Double(trigorath3.getX(), trigorath3.getY()), 30, true, false, trigorath3, epsilon);
                             ObjectsIntersection.getIntersectionPoints().add(point);
                             boolean melee = point.isMeleeAttack();
-                            epsilon.decreaseHP(EnemyType.Trigorath,melee);
+                            epsilon.decreaseHP(EnemyType.Trigorath, melee);
+                        }
 
                         }
                     }
@@ -445,24 +449,29 @@ public void vertexIntersectsNecropick(){
                     }
 
                 }
-                for(Barricados barricados : Game.getBarricados()){
-                    Epsilon epsilon = Game.getEpsilon();
-                    System.out.println(epsilon.getLocalFrame().getTitle()+"  "+barricados.getLocalFrame().getTitle());
-                    if(epsilon.getLocalFrame().equals(barricados.getLocalFrame())) {
-                        Rectangle barricados1 = new Rectangle(barricados.getX(), barricados.getY(), barricados.getWidth(), barricados.getHeight());
-                        Rectangle epsilon1 = new Rectangle(epsilon.getLocalX(), epsilon.getLocalY()
-                                , epsilon.getWidth(), epsilon.getHeight());
-
-
-                        if (epsilon1.intersects(barricados1)) {
-
-                            IntersectionPoint intersectionPoint = new IntersectionPoint(new Point2D.Double(epsilon.getxCenter(), epsilon.getyCenter()),
-                                    10, false, false, barricados, epsilon);
-                            intersectionPoints.add(intersectionPoint);
-                        }
-                    }
-
-                }
+//                for(BarricadosFrame barricadosFrame: Game.getBarricadosFrames()){
+//                    Epsilon epsilon = Game.getEpsilon();
+//                    Barricados barricados = barricadosFrame.getBarricados();
+//
+//                    if(epsilon.getLocalFrame().equals(barricadosFrame)) {
+//                        Rectangle barricados1 = new Rectangle(barricados.getX(), barricados.getY(), barricados.getWidth(), barricados.getHeight());
+//                        Rectangle epsilon1 = new Rectangle(epsilon.getLocalX(), epsilon.getLocalY()
+//                                , epsilon.getWidth(), epsilon.getHeight());
+//
+//
+//
+//                        if (epsilon1.intersects(barricados1)) {
+//
+//
+//                            IntersectionPoint intersectionPoint = new IntersectionPoint(new Point2D.Double(barricados.getX()+
+//                                    (double) Constants.barricadosWidth() /2,
+//                                    barricados.getY()+ (double) Constants.barricadosWidth() /2),
+//                                    10, false, false, barricados, epsilon);
+//                            intersectionPoints.add(intersectionPoint);
+//                        }
+//                    }
+//
+//                }
             }
 
 

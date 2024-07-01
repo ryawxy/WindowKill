@@ -35,13 +35,18 @@ public class EpsilonView implements Drawable {
         if (bounds.contains(globalX, globalY) || bounds.contains(globalX + epsilon.getRadius(), globalY) ||
                 bounds.contains(globalX, globalY + epsilon.getRadius()) ||
                 bounds.contains(globalX + epsilon.getRadius(), globalY + epsilon.getRadius())) {
-            g.setColor(Color.WHITE);
-            g.drawOval((int) (epsilon.getLocalX()), (int) (epsilon.getLocalY()), epsilon.getRadius(), epsilon.getRadius());
+            if (epsilon.getLocalFrames().size() == 1) {
+                g.setColor(Color.WHITE);
+                g.drawOval((int) (epsilon.getLocalX()), (int) (epsilon.getLocalY()), epsilon.getRadius(), epsilon.getRadius());
 
 
 //            g.setColor(Color.WHITE);
 //            g.drawOval(epsilon.getX(), epsilon.getY(), epsilon.getRadius(), epsilon.getRadius());
 
+            } else {
+                g.setColor(Color.WHITE);
+            g.drawOval((int) (globalX - bounds.x), (int) (globalY - bounds.y), epsilon.getRadius(), epsilon.getRadius());
         }
+    }
     }
 }

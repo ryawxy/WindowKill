@@ -71,25 +71,25 @@ public class Epsilon extends GameObjects implements Movable {
                             xVelocity2 += Math.cos(angle3) * Constants.getImpactSpeed((int) distance);
                 yVelocity2 += Math.sin(angle3) * Constants.getImpactSpeed((int) distance);
         }
-        if(localFrame.getY()-radius<=0){
-
-
-            yVelocity2 = 0;
-        }
-        if(localFrame.getY() + radius>= localFrame.getHeight()) {
-            yVelocity2 = 0;
-
-        }
-        if(localFrame.getX() - radius<=0) {
-
-            xVelocity2 = 0;
-
-        }
-        if(localFrame.getX() + radius>= localFrame.getWidth()) {
-
-            xVelocity2 = 0;
-
-        }
+//        if(localFrame.getY()-radius<=0){
+//
+//
+//            yVelocity2 = 0;
+//        }
+//        if(localFrame.getY() + radius>= localFrame.getHeight()) {
+//            yVelocity2 = 0;
+//
+//        }
+//        if(localFrame.getX() - radius<=0) {
+//
+//            xVelocity2 = 0;
+//
+//        }
+//        if(localFrame.getX() + radius>= localFrame.getWidth()) {
+//
+//            xVelocity2 = 0;
+//
+//        }
 
 
         this.setX((int) (getX()+xVelocity2+getxVelocity()));

@@ -5,9 +5,16 @@ import Model.Collectible;
 import Model.Drawable;
 import Model.Entity.Trigorath;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class TrigorathView implements Drawable {
+    private JFrame frame;
+
+    public TrigorathView(JFrame frame) {
+        this.frame = frame;
+    }
+
     @Override
     public void paint(Graphics2D g) {
 
@@ -17,21 +24,44 @@ public class TrigorathView implements Drawable {
         for (int i = 0; i < Game.getTrigoraths().size(); i++) {
             Trigorath trigorath1 = Game.getTrigoraths().get(i);
             if (!trigorath1.isDead()) {
-                g.setColor(Color.YELLOW);
-                g.drawPolygon(trigorath1.getxPoints(), trigorath1.getyPoints(), 3);
-            } else {
-                if (trigorath1.isShowCollectibles()) {
+                int[] globalX = new int[3];
+                int[] globalY = new int[3];
 
-                    g.setColor(Color.orange);
-                    for (int j = 0; j < trigorath1.getCollectibles().size(); j++) {
+                for (int j = 0; j < 3; j++) {
+
+                    globalX[j] = trigorath1.getLocalxPoints()[j] + trigorath1.getLocalFrame().getX();
+                    globalY[j] = trigorath1.getLocalyPoints()[j] + trigorath1.getLocalFrame().getY();
 
 
-                        Collectible collectible = trigorath1.getCollectibles().get(j);
-                        g.fillOval(collectible.getX(), collectible.getY(), collectible.getRadius(), collectible.getRadius());
 
+
+                }
+
+                Rectangle bounds = new Rectangle(frame.getX(), frame.getY()
+                        , frame.getWidth(), frame.getHeight());
+
+
+                Polygon global = new Polygon(globalX, globalY, 3);
+
+                if (global.intersects(bounds)) {
+
+                    g.setColor(Color.YELLOW);
+                    g.drawPolygon(trigorath1.getLocalxPoints(), trigorath1.getLocalyPoints(), 3);
+                }
+            }else {
+                    if (trigorath1.isShowCollectibles()) {
+
+                        g.setColor(Color.orange);
+                        for (int j = 0; j < trigorath1.getCollectibles().size(); j++) {
+
+
+                            Collectible collectible = trigorath1.getCollectibles().get(j);
+                            g.fillOval(collectible.getX(), collectible.getY(), collectible.getRadius(), collectible.getRadius());
+
+                        }
                     }
                 }
             }
         }
     }
-}
+

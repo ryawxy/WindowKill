@@ -4,42 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="Archmire footprint">
-      <change afterPath="$PROJECT_DIR$/src/Model/Entity/Barricados.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/FrameIntersection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/FrameType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/enums/BarricadosType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/entityViews/Barricados/BarricadosFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/entityViews/Barricados/BarricadosPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/entityViews/Barricados/BarricadosView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_28_2024_2_20_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_28_2024_2_20_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_28_2024_2_20_PM__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_28_2024_2_20_PM__Changes_1.xml" afterDir="false" />
+    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="epsilon moves between glassframe and barricados frame">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Constants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ImpactSpeed.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/KeyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/KeyListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ShopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ShopController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SkillTreeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SkillTreeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/Archmire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Entity/Archmire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/Cerberus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Entity/Cerberus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Entity/Epsilon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Entity/Epsilon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/Necropick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Entity/Necropick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/Omenoct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Entity/Omenoct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/ShotGun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Entity/ShotGun.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/Squarantine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Entity/Squarantine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Entity/Trigorath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Entity/Trigorath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/FrameSize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/FrameSize.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/FrameIntersection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/FrameIntersection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GameObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameObjects.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Intersection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ObjectsIntersection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/ObjectsIntersection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ObjectsIntersection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Wave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Wave.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/GlassFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/GlassFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/ShotGunView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ShotGunView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/StarterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/StarterMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/entityViews/Barricados/BarricadosFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/entityViews/Barricados/BarricadosFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/entityViews/Barricados/BarricadosPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/entityViews/Barricados/BarricadosPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/entityViews/Barricados/BarricadosView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/entityViews/Barricados/BarricadosView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/entityViews/EpsilonView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/entityViews/EpsilonView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/myproject/ProjectData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/entityViews/TrigorathView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/entityViews/TrigorathView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -284,7 +263,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719571995764</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="epsilon moves between glassframe and barricados frame">
+      <option name="closed" value="true" />
+      <created>1719818796448</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1719818796448</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -319,7 +306,8 @@
     <MESSAGE value="added structure to the updated skillTree" />
     <MESSAGE value="added structure to shopV2.0" />
     <MESSAGE value="Archmire footprint" />
-    <option name="LAST_COMMIT_MESSAGE" value="Archmire footprint" />
+    <MESSAGE value="epsilon moves between glassframe and barricados frame" />
+    <option name="LAST_COMMIT_MESSAGE" value="epsilon moves between glassframe and barricados frame" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

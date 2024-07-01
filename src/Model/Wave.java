@@ -91,6 +91,8 @@ public  void initWave1(){
         trigorath = new Trigorath(250,233);
         trigorath.setxPoints(xPoints3);
         trigorath.setyPoints(yPoints3);
+        trigorath.setLocalxPoints(xPoints3);
+        trigorath.setLocalyPoints(yPoints3);
         wave1EasyTrigorath.add(trigorath);
 
         Archmire archmire = new Archmire(50,50, Size.MINI);

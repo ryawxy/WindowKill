@@ -76,7 +76,7 @@ public class Game {
 
        // epsilonView = new EpsilonView();
 //        shotGunView = new ShotGunView();
-        trigorathView = new TrigorathView();
+   //     trigorathView = new TrigorathView();
         squarantineView = new SquarantineView();
         vertexView = new VertexView();
         gameInfoView = new GameInfoView();

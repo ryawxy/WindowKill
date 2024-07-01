@@ -7,6 +7,7 @@ import Model.Entity.ShotGun;
 import View.GlassFrame;
 import View.ShotGunView;
 import View.entityViews.EpsilonView;
+import View.entityViews.TrigorathView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,6 +41,9 @@ public class BarricadosPanel extends JPanel {
 
         ShotGunView shotGunView = new ShotGunView(getItsFrame());
         shotGunView.paint(g2D);
+
+        TrigorathView trigorathView = new TrigorathView(getItsFrame());
+        trigorathView.paint(g2D);
 
 
     }

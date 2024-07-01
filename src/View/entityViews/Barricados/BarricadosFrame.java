@@ -9,8 +9,8 @@ import java.awt.*;
 
 
 public class BarricadosFrame extends JFrame implements FrameType {
-    private Barricados barricados;
-    private Rectangle bounds;
+    private final Barricados barricados;
+    private final Rectangle bounds;
 
     public BarricadosFrame(int x,int y){
         this.setSize(200,200);
@@ -48,4 +48,5 @@ public class BarricadosFrame extends JFrame implements FrameType {
     public Barricados getBarricados() {
         return barricados;
     }
+
 }

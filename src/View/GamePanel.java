@@ -5,6 +5,7 @@ import Model.Entity.Epsilon;
 import Model.Entity.Vertex;
 import Controller.MouseListener;
 import View.entityViews.EpsilonView;
+import View.entityViews.TrigorathView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -91,7 +92,9 @@ public class GamePanel extends JPanel {
         shotGunView.paint(g2D);
 
         //paint trigorath
-        Game.getTrigorathView().paint(g2D);
+   //     Game.getTrigorathView().paint(g2D);
+        TrigorathView trigorathView = new TrigorathView(GlassFrame.getINSTANCE());
+        trigorathView.paint(g2D);
 
         //  paint squarantine
         Game.getSquarantineView().paint(g2D);

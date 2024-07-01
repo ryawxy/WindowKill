@@ -78,7 +78,7 @@ public class GameLoop {
         elapsedTimer.start();
     }
     public void start(){
-        timer = new Timer(2, new ActionListener() {
+        timer = new Timer(1, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -438,7 +438,7 @@ public class GameLoop {
                     }
                     for (int i = 0; i < Game.getTrigoraths().size(); i++) {
                         Trigorath trigorath = Game.getTrigoraths().get(i);
-                    //    trigorath.move();
+                       trigorath.move();
 
                     }
                     Game.getEpsilon().move();
@@ -529,14 +529,21 @@ public class GameLoop {
                     }
 
                     for(JFrame frame : Game.getFrames()) {
-                        if (!frame.equals(Game.getEpsilon().getLocalFrame())) {
+               //         if (!frame.equals(Game.getEpsilon().getLocalFrame())) {
                             frameIntersection.changeLocalFrame(frame, Game.getEpsilon());
                         }
-                    }
+               //     }
                     for(ShotGun shotGun : Game.getShots()) {
                         for (JFrame frame : Game.getFrames()) {
                             if (!frame.equals(Game.getEpsilon().getLocalFrame())) {
                                 frameIntersection.changeLocalFrame(frame, shotGun);
+                            }
+                        }
+                    }
+                    for(Trigorath trigorath : Game.getTrigoraths()) {
+                        for (JFrame frame : Game.getFrames()) {
+                            if (!frame.equals(Game.getEpsilon().getLocalFrame())) {
+                                frameIntersection.changeLocalFrame(frame, trigorath);
                             }
                         }
                     }
