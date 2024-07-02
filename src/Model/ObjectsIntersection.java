@@ -21,9 +21,6 @@ import java.util.ArrayList;
 
 public class ObjectsIntersection {
     GamePanel gamePanel;
-
-    private Polygon squarantine2;
-    private Polygon trigorath2;
     private static boolean VSCollission;
     private static  boolean VTCollision;
 
@@ -99,11 +96,13 @@ public class ObjectsIntersection {
                 Rectangle enemy1 = new Rectangle(enemy.getX(),enemy.getY(),enemy.getWidth(),enemy.getHeight());
                 Rectangle shot= new Rectangle(shotGun.getX(),shotGun.getY(),Constants.getShotGunWidth(),Constants.getShotGunHeight());
                 if(shotGun.isVisible()) {
+
                     if (enemy1.intersects(shot)) {
 
+                        shotGun.setVisible(false);
                         System.out.println(222222);
                         enemy.decreaseHP(5);
-                        shotGun.setVisible(false);
+
                         IntersectionPoint point = new IntersectionPoint(new Point2D.Double(shotGun.getX(), shotGun.getY()), 10, false, false, epsilon, enemy);
                         intersectionPoints.add(point);
                     }

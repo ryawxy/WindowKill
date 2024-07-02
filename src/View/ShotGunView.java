@@ -31,7 +31,7 @@ public class ShotGunView implements Drawable {
 //        }
 
         for(ShotGun shotGun : Game.getShots()){
-     //       if(shotGun.isVisible()) {
+            if(shotGun.isVisible()) {
                 int x = shotGun.getX() + GlassFrame.getINSTANCE().getX();
                 int y = shotGun.getY() + GlassFrame.getINSTANCE().getY();
                 Rectangle bounds = new Rectangle(frame.getX(), frame.getY()
@@ -42,7 +42,7 @@ public class ShotGunView implements Drawable {
                     g.setColor(Color.WHITE);
                     g.fillRect(x - bounds.x, y - bounds.y, shotGun.getWidth(), shotGun.getHeight());
                 }
-   //         }
+            }
 
         }
         for(Necropick necropick : Game.getNecropicks()){

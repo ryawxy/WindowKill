@@ -92,13 +92,14 @@ public class FrameSize {
 
                 boolean valid = true;
                 for(BarricadosFrame barricadosFrame : Game.getBarricadosFrames()) {
-                    if(barricadosFrame.getBarricados().getType().equals(BarricadosType.T2)) {
-                        if(barricadosFrame.getX()>=GlassFrame.getINSTANCE().getX()+GlassFrame.getINSTANCE().getWidth()) {
+                    if (barricadosFrame.getBarricados().getType().equals(BarricadosType.T2)) {
+                        if (barricadosFrame.getX() >= GlassFrame.getINSTANCE().getX() + GlassFrame.getINSTANCE().getWidth()) {
                             if (GlassFrame.getINSTANCE().getX() + GlassFrame.getINSTANCE().getWidth() + (Constants.expandAmount() / 2) > barricadosFrame.getX()) {
                                 valid = false;
                             }
                         }
                     }
+                }
                     if(valid) {
                         GlassFrame.getINSTANCE().setSize(GlassFrame.getINSTANCE().getWidth() + Constants.expandAmount(), GlassFrame.getINSTANCE().getHeight());
                         gamePanel.setSize(gamePanel.getWidth() + Constants.expandAmount(), gamePanel.getHeight());
@@ -106,7 +107,7 @@ public class FrameSize {
                         GlassFrame.getINSTANCE().setLocation(GlassFrame.getINSTANCE().getX() + Constants.expandAmount() / 2, GlassFrame.getINSTANCE().getY());
 
                     }
-                }
+
             }
             //expand game frame from left side
             if (direction.equals(Direction.LEFT)) {

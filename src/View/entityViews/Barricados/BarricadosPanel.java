@@ -34,7 +34,7 @@ public class BarricadosPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         Graphics2D g2D = (Graphics2D) g;
         super.paintComponent(g2D);
-        g2D.setColor(Color.RED);
+
 
         barricadosView.paint(g2D);
 
@@ -42,8 +42,8 @@ public class BarricadosPanel extends JPanel {
         EpsilonView epsilonView = new EpsilonView(getItsFrame());
         epsilonView.paint(g2D);
 
-        ShotGunView shotGunView = new ShotGunView(getItsFrame());
-        shotGunView.paint(g2D);
+//        ShotGunView shotGunView = new ShotGunView(getItsFrame());
+//        shotGunView.paint(g2D);
 
         TrigorathView trigorathView = new TrigorathView(getItsFrame());
         trigorathView.paint(g2D);
