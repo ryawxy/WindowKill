@@ -100,7 +100,7 @@ public class ObjectsIntersection {
                     if (enemy1.intersects(shot)) {
 
                         shotGun.setVisible(false);
-                        System.out.println(222222);
+
                         enemy.decreaseHP(5);
 
                         IntersectionPoint point = new IntersectionPoint(new Point2D.Double(shotGun.getX(), shotGun.getY()), 10, false, false, epsilon, enemy);

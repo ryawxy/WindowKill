@@ -10,6 +10,7 @@ import View.entityViews.*;
 import View.entityViews.Barricados.BarricadosFrame;
 import View.entityViews.Barricados.BarricadosPanel;
 import View.entityViews.Barricados.BarricadosView;
+import View.entityViews.BlackOrb.BlackOrbFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -49,6 +50,7 @@ public class Game {
     private  static ArrayList<Cerberus> cerberuses;
     private static ArrayList<GameObjects> enemies;
     private static ArrayList<BarricadosFrame> barricadosFrames = new ArrayList<>();
+    private static ArrayList<BlackOrbFrame> blackOrbFrames = new ArrayList<>();
     private static ArrayList<JFrame> frames = new ArrayList<>();
     public Game() throws IOException, AWTException {
 
@@ -219,5 +221,9 @@ public class Game {
 
     public static void setFrames(ArrayList<JFrame> frames) {
         Game.frames = frames;
+    }
+
+    public static ArrayList<BlackOrbFrame> getBlackOrbFrames() {
+        return blackOrbFrames;
     }
 }

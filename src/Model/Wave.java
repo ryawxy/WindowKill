@@ -105,6 +105,7 @@ public  void initWave1(){
         wave1EasyBarricados.add(barricados);
     //    BarricadosPanel panel = new BarricadosPanel();
     //    barricadosPanels.add(panel);
+
     }
     if(SettingsFrame.getChosenLevel()==1){
         int [] xPoints = {50,40,60};

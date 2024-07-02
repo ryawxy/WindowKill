@@ -140,7 +140,10 @@ public class Constants {
         return 45;
     }
     public static int barricadosWidth(){
-        return 100;
+        return 300;
+    }
+    public static int orbSize(){
+        return 60;
     }
 
 

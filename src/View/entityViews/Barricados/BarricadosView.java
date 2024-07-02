@@ -18,10 +18,7 @@ public class BarricadosView implements Drawable {
     public BarricadosView(BarricadosType barricadosType) {
 
         this.barricadosType = barricadosType;
-    }
 
-    @Override
-    public void paint(Graphics2D g) {
         if(barricadosType.equals(BarricadosType.T1)) {
             try {
                 image = ImageIO.read(new File("src/images/barricados1.png"));
@@ -35,8 +32,12 @@ public class BarricadosView implements Drawable {
                 e.printStackTrace();
             }
         }
-        g.drawImage(image, 0, 0,300, 300, null);
-//        g.setColor(Color.RED);
-//        g.fillRect(40,40, Constants.barricadosWidth(),Constants.barricadosWidth());
+    }
+
+    @Override
+    public void paint(Graphics2D g) {
+
+        g.drawImage(image, 0, 0, Constants.barricadosWidth(), Constants.barricadosWidth(), null);
+
     }
 }

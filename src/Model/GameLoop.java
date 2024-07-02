@@ -2,6 +2,7 @@ package Model;
 
 import Controller.*;
 import Model.Entity.*;
+import Model.Entity.BlackOrb.BlackOrbArray;
 import Model.enums.BarricadosType;
 import Model.enums.Direction;
 import Model.enums.EnemyType;
@@ -9,6 +10,7 @@ import View.*;
 import View.SettingsFrame;
 import View.entityViews.Barricados.BarricadosFrame;
 import View.entityViews.Barricados.BarricadosPanel;
+import View.entityViews.BlackOrb.BlackOrbFrame;
 import myproject.MyProject;
 
 import javax.swing.*;
@@ -115,6 +117,8 @@ public class GameLoop {
                                 Game.getEnemies().add(archmire);
 
                             }
+                     //       BlackOrbFrame blackOrbFrame = new BlackOrbFrame(200,200);
+                            BlackOrbArray.createBlackOrbArray(200,150);
 
                     //        for(Barricados barricados : wave.wave1EasyBarricados){
                    //         BarricadosFrame barricadosFrame = new BarricadosFrame(300,300, BarricadosType.T2);
@@ -558,6 +562,7 @@ public class GameLoop {
 
 
                     Game.getGameFrame().repaint();
+                 //   for(JFrame frame : Game.getFrames()) frame.getContentPane().repaint();
                     for(BarricadosFrame barricadosFrame : Game.getBarricadosFrames()) {
 
                         barricadosFrame.getContentPane().repaint();
@@ -567,6 +572,7 @@ public class GameLoop {
 
 
                     }
+                    for (BlackOrbFrame blackOrbFrame : Game.getBlackOrbFrames()) blackOrbFrame.getContentPane().repaint();
 
 
                 }
