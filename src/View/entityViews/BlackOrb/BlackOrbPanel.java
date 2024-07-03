@@ -11,7 +11,8 @@ public class BlackOrbPanel extends JPanel {
 
     private Rectangle bound;
     private JFrame itsFrame;
-    private final BlackOrbView blackOrbView = new BlackOrbView();
+    BlackOrbView blackOrbView;
+
 
     public BlackOrbPanel(int x, int y){
 
@@ -19,12 +20,14 @@ public class BlackOrbPanel extends JPanel {
         this.setBackground(Color.BLACK);
         MouseListener mouseListener = new MouseListener(this);
         addMouseListener(mouseListener);
+
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2D = (Graphics2D) g;
+
 
         blackOrbView.paint(g2D);
 
@@ -54,6 +57,14 @@ public class BlackOrbPanel extends JPanel {
 
     public void setItsFrame(JFrame itsFrame) {
         this.itsFrame = itsFrame;
+    }
+
+    public BlackOrbView getBlackOrbView() {
+        return blackOrbView;
+    }
+
+    public void setBlackOrbView(BlackOrbView blackOrbView) {
+        this.blackOrbView = blackOrbView;
     }
 }
 

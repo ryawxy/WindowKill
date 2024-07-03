@@ -180,34 +180,38 @@ public class ObjectsIntersection {
         Epsilon epsilon = Game.getEpsilon();
 
 
-        for(GameObjects enemy : Game.getEnemies()){
-            if(enemy.isShowCollectibles()){
-                for(int i=0; i<enemy.getCollectibles().size(); i++){
+        for(GameObjects enemy : Game.getEnemies()) {
+            if (enemy.isShowCollectibles()) {
+                for (int i = 0; i < enemy.getCollectibles().size(); i++) {
                     Collectible collectible = enemy.getCollectibles().get(i);
 
-                    Ellipse2D epsilonShape = new Ellipse2D.Double(epsilon.getX()-epsilon.getRadius(),
-                            epsilon.getY()-epsilon.getRadius(),
-                            2*epsilon.getRadius(),2*epsilon.getRadius());
-                    Ellipse2D collectibleShape = new Ellipse2D.Double(collectible.getX()-collectible.getRadius(),
-                            collectible.getY()-collectible.getRadius(),
-                            2*collectible.getRadius(),2*collectible.getRadius());
-                    Area epsilonArea = new Area(epsilonShape);
-                    Area collectibleArea = new Area(collectibleShape);
-                    epsilonArea.intersect(collectibleArea);
+                    if (epsilon.getLocalFrame().equals(enemy.getLocalFrame())) {
+                        Ellipse2D epsilonShape = new Ellipse2D.Double(epsilon.getLocalX() - epsilon.getRadius(),
+                                epsilon.getLocalY() - epsilon.getRadius(),
+                                2 * epsilon.getRadius(), 2 * epsilon.getRadius());
+                        Ellipse2D collectibleShape = new Ellipse2D.Double(collectible.getX() - collectible.getRadius(),
+                                collectible.getY() - collectible.getRadius(),
+                                2 * collectible.getRadius(), 2 * collectible.getRadius());
+                        Area epsilonArea = new Area(epsilonShape);
+                        Area collectibleArea = new Area(collectibleShape);
+                        epsilonArea.intersect(collectibleArea);
 
-                    if(!epsilonArea.isEmpty()){
-                        switch (enemy) {
-                            case Necropick necropick ->
-                                    MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 2);
-                            case Omenoct omenoct -> MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 4);
-                            case Archmire archmire -> {
-                                if (archmire.getsize().equals(Size.LARGE))
-                                    MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 6);
-                                else MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 3);
+
+                        if (!epsilonArea.isEmpty()) {
+                            switch (enemy) {
+                                case Necropick necropick -> MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 2);
+                                case Omenoct omenoct -> MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 4);
+                                case Archmire archmire -> {
+                                    if (archmire.getsize().equals(Size.LARGE))
+                                        MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 6);
+                                    else MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 3);
+                                }
+                                case BlackOrb blackOrb -> MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 30);
+
+                                default -> MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 5);
                             }
-                            default -> MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 5);
+                            enemy.getCollectibles().remove(collectible);
                         }
-                        enemy.getCollectibles().remove(collectible);
                     }
                 }
             }

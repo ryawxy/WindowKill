@@ -4,24 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="created orbs">
+    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="epsilon shots orbs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/KeyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/KeyListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/MouseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MouseListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Entity/BlackOrb/BlackOrb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Entity/BlackOrb/BlackOrb.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Entity/BlackOrb/BlackOrbArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Entity/BlackOrb/BlackOrbArray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/BlackOrb/Laser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Entity/BlackOrb/Laser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/ShotGun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Entity/ShotGun.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GameObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameObjects.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/ObjectsIntersection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ObjectsIntersection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/entityViews/BlackOrb/BlackOrbFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/entityViews/BlackOrb/BlackOrbFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/entityViews/BlackOrb/BlackOrbPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/entityViews/BlackOrb/BlackOrbPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/entityViews/BlackOrb/InvisibleFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/entityViews/BlackOrb/InvisibleFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/entityViews/BlackOrb/InvisiblePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/entityViews/BlackOrb/InvisiblePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/entityViews/BlackOrb/LaserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/entityViews/BlackOrb/LaserView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/entityViews/EpsilonView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/entityViews/EpsilonView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/laser.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/laser.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/entityViews/BlackOrb/BlackOrbView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/entityViews/BlackOrb/BlackOrbView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -322,7 +312,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719935080958</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="epsilon shots orbs">
+      <option name="closed" value="true" />
+      <created>1720020906687</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1720020906687</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -337,7 +335,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="changing game frame size applied" />
     <MESSAGE value="epsilon remains in game frame while shrinking" />
     <MESSAGE value="added key changing to settings" />
     <MESSAGE value="resolved conflict in settings branch" />
@@ -362,6 +359,7 @@
     <MESSAGE value="shrinkage mechanism for non-isometric frames" />
     <MESSAGE value="added image to Barricados" />
     <MESSAGE value="created orbs" />
-    <option name="LAST_COMMIT_MESSAGE" value="created orbs" />
+    <MESSAGE value="epsilon shots orbs" />
+    <option name="LAST_COMMIT_MESSAGE" value="epsilon shots orbs" />
   </component>
 </project>

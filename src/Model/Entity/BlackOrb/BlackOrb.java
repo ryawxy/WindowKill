@@ -17,18 +17,47 @@ public class BlackOrb extends GameObjects {
     private int globalX;
     private int globalY;
     private final ArrayList<Laser> lasers = new ArrayList<>();
+    private boolean showCollectibles;
+    private int timer;
     public BlackOrb(int x, int y) {
         super(x, y);
 
         localX = x;
         localY = y;
+        initializeCollectibles();
     }
 
     @Override
     public void decreaseHP(int decrement) {
 
         setHP(getHP()-decrement);
-        if(getHP()<=0) setDead(true);
+        if(getHP()<=0){
+            setDead(true);
+            setShowCollectibles(true);
+        }
+    }
+    public void initializeCollectibles(){
+
+        Collectible collectible1 = new Collectible(getX()+20,getY()+70);
+        collectible1.setRadius(10);
+        Collectible collectible2 = new Collectible(getX()+50,getY()+80);
+        collectible2.setRadius(10);
+        Collectible collectible3 = new Collectible(getX()+80,getY()+100);
+        collectible3.setRadius(10);
+
+        collectibles.add(collectible1);
+        collectibles.add(collectible2);
+        collectibles.add(collectible3);
+    }
+
+    @Override
+    public void invisibleCollectible() {
+        if(isShowCollectibles()) {
+            setTimer(getTimer() + 1);
+            if (getTimer() > 300) {
+                setShowCollectibles(false);
+            }
+        }
     }
 
     public ArrayList<Laser> getLasers() {
@@ -70,6 +99,33 @@ public class BlackOrb extends GameObjects {
 
     public void setDead(boolean dead) {
         this.dead = dead;
+    }
+
+    @Override
+    public boolean isShowCollectibles() {
+        return showCollectibles;
+    }
+
+    @Override
+    public void setShowCollectibles(boolean showCollectibles) {
+        this.showCollectibles = showCollectibles;
+    }
+
+    public int getTimer() {
+        return timer;
+    }
+
+    public void setTimer(int timer) {
+        this.timer = timer;
+    }
+
+    @Override
+    public ArrayList<Collectible> getCollectibles() {
+        return collectibles;
+    }
+
+    public void setCollectibles(ArrayList<Collectible> collectibles) {
+        this.collectibles = collectibles;
     }
 }
 

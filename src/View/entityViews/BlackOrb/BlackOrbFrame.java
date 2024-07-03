@@ -25,7 +25,7 @@ public class BlackOrbFrame extends JFrame implements FrameType {
         this.setVisible(true);
         blackOrb = new BlackOrb(30,20);
         blackOrb.setLocalFrame(this);
-
+        blackOrbPanel.setBlackOrbView(new BlackOrbView(blackOrb));
         bounds = new Rectangle(getX(),getY(),getWidth(),getHeight());
 
     }

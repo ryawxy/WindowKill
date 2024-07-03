@@ -39,6 +39,7 @@ public class BlackOrbArray {
             double yPosition = -sideLength*Math.sin(theta);
 
             BlackOrbFrame blackOrbFrame = new BlackOrbFrame((int) xPosition+x, (int) yPosition+y);
+            Game.getEnemies().add(blackOrbFrame.getBlackOrb());
 
             KeyListener keyListener = new KeyListener((JPanel) blackOrbFrame.getContentPane());
 
