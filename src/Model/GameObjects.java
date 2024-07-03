@@ -144,7 +144,7 @@ public class GameObjects extends JLabel {
     }
 
     public int getGlobalX() {
-        return getLocalX()+getX() ;
+        return getLocalX()+getLocalFrame().getX() ;
     }
 
     public void setGlobalX(int globalX) {
@@ -152,7 +152,7 @@ public class GameObjects extends JLabel {
     }
 
     public int getGlobalY() {
-        return getLocalY()+getY();
+        return getLocalY()+getLocalFrame().getY();
     }
 
     public void setGlobalY(int globalY) {

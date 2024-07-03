@@ -6,12 +6,13 @@ import Model.enums.ShopItem;
 import Model.Entity.ShotGun;
 import View.GamePanel;
 
+import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
 import java.awt.event.MouseEvent;
 
 public class MouseListener extends MouseInputAdapter {
 
-    GamePanel gamePanel;
+    JPanel gamePanel;
     ShotGun shotGun;
     Epsilon epsilon;
     private int mouseX;
@@ -23,7 +24,7 @@ public class MouseListener extends MouseInputAdapter {
     private static int timer;
     //if empower item is activated, wait a bit for each shot to fire
     private static boolean shootinEmpowerMode;
-    public MouseListener(GamePanel gamePanel){
+    public <T extends JPanel> MouseListener(T gamePanel){
         this.gamePanel = gamePanel;
         shotGun = Game.getShotGun();
         epsilon = Game.getEpsilon();
@@ -31,6 +32,7 @@ public class MouseListener extends MouseInputAdapter {
     }
 
     public void mouseClicked(MouseEvent e) {
+
         mouseX = e.getX();
         mouseY = e.getY();
 

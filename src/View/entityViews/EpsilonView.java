@@ -13,7 +13,7 @@ public class EpsilonView implements Drawable {
     private final Epsilon epsilon = Game.getEpsilon();
     private JFrame frame;
 
-    public EpsilonView(JFrame frame) {
+    public <T extends JFrame> EpsilonView(T frame) {
         this.frame = frame;
     }
 

@@ -16,7 +16,7 @@ public class KeyListener {
     ActionMap actionMap;
     Epsilon epsilon;
     ShotGun shotGun;
-    GamePanel gameFrame;
+    JPanel gameFrame;
     private boolean upPressed;
     private boolean downPressed;
     private boolean leftPressed;
@@ -31,7 +31,7 @@ public class KeyListener {
     private static int keyPressedNumber;
 
 
-    public KeyListener(GamePanel gameFrame){
+    public<T extends JPanel> KeyListener(T gameFrame){
         this.gameFrame = gameFrame;
         epsilon = Game.getEpsilon();
         shotGun = Game.getShotGun();

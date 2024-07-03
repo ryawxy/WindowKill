@@ -32,6 +32,8 @@ public class ShotGun extends GameObjects implements Movable {
     public void move() {
         setX((int) (getX()+xVelocity));
         setY((int) (getY()+yVelocity));
+        setLocalX((int) (getLocalY()+xVelocity));
+        setLocalY((int) (getLocalY()+yVelocity));
     }
 
     @Override

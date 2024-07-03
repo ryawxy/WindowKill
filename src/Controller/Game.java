@@ -3,14 +3,14 @@ package Controller;
 
 import Model.*;
 import Model.Entity.*;
+import Model.Entity.BlackOrb.BlackOrb;
 import Model.enums.Ability;
 import Sound.SoundPlayer;
 import View.*;
 import View.entityViews.*;
 import View.entityViews.Barricados.BarricadosFrame;
-import View.entityViews.Barricados.BarricadosPanel;
-import View.entityViews.Barricados.BarricadosView;
 import View.entityViews.BlackOrb.BlackOrbFrame;
+import View.entityViews.BlackOrb.InvisibleFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -52,6 +52,8 @@ public class Game {
     private static ArrayList<BarricadosFrame> barricadosFrames = new ArrayList<>();
     private static ArrayList<BlackOrbFrame> blackOrbFrames = new ArrayList<>();
     private static ArrayList<JFrame> frames = new ArrayList<>();
+    private static ArrayList<InvisibleFrame> invisibleFrames = new ArrayList<>();
+    private static ArrayList<BlackOrb> blackOrbs = new ArrayList<>();
     public Game() throws IOException, AWTException {
 
         frames.add(GlassFrame.getINSTANCE());
@@ -110,6 +112,10 @@ public class Game {
 
 
 
+    }
+    public static <T extends JFrame>  void addFrame(ArrayList<T> frames, T frame){
+
+        frames.add(frame);
     }
 
     public static Epsilon getEpsilon() {
@@ -225,5 +231,13 @@ public class Game {
 
     public static ArrayList<BlackOrbFrame> getBlackOrbFrames() {
         return blackOrbFrames;
+    }
+
+    public static ArrayList<InvisibleFrame> getInvisibleFrames() {
+        return invisibleFrames;
+    }
+
+    public static ArrayList<BlackOrb> getBlackOrbs() {
+        return blackOrbs;
     }
 }

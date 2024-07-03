@@ -11,6 +11,7 @@ import View.SettingsFrame;
 import View.entityViews.Barricados.BarricadosFrame;
 import View.entityViews.Barricados.BarricadosPanel;
 import View.entityViews.BlackOrb.BlackOrbFrame;
+import View.entityViews.BlackOrb.InvisibleFrame;
 import myproject.MyProject;
 
 import javax.swing.*;
@@ -117,27 +118,28 @@ public class GameLoop {
                                 Game.getEnemies().add(archmire);
 
                             }
-                     //       BlackOrbFrame blackOrbFrame = new BlackOrbFrame(200,200);
+                 //           BlackOrbFrame blackOrbFrame = new BlackOrbFrame(200,200);
                             BlackOrbArray.createBlackOrbArray(200,150);
-
-                    //        for(Barricados barricados : wave.wave1EasyBarricados){
-                   //         BarricadosFrame barricadosFrame = new BarricadosFrame(300,300, BarricadosType.T2);
-                    //        BarricadosFrame barricadosFrame1 = new BarricadosFrame(500,30, BarricadosType.T2);
-                       //         BarricadosFrame barricadosFrame2 = new BarricadosFrame(500,600, BarricadosType.T2);
-                        //        BarricadosFrame barricadosFrame3 = new BarricadosFrame(1000,300, BarricadosType.T2);
-                 //             Game.getBarricadosFrames().add(barricadosFrame);
-                 //           Game.getBarricadosFrames().add(barricadosFrame1);
-                       //         Game.getBarricadosFrames().add(barricadosFrame2);
-                        //        Game.getBarricadosFrames().add(barricadosFrame3);
-                //            Game.getFrames().add(barricadosFrame);
-                //           Game.getFrames().add(barricadosFrame1);
-                    //            Game.getFrames().add(barricadosFrame2);
-                    //            Game.getFrames().add(barricadosFrame3);
-
-                //               Game.getBarricados().add(barricados);
-                //                Game.getEnemies().add(barricados);
-
-               //            }
+                            BlackOrbArray.createInvisibleFrame();
+//
+//                            for(Barricados barricados : wave.wave1EasyBarricados){
+//                            BarricadosFrame barricadosFrame = new BarricadosFrame(300,300, BarricadosType.T2);
+//                    //        BarricadosFrame barricadosFrame1 = new BarricadosFrame(500,30, BarricadosType.T2);
+//                       //         BarricadosFrame barricadosFrame2 = new BarricadosFrame(500,600, BarricadosType.T2);
+//                        //        BarricadosFrame barricadosFrame3 = new BarricadosFrame(1000,300, BarricadosType.T2);
+//                             Game.getBarricadosFrames().add(barricadosFrame);
+//                 //           Game.getBarricadosFrames().add(barricadosFrame1);
+//                       //         Game.getBarricadosFrames().add(barricadosFrame2);
+//                        //        Game.getBarricadosFrames().add(barricadosFrame3);
+//                            Game.getFrames().add(barricadosFrame);
+//                //           Game.getFrames().add(barricadosFrame1);
+//                    //            Game.getFrames().add(barricadosFrame2);
+//                    //            Game.getFrames().add(barricadosFrame3);
+//
+//                               Game.getBarricados().add(barricados);
+//                //                Game.getEnemies().add(barricados);
+//
+//                           }
                         }else        if(SettingsFrame.getChosenLevel()==1) {
                             for (Squarantine squarantine : wave.wave1MediumSquarantine) {
                                 Game.getSquarantine().add(squarantine);
@@ -496,7 +498,7 @@ public class GameLoop {
 
                                 IntersectionPoint point = new IntersectionPoint(new Point2D.Double(shotGun.getX(), shotGun.getY()),5,false,false,null,shotGun);
                                 ObjectsIntersection.getIntersectionPoints().add(point);
-                                shotGun.setVisible(false);
+                         //       shotGun.setVisible(false);
                             }
                         }
                     }
@@ -561,9 +563,12 @@ public class GameLoop {
 
 
 
-                    Game.getGameFrame().repaint();
-                 //   for(JFrame frame : Game.getFrames()) frame.getContentPane().repaint();
+             //       Game.getGameFrame().repaint();
+                    for(JFrame frame : Game.getFrames()) frame.getContentPane().repaint();
+             //       for(InvisibleFrame invisibleFrame : Game.getInvisibleFrames()) invisibleFrame.getContentPane().repaint();
+
                     for(BarricadosFrame barricadosFrame : Game.getBarricadosFrames()) {
+
 
                         barricadosFrame.getContentPane().repaint();
 

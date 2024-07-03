@@ -1,6 +1,7 @@
 package View.entityViews.BlackOrb;
 
-import Model.Entity.Epsilon;
+import Controller.MouseListener;
+import View.ShotGunView;
 import View.entityViews.EpsilonView;
 
 import javax.swing.*;
@@ -10,13 +11,14 @@ public class BlackOrbPanel extends JPanel {
 
     private Rectangle bound;
     private JFrame itsFrame;
-    private BlackOrbView blackOrbView = new BlackOrbView();
-    private LaserView laserView ;
-    private EpsilonView epsilonView;
+    private final BlackOrbView blackOrbView = new BlackOrbView();
+
     public BlackOrbPanel(int x, int y){
 
         this.setSize(x,y);
         this.setBackground(Color.BLACK);
+        MouseListener mouseListener = new MouseListener(this);
+        addMouseListener(mouseListener);
     }
 
     @Override
@@ -26,11 +28,14 @@ public class BlackOrbPanel extends JPanel {
 
         blackOrbView.paint(g2D);
 
-//        laserView = new LaserView(((BlackOrbFrame)itsFrame).getBlackOrb());
-//        laserView.paint(g2D);
+        LaserView laserView = new LaserView(((BlackOrbFrame) itsFrame).getBlackOrb());
+        laserView.paint(g2D);
 
-        epsilonView = new EpsilonView(itsFrame);
+        EpsilonView epsilonView = new EpsilonView(itsFrame);
         epsilonView.paint(g2D);
+
+        ShotGunView shotGunView = new ShotGunView(itsFrame);
+        shotGunView.paint(g2D);
 
 
     }
