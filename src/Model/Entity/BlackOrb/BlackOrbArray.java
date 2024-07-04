@@ -20,6 +20,7 @@ public class BlackOrbArray {
    static ArrayList<BlackOrbFrame> blackOrbArray = new ArrayList<>();
    static ArrayList<Laser> lasers = new ArrayList<>();
    static BufferedImage image;
+   private static int time;
 
     public static void createBlackOrbArray(int x, int y){
 
@@ -32,20 +33,25 @@ public class BlackOrbArray {
 
 
         //create orbs
-        for(int i=0;i<5;i++){
-            double theta = -Math.PI/2+i*2*Math.PI/5;
+        for(int i=0;i<5;i++) {
+            double theta = -Math.PI / 2 + i * 2 * Math.PI / 5;
 
-            double xPosition = sideLength*Math.cos(theta);
-            double yPosition = -sideLength*Math.sin(theta);
+            double xPosition = sideLength * Math.cos(theta);
+            double yPosition = -sideLength * Math.sin(theta);
+            time++;
 
-            BlackOrbFrame blackOrbFrame = new BlackOrbFrame((int) xPosition+x, (int) yPosition+y);
-            Game.getEnemies().add(blackOrbFrame.getBlackOrb());
 
-            KeyListener keyListener = new KeyListener((JPanel) blackOrbFrame.getContentPane());
+            if (time >= 2000) {
+                BlackOrbFrame blackOrbFrame = new BlackOrbFrame((int) xPosition + x, (int) yPosition + y);
+                Game.getEnemies().add(blackOrbFrame.getBlackOrb());
 
-            blackOrbArray.add(blackOrbFrame);
-            Game.getFrames().add(blackOrbFrame);
-            Game.getBlackOrbFrames().add(blackOrbFrame);
+                KeyListener keyListener = new KeyListener((JPanel) blackOrbFrame.getContentPane());
+
+                blackOrbArray.add(blackOrbFrame);
+                Game.getFrames().add(blackOrbFrame);
+                Game.getBlackOrbFrames().add(blackOrbFrame);
+                time = 0;
+            }else i--;
         }
 
 
@@ -96,6 +102,7 @@ public class BlackOrbArray {
                     Laser laser = new Laser(new Point2D.Double((midX-newImageWidth)/2+65,(midY-newImageHeight)/2+50),scaledImage);
                     laser.setWidth(newImageWidth);
                     laser.setHeight(newImageHeight);
+                    laser.setAngle(angle);
 
                     laser.setBlackOrb1(blackOrbArray.get(i).getBlackOrb());
                     laser.setBlackOrb2(blackOrbArray.get(j).getBlackOrb());

@@ -82,7 +82,7 @@ public class Game {
 //        shotGunView = new ShotGunView();
    //     trigorathView = new TrigorathView();
         squarantineView = new SquarantineView();
-        vertexView = new VertexView();
+       // vertexView = new VertexView();
         gameInfoView = new GameInfoView();
         cerberusView = new CerberusView();
         necropickView = new NecropickView();

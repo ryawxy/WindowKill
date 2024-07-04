@@ -44,10 +44,16 @@ public class BlackOrb extends GameObjects {
         collectible2.setRadius(10);
         Collectible collectible3 = new Collectible(getX()+80,getY()+100);
         collectible3.setRadius(10);
+        Collectible collectible4 = new Collectible(getX()+20,getY()+100);
+        collectible4.setRadius(10);
+        Collectible collectible5 = new Collectible(getX()+50,getY()+70);
+        collectible5.setRadius(10);
 
         collectibles.add(collectible1);
         collectibles.add(collectible2);
         collectibles.add(collectible3);
+        collectibles.add(collectible4);
+        collectibles.add(collectible5);
     }
 
     @Override

@@ -16,6 +16,7 @@ public class Laser {
     BlackOrb blackOrb2;
     JFrame localFrame;
     private boolean visible = true;
+    private double angle;
 
     public Laser(Point2D start, Image image) {
         this.start = start;
@@ -88,5 +89,13 @@ public class Laser {
 
     public void setVisible(boolean visible) {
         this.visible = visible;
+    }
+
+    public double getAngle() {
+        return angle;
+    }
+
+    public void setAngle(double angle) {
+        this.angle = angle;
     }
 }

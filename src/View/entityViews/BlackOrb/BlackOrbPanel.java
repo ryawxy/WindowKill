@@ -3,6 +3,7 @@ package View.entityViews.BlackOrb;
 import Controller.MouseListener;
 import View.ShotGunView;
 import View.entityViews.EpsilonView;
+import View.entityViews.VertexView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -39,6 +40,9 @@ public class BlackOrbPanel extends JPanel {
 
         ShotGunView shotGunView = new ShotGunView(itsFrame);
         shotGunView.paint(g2D);
+
+        VertexView vertexView = new VertexView(itsFrame);
+        vertexView.paint(g2D);
 
 
     }

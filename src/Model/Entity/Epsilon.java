@@ -128,7 +128,7 @@ public class Epsilon extends GameObjects implements Movable {
     }
 
     public int getxCenter() {
-        return getX()+radius;
+        return getLocalX()+radius;
     }
 
     public void setxCenter(double xCenter) {
@@ -136,7 +136,7 @@ public class Epsilon extends GameObjects implements Movable {
     }
 
     public int getyCenter() {
-        return getY()+radius;
+        return getLocalY()+radius;
     }
 
     public void setyCenter(double yCenter) {

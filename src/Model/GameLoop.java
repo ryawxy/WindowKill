@@ -467,6 +467,7 @@ public class GameLoop {
                     objectsIntersection.vertexIntersectsOmenoct();
                    objectsIntersection.AOEIntersection();
                    objectsIntersection.epsilonIntersectsEnemy();
+                   objectsIntersection.vertexIntersectsOrb();
 
 
 
@@ -560,6 +561,11 @@ public class GameLoop {
                         }
 
                     }
+                  for(Vertex vertex : Game.getEpsilon().getVertex()){
+                      for(JFrame frame : Game.getFrames()){
+                          frameIntersection.changeLocalFrame(frame,vertex);
+                      }
+                  }
 
 
 

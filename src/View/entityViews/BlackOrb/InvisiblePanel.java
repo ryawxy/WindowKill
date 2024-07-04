@@ -2,6 +2,7 @@ package View.entityViews.BlackOrb;
 
 import Controller.MouseListener;
 import View.entityViews.EpsilonView;
+import View.entityViews.VertexView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,6 +10,7 @@ import java.awt.*;
 public class InvisiblePanel extends JPanel {
 
     EpsilonView epsilonView;
+    VertexView vertexView;
     JFrame itsFrame;
     Rectangle bound;
     public InvisiblePanel(int x,int y){
@@ -29,6 +31,11 @@ public class InvisiblePanel extends JPanel {
 
         epsilonView = new EpsilonView(itsFrame);
         epsilonView.paint(g2D);
+
+        vertexView = new VertexView(itsFrame);
+        vertexView.paint(g2D);
+
+
     }
 
     public JFrame getItsFrame() {

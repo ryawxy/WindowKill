@@ -6,6 +6,7 @@ import Model.Entity.Vertex;
 import Controller.MouseListener;
 import View.entityViews.EpsilonView;
 import View.entityViews.TrigorathView;
+import View.entityViews.VertexView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -99,7 +100,9 @@ public class GamePanel extends JPanel {
         //  paint squarantine
         Game.getSquarantineView().paint(g2D);
         //paint epsilons vertex
-        Game.getVertexView().paint(g2D);
+     //   Game.getVertexView().paint(g2D);
+        VertexView vertexView = new VertexView(GlassFrame.getINSTANCE());
+        vertexView.paint(g2D);
 
         //paint Game info
         Game.getGameInfoView().paint(g2D);
