@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="added collectibles to BlackOrb">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/BlackOrb/BlackOrb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Entity/BlackOrb/BlackOrb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/BlackOrb/BlackOrbArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Entity/BlackOrb/BlackOrbArray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/BlackOrb/Laser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Entity/BlackOrb/Laser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/Epsilon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Entity/Epsilon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/Vertex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Entity/Vertex.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/ObjectsIntersection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ObjectsIntersection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/entityViews/BlackOrb/BlackOrbPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/entityViews/BlackOrb/BlackOrbPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/entityViews/BlackOrb/InvisiblePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/entityViews/BlackOrb/InvisiblePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/entityViews/VertexView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/entityViews/VertexView.java" afterDir="false" />
-    </list>
+    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="added laser collision for epsilon" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -334,7 +320,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720022876721</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="added laser collision for epsilon">
+      <option name="closed" value="true" />
+      <created>1720083256307</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1720083256307</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -349,7 +343,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added key changing to settings" />
     <MESSAGE value="resolved conflict in settings branch" />
     <MESSAGE value="resolved a problem in displaying buttons on starter menu" />
     <MESSAGE value="collision for Squarantine" />
@@ -374,6 +367,7 @@
     <MESSAGE value="created orbs" />
     <MESSAGE value="epsilon shots orbs" />
     <MESSAGE value="added collectibles to BlackOrb" />
-    <option name="LAST_COMMIT_MESSAGE" value="added collectibles to BlackOrb" />
+    <MESSAGE value="added laser collision for epsilon" />
+    <option name="LAST_COMMIT_MESSAGE" value="added laser collision for epsilon" />
   </component>
 </project>
