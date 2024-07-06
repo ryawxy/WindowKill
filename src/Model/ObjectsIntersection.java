@@ -2,7 +2,7 @@ package Model;
 
 import Controller.Constants;
 import Controller.Game;
-import Model.Entity.*;
+import Model.*;
 import Model.Entity.BlackOrb.BlackOrb;
 import Model.Entity.BlackOrb.Laser;
 import Model.enums.Direction;
@@ -74,16 +74,16 @@ public class ObjectsIntersection {
     public void shotIntersectsEntity(){
 
 
-        Epsilon epsilon = Game.getEpsilon();
+        Model.Entity.Epsilon epsilon = Game.getEpsilon();
 
             //enemy shots epsilon
-            for(GameObjects enemy : Game.getEnemies()){
-                for(ShotGun shotGun : enemy.getShots()){
+            for(Model.GameObjects enemy : Game.getEnemies()){
+                for(Model.Entity.ShotGun shotGun : enemy.getShots()){
                     Rectangle epsilon1 = new Rectangle(epsilon.getX(),epsilon.getY(),epsilon.getRadius(),epsilon.getRadius());
                     Rectangle shot= new Rectangle(shotGun.getX(),shotGun.getY(),Constants.getShotGunWidth(),Constants.getShotGunHeight());
                     if(shotGun.isVisible()){
                         if(epsilon1.intersects(shot)){
-                            if(enemy instanceof Omenoct) Game.getEpsilon().decreaseHP(4);
+                            if(enemy instanceof Model.Entity.Omenoct) Game.getEpsilon().decreaseHP(4);
                             else if(enemy instanceof Necropick) Game.getEpsilon().decreaseHP(5);
                             shotGun.setVisible(false);
                             IntersectionPoint point = new IntersectionPoint(new Point2D.Double(epsilon.getX(), epsilon.getY()), 10, false, false, epsilon, enemy);
