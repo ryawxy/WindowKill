@@ -1,9 +1,9 @@
-package Model.entity;
+package Model.Entity;
 
 import Controller.Constants;
 import Model.GameObjects;
 import Model.enums.BarricadosType;
-import View.entityViews.barricados.BarricadosFrame;
+import View.entityViews.Barricados.BarricadosFrame;
 
 import javax.swing.*;
 

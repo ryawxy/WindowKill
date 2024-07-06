@@ -1,4 +1,4 @@
-package Model.entity;
+package Model.Entity;
 
 import Controller.Constants;
 import Model.Collectible;

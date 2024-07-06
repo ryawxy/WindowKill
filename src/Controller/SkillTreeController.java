@@ -1,7 +1,7 @@
 package Controller;
 
 import Model.*;
-import Model.entity.*;
+import Model.Entity.*;
 import Model.enums.Ability;
 import myproject.MyProject;
 

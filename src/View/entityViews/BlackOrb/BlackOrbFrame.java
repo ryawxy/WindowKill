@@ -1,6 +1,6 @@
 package View.entityViews.blackOrb;
 
-import Model.entity.blackOrb.BlackOrb;
+import Model.Entity.blackOrb.BlackOrb;
 import Model.FrameType;
 
 import javax.swing.*;

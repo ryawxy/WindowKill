@@ -1,8 +1,8 @@
 package View.entityViews.blackOrb;
 
 import Model.Drawable;
-import Model.entity.blackOrb.BlackOrb;
-import Model.entity.blackOrb.Laser;
+import Model.Entity.blackOrb.BlackOrb;
+import Model.Entity.blackOrb.Laser;
 import java.awt.*;
 
 

@@ -1,11 +1,11 @@
 package Model;
 
 import Controller.*;
-import Model.entity.*;
+import Model.Entity.Squarantine;
+import Model.Entity.Trigorath;
 import Model.enums.Direction;
 import View.*;
-import View.entityViews.barricados.BarricadosFrame;
-import View.entityViews.blackOrb.BlackOrbFrame;
+
 import myproject.MyProject;
 import View.entityViews.wyrm.WyrmFrame;
 
@@ -139,7 +139,7 @@ public class GameLoop {
 //
 //                           }
                         }else        if(SettingsFrame.getChosenLevel()==1) {
-                            for (Squarantine squarantine : wave.wave1MediumSquarantine) {
+                            for (Model.Entity.Squarantine squarantine : wave.wave1MediumSquarantine) {
                                 Controller.Game.getSquarantine().add(squarantine);
                                 Controller.Game.getEnemies().add(squarantine);
                             }

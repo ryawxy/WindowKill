@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="added laser collision for epsilon">
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/Epsilon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Entity/Epsilon.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/ObjectsIntersection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ObjectsIntersection.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,14 +52,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "masterV2.0",
-    "last_opened_file_path": "C:/inetpub/puzzle5"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;masterV2.0&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/inetpub/puzzle5&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Namazi\Ap2024\WindowKill2\src" />
@@ -332,7 +330,23 @@
       <option name="project" value="LOCAL" />
       <updated>1720083256307</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="resolved conflicts in package naming">
+      <option name="closed" value="true" />
+      <created>1720259345119</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1720259345119</updated>
+    </task>
+    <task id="LOCAL-00032" summary="resolved conflicts in package naming">
+      <option name="closed" value="true" />
+      <created>1720259606570</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1720259606570</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -347,7 +361,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="resolved conflict in settings branch" />
     <MESSAGE value="resolved a problem in displaying buttons on starter menu" />
     <MESSAGE value="collision for Squarantine" />
     <MESSAGE value="epsilon/collectible intersection got more accurate" />
@@ -372,6 +385,7 @@
     <MESSAGE value="epsilon shots orbs" />
     <MESSAGE value="added collectibles to BlackOrb" />
     <MESSAGE value="added laser collision for epsilon" />
-    <option name="LAST_COMMIT_MESSAGE" value="added laser collision for epsilon" />
+    <MESSAGE value="resolved conflicts in package naming" />
+    <option name="LAST_COMMIT_MESSAGE" value="resolved conflicts in package naming" />
   </component>
 </project>

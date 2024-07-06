@@ -1,7 +1,7 @@
 package View.entityViews.wyrm;
 
 import Controller.Game;
-import Model.entity.Wyrm;
+import Model.Entity.Wyrm;
 import javax.swing.*;
 import java.awt.*;
 

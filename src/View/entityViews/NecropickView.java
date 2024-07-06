@@ -3,7 +3,7 @@ package View.entityViews;
 import Controller.Game;
 import Model.Collectible;
 import Model.Drawable;
-import Model.entity.Necropick;
+import Model.Entity.Necropick;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

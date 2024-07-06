@@ -2,15 +2,14 @@
 package Controller;
 
 import Model.*;
-import Model.entity.*;
-import Model.entity.blackOrb.BlackOrb;
+import Model.Entity.blackOrb.BlackOrb;
 import Model.enums.Ability;
 import sound.SoundPlayer;
 import View.*;
 import View.entityViews.*;
-import View.entityViews.barricados.BarricadosFrame;
-import View.entityViews.blackOrb.BlackOrbFrame;
-import View.entityViews.blackOrb.InvisibleFrame;
+import View.entityViews.Barricados.BarricadosFrame;
+import View.entityViews.BlackOrb.BlackOrbFrame;
+import View.entityViews.BlackOrb.InvisibleFrame;
 import View.entityViews.wyrm.WyrmFrame;
 
 import javax.swing.*;

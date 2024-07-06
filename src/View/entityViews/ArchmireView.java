@@ -4,8 +4,8 @@ import Controller.Constants;
 import Controller.Game;
 import Model.Collectible;
 import Model.Drawable;
-import Model.entity.Archmire;
-import Model.entity.Footprint;
+import Model.Entity.Archmire;
+import Model.Entity.Footprint;
 import Model.enums.Size;
 
 import java.awt.*;

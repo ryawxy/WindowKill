@@ -2,8 +2,8 @@ package View.entityViews;
 
 import Controller.Game;
 import Model.Drawable;
-import Model.entity.Epsilon;
-import Model.entity.Vertex;
+import Model.Entity.Epsilon;
+import Model.Entity.Vertex;
 
 import javax.swing.*;
 import java.awt.*;

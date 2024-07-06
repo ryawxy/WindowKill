@@ -1,7 +1,7 @@
 package View;
 
 import Controller.Game;
-import Model.entity.Vertex;
+import Model.Entity.Vertex;
 import Controller.MouseListener;
 import View.entityViews.EpsilonView;
 import View.entityViews.TrigorathView;

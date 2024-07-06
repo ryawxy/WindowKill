@@ -1,9 +1,9 @@
 package Controller;
 
-import Model.entity.Epsilon;
+import Model.Entity.Epsilon;
 import Model.GameInfo;
 import Model.enums.ShopItem;
-import Model.entity.ShotGun;
+import Model.Entity.ShotGun;
 
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;

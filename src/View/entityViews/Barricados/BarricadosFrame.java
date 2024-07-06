@@ -1,6 +1,6 @@
 package View.entityViews.barricados;
 
-import Model.entity.Barricados;
+import Model.Entity.Barricados;
 import Model.FrameType;
 import Model.enums.BarricadosType;
 

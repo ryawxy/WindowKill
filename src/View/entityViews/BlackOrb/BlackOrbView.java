@@ -3,7 +3,7 @@ package View.entityViews.blackOrb;
 import Controller.Constants;
 import Model.Collectible;
 import Model.Drawable;
-import Model.entity.blackOrb.BlackOrb;
+import Model.Entity.blackOrb.BlackOrb;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

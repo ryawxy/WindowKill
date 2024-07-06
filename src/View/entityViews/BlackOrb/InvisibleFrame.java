@@ -1,4 +1,4 @@
-package View.entityViews.blackOrb;
+package View.entityViews.BlackOrb;
 
 import javax.swing.*;
 import java.awt.*;

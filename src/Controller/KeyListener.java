@@ -1,8 +1,8 @@
 package Controller;
 
-import Model.entity.Epsilon;
+import Model.Entity.Epsilon;
 import Model.GameInfo;
-import Model.entity.ShotGun;
+import Model.Entity.ShotGun;
 import View.SettingsFrame;
 import View.ShopFrame;
 

@@ -1,6 +1,6 @@
 package Model;
 
-import Model.entity.ShotGun;
+import Model.Entity.ShotGun;
 
 import javax.swing.*;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package View.entityViews.blackOrb;
+package View.entityViews.BlackOrb;
 
 import Controller.MouseListener;
 import View.entityViews.EpsilonView;

@@ -2,9 +2,9 @@ package View;
 
 import Controller.Game;
 import Model.Drawable;
-import Model.entity.Necropick;
-import Model.entity.ShotGun;
-import Model.entity.Omenoct;
+import Model.Entity.Necropick;
+import Model.Entity.ShotGun;
+import Model.Entity.Omenoct;
 import View.entityViews.wyrm.WyrmFrame;
 
 import javax.swing.*;

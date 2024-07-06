@@ -2,7 +2,7 @@ package View.entityViews.wyrm;
 
 import Model.Collectible;
 import Model.Drawable;
-import Model.entity.Wyrm;
+import Model.Entity.Wyrm;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

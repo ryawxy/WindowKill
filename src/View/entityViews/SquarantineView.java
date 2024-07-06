@@ -3,7 +3,7 @@ package View.entityViews;
 import Controller.Game;
 import Model.Collectible;
 import Model.Drawable;
-import Model.entity.Squarantine;
+import Model.Entity.Squarantine;
 
 import java.awt.*;
 

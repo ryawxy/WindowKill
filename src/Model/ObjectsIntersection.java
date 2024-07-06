@@ -2,16 +2,15 @@ package Model;
 
 import Controller.Constants;
 import Controller.Game;
-import Model.entity.*;
-import Model.entity.blackOrb.BlackOrb;
-import Model.entity.blackOrb.Laser;
+import Model.Entity.*;
+import Model.Entity.blackOrb.BlackOrb;
+import Model.Entity.blackOrb.Laser;
 import Model.enums.Direction;
 import Model.enums.EnemyType;
 import Model.enums.Side;
 import Model.enums.Size;
 import View.GamePanel;
-import View.entityViews.barricados.BarricadosFrame;
-import View.entityViews.blackOrb.BlackOrbFrame;
+import Model.Entity.Epsilon;
 import myproject.MyProject;
 import View.entityViews.wyrm.WyrmFrame;
 

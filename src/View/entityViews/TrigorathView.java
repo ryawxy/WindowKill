@@ -3,7 +3,7 @@ package View.entityViews;
 import Controller.Game;
 import Model.Collectible;
 import Model.Drawable;
-import Model.entity.Trigorath;
+import Model.Entity.Trigorath;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,7 +1,7 @@
 package Controller;
 
 import Model.*;
-import Model.entity.ShotGun;
+import Model.Entity.ShotGun;
 import Model.enums.ShopItem;
 
 import java.util.HashMap;
