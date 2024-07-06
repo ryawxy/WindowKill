@@ -2,7 +2,8 @@ package Model;
 
 import Controller.Constants;
 import Controller.Game;
-import Model.*;
+import Model.Entity.*;
+
 import Model.Entity.BlackOrb.BlackOrb;
 import Model.Entity.BlackOrb.Laser;
 import Model.enums.Direction;
@@ -10,7 +11,6 @@ import Model.enums.EnemyType;
 import Model.enums.Side;
 import Model.enums.Size;
 import View.GamePanel;
-import View.GlassFrame;
 import View.entityViews.Barricados.BarricadosFrame;
 import View.entityViews.BlackOrb.BlackOrbFrame;
 import myproject.MyProject;
@@ -28,7 +28,7 @@ public class ObjectsIntersection {
     private static boolean VSCollission;
     private static  boolean VTCollision;
 
-    private static ArrayList<IntersectionPoint> intersectionPoints;
+    private static ArrayList<Model.IntersectionPoint> intersectionPoints;
     private static long lastTime,lastTime2;
     //AOE
     private static long lastTime3,lastTime4;
@@ -43,7 +43,7 @@ public class ObjectsIntersection {
     public ObjectsIntersection() {
     }
 
-    public Direction shotIntersectsFrame(ShotGun shotGun) {
+    public Direction shotIntersectsFrame(Model.Entity.ShotGun shotGun) {
 
         //    if(shotGun.isVisible()) {
         if (shotGun.getX() >= Game.getEpsilon().getLocalFrame().getWidth()) {
@@ -572,7 +572,7 @@ public void vertexIntersectsNecropick(){
 
 
 
-    public static ArrayList<IntersectionPoint> getIntersectionPoints(){
+    public static ArrayList<Model.IntersectionPoint> getIntersectionPoints(){
         if(intersectionPoints==null) intersectionPoints = new ArrayList<>();
         return intersectionPoints;
     }

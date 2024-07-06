@@ -142,17 +142,17 @@ public class GameLoop {
 //                           }
                         }else        if(SettingsFrame.getChosenLevel()==1) {
                             for (Squarantine squarantine : wave.wave1MediumSquarantine) {
-                                Game.getSquarantine().add(squarantine);
-                                Game.getEnemies().add(squarantine);
+                                Controller.Game.getSquarantine().add(squarantine);
+                                Controller.Game.getEnemies().add(squarantine);
                             }
                             for (Trigorath trigorath : wave.wave1MediumTrigorath) {
-                                Game.getTrigoraths().add(trigorath);
-                                Game.getEnemies().add(trigorath);
+                                Controller.Game.getTrigoraths().add(trigorath);
+                                Controller.Game.getEnemies().add(trigorath);
                             }
                         }else  if(SettingsFrame.getChosenLevel()==2) {
                             for (Squarantine squarantine : wave.wave1HardSquarantine) {
-                                Game.getSquarantine().add(squarantine);
-                                Game.getEnemies().add(squarantine);
+                                Controller.Game.getSquarantine().add(squarantine);
+                                Controller.Game.getEnemies().add(squarantine);
                             }
                             for (Trigorath trigorath : wave.wave1HardTrigorath) {
                                 Game.getTrigoraths().add(trigorath);

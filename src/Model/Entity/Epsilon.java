@@ -31,7 +31,7 @@ public class Epsilon extends GameObjects implements Movable {
     private JFrame localFrame = GlassFrame.getINSTANCE();
     private JFrame previousLocalFrame = GlassFrame.getINSTANCE();
 
-    private ArrayList<Vertex> vertex = new ArrayList<>();
+    private ArrayList<Model.Entity.Vertex> vertex = new ArrayList<>();
     private int vertexNumber;
     private int width;
     private int height;
