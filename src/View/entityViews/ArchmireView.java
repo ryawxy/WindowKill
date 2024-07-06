@@ -4,12 +4,11 @@ import Controller.Constants;
 import Controller.Game;
 import Model.Collectible;
 import Model.Drawable;
-import Model.Entity.Archmire;
-import Model.Entity.Footprint;
+import Model.entity.Archmire;
+import Model.entity.Footprint;
 import Model.enums.Size;
 
 import java.awt.*;
-import java.awt.geom.Point2D;
 
 public class ArchmireView implements Drawable {
     @Override

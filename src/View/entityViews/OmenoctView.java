@@ -3,7 +3,7 @@ package View.entityViews;
 import Controller.Game;
 import Model.Collectible;
 import Model.Drawable;
-import Model.Entity.Omenoct;
+import Model.entity.Omenoct;
 
 import java.awt.*;
 import java.util.ArrayList;

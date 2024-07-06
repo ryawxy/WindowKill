@@ -2,18 +2,18 @@ package Model;
 
 import Controller.Constants;
 import Controller.Game;
-import Model.Entity.*;
-
-import Model.Entity.BlackOrb.BlackOrb;
-import Model.Entity.BlackOrb.Laser;
+import Model.entity.*;
+import Model.entity.blackOrb.BlackOrb;
+import Model.entity.blackOrb.Laser;
 import Model.enums.Direction;
 import Model.enums.EnemyType;
 import Model.enums.Side;
 import Model.enums.Size;
 import View.GamePanel;
-import View.entityViews.Barricados.BarricadosFrame;
-import View.entityViews.BlackOrb.BlackOrbFrame;
+import View.entityViews.barricados.BarricadosFrame;
+import View.entityViews.blackOrb.BlackOrbFrame;
 import myproject.MyProject;
+import View.entityViews.wyrm.WyrmFrame;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -28,7 +28,7 @@ public class ObjectsIntersection {
     private static boolean VSCollission;
     private static  boolean VTCollision;
 
-    private static ArrayList<Model.IntersectionPoint> intersectionPoints;
+    private static ArrayList<IntersectionPoint> intersectionPoints;
     private static long lastTime,lastTime2;
     //AOE
     private static long lastTime3,lastTime4;
@@ -43,7 +43,7 @@ public class ObjectsIntersection {
     public ObjectsIntersection() {
     }
 
-    public Direction shotIntersectsFrame(Model.Entity.ShotGun shotGun) {
+    public Direction shotIntersectsFrame(ShotGun shotGun) {
 
         //    if(shotGun.isVisible()) {
         if (shotGun.getX() >= Game.getEpsilon().getLocalFrame().getWidth()) {
@@ -74,16 +74,19 @@ public class ObjectsIntersection {
     public void shotIntersectsEntity(){
 
 
-        Model.Entity.Epsilon epsilon = Game.getEpsilon();
+        Epsilon epsilon = Game.getEpsilon();
 
             //enemy shots epsilon
-            for(Model.GameObjects enemy : Game.getEnemies()){
-                for(Model.Entity.ShotGun shotGun : enemy.getShots()){
-                    Rectangle epsilon1 = new Rectangle(epsilon.getX(),epsilon.getY(),epsilon.getRadius(),epsilon.getRadius());
-                    Rectangle shot= new Rectangle(shotGun.getX(),shotGun.getY(),Constants.getShotGunWidth(),Constants.getShotGunHeight());
+            for(GameObjects enemy : Game.getEnemies()){
+               
+                for(ShotGun shotGun : enemy.getShots()){
+
+                    Rectangle epsilon1 = new Rectangle(epsilon.getLocalX()+epsilon.getLocalFrame().getX(),epsilon.getLocalY()+epsilon.getLocalFrame().getY(),epsilon.getRadius(),epsilon.getRadius());
+                    Rectangle shot= new Rectangle(shotGun.getLocalX()+shotGun.getLocalFrame().getX(),shotGun.getLocalY()+shotGun.getLocalFrame().getY(),Constants.getShotGunWidth(),Constants.getShotGunHeight());
                     if(shotGun.isVisible()){
                         if(epsilon1.intersects(shot)){
-                            if(enemy instanceof Model.Entity.Omenoct) Game.getEpsilon().decreaseHP(4);
+                            if(enemy instanceof Omenoct) Game.getEpsilon().decreaseHP(4);
+                            if(enemy instanceof Wyrm) Game.getEpsilon().decreaseHP(8);
                             else if(enemy instanceof Necropick) Game.getEpsilon().decreaseHP(5);
                             shotGun.setVisible(false);
                             IntersectionPoint point = new IntersectionPoint(new Point2D.Double(epsilon.getX(), epsilon.getY()), 10, false, false, epsilon, enemy);
@@ -98,7 +101,7 @@ public class ObjectsIntersection {
         for(GameObjects enemy : Game.getEnemies()){
         for(ShotGun shotGun : Game.getShots()) {
 
-            if (!(enemy instanceof BlackOrb)) {
+            if (!(enemy instanceof BlackOrb) && !(enemy instanceof Wyrm)) {
                 if (enemy.isVisible()) {
                     Rectangle enemy1 = new Rectangle(enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight());
                     Rectangle shot = new Rectangle(shotGun.getX(), shotGun.getY(), Constants.getShotGunWidth(), Constants.getShotGunHeight());
@@ -142,11 +145,33 @@ public class ObjectsIntersection {
                                 }
                             }
 
-            //            }
+                        }
 
                     }
-                }
+           //     }
             }
+        }
+        for(WyrmFrame wyrmFrame : Game.getWyrmFrames()){
+            for(ShotGun shotGun : Game.getShots()){
+                if(shotGun.isVisible()){
+
+//                    if(wyrmFrame.equals(shotGun.getLocalFrame())){
+               //     if(shotGun.getLocalFrame() instanceof WyrmFrame) System.out.println("**********");
+                    Rectangle shot = new Rectangle(shotGun.getLocalX()+shotGun.getLocalFrame().getX(), shotGun.getLocalY()+shotGun.getLocalFrame().getY(),
+                            Constants.getShotGunWidth(), Constants.getShotGunHeight());
+
+                    Rectangle wyrm = new Rectangle(wyrmFrame.getWyrm().getLocalX()+wyrmFrame.getX(),wyrmFrame.getWyrm().getLocalY()+wyrmFrame.getY(),100,100);
+                    if(wyrm.intersects(shot)){
+
+                        shotGun.setVisible(false);
+                        wyrmFrame.getWyrm().decreaseHP(4);
+//                        System.out.println(wyrmFrame.getWyrm().getHP());
+                    }
+
+//                }
+                    }
+            }
+
         }
 
         for(Omenoct omenoct : Game.getOmenocts()) {
@@ -201,6 +226,7 @@ public class ObjectsIntersection {
 
 
                         if (!epsilonArea.isEmpty()) {
+
                             switch (enemy) {
                                 case Necropick necropick -> MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 2);
                                 case Omenoct omenoct -> MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 4);
@@ -210,6 +236,7 @@ public class ObjectsIntersection {
                                     else MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 3);
                                 }
                                 case BlackOrb blackOrb -> MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 30);
+                                case Wyrm wyrm -> MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 8);
 
                                 default -> MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 5);
                             }
@@ -572,7 +599,7 @@ public void vertexIntersectsNecropick(){
 
 
 
-    public static ArrayList<Model.IntersectionPoint> getIntersectionPoints(){
+    public static ArrayList<IntersectionPoint> getIntersectionPoints(){
         if(intersectionPoints==null) intersectionPoints = new ArrayList<>();
         return intersectionPoints;
     }

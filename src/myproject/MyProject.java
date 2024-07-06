@@ -2,7 +2,7 @@ package myproject;
 
 import Controller.Constants;
 
-import Model.Entity.Epsilon;
+import Model.entity.Epsilon;
 import Model.GameInfo;
 
 import View.SettingsFrame;

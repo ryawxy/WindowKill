@@ -1,10 +1,9 @@
 package Controller;
 
-import Model.Entity.Epsilon;
+import Model.entity.Epsilon;
 import Model.GameInfo;
 import Model.enums.ShopItem;
-import Model.Entity.ShotGun;
-import View.GamePanel;
+import Model.entity.ShotGun;
 
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
@@ -36,11 +35,11 @@ public class MouseListener extends MouseInputAdapter {
         mouseX = e.getX();
         mouseY = e.getY();
 
-        angle2 = Math.atan2(mouseY - Game.getEpsilon().getY(), mouseX - Game.getEpsilon().getX());
-        double fireX = Game.getEpsilon().getX() + Game.getEpsilon().getRadius() * Math.cos(angle2);
-        double fireY = Game.getEpsilon().getY() + Game.getEpsilon().getRadius() * Math.sin(angle2);
-        angle = Math.atan2(mouseY - epsilon.getY(), mouseX - epsilon.getX());
-        angleDegrees = Math.toDegrees(angle);
+        angle2 = Math.atan2(mouseY - Game.getEpsilon().getLocalY(), mouseX - Game.getEpsilon().getLocalX());
+        double fireX = Game.getEpsilon().getLocalX() + Game.getEpsilon().getRadius() * Math.cos(angle2);
+        double fireY = Game.getEpsilon().getLocalY() + Game.getEpsilon().getRadius() * Math.sin(angle2);
+        angle = Math.atan2(mouseY - epsilon.getLocalY(), mouseX - epsilon.getLocalX());
+      //  angleDegrees = Math.toDegrees(angle);
 
         if (!GameInfo.getCurrentShopItem().containsKey(ShopItem.Empower)) {
             Game.addShot((int) fireX, (int) fireY, Constants.getShotGunHeight(), Constants.getShotGunWidth());

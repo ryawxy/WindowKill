@@ -1,10 +1,9 @@
 package Model;
 
-import Model.Entity.*;
+import Model.entity.*;
 import Model.enums.Size;
 import View.SettingsFrame;
-import View.entityViews.Barricados.BarricadosFrame;
-import View.entityViews.Barricados.BarricadosPanel;
+import View.entityViews.barricados.BarricadosPanel;
 
 import java.util.ArrayList;
 

@@ -2,15 +2,16 @@
 package Controller;
 
 import Model.*;
-import Model.Entity.*;
-import Model.Entity.BlackOrb.BlackOrb;
+import Model.entity.*;
+import Model.entity.blackOrb.BlackOrb;
 import Model.enums.Ability;
-import Sound.SoundPlayer;
+import sound.SoundPlayer;
 import View.*;
 import View.entityViews.*;
-import View.entityViews.Barricados.BarricadosFrame;
-import View.entityViews.BlackOrb.BlackOrbFrame;
-import View.entityViews.BlackOrb.InvisibleFrame;
+import View.entityViews.barricados.BarricadosFrame;
+import View.entityViews.blackOrb.BlackOrbFrame;
+import View.entityViews.blackOrb.InvisibleFrame;
+import View.entityViews.wyrm.WyrmFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -54,6 +55,7 @@ public class Game {
     private static ArrayList<JFrame> frames = new ArrayList<>();
     private static ArrayList<InvisibleFrame> invisibleFrames = new ArrayList<>();
     private static ArrayList<BlackOrb> blackOrbs = new ArrayList<>();
+    private static ArrayList<WyrmFrame> wyrmFrames = new ArrayList<>();
     public Game() throws IOException, AWTException {
 
         frames.add(GlassFrame.getINSTANCE());
@@ -239,5 +241,9 @@ public class Game {
 
     public static ArrayList<BlackOrb> getBlackOrbs() {
         return blackOrbs;
+    }
+
+    public static ArrayList<WyrmFrame> getWyrmFrames() {
+        return wyrmFrames;
     }
 }

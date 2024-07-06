@@ -1,21 +1,15 @@
 package Model;
 
 import Controller.*;
-import Model.Entity.*;
-import Model.Entity.BlackOrb.BlackOrbArray;
-import Model.enums.BarricadosType;
+import Model.entity.*;
 import Model.enums.Direction;
-import Model.enums.EnemyType;
 import View.*;
-import View.SettingsFrame;
-import View.entityViews.Barricados.BarricadosFrame;
-import View.entityViews.Barricados.BarricadosPanel;
-import View.entityViews.BlackOrb.BlackOrbFrame;
-import View.entityViews.BlackOrb.InvisibleFrame;
+import View.entityViews.barricados.BarricadosFrame;
+import View.entityViews.blackOrb.BlackOrbFrame;
 import myproject.MyProject;
+import View.entityViews.wyrm.WyrmFrame;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Point2D;
@@ -24,10 +18,10 @@ import java.io.IOException;
 
 public class GameLoop {
 
-    private Game game;
+    private Controller.Game game;
     private  Timer timer;
-    private FrameSize frameSize;
-    private ObjectsIntersection objectsIntersection;
+    private Model.FrameSize frameSize;
+    private Model.ObjectsIntersection objectsIntersection;
     private Direction intersectionSide;
     private int countTime;
     // amount of time that has passed since the game has started
@@ -118,9 +112,13 @@ public class GameLoop {
                                 Game.getEnemies().add(archmire);
 
                             }
-                 //           BlackOrbFrame blackOrbFrame = new BlackOrbFrame(200,200);
-                            BlackOrbArray.createBlackOrbArray(200,150);
-                            BlackOrbArray.createInvisibleFrame();
+                        //    BlackOrbFrame blackOrbFrame = new BlackOrbFrame(200,200);
+//                            BlackOrbArray.createBlackOrbArray(200,150);
+//                            BlackOrbArray.createInvisibleFrame();
+                          WyrmFrame wyrmFrame =   new WyrmFrame(310,300);
+                            Game.getWyrmFrames().add(wyrmFrame);
+                            Game.getFrames().add(wyrmFrame);
+                            new KeyListener((JPanel) wyrmFrame.getContentPane());
 //
 //                            for(Barricados barricados : wave.wave1EasyBarricados){
 //                            BarricadosFrame barricadosFrame = new BarricadosFrame(300,300, BarricadosType.T2);
@@ -312,7 +310,7 @@ public class GameLoop {
                     }
                     if(deadT>= Game.getTrigoraths().size() && deadS>= Game.getSquarantine().size()){
                         win = true;
-                        if(Game.getEpsilon().getRadius()<GamePanel.getFRAME_WIDTH() && Game.getEpsilon().getRadius()<=GamePanel.getFRAME_HEIGHT()) {
+                        if(Game.getEpsilon().getRadius()< View.GamePanel.getFRAME_WIDTH() && Game.getEpsilon().getRadius()<= GamePanel.getFRAME_HEIGHT()) {
                             Game.getEpsilon().setRadius(Game.getEpsilon().getRadius() + 1);
 
                         }
@@ -473,7 +471,7 @@ public class GameLoop {
 
 
                     try {
-                        frameSize = new FrameSize(game.getGameFrame());
+                        frameSize = new FrameSize(Game.getGameFrame());
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
@@ -499,7 +497,7 @@ public class GameLoop {
 
                                 IntersectionPoint point = new IntersectionPoint(new Point2D.Double(shotGun.getX(), shotGun.getY()),5,false,false,null,shotGun);
                                 ObjectsIntersection.getIntersectionPoints().add(point);
-                         //       shotGun.setVisible(false);
+                                shotGun.setVisible(false);
                             }
                         }
                     }
@@ -544,12 +542,14 @@ public class GameLoop {
                     for(JFrame frame : Game.getFrames()) {
                         if (!frame.equals(Game.getEpsilon().getLocalFrame())) {
                             frameIntersection.changeLocalFrame(frame, Game.getEpsilon());
+
                         }
                     }
                     for(ShotGun shotGun : Game.getShots()) {
                         for (JFrame frame : Game.getFrames()) {
                             if (!frame.equals(Game.getEpsilon().getLocalFrame())) {
                                 frameIntersection.changeLocalFrame(frame, shotGun);
+
                             }
                         }
                     }
@@ -584,6 +584,28 @@ public class GameLoop {
 
                     }
                     for (BlackOrbFrame blackOrbFrame : Game.getBlackOrbFrames()) blackOrbFrame.getContentPane().repaint();
+
+                    for(WyrmFrame wyrmFrame : Game.getWyrmFrames()){
+                        wyrmFrame.getWyrm().move();
+                        wyrmFrame.getWyrm().shot();
+                    }
+                    for(WyrmFrame wyrmFrame : Game.getWyrmFrames()){
+                        for(ShotGun shotGun : wyrmFrame.getWyrm().getShots()){
+                            shotGun.move();
+                        }
+                    }
+                    for(WyrmFrame wyrmFrame : Game.getWyrmFrames()) {
+                        for (ShotGun shotGun : wyrmFrame.getWyrm().getShots()) {
+                            for (JFrame frame : Game.getFrames()) {
+                           //     if (!frame.equals(Game.getEpsilon().getLocalFrame())) {
+                                    frameIntersection.changeLocalFrame(frame, shotGun);
+                                }
+                       //     }
+                        }
+                    }
+
+
+
 
 
                 }

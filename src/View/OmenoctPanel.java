@@ -5,8 +5,6 @@ import Controller.MouseListener;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class OmenoctPanel extends JPanel {
 
@@ -34,6 +32,6 @@ public class OmenoctPanel extends JPanel {
         super.printComponent(g);
         Graphics2D g2D = (Graphics2D) g;
         Game.getOmenoctView().paint(g2D);
-        System.out.println(this.getX()+" "+this.getWidth());
+        //System.out.println(this.getX()+" "+this.getWidth());
     }
 }

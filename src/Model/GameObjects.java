@@ -1,7 +1,6 @@
 package Model;
 
-import Model.Entity.ShotGun;
-import View.GlassFrame;
+import Model.entity.ShotGun;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -25,6 +24,7 @@ public class GameObjects extends JLabel {
     private int globalX;
     private int globalY;
     private ArrayList<JFrame> localFrames = new ArrayList<>();
+    private boolean dead;
 
     public GameObjects(int x, int y){
 
@@ -161,5 +161,13 @@ public class GameObjects extends JLabel {
 
     public ArrayList<JFrame> getLocalFrames() {
         return localFrames;
+    }
+
+    public boolean isDead() {
+        return dead;
+    }
+
+    public void setDead(boolean dead) {
+        this.dead = dead;
     }
 }

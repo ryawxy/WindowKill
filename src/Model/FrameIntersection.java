@@ -1,10 +1,8 @@
 package Model;
 
 import Controller.Game;
-import Model.Entity.Trigorath;
+import Model.entity.Trigorath;
 import Model.enums.Direction;
-import View.GlassFrame;
-import View.entityViews.Barricados.BarricadosFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -76,10 +74,10 @@ public class FrameIntersection {
                         entity.setPreviousLocalFrame(previousFrame);
                         entity.setLocalX(globalX - entity.getLocalFrame().getX());
                         entity.setLocalY(globalY - entity.getLocalFrame().getY());
-                        Game.getEpsilon().getLocalFrames().remove(previousFrame);
+                        entity.getLocalFrames().remove(previousFrame);
 
                     } else if (bounds1.contains(rectangle) && bounds2.contains(rectangle)) {
-                        Game.getEpsilon().getLocalFrames().add(frame);
+                        entity.getLocalFrames().add(frame);
                     }
                 }
 

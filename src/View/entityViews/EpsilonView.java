@@ -2,8 +2,7 @@ package View.entityViews;
 
 import Controller.Game;
 import Model.Drawable;
-import Model.Entity.Epsilon;
-import View.GlassFrame;
+import Model.entity.Epsilon;
 
 import javax.swing.*;
 import java.awt.*;

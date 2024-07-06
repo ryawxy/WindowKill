@@ -145,6 +145,9 @@ public class Constants {
     public static int orbSize(){
         return 60;
     }
+    public static int wyrmSize(){
+        return 60;
+    }
 
 
 }

@@ -1,10 +1,7 @@
 package View;
 
-import Controller.Constants;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 public  class GlassFrame extends JFrame {
 

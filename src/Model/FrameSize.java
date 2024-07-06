@@ -6,7 +6,7 @@ import Model.enums.BarricadosType;
 import Model.enums.Direction;
 import View.GamePanel;
 import View.GlassFrame;
-import View.entityViews.Barricados.BarricadosFrame;
+import View.entityViews.barricados.BarricadosFrame;
 
 
 import java.io.IOException;
@@ -70,8 +70,6 @@ public class FrameSize {
                 deltaHeight = 0;
                 newY = GlassFrame.getINSTANCE().getY();
             }
-
-
 
 
 

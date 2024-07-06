@@ -59,7 +59,7 @@ public class SettingsFrame extends JFrame  {
 
         //sound text
         Font fontStyle = new Font("Magneto",Font.BOLD,30);
-        soundText = new JLabel("Sound");
+        soundText = new JLabel("sound");
         soundText.setFont(fontStyle);
         Color fontClr = Color.WHITE;
         soundText.setForeground(fontClr);
