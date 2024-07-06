@@ -5,86 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="added laser collision for epsilon">
-      <change afterPath="$PROJECT_DIR$/src/model/entity/Wyrm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/entityViews/wyrm/WyrmFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/entityViews/wyrm/WyrmPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/entityViews/wyrm/WyrmView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/KeyCodeCapture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/KeyCodeCapture.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/KeyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/KeyListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/MouseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MouseListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ShopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ShopController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SkillTreeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/SkillTreeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Collectible.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Collectible.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Drawable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Drawable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/Archmire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/entity/Archmire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/Barricados.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/entity/Barricados.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/BlackOrb/BlackOrb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/entity/blackOrb/BlackOrb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/BlackOrb/BlackOrbArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/entity/blackOrb/BlackOrbArray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/BlackOrb/Laser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/entity/blackOrb/Laser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/Cerberus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/entity/Cerberus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/Epsilon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/entity/Epsilon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/Footprint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/entity/Footprint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/Necropick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/entity/Necropick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/Omenoct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/entity/Omenoct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/ShotGun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/entity/ShotGun.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/Squarantine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/entity/Squarantine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/Trigorath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/entity/Trigorath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Entity/Vertex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/entity/Vertex.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/FrameIntersection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/FrameIntersection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/FrameSize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/FrameSize.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/FrameType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/FrameType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GameInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/GameInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/GameLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GameObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/GameObjects.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/IntersectionPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/IntersectionPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Movable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Movable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/ObjectsIntersection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ObjectsIntersection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Wave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Wave.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/enums/Ability.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/enums/Ability.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/enums/BarricadosType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/enums/BarricadosType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/enums/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/enums/Direction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/enums/EnemyType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/enums/EnemyType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/enums/ShopItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/enums/ShopItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/enums/Side.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/enums/Side.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/enums/Size.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/enums/Size.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sound/Hedwig_s-Theme.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/sound/Hedwig_s-Theme.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sound/SoundPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sound/SoundPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sound/death.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/sound/death.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sound/epsilon.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/sound/epsilon.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sound/gameover.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/sound/gameover.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sound/hurt.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/sound/hurt.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sound/wave.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/sound/wave.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/GameInfoView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/GameInfoView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/GlassFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/GlassFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/OmenoctPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/OmenoctPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/SettingsFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/SettingsFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/ShopFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ShopFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/ShotGunView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ShotGunView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/SkillTreeFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/SkillTreeFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/StarterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/StarterMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/entityViews/ArchmireView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/ArchmireView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/entityViews/Barricados/BarricadosFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/barricados/BarricadosFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/entityViews/Barricados/BarricadosPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/barricados/BarricadosPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/entityViews/Barricados/BarricadosView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/barricados/BarricadosView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/entityViews/BlackOrb/BlackOrbFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/blackOrb/BlackOrbFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/entityViews/BlackOrb/BlackOrbPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/blackOrb/BlackOrbPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/entityViews/BlackOrb/BlackOrbView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/blackOrb/BlackOrbView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/entityViews/BlackOrb/InvisibleFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/blackOrb/InvisibleFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/entityViews/BlackOrb/InvisiblePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/blackOrb/InvisiblePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/entityViews/BlackOrb/LaserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/blackOrb/LaserView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/entityViews/CerberusView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/CerberusView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/entityViews/EpsilonView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/EpsilonView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/entityViews/NecropickView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/NecropickView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/entityViews/OmenoctView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/OmenoctView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/entityViews/SquarantineView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/SquarantineView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/entityViews/TrigorathView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/TrigorathView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/entityViews/VertexView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/VertexView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/archmire.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/archmire.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/myproject/MyProject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/myproject/MyProject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameLoop.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,14 +53,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "wyrm",
-    "last_opened_file_path": "C:/inetpub/puzzle5"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;wyrm&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/inetpub/puzzle5&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Namazi\Ap2024\WindowKill2\src" />

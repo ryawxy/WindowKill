@@ -3,7 +3,7 @@ package Model;
 import Controller.*;
 import Model.entity.*;
 import Model.enums.Direction;
-import View.*;
+
 import View.entityViews.barricados.BarricadosFrame;
 import View.entityViews.blackOrb.BlackOrbFrame;
 import myproject.MyProject;
@@ -88,7 +88,7 @@ public class GameLoop {
                     if (!wave1Created) {
                         Game.getSoundPlayer().playSoundEffect("src/Sound/wave.wav");
 
-                        if(SettingsFrame.getChosenLevel()==0) {
+                        if(View.SettingsFrame.getChosenLevel()==0) {
                             for (Squarantine squarantine : wave.wave1EasySquarantine) {
                                 Game.getSquarantine().add(squarantine);
                                 Game.getEnemies().add(squarantine);
@@ -138,7 +138,7 @@ public class GameLoop {
 //                //                Game.getEnemies().add(barricados);
 //
 //                           }
-                        }else        if(SettingsFrame.getChosenLevel()==1) {
+                        }else        if(View.SettingsFrame.getChosenLevel()==1) {
                             for (Squarantine squarantine : wave.wave1MediumSquarantine) {
                                 Game.getSquarantine().add(squarantine);
                                 Game.getEnemies().add(squarantine);
@@ -147,7 +147,7 @@ public class GameLoop {
                                 Game.getTrigoraths().add(trigorath);
                                 Game.getEnemies().add(trigorath);
                             }
-                        }else  if(SettingsFrame.getChosenLevel()==2) {
+                        }else  if(View.SettingsFrame.getChosenLevel()==2) {
                             for (Squarantine squarantine : wave.wave1HardSquarantine) {
                                 Game.getSquarantine().add(squarantine);
                                 Game.getEnemies().add(squarantine);
@@ -194,7 +194,7 @@ public class GameLoop {
                             if (!wave2Created && wave1Created) {
                                 Game.getSoundPlayer().playSoundEffect("src/Sound/wave.wav");
 
-                                if(SettingsFrame.getChosenLevel()==0) {
+                                if(View.SettingsFrame.getChosenLevel()==0) {
                                     for (Squarantine squarantine : wave.wave2EasySquarantine) {
                                         Game.getSquarantine().add(squarantine);
                                         Game.getEnemies().add(squarantine);
@@ -203,7 +203,7 @@ public class GameLoop {
                                         Game.getTrigoraths().add(trigorath);
                                         Game.getEnemies().add(trigorath);
                                     }
-                                }else        if(SettingsFrame.getChosenLevel()==1) {
+                                }else        if(View.SettingsFrame.getChosenLevel()==1) {
                                     for (Squarantine squarantine : wave.wave2MediumSquarantine) {
                                         Game.getSquarantine().add(squarantine);
                                         Game.getEnemies().add(squarantine);
@@ -212,7 +212,7 @@ public class GameLoop {
                                         Game.getTrigoraths().add(trigorath);
                                         Game.getEnemies().add(trigorath);
                                     }
-                                }else  if(SettingsFrame.getChosenLevel()==2) {
+                                }else  if(View.SettingsFrame.getChosenLevel()==2) {
                                     for (Squarantine squarantine : wave.wave2HardSquarantine) {
                                         Game.getSquarantine().add(squarantine);
                                         Game.getEnemies().add(squarantine);
@@ -257,7 +257,7 @@ public class GameLoop {
                             if (!wave3Created && wave2Created) {
                                 Game.getSoundPlayer().playSoundEffect("src/Sound/wave.wav");
 
-                                if(SettingsFrame.getChosenLevel()==0) {
+                                if(View.SettingsFrame.getChosenLevel()==0) {
                                     for (Squarantine squarantine : Wave.wave3EasySquarantine) {
                                         Game.getSquarantine().add(squarantine);
                                         Game.getEnemies().add(squarantine);
@@ -266,7 +266,7 @@ public class GameLoop {
                                         Game.getTrigoraths().add(trigorath);
                                         Game.getEnemies().add(trigorath);
                                     }
-                                }else        if(SettingsFrame.getChosenLevel()==1) {
+                                }else        if(View.SettingsFrame.getChosenLevel()==1) {
                                     for (Squarantine squarantine : wave.wave3MediumSquarantine) {
                                         Game.getSquarantine().add(squarantine);
                                         Game.getEnemies().add(squarantine);
@@ -275,7 +275,7 @@ public class GameLoop {
                                         Game.getTrigoraths().add(trigorath);
                                         Game.getEnemies().add(trigorath);
                                     }
-                                }else  if(SettingsFrame.getChosenLevel()==2) {
+                                }else  if(View.SettingsFrame.getChosenLevel()==2) {
                                     for (Squarantine squarantine : wave.wave3HardSquarantine) {
                                         Game.getSquarantine().add(squarantine);
                                         Game.getEnemies().add(squarantine);
@@ -310,7 +310,7 @@ public class GameLoop {
                     }
                     if(deadT>= Game.getTrigoraths().size() && deadS>= Game.getSquarantine().size()){
                         win = true;
-                        if(Game.getEpsilon().getRadius()< View.GamePanel.getFRAME_WIDTH() && Game.getEpsilon().getRadius()<= GamePanel.getFRAME_HEIGHT()) {
+                        if(Game.getEpsilon().getRadius()< View.GamePanel.getFRAME_WIDTH() && Game.getEpsilon().getRadius()<= View.GamePanel.getFRAME_HEIGHT()) {
                             Game.getEpsilon().setRadius(Game.getEpsilon().getRadius() + 1);
 
                         }
@@ -321,10 +321,10 @@ public class GameLoop {
                         hasPlayed = true;
                     }
 
-                    if((GamePanel.getFRAME_HEIGHT()<=0 || GamePanel.getFRAME_WIDTH()<=0) && win){
+                    if((View.GamePanel.getFRAME_HEIGHT()<=0 || View.GamePanel.getFRAME_WIDTH()<=0) && win){
 
 
-                        int purchase = JOptionPane.showOptionDialog(GlassFrame.getINSTANCE(),
+                        int purchase = JOptionPane.showOptionDialog(View.GlassFrame.getINSTANCE(),
                                 "You won! XP:"+ MyProject.getGameInfo().getXP(), null, JOptionPane.DEFAULT_OPTION,
                                 JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
 
@@ -333,7 +333,7 @@ public class GameLoop {
 
                          //   GlassFrame.getINSTANCE().closeFrame();
 
-                        new StarterMenu();
+                        new View.StarterMenu();
                             Game.getSoundPlayer().stopBackgroundMusic();
 
                             wave1Created =  false;
@@ -344,9 +344,9 @@ public class GameLoop {
                             minutes = 0;
                             banishTime = 0;
                             win = false;
-                                 ShopFrame.setHealItem(false);
-                            ShopFrame.setBanishItem(false);
-                            ShopFrame.setEmpowerItem(false);
+                                 View.ShopFrame.setHealItem(false);
+                            View.ShopFrame.setBanishItem(false);
+                            View.ShopFrame.setEmpowerItem(false);
                             skillTreeController.setCanUseAbility(false);
                             skillTreeController.setCurrentTime(0);
                             skillTreeController.setLastUsed(0);
@@ -355,8 +355,8 @@ public class GameLoop {
                             deadT = 0;
                             intersectionSide = null;
                             KeyListener.setPauseGame(true);
-                            GamePanel.setFRAME_WIDTH(700);
-                            GamePanel.setFRAME_HEIGHT(700);
+                            View.GamePanel.setFRAME_WIDTH(700);
+                            View.GamePanel.setFRAME_HEIGHT(700);
                             gameDone = true;
                             lastXP = Game.getEpsilon().getXP();
                             KeyListener.setKeyPressedNumber(0);
@@ -378,22 +378,22 @@ public class GameLoop {
                     if(Game.getEpsilon().getHP()<=0) lose = true;
                     if(lose && !hasPlayed){
                         Game.getSoundPlayer().playSoundEffect("src/Sound/gameover.wav");
-                        GamePanel.setFRAME_WIDTH(0);
-                        GamePanel.setFRAME_HEIGHT(0);
+                        View.GamePanel.setFRAME_WIDTH(0);
+                        View.GamePanel.setFRAME_HEIGHT(0);
                         hasPlayed = true;
                     }
                     if( lose ) {
 
                         frameSize.shrink();
-                        GamePanel.setFRAME_WIDTH(0);
-                        GamePanel.setFRAME_HEIGHT(0);
-                        int purchase = JOptionPane.showOptionDialog(GlassFrame.getINSTANCE(),
+                        View.GamePanel.setFRAME_WIDTH(0);
+                        View.GamePanel.setFRAME_HEIGHT(0);
+                        int purchase = JOptionPane.showOptionDialog(View.GlassFrame.getINSTANCE(),
                                 "You lost :( XP:" + MyProject.getGameInfo().getXP(), null, JOptionPane.DEFAULT_OPTION,
                                 JOptionPane.PLAIN_MESSAGE, null, option, option[0]);
 
                         if (purchase == 0) {
 
-                            new StarterMenu();
+                            new View.StarterMenu();
                             Game.getSoundPlayer().stopBackgroundMusic();
                             wave1Created = false;
                             wave2Created = false;
@@ -404,9 +404,9 @@ public class GameLoop {
                             banishTime = 0;
                             skillTreeController.setAcesoTimer(0);
                             win = false;
-                                 ShopFrame.setHealItem(false);
-                            ShopFrame.setBanishItem(false);
-                            ShopFrame.setEmpowerItem(false);
+                                 View.ShopFrame.setHealItem(false);
+                            View.ShopFrame.setBanishItem(false);
+                            View.ShopFrame.setEmpowerItem(false);
                             skillTreeController.setCanUseAbility(false);
                             skillTreeController.setCurrentTime(0);
                             skillTreeController.setLastUsed(0);
@@ -420,7 +420,7 @@ public class GameLoop {
                             KeyListener.setKeyPressedNumber(0);
                             KeyListener.setAbilityKeyPressed(false);
                             GameInfo.getCurrentAbility().clear();
-                            SkillTreeFrame.setCurrentXP(Game.getEpsilon().getXP());
+                            View.SkillTreeFrame.setCurrentXP(Game.getEpsilon().getXP());
                             Game.getEpsilon().getVertex().clear();
                             Game.getSquarantine().clear();
                             Game.getTrigoraths().clear();
@@ -435,7 +435,7 @@ public class GameLoop {
 
 
 
-                    if (!ShopFrame.isEmpowerItem()) {
+                    if (!View.ShopFrame.isEmpowerItem()) {
                         for (ShotGun shotGun : Game.getShots()) {
                             shotGun.move();
                         }

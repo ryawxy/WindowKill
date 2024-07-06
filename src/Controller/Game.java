@@ -6,8 +6,6 @@ import Model.entity.*;
 import Model.entity.blackOrb.BlackOrb;
 import Model.enums.Ability;
 import sound.SoundPlayer;
-import View.*;
-import View.entityViews.*;
 import View.entityViews.barricados.BarricadosFrame;
 import View.entityViews.blackOrb.BlackOrbFrame;
 import View.entityViews.blackOrb.InvisibleFrame;
@@ -31,18 +29,18 @@ public class Game {
     private static ArrayList<Omenoct> omenocts;
     private static ArrayList<Archmire> archmires;
     private static ArrayList<Barricados> barricados;
-    private static EpsilonView epsilonView;
-    private static ShotGunView shotGunView;
-    private static TrigorathView trigorathView;
-    private static SquarantineView squarantineView;
-    private static VertexView vertexView;
-    private static CerberusView cerberusView;
-    private static GameInfoView gameInfoView;
-    private static NecropickView necropickView;
-    private static OmenoctView omenoctView;
-    private static ArchmireView archmireView;
+    private static View.entityViews.EpsilonView epsilonView;
+    private static View.ShotGunView shotGunView;
+    private static View.entityViews.TrigorathView trigorathView;
+    private static View.entityViews.SquarantineView squarantineView;
+    private static View.entityViews.VertexView vertexView;
+    private static View.entityViews.CerberusView cerberusView;
+    private static View.GameInfoView gameInfoView;
+    private static View.entityViews.NecropickView necropickView;
+    private static View.entityViews.OmenoctView omenoctView;
+    private static View.entityViews.ArchmireView archmireView;
 
-    protected static GamePanel gamePanel;
+    protected static View.GamePanel gamePanel;
     protected KeyListener keyListener;
     protected MouseListener mouseListener;
     private static SoundPlayer soundPlayer;
@@ -58,10 +56,10 @@ public class Game {
     private static ArrayList<WyrmFrame> wyrmFrames = new ArrayList<>();
     public Game() throws IOException, AWTException {
 
-        frames.add(GlassFrame.getINSTANCE());
+        frames.add(View.GlassFrame.getINSTANCE());
        epsilon = new Epsilon(100, 100);
         epsilon.setRadius(Constants.getEpsilonRadius());
-       epsilon.setXP(SkillTreeFrame.getCurrentXP());
+       epsilon.setXP(View.SkillTreeFrame.getCurrentXP());
 
        shotGun = new ShotGun(Game.epsilon.getxCenter(), Game.epsilon.getyCenter());
         shotGun.setWidth(Constants.getShotGunWidth());
@@ -83,13 +81,13 @@ public class Game {
        // epsilonView = new EpsilonView();
 //        shotGunView = new ShotGunView();
    //     trigorathView = new TrigorathView();
-        squarantineView = new SquarantineView();
+        squarantineView = new View.entityViews.SquarantineView();
        // vertexView = new VertexView();
-        gameInfoView = new GameInfoView();
-        cerberusView = new CerberusView();
-        necropickView = new NecropickView();
-        omenoctView = new OmenoctView();
-        archmireView = new ArchmireView();
+        gameInfoView = new View.GameInfoView();
+        cerberusView = new View.entityViews.CerberusView();
+        necropickView = new View.entityViews.NecropickView();
+        omenoctView = new View.entityViews.OmenoctView();
+        archmireView = new View.entityViews.ArchmireView();
 
         currentAbilities = new ArrayList<>();
 
@@ -105,7 +103,7 @@ public class Game {
         skillTreeAbilities.put(Ability.Empusa,0);
 
 
-        gamePanel = new GamePanel();
+        gamePanel = new View.GamePanel();
 
         keyListener = new KeyListener(gamePanel);
         mouseListener = new MouseListener(gamePanel);
@@ -147,7 +145,7 @@ public class Game {
         shot.add(shotGun);
     }
 
-    public static GamePanel getGameFrame() {
+    public static View.GamePanel getGameFrame() {
         return gamePanel;
     }
 
@@ -155,27 +153,27 @@ public class Game {
         return soundPlayer;
     }
 
-    public static EpsilonView getEpsilonView() {
+    public static View.entityViews.EpsilonView getEpsilonView() {
         return epsilonView;
     }
 
-    public static ShotGunView getShotGunView() {
+    public static View.ShotGunView getShotGunView() {
         return shotGunView;
     }
 
-    public static TrigorathView getTrigorathView() {
+    public static View.entityViews.TrigorathView getTrigorathView() {
         return trigorathView;
     }
 
-    public static SquarantineView getSquarantineView() {
+    public static View.entityViews.SquarantineView getSquarantineView() {
         return squarantineView;
     }
 
-    public static VertexView getVertexView() {
+    public static View.entityViews.VertexView getVertexView() {
         return vertexView;
     }
 
-    public static GameInfoView getGameInfoView() {
+    public static View.GameInfoView getGameInfoView() {
         return gameInfoView;
     }
 
@@ -183,7 +181,7 @@ public class Game {
         return cerberuses;
     }
 
-    public static CerberusView getCerberusView() {
+    public static View.entityViews.CerberusView getCerberusView() {
         return cerberusView;
     }
 
@@ -191,7 +189,7 @@ public class Game {
         return enemies;
     }
 
-    public static NecropickView getNecropickView() {
+    public static View.entityViews.NecropickView getNecropickView() {
         return necropickView;
     }
 
@@ -203,7 +201,7 @@ public class Game {
         return omenocts;
     }
 
-    public static OmenoctView getOmenoctView() {
+    public static View.entityViews.OmenoctView getOmenoctView() {
         return omenoctView;
     }
 
@@ -211,7 +209,7 @@ public class Game {
         return archmires;
     }
 
-    public static ArchmireView getArchmireView() {
+    public static View.entityViews.ArchmireView getArchmireView() {
         return archmireView;
     }
 
