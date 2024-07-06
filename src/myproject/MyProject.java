@@ -2,11 +2,11 @@ package myproject;
 
 import Controller.Constants;
 
-import Model.Entity.Epsilon;
+import Model.entity.Epsilon;
 import Model.GameInfo;
 
-import View.SettingsFrame;
-import View.StarterMenu;
+import view.SettingsFrame;
+import view.StarterMenu;
 
 import java.awt.event.KeyEvent;
 import java.io.IOException;

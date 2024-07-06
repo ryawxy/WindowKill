@@ -2,15 +2,15 @@
 package Controller;
 
 import Model.*;
-import Model.Entity.blackOrb.BlackOrb;
+import Model.entity.*;
 import Model.enums.Ability;
 import sound.SoundPlayer;
-import View.*;
-import View.entityViews.*;
-import View.entityViews.Barricados.BarricadosFrame;
-import View.entityViews.BlackOrb.BlackOrbFrame;
-import View.entityViews.BlackOrb.InvisibleFrame;
-import View.entityViews.wyrm.WyrmFrame;
+import view.*;
+import view.entityViews.*;
+import view.entityViews.barricados.BarricadosFrame;
+import view.entityViews.blackOrb.BlackOrbFrame;
+import view.entityViews.blackOrb.InvisibleFrame;
+import view.entityViews.wyrm.WyrmFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -49,11 +49,11 @@ public class Game {
     private static ArrayList<Ability> currentAbilities;
     private  static ArrayList<Cerberus> cerberuses;
     private static ArrayList<GameObjects> enemies;
-    private static ArrayList<BarricadosFrame> barricadosFrames = new ArrayList<>();
-    private static ArrayList<BlackOrbFrame> blackOrbFrames = new ArrayList<>();
+    private static ArrayList<view.entityViews.barricados.BarricadosFrame> barricadosFrames = new ArrayList<>();
+    private static ArrayList<view.entityViews.blackOrb.BlackOrbFrame> blackOrbFrames = new ArrayList<>();
     private static ArrayList<JFrame> frames = new ArrayList<>();
     private static ArrayList<InvisibleFrame> invisibleFrames = new ArrayList<>();
-    private static ArrayList<BlackOrb> blackOrbs = new ArrayList<>();
+    private static ArrayList<Model.entity.blackOrb.BlackOrb> blackOrbs = new ArrayList<>();
     private static ArrayList<WyrmFrame> wyrmFrames = new ArrayList<>();
     public Game() throws IOException, AWTException {
 
@@ -238,7 +238,7 @@ public class Game {
         return invisibleFrames;
     }
 
-    public static ArrayList<BlackOrb> getBlackOrbs() {
+    public static ArrayList<Model.entity.blackOrb.BlackOrb> getBlackOrbs() {
         return blackOrbs;
     }
 

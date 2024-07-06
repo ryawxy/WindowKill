@@ -3,8 +3,8 @@ package Model.entity.blackOrb;
 import Controller.Game;
 import Controller.KeyListener;
 import Controller.MouseListener;
-import View.entityViews.blackOrb.BlackOrbFrame;
-import View.entityViews.blackOrb.InvisibleFrame;
+import view.entityViews.blackOrb.BlackOrbFrame;
+import view.entityViews.blackOrb.InvisibleFrame;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

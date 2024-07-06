@@ -1,13 +1,14 @@
 package Model;
 
 import Controller.*;
-import Model.Entity.Squarantine;
-import Model.Entity.Trigorath;
+import Model.entity.*;
 import Model.enums.Direction;
-import View.*;
+import view.*;
 
+import view.entityViews.barricados.BarricadosFrame;
+import view.entityViews.blackOrb.BlackOrbFrame;
 import myproject.MyProject;
-import View.entityViews.wyrm.WyrmFrame;
+import view.entityViews.wyrm.WyrmFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -139,7 +140,7 @@ public class GameLoop {
 //
 //                           }
                         }else        if(SettingsFrame.getChosenLevel()==1) {
-                            for (Model.Entity.Squarantine squarantine : wave.wave1MediumSquarantine) {
+                            for (Model.entity.Squarantine squarantine : wave.wave1MediumSquarantine) {
                                 Controller.Game.getSquarantine().add(squarantine);
                                 Controller.Game.getEnemies().add(squarantine);
                             }
@@ -310,7 +311,7 @@ public class GameLoop {
                     }
                     if(deadT>= Game.getTrigoraths().size() && deadS>= Game.getSquarantine().size()){
                         win = true;
-                        if(Game.getEpsilon().getRadius()< View.GamePanel.getFRAME_WIDTH() && Game.getEpsilon().getRadius()<= GamePanel.getFRAME_HEIGHT()) {
+                        if(Game.getEpsilon().getRadius()< view.GamePanel.getFRAME_WIDTH() && Game.getEpsilon().getRadius()<= GamePanel.getFRAME_HEIGHT()) {
                             Game.getEpsilon().setRadius(Game.getEpsilon().getRadius() + 1);
 
                         }

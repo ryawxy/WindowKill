@@ -1,7 +1,7 @@
 package Model;
 
 import Controller.Game;
-import Model.Entity.Trigorath;
+import Model.entity.Trigorath;
 import Model.enums.Direction;
 
 import javax.swing.*;

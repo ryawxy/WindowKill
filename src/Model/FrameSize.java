@@ -4,9 +4,9 @@ import Controller.Constants;
 import Controller.Game;
 import Model.enums.BarricadosType;
 import Model.enums.Direction;
-import View.GamePanel;
-import View.GlassFrame;
-import View.entityViews.Barricados.BarricadosFrame;
+import view.GamePanel;
+import view.GlassFrame;
+import view.entityViews.barricados.BarricadosFrame;
 
 
 import java.io.IOException;

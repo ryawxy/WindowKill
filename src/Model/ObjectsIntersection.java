@@ -2,17 +2,19 @@ package Model;
 
 import Controller.Constants;
 import Controller.Game;
-import Model.Entity.*;
-import Model.Entity.blackOrb.BlackOrb;
-import Model.Entity.blackOrb.Laser;
+import Model.entity.*;
+import Model.entity.blackOrb.BlackOrb;
+import Model.entity.blackOrb.Laser;
 import Model.enums.Direction;
 import Model.enums.EnemyType;
 import Model.enums.Side;
 import Model.enums.Size;
-import View.GamePanel;
-import Model.Entity.Epsilon;
+import view.GamePanel;
+import Model.entity.Epsilon;
+import view.entityViews.barricados.BarricadosFrame;
+import view.entityViews.blackOrb.BlackOrbFrame;
 import myproject.MyProject;
-import View.entityViews.wyrm.WyrmFrame;
+import view.entityViews.wyrm.WyrmFrame;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
