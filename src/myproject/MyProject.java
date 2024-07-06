@@ -1,12 +1,12 @@
 package myproject;
 
-import Controller.Constants;
+import controller.Constants;
 
-import Model.Entity.Epsilon;
-import Model.GameInfo;
+import model.entity.Epsilon;
+import model.GameInfo;
 
-import View.SettingsFrame;
-import View.StarterMenu;
+import view.SettingsFrame;
+import view.StarterMenu;
 
 import java.awt.event.KeyEvent;
 import java.io.IOException;
