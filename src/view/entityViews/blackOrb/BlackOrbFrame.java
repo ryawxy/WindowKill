@@ -18,7 +18,7 @@ public class BlackOrbFrame extends JFrame implements FrameType {
         this.setLocation(x,y);
         this.setUndecorated(true);
         this.setTitle("Black-Orb frame");
-        BlackOrbPanel blackOrbPanel = new BlackOrbPanel(150,150);
+        view.entityViews.blackOrb.BlackOrbPanel blackOrbPanel = new view.entityViews.blackOrb.BlackOrbPanel(150,150);
         this.setContentPane(blackOrbPanel);
 
         blackOrbPanel.setBound(new Rectangle(x,y,150,150));
@@ -26,7 +26,7 @@ public class BlackOrbFrame extends JFrame implements FrameType {
         this.setVisible(true);
         blackOrb = new Model.entity.blackOrb.BlackOrb(30,20);
         blackOrb.setLocalFrame(this);
-        blackOrbPanel.setBlackOrbView(new BlackOrbView(blackOrb));
+        blackOrbPanel.setBlackOrbView(new view.entityViews.blackOrb.BlackOrbView(blackOrb));
         bounds = new Rectangle(getX(),getY(),getWidth(),getHeight());
 
     }

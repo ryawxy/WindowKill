@@ -9,10 +9,11 @@ import Model.enums.Direction;
 import Model.enums.EnemyType;
 import Model.enums.Side;
 import Model.enums.Size;
+import view.entityViews.blackOrb.BlackOrbFrame;
 import view.GamePanel;
 import Model.entity.Epsilon;
 import view.entityViews.barricados.BarricadosFrame;
-import view.entityViews.blackOrb.BlackOrbFrame;
+
 import myproject.MyProject;
 import view.entityViews.wyrm.WyrmFrame;
 

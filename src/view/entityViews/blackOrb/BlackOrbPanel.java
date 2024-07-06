@@ -12,7 +12,7 @@ public class BlackOrbPanel extends JPanel {
 
     private Rectangle bound;
     private JFrame itsFrame;
-    BlackOrbView blackOrbView;
+    view.entityViews.blackOrb.BlackOrbView blackOrbView;
 
 
     public BlackOrbPanel(int x, int y){
@@ -32,7 +32,7 @@ public class BlackOrbPanel extends JPanel {
 
         blackOrbView.paint(g2D);
 
-        LaserView laserView = new LaserView(((BlackOrbFrame) itsFrame).getBlackOrb());
+        view.entityViews.blackOrb.LaserView laserView = new view.entityViews.blackOrb.LaserView(((BlackOrbFrame) itsFrame).getBlackOrb());
         laserView.paint(g2D);
 
         EpsilonView epsilonView = new EpsilonView(itsFrame);

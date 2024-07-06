@@ -30,16 +30,16 @@ public class Game {
     private static ArrayList<Omenoct> omenocts;
     private static ArrayList<Archmire> archmires;
     private static ArrayList<Barricados> barricados;
-    private static EpsilonView epsilonView;
-    private static ShotGunView shotGunView;
-    private static TrigorathView trigorathView;
-    private static SquarantineView squarantineView;
-    private static VertexView vertexView;
-    private static CerberusView cerberusView;
-    private static GameInfoView gameInfoView;
-    private static NecropickView necropickView;
-    private static OmenoctView omenoctView;
-    private static ArchmireView archmireView;
+    private static view.entityViews.EpsilonView epsilonView;
+    private static view.ShotGunView shotGunView;
+    private static view.entityViews.TrigorathView trigorathView;
+    private static view.entityViews.SquarantineView squarantineView;
+    private static view.entityViews.VertexView vertexView;
+    private static view.entityViews.CerberusView cerberusView;
+    private static view.GameInfoView gameInfoView;
+    private static view.entityViews.NecropickView necropickView;
+    private static view.entityViews.OmenoctView omenoctView;
+    private static view.entityViews.ArchmireView archmireView;
 
     protected static GamePanel gamePanel;
     protected KeyListener keyListener;
@@ -57,10 +57,10 @@ public class Game {
     private static ArrayList<WyrmFrame> wyrmFrames = new ArrayList<>();
     public Game() throws IOException, AWTException {
 
-        frames.add(GlassFrame.getINSTANCE());
+        frames.add(view.GlassFrame.getINSTANCE());
        epsilon = new Epsilon(100, 100);
         epsilon.setRadius(Constants.getEpsilonRadius());
-       epsilon.setXP(SkillTreeFrame.getCurrentXP());
+       epsilon.setXP(view.SkillTreeFrame.getCurrentXP());
 
        shotGun = new ShotGun(Game.epsilon.getxCenter(), Game.epsilon.getyCenter());
         shotGun.setWidth(Constants.getShotGunWidth());
@@ -82,9 +82,9 @@ public class Game {
        // epsilonView = new EpsilonView();
 //        shotGunView = new ShotGunView();
    //     trigorathView = new TrigorathView();
-        squarantineView = new SquarantineView();
+        squarantineView = new view.entityViews.SquarantineView();
        // vertexView = new VertexView();
-        gameInfoView = new GameInfoView();
+        gameInfoView = new view.GameInfoView();
         cerberusView = new CerberusView();
         necropickView = new NecropickView();
         omenoctView = new OmenoctView();
