@@ -1,10 +1,11 @@
-package view;
+package view.entityViews;
 
 import Controller.Game;
 import Model.Drawable;
 import Model.entity.Necropick;
 import Model.entity.ShotGun;
 import Model.entity.Omenoct;
+import view.entityViews.smiley.SmileyPointerFrame;
 import view.entityViews.wyrm.WyrmFrame;
 
 import javax.swing.*;
@@ -105,5 +106,30 @@ public class ShotGunView implements Drawable {
             }
 
         }
+
+        for(SmileyPointerFrame smileyPointerFrame : Game.getSmileyPointerFrames()){
+            for(ShotGun shotGun : smileyPointerFrame.getSmileyPointFinger().getShots()){
+                if(shotGun.isVisible()) {
+                    int x = shotGun.getLocalX() + shotGun.getLocalFrame().getX();
+                    int y = shotGun.getLocalY() + shotGun.getLocalFrame().getY();
+                    Rectangle bounds = new Rectangle(frame.getX(), frame.getY()
+                            , frame.getWidth(), frame.getHeight());
+                    if (bounds.contains(x, y) || bounds.contains(x + shotGun.getWidth(), y) ||
+                            bounds.contains(x, y + shotGun.getHeight()) ||
+                            bounds.contains(x + shotGun.getWidth(), y + shotGun.getHeight())) {
+                        if (shotGun.getLocalFrames().size() == 1) {
+
+                            g.setColor(new Color(0x2E56FF));
+                            g.fillRect(shotGun.getLocalX(), shotGun.getLocalY(), shotGun.getWidth(), shotGun.getHeight());
+                        } else {
+                            g.setColor(new Color(0x2E56FF));
+                            g.fillRect(x - bounds.x, y - bounds.y, shotGun.getWidth(), shotGun.getHeight());
+                        }
+                    }
+                }
+            }
+
+        }
+
     }
 }

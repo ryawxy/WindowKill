@@ -29,12 +29,7 @@ public class BlackOrb extends GameObjects {
 
     @Override
     public void decreaseHP(int decrement) {
-
-        setHP(getHP()-decrement);
-        if(getHP()<=0){
-            setDead(true);
-            setShowCollectibles(true);
-        }
+        super.decreaseHP(decrement);
     }
     public void initializeCollectibles(){
 

@@ -1,6 +1,7 @@
 package view.entityViews.wyrm;
 
 import Controller.Game;
+import Controller.KeyListener;
 import Model.entity.Wyrm;
 import javax.swing.*;
 import java.awt.*;
@@ -10,10 +11,8 @@ public class WyrmFrame extends JFrame {
 
     Wyrm wyrm;
     Rectangle bound;
-   private double angle;
    private double xVelocity;
    private double yVelocity;
-   private double rotationAngle;
 
     public WyrmFrame(int x, int y){
 
@@ -34,6 +33,7 @@ public class WyrmFrame extends JFrame {
         bound = new Rectangle(getX(),getY(),getWidth(),getHeight());
         Game.getFrames().add(this);
         Game.getEnemies().add(wyrm);
+        new KeyListener(wyrmPanel);
 
     }
 

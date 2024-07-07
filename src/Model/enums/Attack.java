@@ -1,0 +1,6 @@
+package Model.enums;
+
+public enum Attack {
+
+    SQUEEZE,PROJECTILE,VOMIT,POWERPUNCH,QUAKE,RAPIDFIRE,SLAP,ANNIHILATOR
+}

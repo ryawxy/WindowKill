@@ -148,6 +148,14 @@ public class Constants {
     public static int wyrmSize(){
         return 60;
     }
-
+    public static int smileySize(){
+        return 120;
+    }
+    public static int smileyPointerWidth(){
+        return 100;
+    }
+    public static int smileyPointerHeight(){
+        return 120;
+    }
 
 }

@@ -4,8 +4,10 @@ import Controller.Game;
 import Model.entity.Vertex;
 import Controller.MouseListener;
 import view.entityViews.EpsilonView;
+import view.entityViews.ShotGunView;
 import view.entityViews.TrigorathView;
 import view.entityViews.VertexView;
+import view.entityViews.smiley.FireView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,11 +17,13 @@ import java.io.IOException;
 
 public class GamePanel extends JPanel {
     static GamePanel INSTANCE;
-    private static int FRAME_WIDTH = 700;
-    private static int FRAME_HEIGHT = 700;
-    private Dimension SCREEN_SIZE = new Dimension(700, 700);
+    private static int FRAME_WIDTH = 600;
+    private static int FRAME_HEIGHT = 600;
+    private Dimension SCREEN_SIZE = new Dimension(600, 600);
     private MouseListener mouseListener;
     private static double angle;
+
+    FireView fireView = new FireView();
 
 
     public GamePanel() throws IOException {
@@ -32,7 +36,7 @@ public class GamePanel extends JPanel {
         setBackground(new Color(0,0,0));
 
      //   setLocationToCenter(GlassFrame.getINSTANCE());
-        setSize(700,700);
+        setSize(FRAME_WIDTH,FRAME_HEIGHT);
 
         GlassFrame.getINSTANCE().add(this);
 
@@ -76,6 +80,8 @@ public class GamePanel extends JPanel {
         Graphics2D g2D = (Graphics2D) g;
         super.paintComponent(g2D);
 
+        fireView.paint(g2D);
+
         Game.getNecropickView().paint(g2D);
 
         Game.getArchmireView().paint(g2D);
@@ -84,6 +90,8 @@ public class GamePanel extends JPanel {
 
         EpsilonView epsilonView = new EpsilonView(GlassFrame.getINSTANCE());
             epsilonView.paint(g2D);
+
+
 
 
 

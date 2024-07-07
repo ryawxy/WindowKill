@@ -68,7 +68,13 @@ public class GameObjects extends JLabel {
     public void setHeight(int height) {
         this.height = height;
     }
-    public void decreaseHP(int decrement){}
+    public void decreaseHP(int decrement){
+        setHP(getHP() - decrement);
+        if (getHP() <= 0) {
+            setDead(true);
+            setShowCollectibles(true);
+        }
+    }
 
     public double getxVelocity() {
         return xVelocity;
@@ -169,5 +175,9 @@ public class GameObjects extends JLabel {
 
     public void setDead(boolean dead) {
         this.dead = dead;
+    }
+
+    public void setHP(int HP) {
+        this.HP = HP;
     }
 }

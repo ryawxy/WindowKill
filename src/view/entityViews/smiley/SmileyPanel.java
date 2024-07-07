@@ -1,4 +1,4 @@
-package view.entityViews.wyrm;
+package view.entityViews.smiley;
 
 import Controller.MouseListener;
 import view.entityViews.ShotGunView;
@@ -7,21 +7,20 @@ import view.entityViews.EpsilonView;
 import javax.swing.*;
 import java.awt.*;
 
-public class WyrmPanel extends JPanel {
+public class SmileyPanel extends JPanel {
 
     private Rectangle bound;
     private JFrame itsFrame;
-    WyrmView wyrmView;
-    EpsilonView epsilonView;
-    private double rotationAngle;
+    private SmileyView smileyView;
+   private EpsilonView epsilonView;
+   private ShotGunView shotGunView;
 
-    public WyrmPanel(int x, int y){
+    public SmileyPanel(int x, int y){
 
         this.setSize(x,y);
         this.setBackground(Color.BLACK);
         MouseListener mouseListener = new MouseListener(this);
         addMouseListener(mouseListener);
-
     }
 
     @Override
@@ -29,16 +28,17 @@ public class WyrmPanel extends JPanel {
         super.paintComponent(g);
 
         Graphics2D g2D = (Graphics2D) g;
-        setRotationAngle(getRotationAngle()+0.02);
-        WyrmView wyrmView1 = new WyrmView(((WyrmFrame)itsFrame).getWyrm(),rotationAngle);
 
-        wyrmView1.paint(g2D);
+        smileyView = new SmileyView(((SmileyFrame)itsFrame).getSmiley());
+        smileyView.paint(g2D);
 
         epsilonView = new EpsilonView(itsFrame);
         epsilonView.paint(g2D);
 
-        ShotGunView shotGunView = new ShotGunView(itsFrame);
+        shotGunView = new ShotGunView(itsFrame);
         shotGunView.paint(g2D);
+
+
     }
 
     public Rectangle getBound() {
@@ -55,21 +55,5 @@ public class WyrmPanel extends JPanel {
 
     public void setItsFrame(JFrame itsFrame) {
         this.itsFrame = itsFrame;
-    }
-
-    public WyrmView getWyrmView() {
-        return wyrmView;
-    }
-
-    public void setWyrmView(WyrmView wyrmView) {
-        this.wyrmView = wyrmView;
-    }
-
-    public double getRotationAngle() {
-        return rotationAngle;
-    }
-
-    public void setRotationAngle(double rotationAngle) {
-        this.rotationAngle = rotationAngle;
     }
 }

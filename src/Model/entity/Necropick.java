@@ -83,19 +83,7 @@ public class Necropick extends GameObjects implements Movable {
     }
 
     public void decreaseHP(int decrement){
-
-        setHP(getHP()-decrement);
-        if(getHP()<=0){
-
-        //    Game.getSoundPlayer().playSoundEffect("src/Sound/death.wav");
-            setDead(true);
-            setShowCollectibles(true);
-
-        //    }
-
-        }else{
-          //  Game.getSoundPlayer().playSoundEffect("src/Sound/hurt.wav");
-        }
+        super.decreaseHP(decrement);
     }
 
     public int getHP() {

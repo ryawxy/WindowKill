@@ -9,6 +9,7 @@ import view.GlassFrame;
 import view.entityViews.barricados.BarricadosFrame;
 
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -36,6 +37,7 @@ public class FrameSize {
      }
 
         ArrayList<Direction> overlapSides = FrameIntersection.overlapSides(GlassFrame.getINSTANCE());
+
 
         if(GlassFrame.getINSTANCE().getWidth()>=minSize && GlassFrame.getINSTANCE().getHeight()>=minSize && gamePanel.getWidth()>=minSize
         && gamePanel.getHeight()>=minSize){
@@ -89,11 +91,14 @@ public class FrameSize {
             if (direction.equals(Direction.RIGHT)) {
 
                 boolean valid = true;
-                for(BarricadosFrame barricadosFrame : Game.getBarricadosFrames()) {
-                    if (barricadosFrame.getBarricados().getType().equals(BarricadosType.T2)) {
-                        if (barricadosFrame.getX() >= GlassFrame.getINSTANCE().getX() + GlassFrame.getINSTANCE().getWidth()) {
-                            if (GlassFrame.getINSTANCE().getX() + GlassFrame.getINSTANCE().getWidth() + (Constants.expandAmount() / 2) > barricadosFrame.getX()) {
+                for(JFrame frame : Game.getFrames()) {
+                    if (((FrameType)frame).solid()) {
+
+                        if (frame.getX() >= GlassFrame.getINSTANCE().getX() + GlassFrame.getINSTANCE().getWidth()) {
+                            if (GlassFrame.getINSTANCE().getX() + GlassFrame.getINSTANCE().getWidth() + (Constants.expandAmount() / 2) > frame.getX()) {
+
                                 valid = false;
+
                             }
                         }
                     }
@@ -111,12 +116,12 @@ public class FrameSize {
             if (direction.equals(Direction.LEFT)) {
 
                 boolean valid = true;
-                for (BarricadosFrame barricadosFrame : Game.getBarricadosFrames()) {
-                    if (barricadosFrame.getBarricados().getType().equals(BarricadosType.T2)) {
+                for (JFrame frame : Game.getFrames()) {
+                    if (((FrameType)frame).solid()) {
 
-                        if (barricadosFrame.getX() + barricadosFrame.getWidth() <= GlassFrame.getINSTANCE().getX()) {
+                        if (frame.getX() + frame.getWidth() <= GlassFrame.getINSTANCE().getX()) {
 
-                            if (GlassFrame.getINSTANCE().getX() - (Constants.expandAmount() / 2) <= barricadosFrame.getX() + barricadosFrame.getWidth()) {
+                            if (GlassFrame.getINSTANCE().getX() - (Constants.expandAmount() / 2) <= frame.getX() + frame.getWidth()) {
                                 valid = false;
                             }
                         }
@@ -136,11 +141,11 @@ public class FrameSize {
 
 
                 boolean valid = true;
-                for (BarricadosFrame barricadosFrame : Game.getBarricadosFrames()) {
+                for (JFrame frame : Game.getFrames()) {
 
-                    if (barricadosFrame.getBarricados().getType().equals(BarricadosType.T2)) {
-                        if (barricadosFrame.getY() + barricadosFrame.getHeight() <= GlassFrame.getINSTANCE().getY()) {
-                            if (GlassFrame.getINSTANCE().getY() - (Constants.expandAmount() / 2) >= barricadosFrame.getY() + barricadosFrame.getHeight()) {
+                    if (((FrameType)frame).solid()) {
+                        if (frame.getY() + frame.getHeight() <= GlassFrame.getINSTANCE().getY()) {
+                            if (GlassFrame.getINSTANCE().getY() - (Constants.expandAmount() / 2) >= frame.getY() + frame.getHeight()) {
                                 valid = false;
                             }
                         }
@@ -156,10 +161,10 @@ public class FrameSize {
             if (direction.equals(Direction.DOWN)) {
 
                 boolean valid = true;
-                for (BarricadosFrame barricadosFrame : Game.getBarricadosFrames()) {
-                    if (barricadosFrame.getBarricados().getType().equals(BarricadosType.T2)) {
-                        if(barricadosFrame.getY()<=GlassFrame.getINSTANCE().getY()+GlassFrame.getINSTANCE().getHeight()) {
-                            if (GlassFrame.getINSTANCE().getY() + GlassFrame.getINSTANCE().getHeight() + (Constants.expandAmount() / 2) <= barricadosFrame.getY()) {
+                for (JFrame frame : Game.getFrames()) {
+                    if (((FrameType)frame).solid()) {
+                        if(frame.getY()<=GlassFrame.getINSTANCE().getY()+GlassFrame.getINSTANCE().getHeight()) {
+                            if (GlassFrame.getINSTANCE().getY() + GlassFrame.getINSTANCE().getHeight() + (Constants.expandAmount() / 2) <= frame.getY()) {
                                 valid = false;
                             }
                         }

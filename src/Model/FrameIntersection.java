@@ -87,18 +87,24 @@ public class FrameIntersection {
     public static ArrayList<Direction> overlapSides(JFrame frame){
 
         ArrayList<Direction> sides = new ArrayList<>();
-
+        Rectangle frameBounds = new Rectangle(frame.getX(),frame.getY(),frame.getWidth(),frame.getHeight());
         for(JFrame frame2 : Game.getFrames()){
+            Rectangle frame2Bounds = new Rectangle(frame2.getX(),frame2.getY(),frame2.getWidth(),frame2.getHeight());
 
-            if(frame2.getX()+frame2.getWidth()>=frame.getX() && frame2.getX()<frame.getX())  sides.add(Direction.LEFT);
-            if(frame2.getX()<=frame.getX()+frame.getWidth() && frame2.getX()+frame2.getWidth()>frame.getX()+frame.getWidth()) sides.add(Direction.RIGHT);
-            if(frame2.getY()+frame2.getHeight()>=frame.getY() && frame2.getY()<frame.getY()) sides.add(Direction.UP);
-            if(frame2.getY()<=frame.getY()+frame.getHeight() && frame2.getY()+frame2.getHeight()>frame.getY()+frame.getHeight()) sides.add(Direction.DOWN);
+            if(frame2Bounds.intersects(frameBounds)) {
 
+                if (frame2.getX() + frame2.getWidth() >= frame.getX() && frame2.getX() < frame.getX())
+                    sides.add(Direction.LEFT);
+                if (frame2.getX() <= frame.getX() + frame.getWidth() && frame2.getX() + frame2.getWidth() > frame.getX() + frame.getWidth())
+                    sides.add(Direction.RIGHT);
+                if (frame2.getY() + frame2.getHeight() >= frame.getY() && frame2.getY() < frame.getY())
+                    sides.add(Direction.UP);
+                if (frame2.getY() <= frame.getY() + frame.getHeight() && frame2.getY() + frame2.getHeight() > frame.getY() + frame.getHeight())
+                    sides.add(Direction.DOWN);
+
+            }
         }
         return sides;
+            }
     }
 
-
-
-}

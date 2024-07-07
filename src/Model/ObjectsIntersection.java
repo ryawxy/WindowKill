@@ -5,10 +5,11 @@ import Controller.Game;
 import Model.entity.*;
 import Model.entity.blackOrb.BlackOrb;
 import Model.entity.blackOrb.Laser;
-import Model.enums.Direction;
-import Model.enums.EnemyType;
-import Model.enums.Side;
-import Model.enums.Size;
+import Model.entity.smiley.Fire;
+import Model.entity.smiley.Smiley;
+import Model.entity.smiley.SmileyPointFinger;
+import Model.enums.*;
+import view.GlassFrame;
 import view.entityViews.blackOrb.BlackOrbFrame;
 import view.GamePanel;
 import Model.entity.Epsilon;
@@ -37,6 +38,8 @@ public class ObjectsIntersection {
     //Drown
     private static long lastTime5;
     //laser
+    private static long lastTime6;
+    //smiley-vomit
 
     public ObjectsIntersection(GamePanel gamePanel) throws IOException {
         this.gamePanel = gamePanel;
@@ -80,7 +83,7 @@ public class ObjectsIntersection {
 
             //enemy shots epsilon
             for(GameObjects enemy : Game.getEnemies()){
-               
+
                 for(ShotGun shotGun : enemy.getShots()){
 
                     Rectangle epsilon1 = new Rectangle(epsilon.getLocalX()+epsilon.getLocalFrame().getX(),epsilon.getLocalY()+epsilon.getLocalFrame().getY(),epsilon.getRadius(),epsilon.getRadius());
@@ -89,6 +92,7 @@ public class ObjectsIntersection {
                         if(epsilon1.intersects(shot)){
                             if(enemy instanceof Omenoct) Game.getEpsilon().decreaseHP(4);
                             if(enemy instanceof Wyrm) Game.getEpsilon().decreaseHP(8);
+                            if (enemy instanceof SmileyPointFinger) Game.getEpsilon().decreaseHP(10);
                             else if(enemy instanceof Necropick) Game.getEpsilon().decreaseHP(5);
                             shotGun.setVisible(false);
                             IntersectionPoint point = new IntersectionPoint(new Point2D.Double(epsilon.getX(), epsilon.getY()), 10, false, false, epsilon, enemy);
@@ -157,8 +161,6 @@ public class ObjectsIntersection {
             for(ShotGun shotGun : Game.getShots()){
                 if(shotGun.isVisible()){
 
-//                    if(wyrmFrame.equals(shotGun.getLocalFrame())){
-               //     if(shotGun.getLocalFrame() instanceof WyrmFrame) System.out.println("**********");
                     Rectangle shot = new Rectangle(shotGun.getLocalX()+shotGun.getLocalFrame().getX(), shotGun.getLocalY()+shotGun.getLocalFrame().getY(),
                             Constants.getShotGunWidth(), Constants.getShotGunHeight());
 
@@ -167,10 +169,8 @@ public class ObjectsIntersection {
 
                         shotGun.setVisible(false);
                         wyrmFrame.getWyrm().decreaseHP(4);
-//                        System.out.println(wyrmFrame.getWyrm().getHP());
                     }
 
-//                }
                     }
             }
 
@@ -466,6 +466,24 @@ public void vertexIntersectsNecropick(){
                     }
                 }
                 }
+        for(Smiley smiley : Game.getSmilies()){
+            for(Fire fire : smiley.getAoeAttacks()){
+                if(Game.getEpsilon().getLocalFrame().equals(GlassFrame.getINSTANCE())){
+                    Epsilon epsilon = Game.getEpsilon();
+                  Point2D epsilonCenter = new Point2D.Double(epsilon.getLocalX()+ (double) epsilon.getRadius() /2, epsilon.getLocalY()+ (double) epsilon.getRadius() /2);
+                    Point2D fireCenter = new Point2D.Double(fire.getX() + (double) fire.getWidth() /2,
+                            fire.getY() + (double) fire.getHeight()/2);
+                    long currentTime = System.currentTimeMillis();
+                    if (epsilonCenter.distance(fireCenter) <= Math.abs(fire.getWidth() - (double) Game.getEpsilon().getRadius() / 2) ||
+                            epsilonCenter.distance(fireCenter) <= Math.abs(fire.getHeight() - (double) Game.getEpsilon().getRadius() / 2)) {
+                        if((currentTime-lastTime6)/1000 >= 1){
+                            lastTime6 = currentTime;
+                            epsilon.decreaseHP(10);
+                        }
+                    }
+                }
+            }
+        }
             }
             public void epsilonIntersectsEnemy() {
                 for (Trigorath trigorath : Game.getTrigoraths()) {
@@ -592,6 +610,41 @@ public void vertexIntersectsNecropick(){
                                     lastTime5 = currentTime;
                                     epsilon.setHP(epsilon.getHP()-12);
                                 }
+                            }
+                        }
+                    }
+                }
+                if(BossAttack.getBossAttacks().contains(Attack.SQUEEZE)) {
+                    for (Smiley smiley : Game.getSmilies()) {
+                        for (ShotGun shotGun : Game.getShots()) {
+                            Rectangle shot = new Rectangle(shotGun.getLocalX() + shotGun.getLocalFrame().getX(),
+                                    shotGun.getY() + shotGun.getLocalFrame().getY(), shotGun.getWidth(), shotGun.getHeight());
+
+                            Rectangle smiley1 = new Rectangle(smiley.getLocalX() + smiley.getLocalFrame().getX(),
+                                    smiley.getLocalY() + smiley.getLocalFrame().getY(), smiley.getWidth(), smiley.getHeight());
+
+                            if (shot.intersects(smiley1)) {
+                                smiley.decreaseHP(10);
+                            }
+                        }
+                    }
+                }
+
+                if(BossAttack.getBossAttacks().contains(Attack.PROJECTILE)) {
+                    for (SmileyPointFinger smileyPointFinger : Game.getSmileyPointFingers()) {
+                        for (ShotGun shotGun : Game.getShots()) {
+
+                            Rectangle shot = new Rectangle(shotGun.getLocalX() + shotGun.getLocalFrame().getX(),
+                                    shotGun.getY() + shotGun.getLocalFrame().getY(), shotGun.getWidth(), shotGun.getHeight());
+
+                            Rectangle smiley1 = new Rectangle(smileyPointFinger.getLocalX() + smileyPointFinger.getLocalFrame().getX(),
+                                    smileyPointFinger.getLocalY() + smileyPointFinger.getLocalFrame().getY(),
+                                    Constants.smileyPointerWidth(), Constants.smileyPointerHeight());
+
+                            if (shot.intersects(smiley1)) {
+                                smileyPointFinger.decreaseHP(10);
+
+
                             }
                         }
                     }

@@ -43,7 +43,6 @@ public class Wyrm extends GameObjects implements Movable {
     @Override
     public void move() {
 
-
         xVelocity = 0;
         yVelocity = 0;
         Epsilon epsilon = Game.getEpsilon();
@@ -126,12 +125,7 @@ public class Wyrm extends GameObjects implements Movable {
 
     @Override
     public void decreaseHP(int decrement) {
-
-        setHP(getHP()-decrement);
-        if(getHP()<=0){
-            setDead(true);
-            setShowCollectibles(true);
-        }
+        super.decreaseHP(decrement);
     }
     public void initializeCollectibles(){
 

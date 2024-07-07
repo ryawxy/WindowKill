@@ -2,14 +2,16 @@ package Model;
 
 import Controller.*;
 import Model.entity.*;
+import Model.entity.smiley.SmileyPointFinger;
 import Model.enums.Direction;
+import Model.enums.SmileyHandSide;
 import view.*;
-
 import view.entityViews.barricados.BarricadosFrame;
 import view.entityViews.blackOrb.BlackOrbFrame;
 import myproject.MyProject;
+import view.entityViews.smiley.SmileyFrame;
+import view.entityViews.smiley.SmileyPointerFrame;
 import view.entityViews.wyrm.WyrmFrame;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,12 +28,6 @@ public class GameLoop {
     private Direction intersectionSide;
     private int countTime;
     // amount of time that has passed since the game has started
-    private int index= Game.getShots().size()-3;
-    //balls shooting one by on in empower mode
-    private int time=3;
-    //amount of time since shooting the next fire
-    private int empowerTime;
-    //amount of time that has passed since empower item is activated
     private int banishTime;
     //amount of time the has passed since banish item is activated
     private Timer elapsedTimer;
@@ -59,9 +55,6 @@ public class GameLoop {
 
     public GameLoop(Game game) throws IOException {
         this.game = game;
-    //    start();
-   //     elapsedTime();
-
     }
     public void elapsedTime(){
         elapsedTimer = new Timer(1000, new ActionListener() {
@@ -116,10 +109,14 @@ public class GameLoop {
                         //    BlackOrbFrame blackOrbFrame = new BlackOrbFrame(200,200);
 //                            BlackOrbArray.createBlackOrbArray(200,150);
 //                            BlackOrbArray.createInvisibleFrame();
-                          WyrmFrame wyrmFrame =   new WyrmFrame(310,300);
-                            Game.getWyrmFrames().add(wyrmFrame);
-                            Game.getFrames().add(wyrmFrame);
-                            new KeyListener((JPanel) wyrmFrame.getContentPane());
+//                          WyrmFrame wyrmFrame =   new WyrmFrame(310,300);
+//                            Game.getWyrmFrames().add(wyrmFrame);
+//                            Game.getFrames().add(wyrmFrame);
+
+                            new SmileyPointerFrame(200,130, SmileyHandSide.LEFT);
+                            new SmileyPointerFrame(1200,130, SmileyHandSide.RIGHT);
+                            new SmileyFrame(0,100);
+
 //
 //                            for(Barricados barricados : wave.wave1EasyBarricados){
 //                            BarricadosFrame barricadosFrame = new BarricadosFrame(300,300, BarricadosType.T2);
@@ -331,9 +328,6 @@ public class GameLoop {
 
 
                         if(purchase == 0){
-
-                         //   GlassFrame.getINSTANCE().closeFrame();
-
                         new StarterMenu();
                             Game.getSoundPlayer().stopBackgroundMusic();
 
@@ -492,7 +486,7 @@ public class GameLoop {
                         if(shotGun.isVisible()) intersectionSide = objectsIntersection.shotIntersectsFrame(shotGun);
                         if (intersectionSide != null) {
 
-                            if (shotGun.getExpansion() < 15) {
+                            if (shotGun.getExpansion() < 5) {
                                 frameSize.expand(intersectionSide);
                                 shotGun.setExpansion(shotGun.getExpansion() + 1);
 
@@ -605,6 +599,19 @@ public class GameLoop {
                         }
                     }
 
+                    for(SmileyPointFinger smileyPointFinger : Game.getSmileyPointFingers()) {
+                        for (ShotGun shotGun : smileyPointFinger.getShots()) {
+                            for (JFrame frame : Game.getFrames()) {
+                                //     if (!frame.equals(Game.getEpsilon().getLocalFrame())) {
+                                frameIntersection.changeLocalFrame(frame, shotGun);
+                            }
+                            //     }
+                        }
+                    }
+
+                 //BossAttack.squeeze();
+                 //   BossAttack.Projectile();
+                    BossAttack.vomit();
 
 
 

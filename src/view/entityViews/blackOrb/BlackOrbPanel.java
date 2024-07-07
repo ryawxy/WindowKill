@@ -1,7 +1,7 @@
 package view.entityViews.blackOrb;
 
 import Controller.MouseListener;
-import view.ShotGunView;
+import view.entityViews.ShotGunView;
 import view.entityViews.EpsilonView;
 import view.entityViews.VertexView;
 

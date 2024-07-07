@@ -3,6 +3,8 @@ package Controller;
 
 import Model.*;
 import Model.entity.*;
+import Model.entity.smiley.Smiley;
+import Model.entity.smiley.SmileyPointFinger;
 import Model.enums.Ability;
 import sound.SoundPlayer;
 import view.*;
@@ -10,8 +12,9 @@ import view.entityViews.*;
 import view.entityViews.barricados.BarricadosFrame;
 import view.entityViews.blackOrb.BlackOrbFrame;
 import view.entityViews.blackOrb.InvisibleFrame;
+import view.entityViews.smiley.SmileyFrame;
+import view.entityViews.smiley.SmileyPointerFrame;
 import view.entityViews.wyrm.WyrmFrame;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
@@ -30,8 +33,6 @@ public class Game {
     private static ArrayList<Omenoct> omenocts;
     private static ArrayList<Archmire> archmires;
     private static ArrayList<Barricados> barricados;
-    private static view.entityViews.EpsilonView epsilonView;
-    private static view.ShotGunView shotGunView;
     private static view.entityViews.TrigorathView trigorathView;
     private static view.entityViews.SquarantineView squarantineView;
     private static view.entityViews.VertexView vertexView;
@@ -40,7 +41,6 @@ public class Game {
     private static view.entityViews.NecropickView necropickView;
     private static view.entityViews.OmenoctView omenoctView;
     private static view.entityViews.ArchmireView archmireView;
-
     protected static GamePanel gamePanel;
     protected KeyListener keyListener;
     protected MouseListener mouseListener;
@@ -49,12 +49,17 @@ public class Game {
     private static ArrayList<Ability> currentAbilities;
     private  static ArrayList<Cerberus> cerberuses;
     private static ArrayList<GameObjects> enemies;
-    private static ArrayList<view.entityViews.barricados.BarricadosFrame> barricadosFrames = new ArrayList<>();
-    private static ArrayList<view.entityViews.blackOrb.BlackOrbFrame> blackOrbFrames = new ArrayList<>();
+    private static final ArrayList<view.entityViews.barricados.BarricadosFrame> barricadosFrames = new ArrayList<>();
+    private static final ArrayList<view.entityViews.blackOrb.BlackOrbFrame> blackOrbFrames = new ArrayList<>();
     private static ArrayList<JFrame> frames = new ArrayList<>();
-    private static ArrayList<InvisibleFrame> invisibleFrames = new ArrayList<>();
-    private static ArrayList<Model.entity.blackOrb.BlackOrb> blackOrbs = new ArrayList<>();
-    private static ArrayList<WyrmFrame> wyrmFrames = new ArrayList<>();
+    private static final ArrayList<InvisibleFrame> invisibleFrames = new ArrayList<>();
+    private static final ArrayList<Model.entity.blackOrb.BlackOrb> blackOrbs = new ArrayList<>();
+    private static final ArrayList<WyrmFrame> wyrmFrames = new ArrayList<>();
+    private static final ArrayList<SmileyPointFinger> smileyPointFingers = new ArrayList<>();
+    private static final ArrayList<Smiley> smilies = new ArrayList<>();
+    private static final ArrayList<SmileyFrame> smileyFrames = new ArrayList<>();
+    private static final ArrayList<SmileyPointerFrame> smileyPointerFrames = new ArrayList<>();
+
     public Game() throws IOException, AWTException {
 
         frames.add(view.GlassFrame.getINSTANCE());
@@ -154,14 +159,6 @@ public class Game {
         return soundPlayer;
     }
 
-    public static EpsilonView getEpsilonView() {
-        return epsilonView;
-    }
-
-    public static ShotGunView getShotGunView() {
-        return shotGunView;
-    }
-
     public static TrigorathView getTrigorathView() {
         return trigorathView;
     }
@@ -245,4 +242,24 @@ public class Game {
     public static ArrayList<WyrmFrame> getWyrmFrames() {
         return wyrmFrames;
     }
+
+    public static ArrayList<Squarantine> getSquarantines() {
+        return squarantines;
+    }
+
+    public static ArrayList<SmileyPointFinger> getSmileyPointFingers() {
+        return smileyPointFingers;
+    }
+
+    public static ArrayList<Smiley> getSmilies() {
+        return smilies;
+    }
+
+    public static ArrayList<SmileyFrame> getSmileyFrames() {
+        return smileyFrames;
+    }
+    public static ArrayList<SmileyPointerFrame> getSmileyPointerFrames() {
+        return smileyPointerFrames;
+    }
+
 }

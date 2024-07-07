@@ -1,5 +1,6 @@
 package view.entityViews.barricados;
 
+import Controller.Game;
 import Model.entity.Barricados;
 import Model.FrameType;
 import Model.enums.BarricadosType;
@@ -31,6 +32,7 @@ public class BarricadosFrame extends JFrame implements FrameType {
         barricados.setItsFrame(this);
         bounds = new Rectangle(getX(),getY(),getWidth(),getHeight());
         this.barricadosType = barricadosType;
+        Game.getFrames().add(this);
 
     }
 
