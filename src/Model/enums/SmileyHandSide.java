@@ -1,5 +1,5 @@
 package Model.enums;
 
 public enum SmileyHandSide {
-    LEFT,RIGHT
+    LEFT,RIGHT,UP,DOWN
 }

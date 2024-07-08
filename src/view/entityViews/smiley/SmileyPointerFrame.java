@@ -26,7 +26,7 @@ public class SmileyPointerFrame extends JFrame implements FrameType {
         this.setTitle("Smiley frame");
         SmileyPointerPanel smileyPointerPanel = new SmileyPointerPanel(150,200);
         this.setContentPane(smileyPointerPanel);
-        smileyPointerPanel.setBound(new Rectangle(x,y,200,200));
+        smileyPointerPanel.setBound(new Rectangle(x,y,150,200));
         smileyPointerPanel.setItsFrame(this);
         this.setVisible(true);
         smileyPointFinger = new SmileyPointFinger(30,20);

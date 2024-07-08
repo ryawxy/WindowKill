@@ -4,50 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="resolved conflicts in package naming">
-      <change afterPath="$PROJECT_DIR$/src/Model/BossAttack.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/entity/smiley/Fire.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/entity/smiley/Smiley.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/entity/smiley/SmileyPointFinger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/entity/smiley/SmileyPunch.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/enums/Attack.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/enums/SmileyHandSide.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/entityViews/smiley/FireView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPointerFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPointerPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPointerView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPunchFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPunchPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPunchView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/FrameIntersection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/FrameIntersection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/FrameSize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/FrameSize.java" afterDir="false" />
+    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="squeeze, projectile and vomit">
       <change beforePath="$PROJECT_DIR$/src/Model/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GameObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameObjects.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/ObjectsIntersection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ObjectsIntersection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/entity/Archmire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/entity/Archmire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/entity/Necropick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/entity/Necropick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/entity/Wyrm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/entity/Wyrm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/entity/blackOrb/BlackOrb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/entity/blackOrb/BlackOrb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/archmire.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/finger.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/omenoct.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/omenoct.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/smiley.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/smiley.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/GlassFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/GlassFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/ShotGunView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/ShotGunView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/entityViews/barricados/BarricadosFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/barricados/BarricadosFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/entityViews/blackOrb/BlackOrbPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/blackOrb/BlackOrbPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/entityViews/wyrm/WyrmFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/wyrm/WyrmFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/entityViews/wyrm/WyrmPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/wyrm/WyrmPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -404,7 +362,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720262327033</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="squeeze, projectile and vomit">
+      <option name="closed" value="true" />
+      <created>1720368424596</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1720368424596</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -419,7 +385,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="resolved a problem in displaying buttons on starter menu" />
     <MESSAGE value="collision for Squarantine" />
     <MESSAGE value="epsilon/collectible intersection got more accurate" />
     <MESSAGE value="fixed bug in unlocking abilities" />
@@ -444,6 +409,7 @@
     <MESSAGE value="added collectibles to BlackOrb" />
     <MESSAGE value="added laser collision for epsilon" />
     <MESSAGE value="resolved conflicts in package naming" />
-    <option name="LAST_COMMIT_MESSAGE" value="resolved conflicts in package naming" />
+    <MESSAGE value="squeeze, projectile and vomit" />
+    <option name="LAST_COMMIT_MESSAGE" value="squeeze, projectile and vomit" />
   </component>
 </project>

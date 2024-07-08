@@ -174,6 +174,7 @@ public class SmileyPointFinger extends GameObjects implements Movable {
 
     @Override
     public void move() {
+
         xVelocity = 0;
         yVelocity = 0;
         Epsilon epsilon = Game.getEpsilon();
@@ -200,7 +201,8 @@ public class SmileyPointFinger extends GameObjects implements Movable {
         }else{
 
             getCloser = false;
-            angle += 0.015;
+            if(smileyHandSide.equals(SmileyHandSide.LEFT)) angle += 0.015;
+            else angle -= 0.015;
 
             int newX = (int) (epsilon.getLocalX()+epsilon.getLocalFrame().getX()+SAFE_DISTANCE*Math.cos(angle)-getLocalFrame().getWidth());
             int newY = (int) (epsilon.getLocalY()+epsilon.getLocalFrame().getY()+SAFE_DISTANCE*Math.sin(angle)-getLocalFrame().getHeight());

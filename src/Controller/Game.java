@@ -5,6 +5,7 @@ import Model.*;
 import Model.entity.*;
 import Model.entity.smiley.Smiley;
 import Model.entity.smiley.SmileyPointFinger;
+import Model.entity.smiley.SmileyPunch;
 import Model.enums.Ability;
 import sound.SoundPlayer;
 import view.*;
@@ -14,6 +15,7 @@ import view.entityViews.blackOrb.BlackOrbFrame;
 import view.entityViews.blackOrb.InvisibleFrame;
 import view.entityViews.smiley.SmileyFrame;
 import view.entityViews.smiley.SmileyPointerFrame;
+import view.entityViews.smiley.SmileyPunchFrame;
 import view.entityViews.wyrm.WyrmFrame;
 import javax.swing.*;
 import java.awt.*;
@@ -59,6 +61,9 @@ public class Game {
     private static final ArrayList<Smiley> smilies = new ArrayList<>();
     private static final ArrayList<SmileyFrame> smileyFrames = new ArrayList<>();
     private static final ArrayList<SmileyPointerFrame> smileyPointerFrames = new ArrayList<>();
+    private static final ArrayList<SmileyPunchFrame> smileyPunchFrames = new ArrayList<>();
+    private static final ArrayList<SmileyPunch> smileyPunches = new ArrayList<>();
+
 
     public Game() throws IOException, AWTException {
 
@@ -257,6 +262,12 @@ public class Game {
 
     public static ArrayList<SmileyFrame> getSmileyFrames() {
         return smileyFrames;
+    }
+    public static ArrayList<SmileyPunchFrame> getSmileyPunchFrames(){
+        return smileyPunchFrames;
+    }
+    public static ArrayList<SmileyPunch> getSmileyPunches(){
+        return smileyPunches;
     }
     public static ArrayList<SmileyPointerFrame> getSmileyPointerFrames() {
         return smileyPointerFrames;

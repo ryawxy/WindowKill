@@ -610,8 +610,8 @@ public class GameLoop {
                     }
 
                  //BossAttack.squeeze();
-                 //   BossAttack.Projectile();
-                    BossAttack.vomit();
+                    BossAttack.Projectile();
+                //    BossAttack.vomit();
 
 
 
