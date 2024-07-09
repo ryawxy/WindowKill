@@ -1,18 +1,21 @@
 package view.entityViews.blackOrb;
 
 
+import Controller.Game;
 import Model.FrameType;
 import Model.entity.blackOrb.BlackOrb;
+import view.entityViews.OmenoctView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class BlackOrbFrame extends JFrame implements FrameType {
 
     Model.entity.blackOrb.BlackOrb blackOrb;
     Rectangle bounds;
 
-    public BlackOrbFrame(int x,int y){
+    public BlackOrbFrame(int x,int y) throws IOException {
         this.setSize(150,150);
         this.setBackground(Color.BLACK);
         this.setLocation(x,y);
@@ -26,7 +29,10 @@ public class BlackOrbFrame extends JFrame implements FrameType {
         this.setVisible(true);
         blackOrb = new Model.entity.blackOrb.BlackOrb(30,20);
         blackOrb.setLocalFrame(this);
-        blackOrbPanel.setBlackOrbView(new view.entityViews.blackOrb.BlackOrbView(blackOrb));
+        blackOrb.setPreviousLocalFrame(this);
+        blackOrbPanel.setBlackOrbView(new view.entityViews.blackOrb.BlackOrbView(blackOrb,this));
+        blackOrbPanel.setOmenoctView(new OmenoctView(this));
+        Game.getBlackOrbs().add(blackOrb);
         bounds = new Rectangle(getX(),getY(),getWidth(),getHeight());
 
     }

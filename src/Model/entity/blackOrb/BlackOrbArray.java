@@ -22,7 +22,7 @@ public class BlackOrbArray {
    static BufferedImage image;
    private static int time;
 
-    public static void createBlackOrbArray(int x, int y){
+    public static void createBlackOrbArray(int x, int y) throws IOException {
 
 
         int sideLength = 150;

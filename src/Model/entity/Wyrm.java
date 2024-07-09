@@ -302,4 +302,9 @@ public class Wyrm extends GameObjects implements Movable {
     public void setTimer(int timer) {
         this.timer = timer;
     }
+
+    @Override
+    public int getNumCollectibles() {
+        return 2;
+    }
 }

@@ -3,15 +3,10 @@ package Model.entity;
 import Controller.Constants;
 import Controller.Game;
 import Model.*;
-import view.GlassFrame;
-
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Necropick extends GameObjects implements Movable {
-    private  int HP = 10;
-    private boolean dead;
     private boolean showCollectibles;
     private final ArrayList<ShotGun> shots = new ArrayList<>();
     private static int currentTime;
@@ -20,15 +15,15 @@ public class Necropick extends GameObjects implements Movable {
     private final ArrayList<Collectible> collectibles = new ArrayList<>();
     private int timer;
     private long shotPerTime;
-    private int localX = getX();
-    private int localY = getY();
-    private JFrame localFrame = GlassFrame.getINSTANCE();
-    private JFrame previousLocalFrame = GlassFrame.getINSTANCE();
-
-
     public Necropick(int x, int y) {
         super(x, y);
-        initializeCollectibles();
+        setX(x);
+        setY(y);
+        setLocalX(x);
+        setLocalY(y);
+        setLocalFrame(Game.getEpsilon().getLocalFrame());
+        setPreviousLocalFrame(Game.getEpsilon().getLocalFrame());
+        setHP(10);
     }
 
     @Override
@@ -48,12 +43,8 @@ public class Necropick extends GameObjects implements Movable {
             loadGun();
 
         }
-
-
-
     }
     public void visible(){
-      //  long currentTime = System.currentTimeMillis();
 
         currentTime++;
 
@@ -61,22 +52,15 @@ public class Necropick extends GameObjects implements Movable {
             if(currentTime>400) {
 
                 visible = false;
-                //    lastVisibilityChangeTime = currentTime;
-           //     currentTime = 0;
             }
-
         }
         if (!visible && currentTime >= 600) {
 
             visible = true;
             currentTime = 0;
             canMove = true;
-
         }
     }
-
-
-
     @Override
     public boolean isVisible() {
         return visible;
@@ -86,32 +70,10 @@ public class Necropick extends GameObjects implements Movable {
 
         setHP(getHP()-decrement);
         if(getHP()<=0){
-
-        //    Game.getSoundPlayer().playSoundEffect("src/Sound/death.wav");
             setDead(true);
             setShowCollectibles(true);
-
-        //    }
-
-        }else{
-          //  Game.getSoundPlayer().playSoundEffect("src/Sound/hurt.wav");
+            showCollectible();
         }
-    }
-
-    public int getHP() {
-        return HP;
-    }
-
-    public boolean isDead() {
-        return dead;
-    }
-
-    public void setDead(boolean dead) {
-        this.dead = dead;
-    }
-
-    public void setHP(int HP) {
-        this.HP = HP;
     }
     public boolean isShowCollectibles() {
         return showCollectibles;
@@ -120,25 +82,7 @@ public class Necropick extends GameObjects implements Movable {
     public void setShowCollectibles(boolean showCollectibles) {
         this.showCollectibles = showCollectibles;
     }
-    public void initializeCollectibles(){
 
-        Collectible collectible1 = new Collectible(getX(),getY());
-        collectible1.setRadius(10);
-
-        Collectible collectible2 = new Collectible(getX()+ Constants.necropickWidth(),getY()+Constants.necropickWidth());
-        collectible2.setRadius(10);
-
-        Collectible collectible3 = new Collectible(getX(),getY()+Constants.necropickWidth());
-        collectible3.setRadius(10);
-
-        Collectible collectible4 = new Collectible(getX()+Constants.necropickWidth(),getY());
-        collectible4.setRadius(10);
-
-        collectibles.add(collectible1);
-        collectibles.add(collectible2);
-        collectibles.add(collectible3);
-        collectibles.add(collectible4);
-    }
     public void loadGun(){
 
         for(int i=0; i<8; i++){
@@ -197,11 +141,6 @@ public class Necropick extends GameObjects implements Movable {
     }
 
     @Override
-    public boolean isAttackByMelee() {
-        return true;
-    }
-
-    @Override
     public int getWidth() {
         return Constants.necropickWidth();
     }
@@ -210,54 +149,8 @@ public class Necropick extends GameObjects implements Movable {
     public int getHeight() {
         return Constants.necropickWidth();
     }
-
     @Override
-    public int getLocalX() {
-        return localX;
-    }
-
-    @Override
-    public void setLocalX(int localX) {
-        this.localX = localX;
-    }
-
-    @Override
-    public int getLocalY() {
-        return localY;
-    }
-
-    @Override
-    public void setLocalY(int localY) {
-        this.localY = localY;
-    }
-
-    @Override
-    public JFrame getLocalFrame() {
-        return localFrame;
-    }
-
-    @Override
-    public void setLocalFrame(JFrame localFrame) {
-        this.localFrame = localFrame;
-    }
-
-    @Override
-    public JFrame getPreviousLocalFrame() {
-        return previousLocalFrame;
-    }
-
-    @Override
-    public void setPreviousLocalFrame(JFrame previousLocalFrame) {
-        this.previousLocalFrame = previousLocalFrame;
-    }
-
-    @Override
-    public int getGlobalX() {
-        return super.getGlobalX();
-    }
-
-    @Override
-    public int getGlobalY() {
-        return super.getGlobalY();
+    public int getNumCollectibles() {
+        return 4;
     }
 }

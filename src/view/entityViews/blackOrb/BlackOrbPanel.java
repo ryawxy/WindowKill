@@ -3,6 +3,7 @@ package view.entityViews.blackOrb;
 import Controller.MouseListener;
 import view.ShotGunView;
 import view.entityViews.EpsilonView;
+import view.entityViews.OmenoctView;
 import view.entityViews.VertexView;
 
 import javax.swing.*;
@@ -13,6 +14,7 @@ public class BlackOrbPanel extends JPanel {
     private Rectangle bound;
     private JFrame itsFrame;
     view.entityViews.blackOrb.BlackOrbView blackOrbView;
+    OmenoctView omenoctView;
 
 
     public BlackOrbPanel(int x, int y){
@@ -21,6 +23,7 @@ public class BlackOrbPanel extends JPanel {
         this.setBackground(Color.BLACK);
         MouseListener mouseListener = new MouseListener(this);
         addMouseListener(mouseListener);
+
 
     }
 
@@ -43,6 +46,10 @@ public class BlackOrbPanel extends JPanel {
 
         VertexView vertexView = new VertexView(itsFrame);
         vertexView.paint(g2D);
+
+        omenoctView.paint(g2D);
+
+
 
 
     }
@@ -69,6 +76,10 @@ public class BlackOrbPanel extends JPanel {
 
     public void setBlackOrbView(BlackOrbView blackOrbView) {
         this.blackOrbView = blackOrbView;
+    }
+
+    public void setOmenoctView(OmenoctView omenoctView) {
+        this.omenoctView = omenoctView;
     }
 }
 

@@ -231,4 +231,10 @@ public class Archmire extends GameObjects implements Movable {
     public int getGlobalY() {
         return super.getGlobalY();
     }
+
+    @Override
+    public int getNumCollectibles() {
+        if(getsize().equals(Size.MINI))return 2;
+        else return 5;
+    }
 }

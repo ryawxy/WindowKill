@@ -125,7 +125,7 @@ public class Constants {
         return 50;
     }
     public static int omenoctWidth(){
-        return 10;
+        return 67;
     }
     public static int miniArchmireWidth(){
         return 50;
@@ -147,6 +147,12 @@ public class Constants {
     }
     public static int wyrmSize(){
         return 60;
+    }
+    public static double omenoctNormalSpeed(){
+        return 4.0;
+    }
+    public static double omenoctExtraSpeed(){
+        return 2.0;
     }
 
 

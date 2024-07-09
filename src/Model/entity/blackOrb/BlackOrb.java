@@ -11,20 +11,23 @@ public class BlackOrb extends GameObjects {
     private int HP = 30;
     private ArrayList<Collectible> collectibles = new ArrayList<>();
     private JFrame localFrame;
+    private JFrame previousLocalFrame;
     private boolean dead;
     private int localX;
     private int localY;
-    private int globalX;
-    private int globalY;
     private final ArrayList<Laser> lasers = new ArrayList<>();
     private boolean showCollectibles;
     private int timer;
+    private ArrayList<JFrame> localFrames = new ArrayList<>();
     public BlackOrb(int x, int y) {
         super(x, y);
 
+        setX(x);
+        setY(y);
         localX = x;
         localY = y;
         initializeCollectibles();
+        localFrames.add(localFrame);
     }
 
     @Override
@@ -162,6 +165,26 @@ public class BlackOrb extends GameObjects {
     @Override
     public int getWidth() {
         return super.getWidth();
+    }
+
+    @Override
+    public JFrame getPreviousLocalFrame() {
+        return previousLocalFrame;
+    }
+
+    @Override
+    public void setPreviousLocalFrame(JFrame previousLocalFrame) {
+        this.previousLocalFrame = previousLocalFrame;
+    }
+
+    @Override
+    public ArrayList<JFrame> getLocalFrames() {
+        return localFrames;
+    }
+
+    @Override
+    public int getNumCollectibles() {
+        return 5;
     }
 }
 

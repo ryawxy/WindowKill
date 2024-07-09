@@ -4,6 +4,7 @@ import Model.entity.ShotGun;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GameObjects extends JLabel {
     private int x;
@@ -25,6 +26,8 @@ public class GameObjects extends JLabel {
     private int globalY;
     private ArrayList<JFrame> localFrames = new ArrayList<>();
     private boolean dead;
+    private int numCollectibles;
+    private int timer;
 
     public GameObjects(int x, int y){
 
@@ -68,7 +71,18 @@ public class GameObjects extends JLabel {
     public void setHeight(int height) {
         this.height = height;
     }
-    public void decreaseHP(int decrement){}
+    public void decreaseHP(int decrement){
+        if(!isDead()) {
+            setHP(getHP() - decrement);
+
+            if (getHP() <= 0) {
+                setDead(true);
+                setShowCollectibles(true);
+                showCollectible();
+
+            }
+        }
+    }
 
     public double getxVelocity() {
         return xVelocity;
@@ -97,7 +111,6 @@ public class GameObjects extends JLabel {
     public ArrayList<Collectible> getCollectibles() {
         return collectibles;
     }
-    public void invisibleCollectible(){}
 
     public boolean isAttackByMelee() {
         return attackByMelee;
@@ -163,11 +176,47 @@ public class GameObjects extends JLabel {
         return localFrames;
     }
 
+
     public boolean isDead() {
         return dead;
     }
 
     public void setDead(boolean dead) {
         this.dead = dead;
+    }
+
+    public int getNumCollectibles() {
+        return numCollectibles;
+    }
+
+    public void setHP(int HP) {
+        this.HP = HP;
+    }
+
+    public void showCollectible(){
+
+        Random random = new Random();
+        int numCollectibles = getNumCollectibles();
+        int radius = Math.max(getHeight(),getWidth());
+
+        for(int i=0;i<numCollectibles;i++){
+            double angle = 2*Math.PI*random.nextDouble();
+            int distance = random.nextInt(radius);
+
+            int x = (int) (getLocalX() + distance*Math.cos(angle));
+            int y = (int) (getLocalY() + distance*Math.sin(angle));
+
+            Collectible collectible = new Collectible(x,y);
+            collectible.setRadius(10);
+            getCollectibles().add(collectible);
+        }
+    }
+    public void invisibleCollectible(){
+        if (isShowCollectibles()) {
+            timer++;
+            if (timer > 500) {
+                setShowCollectibles(false);
+            }
+        }
     }
 }

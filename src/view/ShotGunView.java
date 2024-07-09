@@ -20,17 +20,6 @@ public class ShotGunView implements Drawable {
     @Override
     public void paint(Graphics2D g) {
 
-//        for (ShotGun shotGun1 : Game.getShots()) {
-//            if (shotGun1.isOnFire()) {
-//                if (shotGun1.isVisible()) {
-//                    g.setColor(Color.WHITE);
-//
-//                    g.fillRect(shotGun1.getX(), shotGun1.getY(),
-//                            shotGun1.getWidth(), shotGun1.getHeight());
-//                }
-//            }
-//        }
-
         for(ShotGun shotGun : Game.getShots()){
             if(shotGun.isVisible()) {
                 int x = shotGun.getLocalX() + shotGun.getLocalFrame().getX();
@@ -67,16 +56,30 @@ public class ShotGunView implements Drawable {
 
             }
         }
+        g.setColor(new Color(255, 151, 215));
         for(Omenoct omenoct : Game.getOmenocts()){
             if(!omenoct.isDead()){
                 if(omenoct.isVisible()){
                     for(ShotGun shotGun : omenoct.getShots()) {
-                        g.setColor(new Color(255, 151, 215));
-                        if (shotGun.isVisible()) {
+                        if(shotGun.isVisible()){
+                        int x = shotGun.getLocalX() + shotGun.getLocalFrame().getX();
+                        int y = shotGun.getLocalY() + shotGun.getLocalFrame().getY();
+                        Rectangle bounds = new Rectangle(frame.getX(), frame.getY()
+                                , frame.getWidth(), frame.getHeight());
+                        if (bounds.contains(x, y) || bounds.contains(x + shotGun.getWidth(), y) ||
+                                bounds.contains(x, y + shotGun.getHeight()) ||
+                                bounds.contains(x + shotGun.getWidth(), y + shotGun.getHeight())) {
+                            if (shotGun.getLocalFrames().size() == 1) {
 
-                            g.fillRect(shotGun.getX(), shotGun.getY(),
-                                    shotGun.getWidth(), shotGun.getHeight());
+                                g.setColor(new Color(255, 151, 215));
+                                g.fillRect(shotGun.getLocalX(), shotGun.getLocalY(), shotGun.getWidth(), shotGun.getHeight());
+                            } else {
+                                g.setColor(new Color(255, 151, 215));
+                                g.fillRect(x - bounds.x, y - bounds.y, shotGun.getWidth(), shotGun.getHeight());
+                            }
                         }
+                        }
+
                     }
                 }
 

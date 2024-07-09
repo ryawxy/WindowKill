@@ -4,64 +4,26 @@ import Controller.Constants;
 import Controller.Game;
 import Model.*;
 import Model.enums.Side;
-import view.GamePanel;
-import view.GlassFrame;
-
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Omenoct extends GameObjects implements Movable {
-    private  int HP = 20;
-    private boolean dead;
-    private boolean showCollectibles;
     private final ArrayList<ShotGun> shots = new ArrayList<>();
-    private boolean visible = true ;
-    private final ArrayList<Collectible> collectibles = new ArrayList<>();
-    private int[] xPoints = {0,0,0,0,0,0};
-    private int[] yPoints = {0,0,0,0,0,0};
-    private double xVelocity;
-    private double yVelocity;
-    private int xPosition;
-    private int yPosition;
+    private boolean visible = true;
     private boolean canMove = true;
-    private int timer;
     private Side side;
-    private long shotPerTime;
-    private int localX = getX();
-    private int localY = getY();
-    private JFrame localFrame = GlassFrame.getINSTANCE();
-    private JFrame previousLocalFrame = GlassFrame.getINSTANCE();
+    private double angle;
 
     public Omenoct(int x, int y) {
         super(x, y);
-        initializeCollectibles();
-    }
-
-    public int getHP() {
-        return HP;
-    }
-
-    public void setHP(int HP) {
-        this.HP = HP;
-    }
-
-    public boolean isDead() {
-        return dead;
-    }
-
-    public void setDead(boolean dead) {
-        this.dead = dead;
-    }
-
-    @Override
-    public boolean isShowCollectibles() {
-        return showCollectibles;
-    }
-
-    @Override
-    public void setShowCollectibles(boolean showCollectibles) {
-        this.showCollectibles = showCollectibles;
+        setX(x);
+        setY(y);
+        setLocalX(x);
+        setLocalY(y);
+        setLocalFrame(Game.getEpsilon().getLocalFrame());
+        setPreviousLocalFrame(Game.getEpsilon().getLocalFrame());
+        getLocalFrames().add(getLocalFrame());
+        setHP(20);
     }
 
     public ArrayList<ShotGun> getShots() {
@@ -79,236 +41,122 @@ public class Omenoct extends GameObjects implements Movable {
     }
 
     @Override
-    public ArrayList<Collectible> getCollectibles() {
-        return collectibles;
-    }
-
-    @Override
     public void move() {
 
+            Epsilon epsilon = Game.getEpsilon();
 
-        double angle3 =  Math.atan2(getY() - yPosition, getX() - xPosition);
+            if(getLocalX()<=0) side = Side.LEFT;
+            if(getLocalX()+getWidth()>=getLocalFrame().getWidth()) side = Side.RIGHT;
+            if(getLocalY() <= 0) side = Side.UP;
+            if(getLocalY()+getHeight()>=getLocalFrame().getHeight()) side = Side.DOWN;
 
-        xVelocity = Math.cos(angle3) * 3;
-        yVelocity = Math.sin(angle3) * 3;
+        if(getLocalX()<=0 || getLocalX()+getWidth()>=getLocalFrame().getWidth()||
+                getLocalY() <= 0 || getLocalY()+getHeight()>=getLocalFrame().getHeight()){
+            if(epsilon.getLocalFrame().equals(getLocalFrame())) {
 
-        for(Integer z : xPoints){
-            if (z <= 10 || z >= GamePanel.getFRAME_WIDTH()-10 ) {
-                xVelocity = 0;
-                yVelocity = 0;
-                if(z <= 10) side = Side.LEFT;
-                else side = Side.RIGHT;
-                break;
+                setxVelocity(0);
+                setyVelocity(0);
             }
+        }else if(getLocalFrame().equals(epsilon.getLocalFrame())){
+
+            setxVelocity(Math.cos(angle)*Constants.omenoctNormalSpeed());
+            setyVelocity(Math.sin(angle)*Constants.omenoctNormalSpeed());
         }
-        for(Integer y : yPoints){
-            if (y <= 10 || y >= GamePanel.getFRAME_HEIGHT()-10) {
-                yVelocity = 0;
-                xVelocity = 0;
-                if(y<=10) side = Side.UP;
-                else side = Side.DOWN;
-                break;
+            setLocalX((int) (getLocalX() + getxVelocity()));
+            setLocalY((int) (getLocalY() + getyVelocity()));
+
+            setX((int) (getX() + getxVelocity()));
+            setY((int) (getY() + getyVelocity()));
+
+        }
+
+        public void changeFrame(){
+        Epsilon epsilon = Game.getEpsilon();
+       if(!getLocalFrame().equals(epsilon.getLocalFrame())){
+
+          ArrayList<Side> overlapSides =  FrameIntersection.twoFrameOverlapSide(getLocalFrame(),epsilon.getLocalFrame());
+            double angle = Math.atan2(epsilon.getLocalFrame().getY()+epsilon.getLocalY()-(getLocalY()+getLocalFrame().getY()),
+                    epsilon.getLocalFrame().getX()+epsilon.getLocalX()-(getLocalX()+getLocalFrame().getX()));
+
+          if(overlapSides.contains(Side.UP) ){
+              setyVelocity(Math.sin(angle)*Constants.omenoctNormalSpeed());
+
+          }if(overlapSides.contains(Side.DOWN)){
+              setyVelocity(Math.sin(angle)*Constants.omenoctNormalSpeed());
+            }if(overlapSides.contains(Side.LEFT)){
+              setxVelocity(Math.cos(angle)*Constants.omenoctNormalSpeed());
+            }if(overlapSides.contains(Side.RIGHT)){
+              setxVelocity(Math.cos(angle)*Constants.omenoctNormalSpeed());
             }
+        }else{
+
+           chooseSide();
+       }
         }
 
 
-        xPoints[0] += (int) getxVelocity();
-        xPoints[1] += (int) getxVelocity();
-        xPoints[2] += (int) getxVelocity();
-        xPoints[3] += (int) getxVelocity();
-        xPoints[4] += (int) getxVelocity();
-        xPoints[5] += (int) getxVelocity();
-
-        yPoints[0] += (int) getyVelocity();
-        yPoints[1] += (int) getyVelocity();
-        yPoints[2] += (int) getyVelocity();
-        yPoints[3] += (int) getyVelocity();
-        yPoints[4] += (int) getyVelocity();
-        yPoints[5] += (int) getyVelocity();
-
-        setX(xPoints[4]);
-        setY(yPoints[4]);
-
-
-//        setX((int) (getX()+xVelocity));
-//        setY((int) (getY()+yVelocity));
-
-    }
     public void chooseSide(){
 
         if(canMove) {
+
             Random random = new Random();
             int x = random.nextInt(4);
 
+            int yPosition;
+            int xPosition;
             if (x == 0) {
-                xPosition = GamePanel.getFRAME_WIDTH()/2;
+                xPosition = getLocalFrame().getWidth()/2 ;
                 yPosition = 0;
+                side = Side.UP;
+
 
             } else if (x == 1) {
-                xPosition = GamePanel.getFRAME_WIDTH();
-                yPosition = GamePanel.getFRAME_HEIGHT()/2;
+                xPosition = getLocalFrame().getWidth()/2;
+                yPosition = getLocalFrame().getHeight();
+                side = Side.DOWN;
+
 
             } else if (x == 2) {
-                xPosition = GamePanel.getFRAME_WIDTH()/2;
-                yPosition = GamePanel.getFRAME_HEIGHT();
+                xPosition = getLocalFrame().getWidth();
+                yPosition = getLocalFrame().getHeight()/2;
+                side = Side.RIGHT;
+
 
             } else {
                 xPosition = 0;
-                yPosition = GamePanel.getFRAME_HEIGHT()/2;
+                yPosition = getLocalFrame().getHeight()/2;
+                side = Side.LEFT;
+
 
             }
             canMove = false;
-        }
+            angle = Math.atan2(getLocalY()  - yPosition, getLocalX()  - xPosition);
 
-    }
-    public void decreaseHP(int decrement){
-        if(!isDead()){
-        setHP(getHP()-decrement);
-        if(getHP()<=0){
-            setDead(true);
-            setShowCollectibles(true);
-
-        }
-        for(int i=0;i<8;i++) {
-            if (i < 6) {
-                getCollectibles().get(i).setX(xPoints[i] + 40 * (i % 2));
-                getCollectibles().get(i).setY(yPoints[i] + 80 * (i % 2));
-            } else {
-                getCollectibles().get(i).setX(xPoints[5] + 80 * (i % 2));
-                getCollectibles().get(i).setY(yPoints[4] + 80 * (i % 2));
-            }
-        }
-
-        }
-
-    }
-    public void initializeCollectibles(){
-
-        Collectible collectible1 = new Collectible(xPoints[0],yPoints[0]);
-        collectible1.setRadius(10);
-
-        Collectible collectible2 = new Collectible(xPoints[1],yPoints[1]);
-        collectible2.setRadius(10);
-
-        Collectible collectible3 = new Collectible(getX()-5,getY()+5);
-        collectible3.setRadius(10);
-
-        Collectible collectible4 = new Collectible(getX(),getY()+8);
-        collectible4.setRadius(10);
-
-        Collectible collectible5 = new Collectible(getX()+5,getY());
-        collectible5.setRadius(10);
-
-        Collectible collectible6 = new Collectible(getX()+8,getY()+5);
-        collectible6.setRadius(10);
-
-        Collectible collectible7 = new Collectible(getX()+3,getY()+3);
-        collectible7.setRadius(10);
-
-        Collectible collectible8 = new Collectible(getX()+7,getY()+7);
-        collectible8.setRadius(10);
-
-
-
-       collectibles.add(collectible1);
-        collectibles.add(collectible2);
-        collectibles.add(collectible3);
-        collectibles.add(collectible4);
-        collectibles.add(collectible5);
-        collectibles.add(collectible6);
-        collectibles.add(collectible7);
-        collectibles.add(collectible8);
-    }
-    public void invisibleCollectible(){
-        if (isShowCollectibles()) {
-            setTimer(getTimer() + 1);
-            if (getTimer() > 500) {
-                setShowCollectibles(false);
-            }
         }
     }
-    public void shoot(){
+    public void shoot() {
 
-        if(xVelocity==0 && yVelocity==0){
-        Epsilon epsilon = Game.getEpsilon();
-        if(isVisible()) {
-
-
+        if (isVisible()) {
             int[] xDirection = new int[]{-1, -1, 0, 1, 1, 1, 0, 1, 1};
             int[] yDirection = new int[]{0, -1, -1, -1, 0, 1, 1, 1, 0};
 
-            shotPerTime++;
-
-            if (shotPerTime >= 80) {
+            if (Math.random()<0.03) {
 
                 Random random = new Random();
                 int x = random.nextInt(9);
-                ShotGun shotGun = new ShotGun(getX(), getY());
+                ShotGun shotGun = new ShotGun(getLocalX() + getWidth() / 2, getLocalY() + getHeight() / 2);
+
                 shotGun.setWidth(Constants.getShotGunWidth());
                 shotGun.setHeight(Constants.getShotGunHeight());
-                shotGun.setxVelocity(xDirection[x]*2);
-                shotGun.setyVelocity(yDirection[x]*2);
+                shotGun.setxVelocity(xDirection[x] * 2);
+                shotGun.setyVelocity(yDirection[x] * 2);
                 shots.add(shotGun);
-                shotPerTime = 0;
-
 
             }
-
-        }
 
         }
         for (ShotGun shotGun : shots) shotGun.move();
     }
-
-    public int[] getxPoints() {
-        return xPoints;
-    }
-
-    public void setxPoints(int[] xPoints) {
-        this.xPoints = xPoints;
-    }
-
-    public int[] getyPoints() {
-        return yPoints;
-    }
-
-    public void setyPoints(int[] yPoints) {
-        this.yPoints = yPoints;
-    }
-
-    @Override
-    public double getxVelocity() {
-        return xVelocity;
-    }
-
-    @Override
-    public void setxVelocity(double xVelocity) {
-        this.xVelocity = xVelocity;
-    }
-
-    @Override
-    public double getyVelocity() {
-        return yVelocity;
-    }
-
-    @Override
-    public void setyVelocity(double yVelocity) {
-        this.yVelocity = yVelocity;
-    }
-
-    public int getTimer() {
-        return timer;
-    }
-
-    public void setTimer(int timer) {
-        this.timer = timer;
-    }
-
-    @Override
-    public boolean isAttackByMelee() {
-        return true;
-    }
-
     public Side getSide() {
         return side;
     }
@@ -324,52 +172,11 @@ public class Omenoct extends GameObjects implements Movable {
     }
 
     @Override
-    public int getLocalX() {
-        return localX;
+    public int getNumCollectibles() {
+        return 8;
     }
 
-    @Override
-    public void setLocalX(int localX) {
-        this.localX = localX;
-    }
-
-    @Override
-    public int getLocalY() {
-        return localY;
-    }
-
-    @Override
-    public void setLocalY(int localY) {
-        this.localY = localY;
-    }
-
-    @Override
-    public JFrame getLocalFrame() {
-        return localFrame;
-    }
-
-    @Override
-    public void setLocalFrame(JFrame localFrame) {
-        this.localFrame = localFrame;
-    }
-
-    @Override
-    public JFrame getPreviousLocalFrame() {
-        return previousLocalFrame;
-    }
-
-    @Override
-    public void setPreviousLocalFrame(JFrame previousLocalFrame) {
-        this.previousLocalFrame = previousLocalFrame;
-    }
-
-    @Override
-    public int getGlobalX() {
-        return super.getGlobalX();
-    }
-
-    @Override
-    public int getGlobalY() {
-        return super.getGlobalY();
+    public void setCanMove(boolean canMove) {
+        this.canMove = canMove;
     }
 }

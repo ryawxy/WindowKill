@@ -3,9 +3,13 @@ package view;
 import Controller.Game;
 import Model.entity.Vertex;
 import Controller.MouseListener;
+import Model.entity.blackOrb.BlackOrb;
 import view.entityViews.EpsilonView;
+import view.entityViews.OmenoctView;
 import view.entityViews.TrigorathView;
 import view.entityViews.VertexView;
+import view.entityViews.blackOrb.BlackOrbFrame;
+import view.entityViews.blackOrb.BlackOrbView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -83,8 +87,7 @@ public class GamePanel extends JPanel {
         //paint epsilon
 
         EpsilonView epsilonView = new EpsilonView(GlassFrame.getINSTANCE());
-            epsilonView.paint(g2D);
-
+        epsilonView.paint(g2D);
 
 
         //paint epsilon's shotGun
@@ -92,14 +95,14 @@ public class GamePanel extends JPanel {
         shotGunView.paint(g2D);
 
         //paint trigorath
-   //     Game.getTrigorathView().paint(g2D);
+        //     Game.getTrigorathView().paint(g2D);
         TrigorathView trigorathView = new TrigorathView(GlassFrame.getINSTANCE());
         trigorathView.paint(g2D);
 
         //  paint squarantine
         Game.getSquarantineView().paint(g2D);
         //paint epsilons vertex
-     //   Game.getVertexView().paint(g2D);
+        //   Game.getVertexView().paint(g2D);
         VertexView vertexView = new VertexView(GlassFrame.getINSTANCE());
         vertexView.paint(g2D);
 
@@ -110,10 +113,20 @@ public class GamePanel extends JPanel {
         Game.getCerberusView().paint(g2D);
 
 
+        OmenoctView omenoctView = new OmenoctView(GlassFrame.getINSTANCE());
+        omenoctView.paint(g2D);
 
-        Game.getOmenoctView().paint(g2D);
-
-
+//        for (BlackOrb blackOrb : Game.getBlackOrbs()) {
+//            BlackOrbView blackOrbView = null;
+//            try {
+//                blackOrbView = new BlackOrbView(blackOrb, GlassFrame.getINSTANCE());
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//            blackOrbView.paint(g2D);
+//
+//
+//        }
     }
 
     public static int getFRAME_WIDTH() {

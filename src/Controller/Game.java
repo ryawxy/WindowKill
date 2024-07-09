@@ -87,7 +87,7 @@ public class Game {
         gameInfoView = new view.GameInfoView();
         cerberusView = new CerberusView();
         necropickView = new NecropickView();
-        omenoctView = new OmenoctView();
+    //    omenoctView = new OmenoctView();
         archmireView = new ArchmireView();
 
         currentAbilities = new ArrayList<>();
