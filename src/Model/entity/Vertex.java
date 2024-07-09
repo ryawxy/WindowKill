@@ -38,8 +38,8 @@ public class Vertex extends GameObjects implements Movable {
         Epsilon epsilon = Game.getEpsilon();
 
 
-        xVelocity = epsilon.getxVelocity();
-        yVelocity = epsilon.getyVelocity();
+        xVelocity = epsilon.getXVelocity();
+        yVelocity = epsilon.getYVelocity();
         xVelocity2 = epsilon.getxVelocity2();
         yVelocity2 = epsilon.getyVelocity2();
 

@@ -1,7 +1,6 @@
 package Model;
 
 import Model.entity.ShotGun;
-
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Random;
@@ -16,15 +15,15 @@ public class GameObjects extends JLabel {
     private double xVelocity;
     private double yVelocity;
     private boolean showCollectibles;
-    private ArrayList<Collectible> collectibles = new ArrayList<>();
+    private final ArrayList<Collectible> collectibles = new ArrayList<>();
     private boolean attackByMelee;
-    private ArrayList<ShotGun> shots = new ArrayList<>();
+    private final ArrayList<ShotGun> shots = new ArrayList<>();
     private int HP;
     private JFrame localFrame;
     private JFrame previousLocalFrame;
     private int globalX;
     private int globalY;
-    private ArrayList<JFrame> localFrames = new ArrayList<>();
+    private final ArrayList<JFrame> localFrames = new ArrayList<>();
     private boolean dead;
     private int numCollectibles;
     private int timer;
@@ -84,19 +83,19 @@ public class GameObjects extends JLabel {
         }
     }
 
-    public double getxVelocity() {
+    public double getXVelocity() {
         return xVelocity;
     }
 
-    public void setxVelocity(double xVelocity) {
+    public void setXVelocity(double xVelocity) {
         this.xVelocity = xVelocity;
     }
 
-    public double getyVelocity() {
+    public double getYVelocity() {
         return yVelocity;
     }
 
-    public void setyVelocity(double yVelocity) {
+    public void setYVelocity(double yVelocity) {
         this.yVelocity = yVelocity;
     }
 
@@ -160,16 +159,8 @@ public class GameObjects extends JLabel {
         return getLocalX()+getLocalFrame().getX() ;
     }
 
-    public void setGlobalX(int globalX) {
-        this.globalX = globalX;
-    }
-
     public int getGlobalY() {
         return getLocalY()+getLocalFrame().getY();
-    }
-
-    public void setGlobalY(int globalY) {
-        this.globalY = globalY;
     }
 
     public ArrayList<JFrame> getLocalFrames() {

@@ -60,7 +60,7 @@ public class Game {
         frames.add(view.GlassFrame.getINSTANCE());
        epsilon = new Epsilon(100, 100);
         epsilon.setRadius(Constants.getEpsilonRadius());
-       epsilon.setXP(view.SkillTreeFrame.getCurrentXP());
+    //   epsilon.setXP(view.SkillTreeFrame.getCurrentXP());
 
        shotGun = new ShotGun(Game.epsilon.getxCenter(), Game.epsilon.getyCenter());
         shotGun.setWidth(Constants.getShotGunWidth());

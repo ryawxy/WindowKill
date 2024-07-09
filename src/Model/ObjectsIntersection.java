@@ -301,8 +301,8 @@ public class ObjectsIntersection {
                 && !(enemy1 instanceof Trigorath && enemy2 instanceof Trigorath) && !(enemy1 instanceof Squarantine && enemy2 instanceof Squarantine)){
                 if(!enemy1.equals(enemy2)) {
                     if (enemy1.isVisible() && enemy2.isVisible()) {
-                        Rectangle e1 = new Rectangle(enemy1.getX(), enemy1.getY(), enemy1.getWidth(), enemy1.getHeight());
-                        Rectangle e2 = new Rectangle(enemy2.getX(), enemy2.getY(), enemy2.getWidth(), enemy2.getHeight());
+                        Rectangle e1 = new Rectangle(enemy1.getLocalX()+enemy1.getLocalFrame().getX(), enemy1.getLocalY()+enemy1.getLocalFrame().getY(), enemy1.getWidth(), enemy1.getHeight());
+                        Rectangle e2 = new Rectangle(enemy2.getLocalX()+enemy2.getLocalFrame().getX(), enemy2.getLocalY()+enemy2.getLocalFrame().getY(), enemy2.getWidth(), enemy2.getHeight());
                         if (e1.intersects(e2)) {
                             IntersectionPoint point = new IntersectionPoint(new Point2D.Double(enemy1.getX(), enemy1.getY()), 10, false, false, enemy1, enemy2);
                             intersectionPoints.add(point);
@@ -516,10 +516,11 @@ public void vertexIntersectsNecropick(){
 
                         if (epsilon.getLocalFrame().equals(omenoct.getLocalFrame())) {
                             if (epsilon1.intersects(omenoct2)) {
-                                IntersectionPoint point = new IntersectionPoint(new Point2D.Double(omenoct.getLocalX() + (double) omenoct.getWidth() / 2, omenoct.getLocalY() + (double) omenoct.getHeight() / 2), 20, true, false, omenoct, epsilon);
+                                IntersectionPoint point = new IntersectionPoint(new Point2D.Double(omenoct.getLocalX() + (double) omenoct.getWidth() / 2, omenoct.getLocalY() + (double) omenoct.getHeight() / 2), 15, true, false, omenoct, epsilon);
                                 ObjectsIntersection.getIntersectionPoints().add(point);
                                 boolean melee = point.isMeleeAttack();
                                 epsilon.decreaseHP(EnemyType.Omenoct, melee);
+
 
                             }
                         }

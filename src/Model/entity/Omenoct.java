@@ -8,11 +8,13 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Omenoct extends GameObjects implements Movable {
-    private final ArrayList<ShotGun> shots = new ArrayList<>();
     private boolean visible = true;
-    private boolean canMove = true;
+    private boolean canMove;
     private Side side;
     private double angle;
+    private double stuckXVelocity;
+    private double stuckYVelocity;
+    private boolean canChoose = true;
 
     public Omenoct(int x, int y) {
         super(x, y);
@@ -24,10 +26,6 @@ public class Omenoct extends GameObjects implements Movable {
         setPreviousLocalFrame(Game.getEpsilon().getLocalFrame());
         getLocalFrames().add(getLocalFrame());
         setHP(20);
-    }
-
-    public ArrayList<ShotGun> getShots() {
-        return shots;
     }
 
     @Override
@@ -50,48 +48,68 @@ public class Omenoct extends GameObjects implements Movable {
             if(getLocalY() <= 0) side = Side.UP;
             if(getLocalY()+getHeight()>=getLocalFrame().getHeight()) side = Side.DOWN;
 
+
+        if((epsilon.getLocalFrame().equals(getLocalFrame())|| epsilon.getLocalFrames().contains(labelFor)) && canChoose) {
+            chooseSide();
+            canMove = true;
+            canChoose = false;
+        }
+
+
         if(getLocalX()<=0 || getLocalX()+getWidth()>=getLocalFrame().getWidth()||
                 getLocalY() <= 0 || getLocalY()+getHeight()>=getLocalFrame().getHeight()){
-            if(epsilon.getLocalFrame().equals(getLocalFrame())) {
+            if(epsilon.getLocalFrame().equals(getLocalFrame())|| getLocalFrames().contains(epsilon.getLocalFrame())) {
 
-                setxVelocity(0);
-                setyVelocity(0);
+                setXVelocity(0);
+                setYVelocity(0);
             }
         }else if(getLocalFrame().equals(epsilon.getLocalFrame())){
 
-            setxVelocity(Math.cos(angle)*Constants.omenoctNormalSpeed());
-            setyVelocity(Math.sin(angle)*Constants.omenoctNormalSpeed());
+            setXVelocity(Math.cos(angle)*Constants.omenoctNormalSpeed());
+            setYVelocity(Math.sin(angle)*Constants.omenoctNormalSpeed());
         }
-            setLocalX((int) (getLocalX() + getxVelocity()));
-            setLocalY((int) (getLocalY() + getyVelocity()));
 
-            setX((int) (getX() + getxVelocity()));
-            setY((int) (getY() + getyVelocity()));
+//        if(getXVelocity() == 0 && getYVelocity() == 0){
+//            if(side.equals(Side.DOWN) || side.equals(Side.UP)){
+//                stuckXVelocity = epsilon.getXVelocity()+epsilon.getxVelocity2();
+//            }else{
+//                stuckYVelocity = epsilon.getYVelocity()+epsilon.getyVelocity2();
+//            }
+//        }
+//        if(epsilon.getXVelocity()+epsilon.getxVelocity2()>0 && getLocalX()+getWidth()>=getLocalFrame().getWidth())stuckXVelocity=0;
+//        if(epsilon.getXVelocity()+epsilon.getxVelocity2()<0 && getLocalX()<=0)stuckXVelocity=0;
+//
+//        if(epsilon.getYVelocity()+epsilon.getyVelocity2()>0 && getLocalY()+getHeight()>=getLocalFrame().getHeight())stuckYVelocity=0;
+//        if(epsilon.getYVelocity()+epsilon.getyVelocity2()<0 && getLocalY()<=0)stuckYVelocity=0;
+
+        setLocalX((int) (getLocalX() + getXVelocity()+stuckXVelocity));
+            setLocalY((int) (getLocalY() + getYVelocity()+stuckYVelocity));
+
+            setX((int) (getX() + getXVelocity()+stuckXVelocity));
+            setY((int) (getY() + getYVelocity()+stuckYVelocity));
 
         }
 
         public void changeFrame(){
+
         Epsilon epsilon = Game.getEpsilon();
        if(!getLocalFrame().equals(epsilon.getLocalFrame())){
 
           ArrayList<Side> overlapSides =  FrameIntersection.twoFrameOverlapSide(getLocalFrame(),epsilon.getLocalFrame());
-            double angle = Math.atan2(epsilon.getLocalFrame().getY()+epsilon.getLocalY()-(getLocalY()+getLocalFrame().getY()),
-                    epsilon.getLocalFrame().getX()+epsilon.getLocalX()-(getLocalX()+getLocalFrame().getX()));
-
+            double angle = Math.atan2(epsilon.getLocalFrame().getY()+ (double) epsilon.getLocalFrame().getHeight() /2-(getLocalY()+getLocalFrame().getY()),
+                    epsilon.getLocalFrame().getX()+ (double) epsilon.getLocalFrame().getWidth() /2-(getLocalX()+getLocalFrame().getX()));
+            canChoose = true;
           if(overlapSides.contains(Side.UP) ){
-              setyVelocity(Math.sin(angle)*Constants.omenoctNormalSpeed());
+              setYVelocity(Math.sin(angle)*Constants.omenoctNormalSpeed());
 
           }if(overlapSides.contains(Side.DOWN)){
-              setyVelocity(Math.sin(angle)*Constants.omenoctNormalSpeed());
+              setYVelocity(Math.sin(angle)*Constants.omenoctNormalSpeed());
             }if(overlapSides.contains(Side.LEFT)){
-              setxVelocity(Math.cos(angle)*Constants.omenoctNormalSpeed());
+              setXVelocity(Math.cos(angle)*Constants.omenoctNormalSpeed());
             }if(overlapSides.contains(Side.RIGHT)){
-              setxVelocity(Math.cos(angle)*Constants.omenoctNormalSpeed());
+              setXVelocity(Math.cos(angle)*Constants.omenoctNormalSpeed());
             }
-        }else{
-
-           chooseSide();
-       }
+        }
         }
 
 
@@ -150,12 +168,11 @@ public class Omenoct extends GameObjects implements Movable {
                 shotGun.setHeight(Constants.getShotGunHeight());
                 shotGun.setxVelocity(xDirection[x] * 2);
                 shotGun.setyVelocity(yDirection[x] * 2);
-                shots.add(shotGun);
+                getShots().add(shotGun);
 
             }
-
         }
-        for (ShotGun shotGun : shots) shotGun.move();
+        for (ShotGun shotGun : getShots()) shotGun.move();
     }
     public Side getSide() {
         return side;

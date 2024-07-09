@@ -41,8 +41,8 @@ public class ShopController {
 //            for(GameObjects enemy : Game.getEnemies()) {
 //                if(banishTimer<40){
 //                System.out.println(banishTimer);
-//                enemy.setxVelocity(enemy.getxVelocity() * -1);
-//                enemy.setyVelocity(enemy.getyVelocity() * -1);
+//                enemy.setXVelocity(enemy.getXVelocity() * -1);
+//                enemy.setYVelocity(enemy.getYVelocity() * -1);
 //
 //            }
 //            }

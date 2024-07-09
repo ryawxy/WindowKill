@@ -149,7 +149,7 @@ public class Constants {
         return 60;
     }
     public static double omenoctNormalSpeed(){
-        return 4.0;
+        return 3.0;
     }
     public static double omenoctExtraSpeed(){
         return 2.0;

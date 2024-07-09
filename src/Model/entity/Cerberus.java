@@ -29,8 +29,8 @@ public class Cerberus extends GameObjects implements Movable {
 
         Epsilon epsilon = Game.getEpsilon();
 
-        xVelocity = epsilon.getxVelocity();
-        yVelocity = epsilon.getyVelocity();
+        xVelocity = epsilon.getXVelocity();
+        yVelocity = epsilon.getYVelocity();
         xVelocity2 = epsilon.getxVelocity2();
         yVelocity2 = epsilon.getyVelocity2();
 
@@ -42,19 +42,19 @@ public class Cerberus extends GameObjects implements Movable {
 
     }
 
-    public double getxVelocity() {
+    public double getXVelocity() {
         return xVelocity;
     }
 
-    public void setxVelocity(double xVelocity) {
+    public void setXVelocity(double xVelocity) {
         this.xVelocity = xVelocity;
     }
 
-    public double getyVelocity() {
+    public double getYVelocity() {
         return yVelocity;
     }
 
-    public void setyVelocity(double yVelocity) {
+    public void setYVelocity(double yVelocity) {
         this.yVelocity = yVelocity;
     }
 

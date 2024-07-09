@@ -60,11 +60,11 @@ public class Wyrm extends GameObjects implements Movable {
 
             angle = (int) Math.atan2(epsilonPosition.getY() - wyrmPosition.getY(), epsilonPosition.getX() - wyrmPosition.getX());
 
-            this.setxVelocity((int) ((int) (3 * Math.cos(angle))+xVelocity));
-            this.setyVelocity((int) ((int) (3 * Math.sin(angle))+yVelocity));
+            this.setXVelocity((int) ((int) (3 * Math.cos(angle))+xVelocity));
+            this.setYVelocity((int) ((int) (3 * Math.sin(angle))+yVelocity));
 
 
-            getLocalFrame().setLocation((int) (getLocalFrame().getX()+getxVelocity()), (int) (getLocalFrame().getY()+getyVelocity()));
+            getLocalFrame().setLocation((int) (getLocalFrame().getX()+ getXVelocity()), (int) (getLocalFrame().getY()+ getYVelocity()));
 
         }else{
 
@@ -200,22 +200,22 @@ public class Wyrm extends GameObjects implements Movable {
     }
 
     @Override
-    public double getxVelocity() {
+    public double getXVelocity() {
         return xVelocity;
     }
 
     @Override
-    public void setxVelocity(double xVelocity) {
+    public void setXVelocity(double xVelocity) {
         this.xVelocity = xVelocity;
     }
 
     @Override
-    public double getyVelocity() {
+    public double getYVelocity() {
         return yVelocity;
     }
 
     @Override
-    public void setyVelocity(double yVelocity) {
+    public void setYVelocity(double yVelocity) {
         this.yVelocity = yVelocity;
     }
 

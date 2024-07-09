@@ -44,6 +44,7 @@ public class Epsilon extends GameObjects implements Movable {
         setY(y);
         localX = getX();
         localY = getY();
+        setHP(100);
 
         localFrames.add(GlassFrame.getINSTANCE());
 
@@ -70,39 +71,39 @@ public class Epsilon extends GameObjects implements Movable {
                             xVelocity2 += Math.cos(angle3) * Constants.getImpactSpeed((int) distance);
                 yVelocity2 += Math.sin(angle3) * Constants.getImpactSpeed((int) distance);
         }
-//        if(localFrame.getY()-radius<=0){
-//
-//
-//            yVelocity2 = 0;
-//        }
-//        if(localFrame.getY() + radius>= localFrame.getHeight()) {
-//            yVelocity2 = 0;
-//
-//        }
-//        if(localFrame.getX() - radius<=0) {
-//
-//            xVelocity2 = 0;
-//
-//        }
-//        if(localFrame.getX() + radius>= localFrame.getWidth()) {
-//
-//            xVelocity2 = 0;
-//
-//        }
+        if(localFrame.getY()-radius<=0){
 
 
-        this.setX((int) (getX()+xVelocity2+getxVelocity()));
-        this.setY((int) (getY()+yVelocity2+getyVelocity()));
-        this.setxCenter( (getxCenter()+xVelocity2+getxVelocity()));
-        this.setyCenter( (getyCenter()+yVelocity2+getyVelocity()));
-        this.setLocalX((int) (getLocalX()+xVelocity2+getxVelocity()));
-        this.setLocalY((int) (getLocalY()+yVelocity2+getyVelocity()));
+            yVelocity2 = 0;
+        }
+        if(localFrame.getY() + radius>= localFrame.getHeight()) {
+            yVelocity2 = 0;
+
+        }
+        if(localFrame.getX() - radius<=0) {
+
+            xVelocity2 = 0;
+
+        }
+        if(localFrame.getX() + radius>= localFrame.getWidth()) {
+
+            xVelocity2 = 0;
+
+        }
+
+
+        this.setX((int) (getX()+xVelocity2+ getXVelocity()));
+        this.setY((int) (getY()+yVelocity2+ getYVelocity()));
+        this.setxCenter( (getxCenter()+xVelocity2+ getXVelocity()));
+        this.setyCenter( (getyCenter()+yVelocity2+ getYVelocity()));
+        this.setLocalX((int) (getLocalX()+xVelocity2+ getXVelocity()));
+        this.setLocalY((int) (getLocalY()+yVelocity2+ getYVelocity()));
 
 
     }
 
 
-    public double getxVelocity() {
+    public double getXVelocity() {
         return xVelocity;
     }
 
@@ -110,7 +111,7 @@ public class Epsilon extends GameObjects implements Movable {
         this.xVelocity = xVelocity;
     }
 
-    public double getyVelocity() {
+    public double getYVelocity() {
         return yVelocity;
     }
 
@@ -286,10 +287,6 @@ public class Epsilon extends GameObjects implements Movable {
 
     public ArrayList<JFrame> getLocalFrames() {
         return localFrames;
-    }
-
-    public void setLocalFrames(ArrayList<JFrame> localFrames) {
-        this.localFrames = localFrames;
     }
 
 }

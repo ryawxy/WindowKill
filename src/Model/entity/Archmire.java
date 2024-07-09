@@ -170,22 +170,22 @@ public class Archmire extends GameObjects implements Movable {
     }
 
     @Override
-    public double getxVelocity() {
+    public double getXVelocity() {
         return xVelocity;
     }
 
     @Override
-    public void setxVelocity(double xVelocity) {
+    public void setXVelocity(double xVelocity) {
         this.xVelocity = xVelocity;
     }
 
     @Override
-    public double getyVelocity() {
+    public double getYVelocity() {
         return yVelocity;
     }
 
     @Override
-    public void setyVelocity(double yVelocity) {
+    public void setYVelocity(double yVelocity) {
         this.yVelocity = yVelocity;
     }
 

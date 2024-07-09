@@ -64,7 +64,7 @@ public class ShotGun extends GameObjects implements Movable {
         this.height = height;
     }
 
-    public double getxVelocity() {
+    public double getXVelocity() {
         return xVelocity;
     }
 
@@ -72,7 +72,7 @@ public class ShotGun extends GameObjects implements Movable {
         this.xVelocity = xVelocity;
     }
 
-    public double getyVelocity() {
+    public double getYVelocity() {
         return yVelocity;
     }
 

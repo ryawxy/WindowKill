@@ -126,7 +126,7 @@ public class GameLoop {
 //                            Game.getWyrmFrames().add(wyrmFrame);
 //                            Game.getFrames().add(wyrmFrame);
 //                            new KeyListener((JPanel) wyrmFrame.getContentPane());
-                            Omenoct omenoct = new Omenoct(200,100);
+                            Omenoct omenoct = new Omenoct(200,500);
                             Game.getEnemies().add(omenoct);
                             Game.getOmenocts().add(omenoct);
 //
@@ -368,7 +368,7 @@ public class GameLoop {
                             GamePanel.setFRAME_WIDTH(700);
                             GamePanel.setFRAME_HEIGHT(700);
                             gameDone = true;
-                            lastXP = Game.getEpsilon().getXP();
+                          //  lastXP = Game.getEpsilon().getXP();
                             KeyListener.setKeyPressedNumber(0);
                             KeyListener.setAbilityKeyPressed(false);
                             GameInfo.getCurrentAbility().clear();
@@ -426,11 +426,11 @@ public class GameLoop {
                             KeyListener.setPauseGame(true);
 
                             gameDone = true;
-                            lastXP = Game.getEpsilon().getXP();
+//                            lastXP = Game.getEpsilon().getXP();
                             KeyListener.setKeyPressedNumber(0);
                             KeyListener.setAbilityKeyPressed(false);
                             GameInfo.getCurrentAbility().clear();
-                            SkillTreeFrame.setCurrentXP(Game.getEpsilon().getXP());
+//                            SkillTreeFrame.setCurrentXP(Game.getEpsilon().getXP());
                             Game.getEpsilon().getVertex().clear();
                             Game.getSquarantine().clear();
                             Game.getTrigoraths().clear();

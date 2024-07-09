@@ -35,9 +35,9 @@ public class FrameIntersection {
                         entity.setLocalX(globalX - entity.getLocalFrame().getX());
                         entity.setLocalY(globalY - entity.getLocalFrame().getY());
                         entity.getLocalFrames().remove(previousFrame);
-                        if(entity instanceof Epsilon){
-                            for(Omenoct omenoct : Game.getOmenocts()) omenoct.setCanMove(true);
-                        }
+//                        if(entity instanceof Epsilon){
+//                            for(Omenoct omenoct : Game.getOmenocts()) omenoct.setCanMove(true);
+//                        }
                     } else if (bounds1.contains(rectangle) && bounds2.contains(rectangle)) {
                         entity.getLocalFrames().add(frame);
 
