@@ -4,10 +4,7 @@ import Controller.Game;
 import Model.entity.Vertex;
 import Controller.MouseListener;
 import Model.entity.blackOrb.BlackOrb;
-import view.entityViews.EpsilonView;
-import view.entityViews.OmenoctView;
-import view.entityViews.TrigorathView;
-import view.entityViews.VertexView;
+import view.entityViews.*;
 import view.entityViews.blackOrb.BlackOrbFrame;
 import view.entityViews.blackOrb.BlackOrbView;
 
@@ -24,6 +21,7 @@ public class GamePanel extends JPanel {
     private Dimension SCREEN_SIZE = new Dimension(700, 700);
     private MouseListener mouseListener;
     private static double angle;
+    private NecropickView necropickView = new NecropickView(GlassFrame.getINSTANCE());
 
 
     public GamePanel() throws IOException {
@@ -80,7 +78,7 @@ public class GamePanel extends JPanel {
         Graphics2D g2D = (Graphics2D) g;
         super.paintComponent(g2D);
 
-        Game.getNecropickView().paint(g2D);
+        necropickView.paint(g2D);
 
         Game.getArchmireView().paint(g2D);
 

@@ -18,7 +18,6 @@ import myproject.MyProject;
 import view.entityViews.wyrm.WyrmFrame;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
@@ -27,8 +26,6 @@ import java.util.ArrayList;
 
 public class ObjectsIntersection {
     GamePanel gamePanel;
-    private static boolean VSCollission;
-    private static  boolean VTCollision;
 
     private static ArrayList<IntersectionPoint> intersectionPoints;
     private static long lastTime,lastTime2;
@@ -47,27 +44,25 @@ public class ObjectsIntersection {
 
     public Direction shotIntersectsFrame(ShotGun shotGun) {
 
-        //    if(shotGun.isVisible()) {
-        if (shotGun.getX() >= Game.getEpsilon().getLocalFrame().getWidth()) {
+
+
+        if (shotGun.getLocalX() >=shotGun.getLocalFrame().getWidth()) {
             return Direction.RIGHT;
         }
-        if (shotGun.getY() >= Game.getEpsilon().getLocalFrame().getHeight()) {
-            //   if(shotGun.isVisible()) {
-        //       shotGun.setVisible(false);
+        if (shotGun.getLocalY() >= shotGun.getLocalFrame().getHeight()) {
+
             return Direction.DOWN;
 
         }
-        if (shotGun.getX() <= 0) {
-            //   if(shotGun.isVisible()) {
-       //         shotGun.setVisible(false);
+        if (shotGun.getLocalX() <= 0) {
+
             return Direction.LEFT;
-            // }
+
         }
-        if (shotGun.getY() <= 0) {
-            //   if(shotGun.isVisible()) {
-            //     shotGun.setVisible(false);
+        if (shotGun.getLocalY() <= 0) {
+
             return Direction.UP;
-            //    }
+
         }
 
         return null;
@@ -92,7 +87,7 @@ public class ObjectsIntersection {
                             if(enemy instanceof Wyrm) Game.getEpsilon().decreaseHP(8);
                             else if(enemy instanceof Necropick) Game.getEpsilon().decreaseHP(5);
                             shotGun.setVisible(false);
-                            IntersectionPoint point = new IntersectionPoint(new Point2D.Double(shotGun.getLocalX(), shotGun.getLocalY()), 10, false, false, epsilon, enemy);
+                            IntersectionPoint point = new IntersectionPoint(new Point2D.Double(shotGun.getLocalX()+shotGun.getLocalFrame().getX(), shotGun.getLocalY()+shotGun.getLocalFrame().getY()), 10, false, false, epsilon, enemy);
                             intersectionPoints.add(point);
                         }
                     }
@@ -102,13 +97,14 @@ public class ObjectsIntersection {
 
         //epsilon shots enemy
         for(GameObjects enemy : Game.getEnemies()){
-        for(ShotGun shotGun : Game.getShots()) {
+        for(ShotGun shotGun : Game.getEpsilonShots()) {
 
             if (!(enemy instanceof BlackOrb) && !(enemy instanceof Wyrm)) {
                 if (enemy.isVisible()) {
-                    Rectangle enemy1 = new Rectangle(enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight());
-                    Rectangle shot = new Rectangle(shotGun.getX(), shotGun.getY(), Constants.getShotGunWidth(), Constants.getShotGunHeight());
+                    Rectangle enemy1 = new Rectangle(enemy.getLocalX()+enemy.getLocalFrame().getX(), enemy.getLocalY()+enemy.getLocalFrame().getY(), enemy.getWidth(), enemy.getHeight());
+                    Rectangle shot = new Rectangle(shotGun.getLocalX()+shotGun.getLocalFrame().getX(), shotGun.getLocalY()+shotGun.getLocalFrame().getY(), Constants.getShotGunWidth(), Constants.getShotGunHeight());
                     if (shotGun.isVisible()) {
+
 
                         if (enemy1.intersects(shot)) {
 
@@ -116,7 +112,7 @@ public class ObjectsIntersection {
 
                             enemy.decreaseHP(5);
 
-                            IntersectionPoint point = new IntersectionPoint(new Point2D.Double(shotGun.getX(), shotGun.getY()), 10, false, false, epsilon, enemy);
+                            IntersectionPoint point = new IntersectionPoint(new Point2D.Double(shotGun.getLocalX(), shotGun.getLocalY()), 10, false, false, epsilon, enemy);
                             intersectionPoints.add(point);
                         }
                     }
@@ -125,7 +121,7 @@ public class ObjectsIntersection {
         }
         }
         for(BlackOrbFrame blackOrbFrame : Game.getBlackOrbFrames()){
-            for(ShotGun shotGun : Game.getShots()) {
+            for(ShotGun shotGun : Game.getEpsilonShots()) {
                 if (shotGun.isVisible()) {
                 //    if (shotGun.getLocalFrame().equals(blackOrbFrame.getBlackOrb().getLocalFrame())) {
                         Rectangle shot = new Rectangle(shotGun.getLocalX()+shotGun.getLocalFrame().getX(), shotGun.getLocalY()+shotGun.getLocalFrame().getY(), Constants.getShotGunWidth(), Constants.getShotGunHeight());
@@ -155,7 +151,7 @@ public class ObjectsIntersection {
             }
         }
         for(WyrmFrame wyrmFrame : Game.getWyrmFrames()){
-            for(ShotGun shotGun : Game.getShots()){
+            for(ShotGun shotGun : Game.getEpsilonShots()){
                 if(shotGun.isVisible()){
 
 //                    if(wyrmFrame.equals(shotGun.getLocalFrame())){
@@ -178,7 +174,7 @@ public class ObjectsIntersection {
         }
 
         for(Omenoct omenoct : Game.getOmenocts()) {
-            for(ShotGun shotGun : Game.getShots()){
+            for(ShotGun shotGun : Game.getEpsilonShots()){
 
             if(shotIntersectsFrame(shotGun)!=null) {
                 if (shotGun.isVisible()) {
@@ -343,12 +339,14 @@ public boolean checkCollision(int epsilonX,int epsilonY,int radius,Polygon polyg
 public void vertexIntersectsNecropick(){
         for(Vertex vertex : Game.getEpsilon().getVertex()){
             for(Necropick necropick : Game.getNecropicks()){
-                Rectangle vertex1 = new Rectangle(vertex.getX(),vertex.getY(),vertex.getRadius(),vertex.getRadius());
-                Rectangle necropick1 = new Rectangle(necropick.getX(),necropick.getY(),Constants.necropickWidth(),Constants.necropickWidth());
-                if(vertex1.intersects(necropick1)){
-                    necropick.decreaseHP(10);
-                    IntersectionPoint point = new IntersectionPoint(new Point2D.Double(necropick.getX(),necropick.getY()),10,true,false,Game.getEpsilon(),necropick);
-                    intersectionPoints.add(point);
+                if(!necropick.isDead()) {
+                    Rectangle vertex1 = new Rectangle(vertex.getLocalX() + vertex.getLocalFrame().getX(), vertex.getLocalY() + vertex.getLocalFrame().getY(), vertex.getRadius(), vertex.getRadius());
+                    Rectangle necropick1 = new Rectangle(necropick.getLocalX() + necropick.getLocalFrame().getX(), necropick.getLocalY() + necropick.getLocalFrame().getY(), Constants.necropickWidth(), Constants.necropickWidth());
+                    if (vertex1.intersects(necropick1)) {
+                        necropick.decreaseHP(10);
+                        IntersectionPoint point = new IntersectionPoint(new Point2D.Double(necropick.getLocalX() + necropick.getLocalFrame().getX(), necropick.getLocalY() + necropick.getLocalFrame().getY()), 10, true, false, Game.getEpsilon(), necropick);
+                        intersectionPoints.add(point);
+                    }
                 }
             }
         }
@@ -475,7 +473,7 @@ public void vertexIntersectsNecropick(){
             public void epsilonIntersectsEnemy() {
                 for (Trigorath trigorath : Game.getTrigoraths()) {
                     if (!trigorath.isDead()) {
-                        VTCollision = false;
+                        boolean VTCollision = false;
                         Epsilon epsilon = Game.getEpsilon();
                         Polygon trigorath2 = new Polygon(trigorath.getxPoints(), trigorath.getyPoints(), 3);
                         for (Vertex vertex : epsilon.getVertex()) {
@@ -510,7 +508,6 @@ public void vertexIntersectsNecropick(){
                     if (!omenoct.isDead()) {
 
                         Epsilon epsilon = Game.getEpsilon();
-
                         Rectangle epsilon1 = new Rectangle(epsilon.getLocalX(), epsilon.getLocalY(), epsilon.getWidth(), epsilon.getHeight());
                         Rectangle omenoct2 = new Rectangle(omenoct.getLocalX(), omenoct.getLocalY(), omenoct.getWidth(), omenoct.getHeight());
 
@@ -520,14 +517,35 @@ public void vertexIntersectsNecropick(){
                                 ObjectsIntersection.getIntersectionPoints().add(point);
                                 boolean melee = point.isMeleeAttack();
                                 epsilon.decreaseHP(EnemyType.Omenoct, melee);
+                            }
+                        }
+                    }
+                }
 
+                for(GameObjects enemy : Game.getEnemies()) {
 
+                    if (!(enemy instanceof Archmire)) {
+                        Epsilon epsilon = Game.getEpsilon();
+                        Rectangle epsilon1 = new Rectangle(epsilon.getLocalX() + epsilon.getLocalFrame().getX(),
+                                epsilon.getLocalY() + epsilon.getLocalFrame().getY(),
+                                epsilon.getWidth(), epsilon.getHeight());
+
+                        Rectangle enemy1 = new Rectangle(enemy.getLocalX() + enemy.getLocalFrame().getX(),
+                                enemy.getLocalY() + enemy.getLocalFrame().getY(),
+                                enemy.getWidth(), enemy.getHeight());
+
+                        if (!enemy.isDead() && enemy.isVisible()) {
+                            if (epsilon1.intersects(enemy1)){
+                                IntersectionPoint point = new IntersectionPoint(new Point2D.Double(enemy.getLocalX() + (double) enemy.getWidth() / 2,
+                                        enemy.getLocalY() + (double) enemy.getHeight() / 2), 10, true, false, enemy, epsilon);
+                                ObjectsIntersection.getIntersectionPoints().add(point);
                             }
                         }
                     }
                 }
 
 
+                boolean VSCollission;
                 for (Squarantine squarantine : Game.getSquarantine()) {
                     if (!squarantine.isDead()) {
                         VSCollission = false;

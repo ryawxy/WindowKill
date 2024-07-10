@@ -3,6 +3,7 @@ package view.entityViews.blackOrb;
 import Controller.MouseListener;
 import view.ShotGunView;
 import view.entityViews.EpsilonView;
+import view.entityViews.NecropickView;
 import view.entityViews.OmenoctView;
 import view.entityViews.VertexView;
 
@@ -15,6 +16,7 @@ public class BlackOrbPanel extends JPanel {
     private JFrame itsFrame;
     view.entityViews.blackOrb.BlackOrbView blackOrbView;
     OmenoctView omenoctView;
+    NecropickView necropickView;
 
 
     public BlackOrbPanel(int x, int y){
@@ -48,6 +50,7 @@ public class BlackOrbPanel extends JPanel {
         vertexView.paint(g2D);
 
         omenoctView.paint(g2D);
+        necropickView.paint(g2D);
 
 
 
@@ -80,6 +83,10 @@ public class BlackOrbPanel extends JPanel {
 
     public void setOmenoctView(OmenoctView omenoctView) {
         this.omenoctView = omenoctView;
+    }
+
+    public void setNecropickView(NecropickView necropickView) {
+        this.necropickView = necropickView;
     }
 }
 

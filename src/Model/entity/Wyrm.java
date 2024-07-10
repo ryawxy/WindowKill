@@ -111,8 +111,8 @@ public class Wyrm extends GameObjects implements Movable {
                 shotGun.setLocalFrame(localFrame);
                 Random random = new Random();
                 int x = random.nextInt(9);
-                shotGun.setxVelocity(xDirection[x] * 3);
-                shotGun.setyVelocity(yDirection[x] * 3);
+                shotGun.setXVelocity(xDirection[x] * 3);
+                shotGun.setYVelocity(yDirection[x] * 3);
 
                 shots.add(shotGun);
 

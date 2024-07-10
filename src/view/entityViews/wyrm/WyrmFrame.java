@@ -10,10 +10,9 @@ public class WyrmFrame extends JFrame {
 
     Wyrm wyrm;
     Rectangle bound;
-   private double angle;
    private double xVelocity;
    private double yVelocity;
-   private double rotationAngle;
+
 
     public WyrmFrame(int x, int y){
 
@@ -35,23 +34,6 @@ public class WyrmFrame extends JFrame {
         Game.getFrames().add(this);
         Game.getEnemies().add(wyrm);
 
-    }
-
-
-    public double getxVelocity() {
-        return xVelocity;
-    }
-
-    public void setxVelocity(double xVelocity) {
-        this.xVelocity = xVelocity;
-    }
-
-    public double getyVelocity() {
-        return yVelocity;
-    }
-
-    public void setyVelocity(double yVelocity) {
-        this.yVelocity = yVelocity;
     }
 
     public Wyrm getWyrm() {

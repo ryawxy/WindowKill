@@ -4,6 +4,7 @@ package view.entityViews.blackOrb;
 import Controller.Game;
 import Model.FrameType;
 import Model.entity.blackOrb.BlackOrb;
+import view.entityViews.NecropickView;
 import view.entityViews.OmenoctView;
 
 import javax.swing.*;
@@ -32,7 +33,9 @@ public class BlackOrbFrame extends JFrame implements FrameType {
         blackOrb.setPreviousLocalFrame(this);
         blackOrbPanel.setBlackOrbView(new view.entityViews.blackOrb.BlackOrbView(blackOrb,this));
         blackOrbPanel.setOmenoctView(new OmenoctView(this));
+        blackOrbPanel.setNecropickView(new NecropickView(this));
         Game.getBlackOrbs().add(blackOrb);
+        Game.getEnemies().add(blackOrb);
         bounds = new Rectangle(getX(),getY(),getWidth(),getHeight());
 
     }

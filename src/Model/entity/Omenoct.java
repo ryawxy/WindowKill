@@ -166,8 +166,8 @@ public class Omenoct extends GameObjects implements Movable {
 
                 shotGun.setWidth(Constants.getShotGunWidth());
                 shotGun.setHeight(Constants.getShotGunHeight());
-                shotGun.setxVelocity(xDirection[x] * 2);
-                shotGun.setyVelocity(yDirection[x] * 2);
+                shotGun.setXVelocity(xDirection[x] * 2);
+                shotGun.setYVelocity(yDirection[x] * 2);
                 getShots().add(shotGun);
 
             }
@@ -191,9 +191,5 @@ public class Omenoct extends GameObjects implements Movable {
     @Override
     public int getNumCollectibles() {
         return 8;
-    }
-
-    public void setCanMove(boolean canMove) {
-        this.canMove = canMove;
     }
 }

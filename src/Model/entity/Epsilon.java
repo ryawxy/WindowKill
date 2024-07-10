@@ -19,34 +19,24 @@ public class Epsilon extends GameObjects implements Movable {
     private double xVelocity;
     private double yVelocity;
     private int radius;
-    private double xCenter = getX()+radius;
-    private double yCenter = getY()+radius;
     private int HP = 100;
-    private int XP = 2000;
     private double xVelocity2;
     private double yVelocity2;
-    private int localX = getX();
-    private int localY = getY();
-    private JFrame localFrame = GlassFrame.getINSTANCE();
-    private JFrame previousLocalFrame = GlassFrame.getINSTANCE();
-
-    private ArrayList<Model.entity.Vertex> vertex = new ArrayList<>();
+    private final ArrayList<Model.entity.Vertex> vertex = new ArrayList<>();
     private int vertexNumber;
-    private int width;
-    private int height;
-    private int globalX;
-    private int globalY;
-    private ArrayList<JFrame> localFrames = new ArrayList<>();
+    private final ArrayList<JFrame> localFrames = new ArrayList<>();
 
     public Epsilon(int x, int y) throws IOException {
         super(x, y);
         setX(x);
         setY(y);
-        localX = getX();
-        localY = getY();
+        setLocalX(x);
+        setLocalY(y);
         setHP(100);
+        setLocalFrame(GlassFrame.getINSTANCE());
+        setPreviousLocalFrame(GlassFrame.getINSTANCE());
+        getLocalFrames().add(GlassFrame.getINSTANCE());
 
-        localFrames.add(GlassFrame.getINSTANCE());
 
     }
 
@@ -56,8 +46,8 @@ public class Epsilon extends GameObjects implements Movable {
         xVelocity2 = 0;
         yVelocity2 = 0;
 
-        double xPoint2 = getX();
-        double yPoint2 = getY();
+        double xPoint2 = getLocalX();
+        double yPoint2 = getLocalY();
         Point2D point2D = new Point2D.Double(xPoint2,yPoint2);
 
 
@@ -65,27 +55,27 @@ public class Epsilon extends GameObjects implements Movable {
 
                         double xPoint = point.getPoint().getX();
             double yPoint = point.getPoint().getY();
-            double angle3 =  Math.atan2(getY() - yPoint, getX() - xPoint);
+            double angle3 =  Math.atan2(getLocalY() - yPoint, getLocalX() - xPoint);
             double distance = point2D.distance(point.getPoint());
 
                             xVelocity2 += Math.cos(angle3) * Constants.getImpactSpeed((int) distance);
                 yVelocity2 += Math.sin(angle3) * Constants.getImpactSpeed((int) distance);
         }
-        if(localFrame.getY()-radius<=0){
+        if(getLocalFrame().getY()-radius<=0){
 
 
             yVelocity2 = 0;
         }
-        if(localFrame.getY() + radius>= localFrame.getHeight()) {
+        if(getLocalFrame().getY() + radius>= getLocalFrame().getHeight()) {
             yVelocity2 = 0;
 
         }
-        if(localFrame.getX() - radius<=0) {
+        if(getLocalFrame().getX() - radius<=0) {
 
             xVelocity2 = 0;
 
         }
-        if(localFrame.getX() + radius>= localFrame.getWidth()) {
+        if(getLocalFrame().getX() + radius>= getLocalFrame().getWidth()) {
 
             xVelocity2 = 0;
 
@@ -132,7 +122,6 @@ public class Epsilon extends GameObjects implements Movable {
     }
 
     public void setxCenter(double xCenter) {
-        this.xCenter = xCenter;
     }
 
     public int getyCenter() {
@@ -140,7 +129,6 @@ public class Epsilon extends GameObjects implements Movable {
     }
 
     public void setyCenter(double yCenter) {
-        this.yCenter = yCenter;
     }
 
     public int getHP() {
@@ -150,18 +138,6 @@ public class Epsilon extends GameObjects implements Movable {
     public void setHP(int HP) {
         this.HP = HP;
     }
-
-    public int getXP() {
-        return XP;
-    }
-
-    public void setXP(int XP) {
-        this.XP = XP;
-    }
-    public void increaseXP(int increment){
-        setXP(getXP()+increment);
-    }
-
     public void increaseHP(int increment){setHP(getHP()+increment);}
     public void decreaseHP(EnemyType enemyType, boolean meleeAttack){
 
@@ -209,54 +185,13 @@ public class Epsilon extends GameObjects implements Movable {
         vertex.clear();
         double angle = 2 * Math.PI / vertexNumber;
         for (int i = 0; i < vertexNumber; i++) {
-            int dotX = (int) (getX() + (radius-10) / 2 + radius / 2 * Math.cos(i * angle));
-            int dotY = (int) (getY() + (radius-10) / 2 + radius / 2 * Math.sin(i *angle));
+            int dotX = (int) (getLocalX() + (radius-10) / 2 + radius / 2 * Math.cos(i * angle));
+            int dotY = (int) (getLocalY() + (radius-10) / 2 + radius / 2 * Math.sin(i *angle));
             Vertex vertex1 = new Vertex(dotX,dotY);
             vertex.add(vertex1);
 
         }
     }
-
-    @Override
-    public int getLocalX() {
-        return localX;
-    }
-
-    @Override
-    public void setLocalX(int localX) {
-        this.localX = localX;
-    }
-
-    @Override
-    public int getLocalY() {
-        return localY;
-    }
-
-    @Override
-    public void setLocalY(int localY) {
-        this.localY = localY;
-    }
-
-    @Override
-    public JFrame getLocalFrame() {
-        return localFrame;
-    }
-
-    @Override
-    public void setLocalFrame(JFrame localFrame) {
-        this.localFrame = localFrame;
-    }
-
-    @Override
-    public JFrame getPreviousLocalFrame() {
-        return previousLocalFrame;
-    }
-
-    @Override
-    public void setPreviousLocalFrame(JFrame previousLocalFrame) {
-        this.previousLocalFrame = previousLocalFrame;
-    }
-
     @Override
     public int getHeight() {
         return getRadius();
@@ -264,7 +199,6 @@ public class Epsilon extends GameObjects implements Movable {
 
     @Override
     public void setHeight(int height) {
-        this.height = height;
     }
 
     @Override
@@ -274,17 +208,7 @@ public class Epsilon extends GameObjects implements Movable {
 
     @Override
     public void setWidth(int width) {
-        this.width = width;
     }
-
-    public int getGlobalX() {
-        return localX+localFrame.getX();
-    }
-
-    public int getGlobalY() {
-        return localY+localFrame.getY();
-    }
-
     public ArrayList<JFrame> getLocalFrames() {
         return localFrames;
     }

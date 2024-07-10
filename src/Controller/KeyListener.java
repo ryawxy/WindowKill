@@ -75,17 +75,17 @@ public class KeyListener {
                     if (!downPressed) {
 
                         epsilon.setyVelocity(-1 * absVelocity );
-                        shotGun.setyVelocity(-1 * absVelocity);
+                        shotGun.setYVelocity(-1 * absVelocity);
 
                     }else {
                         epsilon.setyVelocity(0);
-                        shotGun.setyVelocity(0);
+                        shotGun.setYVelocity(0);
                     }
 
                 }
                 else {
                     epsilon.setyVelocity(0);
-                    shotGun.setyVelocity(0);
+                    shotGun.setYVelocity(0);
                 }
                 upPressed = true;
             }
@@ -97,7 +97,7 @@ public class KeyListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 epsilon.setyVelocity(0);
-                shotGun.setyVelocity(0);
+                shotGun.setYVelocity(0);
                 upPressed = false;
             }
         });
@@ -109,15 +109,15 @@ public class KeyListener {
                 if(epsilon.getLocalY() + epsilon.getRadius()< epsilon.getLocalFrame().getHeight()) {
                     if (!upPressed) {
                         epsilon.setyVelocity(absVelocity );
-                        shotGun.setyVelocity(absVelocity);
+                        shotGun.setYVelocity(absVelocity);
                     }else {
                         epsilon.setyVelocity(0);
-                        shotGun.setyVelocity(0);
+                        shotGun.setYVelocity(0);
                     }
                 }
                 else {
                     epsilon.setyVelocity(0);
-                    shotGun.setyVelocity(0);
+                    shotGun.setYVelocity(0);
                 }
                 downPressed = true;
             }
@@ -128,7 +128,7 @@ public class KeyListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 epsilon.setyVelocity(0);
-                shotGun.setyVelocity(0);
+                shotGun.setYVelocity(0);
                 downPressed = false;
             }
         });
@@ -140,15 +140,15 @@ public class KeyListener {
                 if(epsilon.getLocalX() - epsilon.getRadius()>0) {
                     if(!rightPressed) {
                         epsilon.setxVelocity(-1 * absVelocity );
-                        shotGun.setxVelocity(-1 * absVelocity);
+                        shotGun.setXVelocity(-1 * absVelocity);
                     }else {
                         epsilon.setxVelocity(0);
-                        shotGun.setxVelocity(0);
+                        shotGun.setXVelocity(0);
                     }
                 }
                 else{
                     epsilon.setxVelocity(0);
-                    shotGun.setxVelocity(0);
+                    shotGun.setXVelocity(0);
                 }
                 leftPressed = true;
             }
@@ -158,7 +158,7 @@ public class KeyListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 epsilon.setxVelocity(0);
-                shotGun.setxVelocity(0);
+                shotGun.setXVelocity(0);
                 leftPressed = false;
             }
         });
@@ -171,15 +171,15 @@ public class KeyListener {
                if(epsilon.getLocalX() + epsilon.getRadius()< epsilon.getLocalFrame().getWidth()) {
                     if(!leftPressed) {
                         epsilon.setxVelocity(absVelocity );
-                        shotGun.setxVelocity(absVelocity);
+                        shotGun.setXVelocity(absVelocity);
                     }else {
                         epsilon.setxVelocity(0);
-                        shotGun.setxVelocity(0);
+                        shotGun.setXVelocity(0);
                     }
                 }
                 else {
                     epsilon.setxVelocity(0);
-                    shotGun.setxVelocity(0);
+                    shotGun.setXVelocity(0);
                 }
                 rightPressed = true;
 
@@ -190,7 +190,7 @@ public class KeyListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 epsilon.setxVelocity(0);
-                shotGun.setxVelocity(0);
+                shotGun.setXVelocity(0);
                 rightPressed = false;
             }
         });

@@ -2,12 +2,10 @@ package Model;
 
 import Controller.*;
 import Model.entity.*;
-import Model.entity.blackOrb.BlackOrb;
 import Model.entity.blackOrb.BlackOrbArray;
 import Model.enums.Direction;
 import view.*;
 
-import view.entityViews.barricados.BarricadosFrame;
 import view.entityViews.blackOrb.BlackOrbFrame;
 import myproject.MyProject;
 import view.entityViews.wyrm.WyrmFrame;
@@ -28,7 +26,7 @@ public class GameLoop {
     private Direction intersectionSide;
     private int countTime;
     // amount of time that has passed since the game has started
-    private int index= Game.getShots().size()-3;
+    private int index= Game.getEpsilonShots().size()-3;
     //balls shooting one by on in empower mode
     private int time=3;
     //amount of time since shooting the next fire
@@ -126,9 +124,12 @@ public class GameLoop {
 //                            Game.getWyrmFrames().add(wyrmFrame);
 //                            Game.getFrames().add(wyrmFrame);
 //                            new KeyListener((JPanel) wyrmFrame.getContentPane());
-                            Omenoct omenoct = new Omenoct(200,500);
-                            Game.getEnemies().add(omenoct);
-                            Game.getOmenocts().add(omenoct);
+//                            Omenoct omenoct = new Omenoct(200,500);
+//                            Game.getEnemies().add(omenoct);
+//                            Game.getOmenocts().add(omenoct);
+                            Necropick necropick = new Necropick(200,200);
+                            Game.getEnemies().add(necropick);
+                            Game.getNecropicks().add(necropick);
 //
 //                            for(Barricados barricados : wave.wave1EasyBarricados){
 //                            BarricadosFrame barricadosFrame = new BarricadosFrame(300,300, BarricadosType.T2);
@@ -446,7 +447,7 @@ public class GameLoop {
 
 
                     if (!ShopFrame.isEmpowerItem()) {
-                        for (ShotGun shotGun : Game.getShots()) {
+                        for (ShotGun shotGun : Game.getEpsilonShots()) {
                             shotGun.move();
                         }
                     }
@@ -496,7 +497,7 @@ public class GameLoop {
                     // if so expansion starts from that side for a second
                     // and impact mechanism activates from that point
 
-                    for(ShotGun shotGun : Game.getShots()){
+                    for(ShotGun shotGun : Game.getEpsilonShots()){
 
                         if(shotGun.isVisible()) intersectionSide = objectsIntersection.shotIntersectsFrame(shotGun);
                         if (intersectionSide != null) {
@@ -511,6 +512,7 @@ public class GameLoop {
                             }
                         }
                     }
+
 
                     skillTreeController.ableToUseAbility();
                     skillTreeController.activate();
@@ -534,12 +536,15 @@ public class GameLoop {
 
                     for(Necropick necropick : Game.getNecropicks()){
                         necropick.visible();
-                        necropick.move();
+                    //    necropick.move();
                         necropick.shoot();
+
+//                        for(ShotGun shotGun : necropick.getShots()){
+//                            if(objectsIntersection.shotIntersectsFrame(shotGun)!=null) shotGun.setVisible(false);
+//                        }
                     }
 
                     for(Omenoct omenoct : Game.getOmenocts()){
-                      //  omenoct.chooseSide();
                         omenoct.changeFrame();
                         omenoct.move();
                         omenoct.shoot();
@@ -558,7 +563,7 @@ public class GameLoop {
 
                         }
                     }
-                    for(ShotGun shotGun : Game.getShots()) {
+                    for(ShotGun shotGun : Game.getEpsilonShots()) {
                         for (JFrame frame : Game.getFrames()) {
                             if (!frame.equals(Game.getEpsilon().getLocalFrame())) {
                                 frameIntersection.changeLocalFrame(frame, shotGun);
@@ -566,36 +571,14 @@ public class GameLoop {
                             }
                         }
                     }
-                    for(Trigorath trigorath : Game.getTrigoraths()) {
-                        for (JFrame frame : Game.getFrames()) {
-                            if (!frame.equals(Game.getEpsilon().getLocalFrame())) {
-                                frameIntersection.changeLocalFrame(frame, trigorath);
-                            }
-                        }
-
-                    }
                   for(Vertex vertex : Game.getEpsilon().getVertex()){
                       for(JFrame frame : Game.getFrames()){
                           frameIntersection.changeLocalFrame(frame,vertex);
                       }
                   }
 
-
-
-             //       Game.getGameFrame().repaint();
                     for(JFrame frame : Game.getFrames()) frame.getContentPane().repaint();
-             //       for(InvisibleFrame invisibleFrame : Game.getInvisibleFrames()) invisibleFrame.getContentPane().repaint();
 
-                    for(BarricadosFrame barricadosFrame : Game.getBarricadosFrames()) {
-
-
-                        barricadosFrame.getContentPane().repaint();
-
-                        barricadosFrame.getBarricados().invisible();
-                        barricadosFrame.invisible();
-
-
-                    }
                     for (BlackOrbFrame blackOrbFrame : Game.getBlackOrbFrames()) blackOrbFrame.getContentPane().repaint();
 
                     for(WyrmFrame wyrmFrame : Game.getWyrmFrames()){
@@ -607,31 +590,11 @@ public class GameLoop {
                             shotGun.move();
                         }
                     }
-                    for(WyrmFrame wyrmFrame : Game.getWyrmFrames()) {
-                        for (ShotGun shotGun : wyrmFrame.getWyrm().getShots()) {
-                            for (JFrame frame : Game.getFrames()) {
-                           //     if (!frame.equals(Game.getEpsilon().getLocalFrame())) {
-                                    frameIntersection.changeLocalFrame(frame, shotGun);
-                                }
-                       //     }
-                        }
-                    }
-                    for(BlackOrb blackOrb : Game.getBlackOrbs()){
+
+                    for(GameObjects enemy : Game.getEnemies()){
                         for(JFrame frame : Game.getFrames()){
-                            frameIntersection.changeLocalFrame(frame,blackOrb);
-
-
-                        }
-                    }
-
-                    for(Omenoct omenoct : Game.getOmenocts()){
-
-                        for(JFrame frame : Game.getFrames()){
-                            if(!frame.equals(omenoct.getLocalFrame())) {
-                                frameIntersection.changeLocalFrame(frame, omenoct);
-//                               System.out.println(omenoct.getLocalFrame().getTitle());
-                               // System.out.println(omenoct.getLocalFrames().size());
-
+                            if(!frame.equals(enemy.getLocalFrame())){
+                                frameIntersection.changeLocalFrame(frame,enemy);
                             }
                         }
                     }

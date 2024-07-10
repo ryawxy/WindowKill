@@ -29,32 +29,24 @@ public class Game {
     private static ArrayList<Necropick> necropicks;
     private static ArrayList<Omenoct> omenocts;
     private static ArrayList<Archmire> archmires;
-    private static ArrayList<Barricados> barricados;
-    private static view.entityViews.EpsilonView epsilonView;
-    private static view.ShotGunView shotGunView;
-    private static view.entityViews.TrigorathView trigorathView;
     private static view.entityViews.SquarantineView squarantineView;
-    private static view.entityViews.VertexView vertexView;
     private static view.entityViews.CerberusView cerberusView;
     private static view.GameInfoView gameInfoView;
-    private static view.entityViews.NecropickView necropickView;
-    private static view.entityViews.OmenoctView omenoctView;
     private static view.entityViews.ArchmireView archmireView;
 
     protected static GamePanel gamePanel;
     protected KeyListener keyListener;
     protected MouseListener mouseListener;
     private static SoundPlayer soundPlayer;
-    private static HashMap<Ability,Integer> skillTreeAbilities;
-    private static ArrayList<Ability> currentAbilities;
     private  static ArrayList<Cerberus> cerberuses;
     private static ArrayList<GameObjects> enemies;
-    private static ArrayList<view.entityViews.barricados.BarricadosFrame> barricadosFrames = new ArrayList<>();
-    private static ArrayList<view.entityViews.blackOrb.BlackOrbFrame> blackOrbFrames = new ArrayList<>();
-    private static ArrayList<JFrame> frames = new ArrayList<>();
-    private static ArrayList<InvisibleFrame> invisibleFrames = new ArrayList<>();
-    private static ArrayList<Model.entity.blackOrb.BlackOrb> blackOrbs = new ArrayList<>();
-    private static ArrayList<WyrmFrame> wyrmFrames = new ArrayList<>();
+    private static final ArrayList<view.entityViews.barricados.BarricadosFrame> barricadosFrames = new ArrayList<>();
+    private static final ArrayList<view.entityViews.blackOrb.BlackOrbFrame> blackOrbFrames = new ArrayList<>();
+    private static final ArrayList<JFrame> frames = new ArrayList<>();
+    private static final ArrayList<InvisibleFrame> invisibleFrames = new ArrayList<>();
+    private static final ArrayList<Model.entity.blackOrb.BlackOrb> blackOrbs = new ArrayList<>();
+    private static final ArrayList<WyrmFrame> wyrmFrames = new ArrayList<>();
+    private static ArrayList<ShotGun> shots = new ArrayList<>();
     public Game() throws IOException, AWTException {
 
         frames.add(view.GlassFrame.getINSTANCE());
@@ -74,25 +66,16 @@ public class Game {
         necropicks = new ArrayList<>();
         omenocts = new ArrayList<>();
         archmires = new ArrayList<>();
-        barricados = new ArrayList<>();
 
         enemies = new ArrayList<>();
 
-
-       // epsilonView = new EpsilonView();
-//        shotGunView = new ShotGunView();
-   //     trigorathView = new TrigorathView();
         squarantineView = new view.entityViews.SquarantineView();
-       // vertexView = new VertexView();
         gameInfoView = new view.GameInfoView();
         cerberusView = new CerberusView();
-        necropickView = new NecropickView();
-    //    omenoctView = new OmenoctView();
+
         archmireView = new ArchmireView();
 
-        currentAbilities = new ArrayList<>();
-
-        skillTreeAbilities = new HashMap<>();
+        HashMap<Ability, Integer> skillTreeAbilities = new HashMap<>();
         skillTreeAbilities.put(Ability.Ares,0);
         skillTreeAbilities.put(Ability.Astrape,0);
         skillTreeAbilities.put(Ability.Cerberus,0);
@@ -114,11 +97,6 @@ public class Game {
 
 
     }
-    public static <T extends JFrame>  void addFrame(ArrayList<T> frames, T frame){
-
-        frames.add(frame);
-    }
-
     public static Epsilon getEpsilon() {
         return epsilon;
     }
@@ -135,7 +113,7 @@ public class Game {
         return trigoraths;
     }
 
-    public static ArrayList<ShotGun> getShots(){
+    public static ArrayList<ShotGun> getEpsilonShots(){
         return shot;
     }
 
@@ -154,25 +132,10 @@ public class Game {
         return soundPlayer;
     }
 
-    public static EpsilonView getEpsilonView() {
-        return epsilonView;
-    }
-
-    public static ShotGunView getShotGunView() {
-        return shotGunView;
-    }
-
-    public static TrigorathView getTrigorathView() {
-        return trigorathView;
-    }
-
     public static SquarantineView getSquarantineView() {
         return squarantineView;
     }
 
-    public static VertexView getVertexView() {
-        return vertexView;
-    }
 
     public static GameInfoView getGameInfoView() {
         return gameInfoView;
@@ -190,20 +153,12 @@ public class Game {
         return enemies;
     }
 
-    public static NecropickView getNecropickView() {
-        return necropickView;
-    }
-
     public static ArrayList<Necropick> getNecropicks() {
         return necropicks;
     }
 
     public static ArrayList<Omenoct> getOmenocts() {
         return omenocts;
-    }
-
-    public static OmenoctView getOmenoctView() {
-        return omenoctView;
     }
 
     public static ArrayList<Archmire> getArchmires() {
@@ -214,20 +169,12 @@ public class Game {
         return archmireView;
     }
 
-    public static ArrayList<Barricados> getBarricados() {
-        return barricados;
-    }
-
     public static ArrayList<BarricadosFrame> getBarricadosFrames() {
         return barricadosFrames;
     }
 
     public static ArrayList<JFrame> getFrames() {
         return frames;
-    }
-
-    public static void setFrames(ArrayList<JFrame> frames) {
-        Game.frames = frames;
     }
 
     public static ArrayList<BlackOrbFrame> getBlackOrbFrames() {
@@ -244,5 +191,13 @@ public class Game {
 
     public static ArrayList<WyrmFrame> getWyrmFrames() {
         return wyrmFrames;
+    }
+
+    public static ArrayList<ShotGun> getShots() {
+        return shots;
+    }
+
+    public static void setShots(ArrayList<ShotGun> shots) {
+        Game.shots = shots;
     }
 }
