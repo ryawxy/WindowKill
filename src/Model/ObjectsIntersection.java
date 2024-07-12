@@ -35,6 +35,8 @@ public class ObjectsIntersection {
     //laser
     private static boolean wyrmCollision;
 
+
+
     public ObjectsIntersection(GamePanel gamePanel) throws IOException {
         this.gamePanel = gamePanel;
     }
@@ -153,9 +155,6 @@ public class ObjectsIntersection {
         for(WyrmFrame wyrmFrame : Game.getWyrmFrames()){
             for(ShotGun shotGun : Game.getEpsilonShots()){
                 if(shotGun.isVisible()){
-
-//                    if(wyrmFrame.equals(shotGun.getLocalFrame())){
-               //     if(shotGun.getLocalFrame() instanceof WyrmFrame) System.out.println("**********");
                     Rectangle shot = new Rectangle(shotGun.getLocalX()+shotGun.getLocalFrame().getX(), shotGun.getLocalY()+shotGun.getLocalFrame().getY(),
                             Constants.getShotGunWidth(), Constants.getShotGunHeight());
 
@@ -164,10 +163,7 @@ public class ObjectsIntersection {
 
                         shotGun.setVisible(false);
                         wyrmFrame.getWyrm().decreaseHP(4);
-//                        System.out.println(wyrmFrame.getWyrm().getHP());
                     }
-
-//                }
                     }
             }
 
@@ -517,27 +513,27 @@ public void vertexIntersectsNecropick(){
                     }
                 }
 
-//                for(GameObjects enemy : Game.getEnemies()) {
-//
-//                    if (!(enemy instanceof Archmire)) {
-//                        Epsilon epsilon = Game.getEpsilon();
-//                        Rectangle epsilon1 = new Rectangle(epsilon.getLocalX() + epsilon.getLocalFrame().getX(),
-//                                epsilon.getLocalY() + epsilon.getLocalFrame().getY(),
-//                                epsilon.getWidth(), epsilon.getHeight());
-//
-//                        Rectangle enemy1 = new Rectangle(enemy.getLocalX() + enemy.getLocalFrame().getX(),
-//                                enemy.getLocalY() + enemy.getLocalFrame().getY(),
-//                                enemy.getWidth(), enemy.getHeight());
-//
-//                        if (!enemy.isDead() && enemy.isVisible()) {
-//                            if (epsilon1.intersects(enemy1)){
-//                                IntersectionPoint point = new IntersectionPoint(new Point2D.Double(enemy.getLocalX() + (double) enemy.getWidth() / 2,
-//                                        enemy.getLocalY() + (double) enemy.getHeight() / 2), 10, true, false, enemy, epsilon);
-//                                ObjectsIntersection.getIntersectionPoints().add(point);
-//                            }
-//                        }
-//                    }
-//                }
+                for(GameObjects enemy : Game.getEnemies()) {
+
+                    if (!(enemy instanceof Archmire)) {
+                        Epsilon epsilon = Game.getEpsilon();
+                        Rectangle epsilon1 = new Rectangle(epsilon.getLocalX() + epsilon.getLocalFrame().getX(),
+                                epsilon.getLocalY() + epsilon.getLocalFrame().getY(),
+                                epsilon.getWidth(), epsilon.getHeight());
+
+                        Rectangle enemy1 = new Rectangle(enemy.getLocalX() + enemy.getLocalFrame().getX(),
+                                enemy.getLocalY() + enemy.getLocalFrame().getY(),
+                                enemy.getWidth(), enemy.getHeight());
+
+                        if (!enemy.isDead() && enemy.isVisible()) {
+                            if (epsilon1.intersects(enemy1)){
+                                IntersectionPoint point = new IntersectionPoint(new Point2D.Double(enemy.getLocalX() + (double) enemy.getWidth() / 2,
+                                        enemy.getLocalY() + (double) enemy.getHeight() / 2), 10, true, false, enemy, epsilon);
+                                ObjectsIntersection.getIntersectionPoints().add(point);
+                            }
+                        }
+                    }
+                }
 
 
                 boolean VSCollission;
@@ -620,7 +616,7 @@ public void vertexIntersectsNecropick(){
 //                    }
 //                }
             }
-            public static boolean wyrmInterectsEntity() {
+            public  void wyrmInterectsEntity() {
                 for (Wyrm wyrm : Game.getWyrms()) {
                     for (GameObjects entity : Game.getEnemies()) {
                         if (!entity.equals(wyrm) && !wyrm.isDead() && !entity.isDead()) {
@@ -631,13 +627,13 @@ public void vertexIntersectsNecropick(){
                                     entity.getLocalY() + entity.getLocalFrame().getY(), entity.getWidth(), entity.getHeight());
 
                             if (wyrm1.intersects(entity1)) {
-                                wyrmCollision = true;
+                                wyrm.setCollisionNumber(wyrm.getCollisionNumber()+1);
 
                             }
                         }
                     }
                 }
-                return wyrmCollision;
+
             }
 
     public static void setWyrmCollision(boolean wyrmCollision) {

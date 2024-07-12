@@ -14,6 +14,7 @@ import java.util.Random;
 public class Wyrm extends GameObjects implements Movable {
     private double angle = 0.015;
     private boolean getCloser = true;
+    private int collisionNumber;
     public Wyrm(int x, int y) {
         super(x, y);
 
@@ -58,17 +59,20 @@ public class Wyrm extends GameObjects implements Movable {
 
                 getCloser = false;
 
-                if(ObjectsIntersection.wyrmInterectsEntity()){
-                    if(angle>0){
-                        angle = -0.015;
-                    }else if(angle<=0){
-                        angle = 0.015;
-                    }
+                if(collisionNumber%2==0) angle += 0.015;
+                else angle -= 0.015;
 
-                    ObjectsIntersection.setWyrmCollision(false);
-                }
-                if(angle>0) angle+=0.015;
-                if(angle<0) angle-=0.015;
+//                if(ObjectsIntersection.wyrmInterectsEntity()){
+//                    if(angle>0){
+//                        angle = -0.015;
+//                    }else if(angle<=0){
+//                        angle = 0.015;
+//                    }
+//
+//                    ObjectsIntersection.setWyrmCollision(false);
+//                }
+//                if(angle>0) angle+=0.015;
+//                if(angle<0) angle-=0.015;
 
 
 
@@ -151,5 +155,13 @@ public class Wyrm extends GameObjects implements Movable {
     @Override
     public int getNumCollectibles() {
         return 2;
+    }
+
+    public void setCollisionNumber(int collisionNumber) {
+        this.collisionNumber = collisionNumber;
+    }
+
+    public int getCollisionNumber() {
+        return collisionNumber;
     }
 }

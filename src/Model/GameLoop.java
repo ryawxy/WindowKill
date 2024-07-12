@@ -4,8 +4,10 @@ import Controller.*;
 import Model.entity.*;
 import Model.entity.blackOrb.BlackOrbArray;
 import Model.enums.ArchmireType;
+import Model.enums.BarricadosType;
 import Model.enums.Direction;
 import view.*;
+import view.entityViews.barricados.BarricadosFrame;
 import view.entityViews.blackOrb.BlackOrbFrame;
 import myproject.MyProject;
 import view.entityViews.wyrm.WyrmFrame;
@@ -95,10 +97,7 @@ public class GameLoop {
 
                         }
                     //    BlackOrbFrame blackOrbFrame = new BlackOrbFrame(200,200);
-
                    //         BlackOrbArray.createBlackOrbArray(250,150);
-
-
               //          BlackOrbArray.createInvisibleFrame();
                           WyrmFrame wyrmFrame =   new WyrmFrame(510,300);
                             Game.getWyrmFrames().add(wyrmFrame);
@@ -115,24 +114,11 @@ public class GameLoop {
 //                        Game.getEnemies().add(archmire);
 //                        Game.getArchmires().add(archmire);
 //
-//                            for(Barricados barricados : wave.wave1EasyBarricados){
 //                            BarricadosFrame barricadosFrame = new BarricadosFrame(300,300, BarricadosType.T2);
-//                    //        BarricadosFrame barricadosFrame1 = new BarricadosFrame(500,30, BarricadosType.T2);
-//                       //         BarricadosFrame barricadosFrame2 = new BarricadosFrame(500,600, BarricadosType.T2);
-//                        //        BarricadosFrame barricadosFrame3 = new BarricadosFrame(1000,300, BarricadosType.T2);
-//                             Game.getBarricadosFrames().add(barricadosFrame);
-//                 //           Game.getBarricadosFrames().add(barricadosFrame1);
-//                       //         Game.getBarricadosFrames().add(barricadosFrame2);
-//                        //        Game.getBarricadosFrames().add(barricadosFrame3);
-//                            Game.getFrames().add(barricadosFrame);
-//                //           Game.getFrames().add(barricadosFrame1);
-//                    //            Game.getFrames().add(barricadosFrame2);
-//                    //            Game.getFrames().add(barricadosFrame3);
-//
-//                               Game.getBarricados().add(barricados);
-//                //                Game.getEnemies().add(barricados);
-//
-//                           }
+//                        Game.getBarricadosFrames().add(barricadosFrame);
+//                        Game.getFrames().add(barricadosFrame);
+//                        Game.getEnemies().add(barricadosFrame.getBarricados());
+
                     }else        if(SettingsFrame.getChosenLevel()==1) {
                         for (Squarantine squarantine : wave.wave1MediumSquarantine) {
                             Game.getSquarantine().add(squarantine);
@@ -461,6 +447,7 @@ public class GameLoop {
                objectsIntersection.AOEIntersection();
                objectsIntersection.epsilonIntersectsEnemy();
                objectsIntersection.vertexIntersectsOrb();
+               objectsIntersection.wyrmInterectsEntity();
 
 
 
@@ -576,6 +563,7 @@ public class GameLoop {
 
                 for(WyrmFrame wyrmFrame : Game.getWyrmFrames()){
                     wyrmFrame.getWyrm().move();
+
                     for(ShotGun shotGun : wyrmFrame.getWyrm().getShots()){
                         for(JFrame frame : Game.getFrames()){
                             if(!frame.equals(shotGun.getLocalFrame())) frameIntersection.changeLocalFrame(frame,shotGun);
