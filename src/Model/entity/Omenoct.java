@@ -49,7 +49,7 @@ public class Omenoct extends GameObjects implements Movable {
             if(getLocalY()+getHeight()>=getLocalFrame().getHeight()) side = Side.DOWN;
 
 
-        if((epsilon.getLocalFrame().equals(getLocalFrame())|| epsilon.getLocalFrames().contains(labelFor)) && canChoose) {
+        if((epsilon.getLocalFrame().equals(getLocalFrame())|| epsilon.getLocalFrames().contains(getLocalFrame())) && canChoose) {
             chooseSide();
             canMove = true;
             canChoose = false;

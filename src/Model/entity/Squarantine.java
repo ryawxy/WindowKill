@@ -176,9 +176,9 @@ public class Squarantine extends GameObjects implements Movable {
             setDead(true);
             setShowCollectibles(true);
 
-                getCollectibles().get(0).setX(xPoints[1]);
-                getCollectibles().get(0).setY(yPoints[1]);
-
+//                getCollectibles().get(0).setX(xPoints[1]);
+//                getCollectibles().get(0).setY(yPoints[1]);
+//
         }else{
             Game.getSoundPlayer().playSoundEffect("src/Sound/hurt.wav");
         }
@@ -195,7 +195,7 @@ public class Squarantine extends GameObjects implements Movable {
 
     public void initializeCollectibles(){
 
-        Collectible collectible1 = new Collectible(xPoints[0],yPoints[0]);
+        Collectible collectible1 = new Collectible(xPoints[0],yPoints[0],getLocalFrame());
         collectible1.setRadius(10);
 
         collectibles.add(collectible1);

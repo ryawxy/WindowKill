@@ -3,7 +3,6 @@ package view.entityViews;
 import Controller.Game;
 import Model.Collectible;
 import Model.Drawable;
-import Model.entity.Epsilon;
 import Model.entity.Omenoct;
 
 import javax.imageio.ImageIO;
@@ -23,8 +22,8 @@ public class OmenoctView implements Drawable {
         this.frame = frame;
         try {
             image = ImageIO.read(new File("src/images/omenoct.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ignored) {
+
         }
     }
 
@@ -47,13 +46,13 @@ public class OmenoctView implements Drawable {
                             bounds.contains(globalX + omenoct.getWidth(), globalY + omenoct.getHeight())) {
                         if (omenoct.getLocalFrames().size() == 1) {
                             g.setColor(Color.magenta);
-                            g.drawImage(image, (int) (omenoct.getLocalX()), (int) (omenoct.getLocalY()), omenoct.getWidth(), omenoct.getHeight(), null);
+                            g.drawImage(image, (omenoct.getLocalX()),  (omenoct.getLocalY()), omenoct.getWidth(), omenoct.getHeight(), null);
 
 
 
                         } else {
                             g.setColor(Color.magenta);
-                            g.drawImage(image, (int) (globalX - bounds.x), (int) (globalY - bounds.y), omenoct.getWidth(), omenoct.getHeight(), null);
+                            g.drawImage(image,(globalX - bounds.x),(globalY - bounds.y), omenoct.getWidth(), omenoct.getHeight(), null);
 
 
 
@@ -73,12 +72,12 @@ public class OmenoctView implements Drawable {
                     if (bounds.contains(globalX, globalY) || bounds.contains(globalX + omenoct.getWidth(), globalY) ||
                             bounds.contains(globalX, globalY + omenoct.getHeight()) ||
                             bounds.contains(globalX + omenoct.getWidth(), globalY + omenoct.getHeight())) {
-                        g.setColor(Color.orange);
+                        g.setColor(Color.RED);
                         for (int j = 0; j < omenoct.getCollectibles().size(); j++) {
 
 
                             Collectible collectible = omenoct.getCollectibles().get(j);
-                            g.fillOval(collectible.getX(), collectible.getY(), collectible.getRadius(), collectible.getRadius());
+                            g.fillOval(collectible.getX(), collectible.getY(), collectible.getWidth(), collectible.getHeight());
 
                         }
                     }

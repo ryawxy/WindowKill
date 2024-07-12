@@ -47,6 +47,7 @@ public class Game {
     private static final ArrayList<Model.entity.blackOrb.BlackOrb> blackOrbs = new ArrayList<>();
     private static final ArrayList<WyrmFrame> wyrmFrames = new ArrayList<>();
     private static ArrayList<ShotGun> shots = new ArrayList<>();
+    private static ArrayList<Wyrm> wyrms = new ArrayList<>();
     public Game() throws IOException, AWTException {
 
         frames.add(view.GlassFrame.getINSTANCE());
@@ -73,7 +74,7 @@ public class Game {
         gameInfoView = new view.GameInfoView();
         cerberusView = new CerberusView();
 
-        archmireView = new ArchmireView();
+
 
         HashMap<Ability, Integer> skillTreeAbilities = new HashMap<>();
         skillTreeAbilities.put(Ability.Ares,0);
@@ -193,11 +194,7 @@ public class Game {
         return wyrmFrames;
     }
 
-    public static ArrayList<ShotGun> getShots() {
-        return shots;
-    }
-
-    public static void setShots(ArrayList<ShotGun> shots) {
-        Game.shots = shots;
+    public static ArrayList<Wyrm> getWyrms() {
+        return wyrms;
     }
 }

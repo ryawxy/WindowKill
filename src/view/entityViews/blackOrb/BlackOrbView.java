@@ -54,7 +54,7 @@ public class BlackOrbView implements Drawable  {
             for (Collectible collectible : blackOrb.getCollectibles()) {
 
                 g.setColor(new Color(0x7B26B9));
-                g.fillOval(collectible.getX(),collectible.getY(),collectible.getRadius(),collectible.getRadius());
+                g.fillOval(collectible.getX(),collectible.getY(),collectible.getWidth(),collectible.getHeight());
             }
         }
 

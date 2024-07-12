@@ -21,8 +21,6 @@ public class GameObjects extends JLabel {
     private int HP;
     private JFrame localFrame;
     private JFrame previousLocalFrame;
-    private int globalX;
-    private int globalY;
     private final ArrayList<JFrame> localFrames = new ArrayList<>();
     private boolean dead;
     private int numCollectibles;
@@ -32,6 +30,10 @@ public class GameObjects extends JLabel {
 
         this.x = x;
         this.y = y;
+        setX(x);
+        setY(y);
+        setLocalX(x);
+        setLocalY(y);
 
     }
 
@@ -78,6 +80,7 @@ public class GameObjects extends JLabel {
                 setDead(true);
                 setShowCollectibles(true);
                 showCollectible();
+
 
             }
         }
@@ -197,7 +200,7 @@ public class GameObjects extends JLabel {
             int x = (int) (getLocalX() + distance*Math.cos(angle));
             int y = (int) (getLocalY() + distance*Math.sin(angle));
 
-            Collectible collectible = new Collectible(x,y);
+            Collectible collectible = new Collectible(x,y,getLocalFrame());
             collectible.setRadius(10);
             getCollectibles().add(collectible);
         }

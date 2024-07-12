@@ -1,7 +1,7 @@
 package Model;
 
 import Model.entity.*;
-import Model.enums.Size;
+import Model.enums.ArchmireType;
 import view.SettingsFrame;
 import view.entityViews.barricados.BarricadosPanel;
 
@@ -94,7 +94,7 @@ public  void initWave1(){
         trigorath.setLocalyPoints(yPoints3);
         wave1EasyTrigorath.add(trigorath);
 
-        Archmire archmire = new Archmire(50,50, Size.MINI);
+        Archmire archmire = new Archmire(50,50, ArchmireType.MINI);
      //   wave1EasyArchmire.add(archmire);
 
         Necropick necropick = new Necropick(300,300);

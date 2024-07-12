@@ -5,15 +5,14 @@ import Controller.Game;
 import Model.entity.*;
 import Model.entity.blackOrb.BlackOrb;
 import Model.entity.blackOrb.Laser;
+import Model.enums.ArchmireType;
 import Model.enums.Direction;
 import Model.enums.EnemyType;
 import Model.enums.Side;
-import Model.enums.Size;
 import view.entityViews.blackOrb.BlackOrbFrame;
 import view.GamePanel;
 import Model.entity.Epsilon;
 import view.entityViews.barricados.BarricadosFrame;
-
 import myproject.MyProject;
 import view.entityViews.wyrm.WyrmFrame;
 
@@ -34,6 +33,7 @@ public class ObjectsIntersection {
     //Drown
     private static long lastTime5;
     //laser
+    private static boolean wyrmCollision;
 
     public ObjectsIntersection(GamePanel gamePanel) throws IOException {
         this.gamePanel = gamePanel;
@@ -214,13 +214,13 @@ public class ObjectsIntersection {
                 for (int i = 0; i < enemy.getCollectibles().size(); i++) {
                     Collectible collectible = enemy.getCollectibles().get(i);
 
-                    if (epsilon.getLocalFrame().equals(enemy.getLocalFrame())) {
+                    if (epsilon.getLocalFrame().equals(collectible.getLocalFrame())) {
                         Ellipse2D epsilonShape = new Ellipse2D.Double(epsilon.getLocalX() - epsilon.getRadius(),
                                 epsilon.getLocalY() - epsilon.getRadius(),
                                 2 * epsilon.getRadius(), 2 * epsilon.getRadius());
-                        Ellipse2D collectibleShape = new Ellipse2D.Double(collectible.getX() - collectible.getRadius(),
-                                collectible.getY() - collectible.getRadius(),
-                                2 * collectible.getRadius(), 2 * collectible.getRadius());
+                        Ellipse2D collectibleShape = new Ellipse2D.Double(collectible.getX() - (double) collectible.getWidth() /2,
+                                collectible.getY() - (double) collectible.getHeight() /2,
+                                 collectible.getWidth(), collectible.getHeight());
                         Area epsilonArea = new Area(epsilonShape);
                         Area collectibleArea = new Area(collectibleShape);
                         epsilonArea.intersect(collectibleArea);
@@ -232,7 +232,7 @@ public class ObjectsIntersection {
                                 case Necropick necropick -> MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 2);
                                 case Omenoct omenoct -> MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 4);
                                 case Archmire archmire -> {
-                                    if (archmire.getsize().equals(Size.LARGE))
+                                    if (archmire.getsize().equals(ArchmireType.LARGE))
                                         MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 6);
                                     else MyProject.getGameInfo().setXP(MyProject.getGameInfo().getXP() + 3);
                                 }
@@ -295,7 +295,7 @@ public class ObjectsIntersection {
             for(GameObjects enemy2 : Game.getEnemies() ){
                 if(!(enemy1 instanceof Trigorath && enemy2 instanceof Squarantine) && !(enemy1 instanceof Squarantine && enemy2 instanceof Trigorath)
                 && !(enemy1 instanceof Trigorath && enemy2 instanceof Trigorath) && !(enemy1 instanceof Squarantine && enemy2 instanceof Squarantine)){
-                if(!enemy1.equals(enemy2)) {
+                if(!enemy1.equals(enemy2) && !(enemy1 instanceof Archmire) && !(enemy2 instanceof Archmire)) {
                     if (enemy1.isVisible() && enemy2.isVisible()) {
                         Rectangle e1 = new Rectangle(enemy1.getLocalX()+enemy1.getLocalFrame().getX(), enemy1.getLocalY()+enemy1.getLocalFrame().getY(), enemy1.getWidth(), enemy1.getHeight());
                         Rectangle e2 = new Rectangle(enemy2.getLocalX()+enemy2.getLocalFrame().getX(), enemy2.getLocalY()+enemy2.getLocalFrame().getY(), enemy2.getWidth(), enemy2.getHeight());
@@ -399,6 +399,7 @@ public void vertexIntersectsNecropick(){
         }
     }
     public void AOEIntersection() {
+        Epsilon epsilon = Game.getEpsilon();
         for (Archmire archmire : Game.getArchmires()) {
             for (Footprint footprint : archmire.getFootprint()) {
                 if (footprint.isVisible()) {
@@ -408,45 +409,39 @@ public void vertexIntersectsNecropick(){
                     double arcRadius1;
                     Point2D enemyCenter;
                     Point2D epsilonCenter;
-                    if (archmire.getsize().equals(Size.MINI)){
-                        footprintCenter = new Point2D.Double(footprint.getPosition().getX() + (double) Constants.miniArchmireWidth() / 2,
-                                footprint.getPosition().getY() + (double) Constants.miniArchmireHeight() / 2);
-                    archmireCenter = new Point2D.Double(archmire.getX() + (double) Constants.miniArchmireWidth() / 2,
-                            archmire.getY() + (double) Constants.miniArchmireHeight() / 2);}
-                    else {
-                        footprintCenter = new Point2D.Double(footprint.getPosition().getX() + (double) Constants.largeArchmireWidth() / 2,
-                                footprint.getPosition().getY() + (double) Constants.largeArchmireHeight() / 2);
-                        archmireCenter = new Point2D.Double(archmire.getX() + (double) Constants.largeArchmireWidth() / 2,
-                                archmire.getY() + (double) Constants.largeArchmireHeight() / 2);
-                    }
-                     epsilonCenter = new Point2D.Double(Game.getEpsilon().getxCenter(), Game.getEpsilon().getyCenter());
 
-                    if (archmire.getsize().equals(Size.MINI)) {
-                        arcRadius = Constants.miniArchmireWidth();
-                        arcRadius1 = Constants.miniArchmireHeight();
-                    } else {
-                        arcRadius = Constants.largeArchmireWidth();
-                        arcRadius1 = Constants.largeArchmireHeight();
-                    }
+                        footprintCenter = new Point2D.Double(footprint.getLocalX()+footprint.getLocalFrame().getX() + (double) archmire.getWidth() /2,
+                                footprint.getLocalY()+footprint.getLocalFrame().getY() + (double) archmire.getHeight() /2);
+                    archmireCenter = new Point2D.Double(archmire.getLocalX()+archmire.getLocalFrame().getX() + (double) archmire.getWidth() /2,
+                            archmire.getLocalY()+archmire.getLocalFrame().getY() + (double) archmire.getHeight() /2);
+
+                     epsilonCenter = new Point2D.Double(epsilon.getLocalX()+epsilon.getLocalFrame().getX()+ (double) epsilon.getWidth() /2,
+                             epsilon.getLocalY()+epsilon.getLocalFrame().getY()+ (double) epsilon.getHeight() /2 );
+
+
+                        arcRadius = archmire.getWidth();
+                        arcRadius1 = archmire.getHeight();
+
                         long currentTime = System.currentTimeMillis();
-                        if (epsilonCenter.distance(footprintCenter) <= Math.abs(arcRadius - (double) Game.getEpsilon().getRadius() / 2) ||
-                                epsilonCenter.distance(footprintCenter) <= Math.abs(arcRadius1 - (double) Game.getEpsilon().getRadius() / 2)) {
+                        if (epsilonCenter.distance(footprintCenter) <= Math.abs(arcRadius - (double) epsilon.getRadius() / 2) ||
+                                epsilonCenter.distance(footprintCenter) <= Math.abs(arcRadius1 - (double)epsilon.getRadius() / 2)) {
                             if ((currentTime - lastTime) / 1000 >= 1) {
                                 lastTime = currentTime;
-                                Game.getEpsilon().setHP(Game.getEpsilon().getHP() - 2);
+                                epsilon.decreaseHP(2);
                             }
                         }
-                    if (epsilonCenter.distance(archmireCenter) <= Math.abs(arcRadius - (double) Game.getEpsilon().getRadius() / 2) ||
-                            epsilonCenter.distance(footprintCenter) <= Math.abs(arcRadius1 - (double) Game.getEpsilon().getRadius() / 2)) {
+                    if (epsilonCenter.distance(archmireCenter) <= Math.abs(arcRadius - (double) epsilon.getRadius() / 2) ||
+                            epsilonCenter.distance(footprintCenter) <= Math.abs(arcRadius1 - (double) epsilon.getRadius() / 2)) {
                         if ((currentTime - lastTime3) / 1000 >= 1) {
                             lastTime3 = currentTime;
-                            Game.getEpsilon().setHP(Game.getEpsilon().getHP() - 10);
+                            epsilon.decreaseHP(10);
                         }
                     }
 
                         for (GameObjects enemy : Game.getEnemies()) {
-                            if (!enemy.equals(archmire)) {
-                                enemyCenter = new Point2D.Double(enemy.getX() + (double) enemy.getWidth() / 2, enemy.getY() + (double) enemy.getHeight() / 2);
+                            if (!enemy.equals(archmire) ) {
+                                enemyCenter = new Point2D.Double(enemy.getLocalX()+enemy.getLocalFrame().getX() + (double) enemy.getWidth() / 2,
+                                        enemy.getLocalY()+enemy.getLocalFrame().getY() + (double) enemy.getHeight() / 2);
 
                                 double distance = enemyCenter.distance(footprintCenter);
                                 if(distance <= Math.abs(arcRadius1- (double) enemy.getWidth() /2) || distance <= Math.abs(arcRadius1- (double) enemy.getHeight() /2)
@@ -522,27 +517,27 @@ public void vertexIntersectsNecropick(){
                     }
                 }
 
-                for(GameObjects enemy : Game.getEnemies()) {
-
-                    if (!(enemy instanceof Archmire)) {
-                        Epsilon epsilon = Game.getEpsilon();
-                        Rectangle epsilon1 = new Rectangle(epsilon.getLocalX() + epsilon.getLocalFrame().getX(),
-                                epsilon.getLocalY() + epsilon.getLocalFrame().getY(),
-                                epsilon.getWidth(), epsilon.getHeight());
-
-                        Rectangle enemy1 = new Rectangle(enemy.getLocalX() + enemy.getLocalFrame().getX(),
-                                enemy.getLocalY() + enemy.getLocalFrame().getY(),
-                                enemy.getWidth(), enemy.getHeight());
-
-                        if (!enemy.isDead() && enemy.isVisible()) {
-                            if (epsilon1.intersects(enemy1)){
-                                IntersectionPoint point = new IntersectionPoint(new Point2D.Double(enemy.getLocalX() + (double) enemy.getWidth() / 2,
-                                        enemy.getLocalY() + (double) enemy.getHeight() / 2), 10, true, false, enemy, epsilon);
-                                ObjectsIntersection.getIntersectionPoints().add(point);
-                            }
-                        }
-                    }
-                }
+//                for(GameObjects enemy : Game.getEnemies()) {
+//
+//                    if (!(enemy instanceof Archmire)) {
+//                        Epsilon epsilon = Game.getEpsilon();
+//                        Rectangle epsilon1 = new Rectangle(epsilon.getLocalX() + epsilon.getLocalFrame().getX(),
+//                                epsilon.getLocalY() + epsilon.getLocalFrame().getY(),
+//                                epsilon.getWidth(), epsilon.getHeight());
+//
+//                        Rectangle enemy1 = new Rectangle(enemy.getLocalX() + enemy.getLocalFrame().getX(),
+//                                enemy.getLocalY() + enemy.getLocalFrame().getY(),
+//                                enemy.getWidth(), enemy.getHeight());
+//
+//                        if (!enemy.isDead() && enemy.isVisible()) {
+//                            if (epsilon1.intersects(enemy1)){
+//                                IntersectionPoint point = new IntersectionPoint(new Point2D.Double(enemy.getLocalX() + (double) enemy.getWidth() / 2,
+//                                        enemy.getLocalY() + (double) enemy.getHeight() / 2), 10, true, false, enemy, epsilon);
+//                                ObjectsIntersection.getIntersectionPoints().add(point);
+//                            }
+//                        }
+//                    }
+//                }
 
 
                 boolean VSCollission;
@@ -625,9 +620,29 @@ public void vertexIntersectsNecropick(){
 //                    }
 //                }
             }
+            public static boolean wyrmInterectsEntity() {
+                for (Wyrm wyrm : Game.getWyrms()) {
+                    for (GameObjects entity : Game.getEnemies()) {
+                        if (!entity.equals(wyrm) && !wyrm.isDead() && !entity.isDead()) {
+                            Rectangle wyrm1 = new Rectangle(wyrm.getLocalX() + wyrm.getLocalFrame().getX(),
+                                    wyrm.getLocalY() + wyrm.getLocalFrame().getY(),
+                                    wyrm.getWidth(), wyrm.getHeight());
+                            Rectangle entity1 = new Rectangle(entity.getLocalX() + entity.getLocalFrame().getX(),
+                                    entity.getLocalY() + entity.getLocalFrame().getY(), entity.getWidth(), entity.getHeight());
 
+                            if (wyrm1.intersects(entity1)) {
+                                wyrmCollision = true;
 
+                            }
+                        }
+                    }
+                }
+                return wyrmCollision;
+            }
 
+    public static void setWyrmCollision(boolean wyrmCollision) {
+        ObjectsIntersection.wyrmCollision = wyrmCollision;
+    }
 
     public static ArrayList<IntersectionPoint> getIntersectionPoints(){
         if(intersectionPoints==null) intersectionPoints = new ArrayList<>();

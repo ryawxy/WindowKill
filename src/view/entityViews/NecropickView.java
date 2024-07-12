@@ -91,7 +91,7 @@ public class NecropickView implements Drawable {
 
                                 Collectible collectible = necropick.getCollectibles().get(j);
                                 g.setColor(new Color(0x8CCFE5));
-                                g.fillOval(collectible.getX(), collectible.getY(), collectible.getRadius(), collectible.getRadius());
+                                g.fillOval(collectible.getX(), collectible.getY(), collectible.getWidth(), collectible.getHeight());
 
                             }
                         }

@@ -26,13 +26,14 @@ public class WyrmFrame extends JFrame {
         wyrmPanel.setBound(new Rectangle(x,y,150,150));
         wyrmPanel.setItsFrame(this);
         this.setVisible(true);
-        wyrm = new Wyrm(30,20);
+        wyrm = new Wyrm(0,0);
         wyrm.setLocalFrame(this);
         wyrm.setItsPanel(wyrmPanel);
-        wyrmPanel.setWyrmView(new WyrmView(wyrm,wyrmPanel.getRotationAngle()));
+        wyrmPanel.setWyrmView(new WyrmView(this));
         bound = new Rectangle(getX(),getY(),getWidth(),getHeight());
         Game.getFrames().add(this);
         Game.getEnemies().add(wyrm);
+        Game.getWyrms().add(wyrm);
 
     }
 

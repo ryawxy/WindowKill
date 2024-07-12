@@ -1,8 +1,7 @@
 package Model;
 
 import Controller.Game;
-import Model.entity.Epsilon;
-import Model.entity.Omenoct;
+import Model.entity.Wyrm;
 import Model.enums.Direction;
 import Model.enums.Side;
 import javax.swing.*;
@@ -22,10 +21,23 @@ public class FrameIntersection {
 
         JFrame previousFrame = entity.getLocalFrame();
 
-            int globalX = (int) (entity.getLocalX() + entity.getLocalFrame().getX());
-            int globalY = (int) (entity.getLocalY() + entity.getLocalFrame().getY());
+            int globalX =(entity.getLocalX() + entity.getLocalFrame().getX());
+            int globalY =(entity.getLocalY() + entity.getLocalFrame().getY());
 
             Rectangle rectangle = new Rectangle(globalX, globalY, entity.getWidth(), entity.getHeight());
+            if(entity instanceof Wyrm){
+
+                if(globalX>=frame.getX()&& globalX+entity.getWidth()<= frame.getX()+frame.getWidth() &&
+                        globalY>= frame.getY()&&globalY+entity.getHeight()<= frame.getY()+frame.getHeight()){
+                    entity.setLocalX(globalX - entity.getLocalFrame().getX());
+                    entity.setLocalY(globalY - entity.getLocalFrame().getY());
+
+
+                }else{
+                    entity.getLocalFrames().add(frame);
+                }
+
+            }else{
             if (bounds1.intersects(bounds2)) {
                 if (bounds2.intersects(rectangle)) {
                     if (!bounds1.contains(rectangle)) {
@@ -35,14 +47,12 @@ public class FrameIntersection {
                         entity.setLocalX(globalX - entity.getLocalFrame().getX());
                         entity.setLocalY(globalY - entity.getLocalFrame().getY());
                         entity.getLocalFrames().remove(previousFrame);
-//                        if(entity instanceof Epsilon){
-//                            for(Omenoct omenoct : Game.getOmenocts()) omenoct.setCanMove(true);
-//                        }
                     } else if (bounds1.contains(rectangle) && bounds2.contains(rectangle)) {
                         entity.getLocalFrames().add(frame);
 
                     }
                 }
+            }
 
             }
         }

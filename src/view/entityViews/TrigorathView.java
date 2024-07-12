@@ -71,7 +71,7 @@ public class TrigorathView implements Drawable {
 
 
                             Collectible collectible = trigorath1.getCollectibles().get(j);
-                            g.fillOval(collectible.getX(), collectible.getY(), collectible.getRadius(), collectible.getRadius());
+                            g.fillOval(collectible.getX(), collectible.getY(), collectible.getWidth(), collectible.getHeight());
 
                         }
                     }

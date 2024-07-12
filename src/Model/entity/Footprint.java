@@ -1,25 +1,34 @@
 package Model.entity;
 
+import Model.GameObjects;
+
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-public class Footprint {
+public class Footprint extends GameObjects {
     private Point2D position;
-    private  int timer;
-    private static int lastTime;
-    private boolean visible = true;
-    private static   Color color = new Color(164, 200, 217,255);
+    private float alpha;
+    private static final float FADE_RATE = 0.1f;
+    private long lastTime;
+
 
     public Footprint(Point2D position) {
+        super((int) position.getX(), (int) position.getY());
         this.position = position;
-        color = new Color(164, 200, 217);
-
+        this.alpha = 0.3f;
     }
-    public void fade(){
+    public void fade() {
 
-
-
+        long currentTime = System.currentTimeMillis();
+        if ((currentTime - lastTime) / 1000 >= 5) {
+            if (alpha > 0) alpha -= FADE_RATE;
+            else if(alpha<0.1f) {
+                alpha = 0.1f;
+                setVisible(false);
+            }
+            lastTime = currentTime;
         }
+    }
 
 
     public Point2D getPosition() {
@@ -30,27 +39,7 @@ public class Footprint {
         this.position = position;
     }
 
-    public int getTimer() {
-        return timer;
-    }
-
-    public void setTimer(int timer) {
-        this.timer = timer;
-    }
-
-    public boolean isVisible() {
-        return visible;
-    }
-
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-    }
-
-    public static   Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
+    public float getAlpha() {
+        return alpha;
     }
 }

@@ -2,21 +2,18 @@ package view.entityViews.blackOrb;
 
 import Controller.MouseListener;
 import view.ShotGunView;
-import view.entityViews.EpsilonView;
-import view.entityViews.NecropickView;
-import view.entityViews.OmenoctView;
-import view.entityViews.VertexView;
+import view.entityViews.*;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class BlackOrbPanel extends JPanel {
 
-    private Rectangle bound;
     private JFrame itsFrame;
     view.entityViews.blackOrb.BlackOrbView blackOrbView;
     OmenoctView omenoctView;
     NecropickView necropickView;
+    ArchmireView archmireView;
 
 
     public BlackOrbPanel(int x, int y){
@@ -33,9 +30,12 @@ public class BlackOrbPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2D = (Graphics2D) g;
+        g.setColor(Color.BLACK);
+        g.fillRect(0,0,getWidth(),getHeight());
 
 
         blackOrbView.paint(g2D);
+        archmireView.paint(g2D);
 
         view.entityViews.blackOrb.LaserView laserView = new view.entityViews.blackOrb.LaserView(((BlackOrbFrame) itsFrame).getBlackOrb());
         laserView.paint(g2D);
@@ -52,31 +52,11 @@ public class BlackOrbPanel extends JPanel {
         omenoctView.paint(g2D);
         necropickView.paint(g2D);
 
-
-
-
-    }
-
-    public Rectangle getBound() {
-        return bound;
-    }
-
-    public void setBound(Rectangle bound) {
-        this.bound = bound;
-    }
-
-    public JFrame getItsFrame() {
-        return itsFrame;
     }
 
     public void setItsFrame(JFrame itsFrame) {
         this.itsFrame = itsFrame;
     }
-
-    public BlackOrbView getBlackOrbView() {
-        return blackOrbView;
-    }
-
     public void setBlackOrbView(BlackOrbView blackOrbView) {
         this.blackOrbView = blackOrbView;
     }
@@ -87,6 +67,10 @@ public class BlackOrbPanel extends JPanel {
 
     public void setNecropickView(NecropickView necropickView) {
         this.necropickView = necropickView;
+    }
+
+    public void setArchmireView(ArchmireView archmireView) {
+        this.archmireView = archmireView;
     }
 }
 

@@ -225,10 +225,10 @@ public class Trigorath extends GameObjects implements Movable {
     }
     public void initializeCollectibles(){
 
-        Collectible collectible1 = new Collectible(xPoints[0],yPoints[0]);
+        Collectible collectible1 = new Collectible(xPoints[0],yPoints[0],getLocalFrame());
         collectible1.setRadius(10);
 
-        Collectible collectible2 = new Collectible(xPoints[1],yPoints[1]);
+        Collectible collectible2 = new Collectible(xPoints[1],yPoints[1],getLocalFrame());
         collectible2.setRadius(10);
 
         collectibles.add(collectible1);

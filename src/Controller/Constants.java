@@ -154,6 +154,12 @@ public class Constants {
     public static double omenoctExtraSpeed(){
         return 2.0;
     }
+    public static int wyrmWidth(){
+        return 100;
+    }
+    public static int wyrmHeight(){
+        return 75;
+    }
 
 
 }

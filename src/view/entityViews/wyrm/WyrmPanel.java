@@ -9,11 +9,9 @@ import java.awt.*;
 
 public class WyrmPanel extends JPanel {
 
-    private Rectangle bound;
     private JFrame itsFrame;
     WyrmView wyrmView;
     EpsilonView epsilonView;
-    private double rotationAngle;
 
     public WyrmPanel(int x, int y){
 
@@ -29,10 +27,8 @@ public class WyrmPanel extends JPanel {
         super.paintComponent(g);
 
         Graphics2D g2D = (Graphics2D) g;
-        setRotationAngle(getRotationAngle()+0.02);
-        WyrmView wyrmView1 = new WyrmView(((WyrmFrame)itsFrame).getWyrm(),rotationAngle);
 
-        wyrmView1.paint(g2D);
+        wyrmView.paint(g2D);
 
         epsilonView = new EpsilonView(itsFrame);
         epsilonView.paint(g2D);
@@ -41,35 +37,14 @@ public class WyrmPanel extends JPanel {
         shotGunView.paint(g2D);
     }
 
-    public Rectangle getBound() {
-        return bound;
-    }
-
     public void setBound(Rectangle bound) {
-        this.bound = bound;
-    }
-
-    public JFrame getItsFrame() {
-        return itsFrame;
     }
 
     public void setItsFrame(JFrame itsFrame) {
         this.itsFrame = itsFrame;
     }
-
-    public WyrmView getWyrmView() {
-        return wyrmView;
-    }
-
     public void setWyrmView(WyrmView wyrmView) {
         this.wyrmView = wyrmView;
     }
 
-    public double getRotationAngle() {
-        return rotationAngle;
-    }
-
-    public void setRotationAngle(double rotationAngle) {
-        this.rotationAngle = rotationAngle;
-    }
 }

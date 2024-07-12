@@ -7,6 +7,7 @@ import Model.entity.blackOrb.BlackOrb;
 import view.entityViews.*;
 import view.entityViews.blackOrb.BlackOrbFrame;
 import view.entityViews.blackOrb.BlackOrbView;
+import view.entityViews.wyrm.WyrmView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,23 +19,23 @@ public class GamePanel extends JPanel {
     static GamePanel INSTANCE;
     private static int FRAME_WIDTH = 700;
     private static int FRAME_HEIGHT = 700;
-    private Dimension SCREEN_SIZE = new Dimension(700, 700);
-    private MouseListener mouseListener;
     private static double angle;
-    private NecropickView necropickView = new NecropickView(GlassFrame.getINSTANCE());
+    private final NecropickView necropickView = new NecropickView(GlassFrame.getINSTANCE());
+    private final ArchmireView archmireView = new ArchmireView(GlassFrame.getINSTANCE());
+    private final WyrmView wyrmView = new WyrmView(GlassFrame.getINSTANCE());
 
 
-    public GamePanel() throws IOException {
+    public GamePanel() {
 
 
-        mouseListener = new MouseListener(this);
+        MouseListener mouseListener = new MouseListener(this);
         addMouseListener(mouseListener);
+        setDoubleBuffered(true);
 
         setBorder(BorderFactory.createLineBorder(Color.black, 5));
         setBackground(new Color(0,0,0));
-
-     //   setLocationToCenter(GlassFrame.getINSTANCE());
-        setSize(700,700);
+        Dimension SCREEN_SIZE = new Dimension(700, 700);
+        setSize(SCREEN_SIZE);
 
         GlassFrame.getINSTANCE().add(this);
 
@@ -77,10 +78,14 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) {
         Graphics2D g2D = (Graphics2D) g;
         super.paintComponent(g2D);
+        g.setColor(Color.BLACK);
+        g.fillRect(0,0,getWidth(),getHeight());
 
         necropickView.paint(g2D);
 
-        Game.getArchmireView().paint(g2D);
+        archmireView.paint(g2D);
+
+        wyrmView.paint(g2D);
 
         //paint epsilon
 
