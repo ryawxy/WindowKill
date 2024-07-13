@@ -46,8 +46,10 @@ public class Game {
     private static final ArrayList<InvisibleFrame> invisibleFrames = new ArrayList<>();
     private static final ArrayList<Model.entity.blackOrb.BlackOrb> blackOrbs = new ArrayList<>();
     private static final ArrayList<WyrmFrame> wyrmFrames = new ArrayList<>();
-    private static ArrayList<ShotGun> shots = new ArrayList<>();
-    private static ArrayList<Wyrm> wyrms = new ArrayList<>();
+    private static final ArrayList<ShotGun> shots = new ArrayList<>();
+    private static final ArrayList<Wyrm> wyrms = new ArrayList<>();
+    private static final ArrayList<Barricados> barricadoses  = new ArrayList<>();
+
     public Game() throws IOException, AWTException {
 
         frames.add(view.GlassFrame.getINSTANCE());
@@ -196,5 +198,8 @@ public class Game {
 
     public static ArrayList<Wyrm> getWyrms() {
         return wyrms;
+    }
+    public static ArrayList<Barricados> getBarricados() {
+        return barricadoses;
     }
 }

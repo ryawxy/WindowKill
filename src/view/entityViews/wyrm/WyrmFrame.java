@@ -1,19 +1,16 @@
 package view.entityViews.wyrm;
 
 import Controller.Game;
+import Controller.KeyListener;
 import Model.entity.Wyrm;
+import view.entityViews.NecropickView;
+
 import javax.swing.*;
 import java.awt.*;
 
 
 public class WyrmFrame extends JFrame {
-
     Wyrm wyrm;
-    Rectangle bound;
-   private double xVelocity;
-   private double yVelocity;
-
-
     public WyrmFrame(int x, int y){
 
         this.setSize(150,150);
@@ -30,10 +27,13 @@ public class WyrmFrame extends JFrame {
         wyrm.setLocalFrame(this);
         wyrm.setItsPanel(wyrmPanel);
         wyrmPanel.setWyrmView(new WyrmView(this));
-        bound = new Rectangle(getX(),getY(),getWidth(),getHeight());
+        wyrmPanel.setNecropickView(new NecropickView(this));
+        new KeyListener((JPanel)getContentPane());
+
         Game.getFrames().add(this);
         Game.getEnemies().add(wyrm);
         Game.getWyrms().add(wyrm);
+        Game.getWyrmFrames().add(this);
 
     }
 

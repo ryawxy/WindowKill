@@ -1,6 +1,7 @@
 package Model;
 
 import Controller.Game;
+import Model.entity.Barricados;
 import Model.entity.Wyrm;
 import Model.enums.Direction;
 import Model.enums.Side;
@@ -25,7 +26,7 @@ public class FrameIntersection {
             int globalY =(entity.getLocalY() + entity.getLocalFrame().getY());
 
             Rectangle rectangle = new Rectangle(globalX, globalY, entity.getWidth(), entity.getHeight());
-            if(entity instanceof Wyrm){
+            if(entity instanceof Wyrm || entity instanceof Barricados){
 
                 if(globalX>=frame.getX()&& globalX+entity.getWidth()<= frame.getX()+frame.getWidth() &&
                         globalY>= frame.getY()&&globalY+entity.getHeight()<= frame.getY()+frame.getHeight()){

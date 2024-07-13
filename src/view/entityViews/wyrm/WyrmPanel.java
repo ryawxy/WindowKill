@@ -3,6 +3,7 @@ package view.entityViews.wyrm;
 import Controller.MouseListener;
 import view.ShotGunView;
 import view.entityViews.EpsilonView;
+import view.entityViews.NecropickView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +13,7 @@ public class WyrmPanel extends JPanel {
     private JFrame itsFrame;
     WyrmView wyrmView;
     EpsilonView epsilonView;
+    NecropickView necropickView;
 
     public WyrmPanel(int x, int y){
 
@@ -33,6 +35,8 @@ public class WyrmPanel extends JPanel {
         epsilonView = new EpsilonView(itsFrame);
         epsilonView.paint(g2D);
 
+        necropickView.paint(g2D);
+
         ShotGunView shotGunView = new ShotGunView(itsFrame);
         shotGunView.paint(g2D);
     }
@@ -47,4 +51,7 @@ public class WyrmPanel extends JPanel {
         this.wyrmView = wyrmView;
     }
 
+    public void setNecropickView(NecropickView necropickView) {
+        this.necropickView = necropickView;
+    }
 }

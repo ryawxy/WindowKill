@@ -287,25 +287,25 @@ public class ObjectsIntersection {
             }
         }
 
-        for(GameObjects enemy1 : Game.getEnemies()){
-            for(GameObjects enemy2 : Game.getEnemies() ){
-                if(!(enemy1 instanceof Trigorath && enemy2 instanceof Squarantine) && !(enemy1 instanceof Squarantine && enemy2 instanceof Trigorath)
-                && !(enemy1 instanceof Trigorath && enemy2 instanceof Trigorath) && !(enemy1 instanceof Squarantine && enemy2 instanceof Squarantine)){
-                if(!enemy1.equals(enemy2) && !(enemy1 instanceof Archmire) && !(enemy2 instanceof Archmire)) {
-                    if (enemy1.isVisible() && enemy2.isVisible()) {
-                        Rectangle e1 = new Rectangle(enemy1.getLocalX()+enemy1.getLocalFrame().getX(), enemy1.getLocalY()+enemy1.getLocalFrame().getY(), enemy1.getWidth(), enemy1.getHeight());
-                        Rectangle e2 = new Rectangle(enemy2.getLocalX()+enemy2.getLocalFrame().getX(), enemy2.getLocalY()+enemy2.getLocalFrame().getY(), enemy2.getWidth(), enemy2.getHeight());
-                        if (e1.intersects(e2)) {
-                            IntersectionPoint point = new IntersectionPoint(new Point2D.Double(enemy1.getX(), enemy1.getY()), 10, false, false, enemy1, enemy2);
-                            intersectionPoints.add(point);
-                        }
-                    }
-                }
-                }
-
-
-            }
-        }
+//        for(GameObjects enemy1 : Game.getEnemies()){
+//            for(GameObjects enemy2 : Game.getEnemies() ){
+//                if(!(enemy1 instanceof Trigorath && enemy2 instanceof Squarantine) && !(enemy1 instanceof Squarantine && enemy2 instanceof Trigorath)
+//                && !(enemy1 instanceof Trigorath && enemy2 instanceof Trigorath) && !(enemy1 instanceof Squarantine && enemy2 instanceof Squarantine)){
+//                if(!enemy1.equals(enemy2) && !(enemy1 instanceof Archmire) && !(enemy2 instanceof Archmire)) {
+//                    if (enemy1.isVisible() && enemy2.isVisible()) {
+//                        Rectangle e1 = new Rectangle(enemy1.getLocalX()+enemy1.getLocalFrame().getX(), enemy1.getLocalY()+enemy1.getLocalFrame().getY(), enemy1.getWidth(), enemy1.getHeight());
+//                        Rectangle e2 = new Rectangle(enemy2.getLocalX()+enemy2.getLocalFrame().getX(), enemy2.getLocalY()+enemy2.getLocalFrame().getY(), enemy2.getWidth(), enemy2.getHeight());
+//                        if (e1.intersects(e2)) {
+//                            IntersectionPoint point = new IntersectionPoint(new Point2D.Double(enemy1.getX(), enemy1.getY()), 10, false, false, enemy1, enemy2);
+//                            intersectionPoints.add(point);
+//                        }
+//                    }
+//                }
+//                }
+//
+//
+//            }
+//        }
         for(Trigorath trigorath : Game.getTrigoraths()){
             for(Squarantine squarantine : Game.getSquarantine()){
                 Polygon trigorath1 = new Polygon(trigorath.getxPoints(), trigorath.getyPoints(), 3);
@@ -619,7 +619,7 @@ public void vertexIntersectsNecropick(){
             public  void wyrmInterectsEntity() {
                 for (Wyrm wyrm : Game.getWyrms()) {
                     for (GameObjects entity : Game.getEnemies()) {
-                        if (!entity.equals(wyrm) && !wyrm.isDead() && !entity.isDead()) {
+                        if (!entity.equals(wyrm) && !wyrm.isDead() && !entity.isDead() && entity.isVisible()) {
                             Rectangle wyrm1 = new Rectangle(wyrm.getLocalX() + wyrm.getLocalFrame().getX(),
                                     wyrm.getLocalY() + wyrm.getLocalFrame().getY(),
                                     wyrm.getWidth(), wyrm.getHeight());

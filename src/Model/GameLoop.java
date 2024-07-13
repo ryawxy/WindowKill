@@ -99,25 +99,24 @@ public class GameLoop {
                     //    BlackOrbFrame blackOrbFrame = new BlackOrbFrame(200,200);
                    //         BlackOrbArray.createBlackOrbArray(250,150);
               //          BlackOrbArray.createInvisibleFrame();
-                          WyrmFrame wyrmFrame =   new WyrmFrame(510,300);
-                            Game.getWyrmFrames().add(wyrmFrame);
-                            Game.getFrames().add(wyrmFrame);
-                            new KeyListener((JPanel) wyrmFrame.getContentPane());
+  //                        WyrmFrame wyrmFrame =   new WyrmFrame(510,300);
+ //                       WyrmFrame wyrmFrame1 =   new WyrmFrame(710,600);
+
+
+
 //                            Omenoct omenoct = new Omenoct(200,500);
 //                            Game.getEnemies().add(omenoct);
 //                            Game.getOmenocts().add(omenoct);
-                            Necropick necropick = new Necropick(200,200);
-                            Game.getEnemies().add(necropick);
-                            Game.getNecropicks().add(necropick);
+//                            Necropick necropick = new Necropick(200,200);
+//                            Game.getEnemies().add(necropick);
+//                            Game.getNecropicks().add(necropick);
 
 //                        Archmire archmire = new Archmire(500,200, ArchmireType.LARGE);
 //                        Game.getEnemies().add(archmire);
 //                        Game.getArchmires().add(archmire);
 //
-//                            BarricadosFrame barricadosFrame = new BarricadosFrame(300,300, BarricadosType.T2);
-//                        Game.getBarricadosFrames().add(barricadosFrame);
-//                        Game.getFrames().add(barricadosFrame);
-//                        Game.getEnemies().add(barricadosFrame.getBarricados());
+                        BarricadosFrame barricadosFrame = new BarricadosFrame(100,300, BarricadosType.T2);
+
 
                     }else        if(SettingsFrame.getChosenLevel()==1) {
                         for (Squarantine squarantine : wave.wave1MediumSquarantine) {

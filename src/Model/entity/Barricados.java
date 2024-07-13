@@ -3,19 +3,17 @@ package Model.entity;
 import Controller.Constants;
 import Model.GameObjects;
 import Model.enums.BarricadosType;
-
-import view.entityViews.barricados.BarricadosFrame;
-
 import javax.swing.*;
 
 public class Barricados extends GameObjects  {
     BarricadosType type;
-    view.entityViews.barricados.BarricadosFrame localFrame;
-    private long currentTime = System.currentTimeMillis();
+    private final long currentTime = System.currentTimeMillis();
     private boolean visible = true;
     private JFrame itsFrame;
     public Barricados(int x, int y) {
         super(x, y);
+        setPreviousLocalFrame(getLocalFrame());
+        getLocalFrames().add(getLocalFrame());
     }
 
     public void invisible(){
@@ -32,11 +30,6 @@ public class Barricados extends GameObjects  {
     }
 
     @Override
-    public BarricadosFrame getLocalFrame() {
-        return localFrame;
-    }
-
-    @Override
     public int getWidth() {
         return Constants.barricadosWidth();
     }
@@ -47,16 +40,6 @@ public class Barricados extends GameObjects  {
     }
 
     @Override
-    public int getX() {
-        return super.getX();
-    }
-
-    @Override
-    public int getY() {
-        return super.getY();
-    }
-
-    @Override
     public boolean isVisible() {
         return visible;
     }
@@ -64,10 +47,6 @@ public class Barricados extends GameObjects  {
     @Override
     public void setVisible(boolean visible) {
         this.visible = visible;
-    }
-
-    public JFrame getItsFrame() {
-        return itsFrame;
     }
 
     public void setItsFrame(JFrame itsFrame) {

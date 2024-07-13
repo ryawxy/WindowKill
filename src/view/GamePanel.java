@@ -3,10 +3,8 @@ package view;
 import Controller.Game;
 import Model.entity.Vertex;
 import Controller.MouseListener;
-import Model.entity.blackOrb.BlackOrb;
 import view.entityViews.*;
-import view.entityViews.blackOrb.BlackOrbFrame;
-import view.entityViews.blackOrb.BlackOrbView;
+import view.entityViews.barricados.BarricadosView;
 import view.entityViews.wyrm.WyrmView;
 
 import javax.swing.*;
@@ -23,8 +21,7 @@ public class GamePanel extends JPanel {
     private final NecropickView necropickView = new NecropickView(GlassFrame.getINSTANCE());
     private final ArchmireView archmireView = new ArchmireView(GlassFrame.getINSTANCE());
     private final WyrmView wyrmView = new WyrmView(GlassFrame.getINSTANCE());
-
-
+    private final BarricadosView barricadosView = new BarricadosView(GlassFrame.getINSTANCE());
     public GamePanel() {
 
 
@@ -86,6 +83,7 @@ public class GamePanel extends JPanel {
         archmireView.paint(g2D);
 
         wyrmView.paint(g2D);
+        barricadosView.paint(g2D);
 
         //paint epsilon
 
