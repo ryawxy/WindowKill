@@ -96,17 +96,21 @@ public class GameLoop {
                             Game.getEnemies().add(archmire);
 
                         }
-                    //    BlackOrbFrame blackOrbFrame = new BlackOrbFrame(200,200);
-                   //         BlackOrbArray.createBlackOrbArray(250,150);
-              //          BlackOrbArray.createInvisibleFrame();
-  //                        WyrmFrame wyrmFrame =   new WyrmFrame(510,300);
- //                       WyrmFrame wyrmFrame1 =   new WyrmFrame(710,600);
+
+                        try {
+                            BlackOrbArray.createBlackOrbArray(100,150);
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                        BlackOrbArray.createInvisibleFrame();
+                          WyrmFrame wyrmFrame =   new WyrmFrame(510,300);
+//                        WyrmFrame wyrmFrame1 =   new WyrmFrame(710,600);
 
 
 
-//                            Omenoct omenoct = new Omenoct(200,500);
-//                            Game.getEnemies().add(omenoct);
-//                            Game.getOmenocts().add(omenoct);
+                            Omenoct omenoct = new Omenoct(200,500);
+                            Game.getEnemies().add(omenoct);
+                            Game.getOmenocts().add(omenoct);
 //                            Necropick necropick = new Necropick(200,200);
 //                            Game.getEnemies().add(necropick);
 //                            Game.getNecropicks().add(necropick);
@@ -115,7 +119,7 @@ public class GameLoop {
 //                        Game.getEnemies().add(archmire);
 //                        Game.getArchmires().add(archmire);
 //
-                        BarricadosFrame barricadosFrame = new BarricadosFrame(100,300, BarricadosType.T2);
+ //                       BarricadosFrame barricadosFrame = new BarricadosFrame(100,300, BarricadosType.T1);
 
 
                     }else        if(SettingsFrame.getChosenLevel()==1) {
@@ -478,7 +482,7 @@ public class GameLoop {
 
                             IntersectionPoint point = new IntersectionPoint(new Point2D.Double(shotGun.getX(), shotGun.getY()),5,false,false,null,shotGun);
                             ObjectsIntersection.getIntersectionPoints().add(point);
-                            shotGun.setVisible(false);
+                     //       shotGun.setVisible(false);
                         }
                     }
                 }
@@ -589,6 +593,7 @@ public class GameLoop {
                         }
                     }
                 }
+
 
 
 

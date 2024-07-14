@@ -5,13 +5,14 @@ import Model.entity.Vertex;
 import Controller.MouseListener;
 import view.entityViews.*;
 import view.entityViews.barricados.BarricadosView;
+import view.entityViews.blackOrb.BlackOrbView;
+import view.entityViews.blackOrb.LaserView;
 import view.entityViews.wyrm.WyrmView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
-
 
 public class GamePanel extends JPanel {
     static GamePanel INSTANCE;
@@ -22,7 +23,9 @@ public class GamePanel extends JPanel {
     private final ArchmireView archmireView = new ArchmireView(GlassFrame.getINSTANCE());
     private final WyrmView wyrmView = new WyrmView(GlassFrame.getINSTANCE());
     private final BarricadosView barricadosView = new BarricadosView(GlassFrame.getINSTANCE());
-    public GamePanel() {
+    private final BlackOrbView blackOrbView = new BlackOrbView(GlassFrame.getINSTANCE());
+    private final LaserView laserView = new LaserView(GlassFrame.getINSTANCE());
+    public GamePanel() throws IOException {
 
 
         MouseListener mouseListener = new MouseListener(this);
@@ -84,6 +87,8 @@ public class GamePanel extends JPanel {
 
         wyrmView.paint(g2D);
         barricadosView.paint(g2D);
+        blackOrbView.paint(g2D);
+        laserView.paint(g2D);
 
         //paint epsilon
 

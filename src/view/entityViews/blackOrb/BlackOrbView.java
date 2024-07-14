@@ -1,6 +1,7 @@
 package view.entityViews.blackOrb;
 
 import Controller.Constants;
+import Controller.Game;
 import Model.Collectible;
 import Model.Drawable;
 import Model.entity.blackOrb.BlackOrb;
@@ -13,13 +14,10 @@ import java.io.File;
 import java.io.IOException;
 
 public class BlackOrbView implements Drawable  {
+    private final BufferedImage image =  ImageIO.read(new File("src/images/orb.png"));
+    private final JFrame frame;
+    public BlackOrbView(JFrame frame) throws IOException {
 
-    private BufferedImage image =  ImageIO.read(new File("src/images/orb.png"));
-    private BlackOrb blackOrb;
-    private JFrame frame;
-    public BlackOrbView(BlackOrb blackOrb,JFrame frame) throws IOException {
-
-        this.blackOrb = blackOrb;
         this.frame = frame;
 
 
@@ -27,34 +25,52 @@ public class BlackOrbView implements Drawable  {
     @Override
     public void paint(Graphics2D g) {
 
-        Rectangle bounds = new Rectangle(frame.getX(), frame.getY()
-                , frame.getWidth(), frame.getHeight());
+        for(BlackOrb blackOrb : Game.getBlackOrbs()) {
 
-        int globalX = blackOrb.getLocalX() + blackOrb.getLocalFrame().getX();
-        int globalY = blackOrb.getLocalY() + blackOrb.getLocalFrame().getY();
+                Rectangle bounds = new Rectangle(frame.getX(), frame.getY()
+                        , frame.getWidth(), frame.getHeight());
 
-        if (bounds.contains(globalX, globalY) || bounds.contains(globalX + Constants.orbSize(), globalY) ||
-                bounds.contains(globalX, globalY +Constants.orbSize() ) ||
-                bounds.contains(globalX + Constants.orbSize(), globalY + Constants.orbSize())) {
-            if (blackOrb.getLocalFrames().size() == 1) {
+                int globalX = blackOrb.getLocalX() + blackOrb.getLocalFrame().getX();
+                int globalY = blackOrb.getLocalY() + blackOrb.getLocalFrame().getY();
 
-                g.drawImage(image,blackOrb.getLocalX(), (int) (blackOrb.getLocalY()), Constants.orbSize(), Constants.orbSize(),null);
+                if (bounds.contains(globalX, globalY) || bounds.contains(globalX + Constants.orbSize(), globalY) ||
+                        bounds.contains(globalX, globalY + Constants.orbSize()) ||
+                        bounds.contains(globalX + Constants.orbSize(), globalY + Constants.orbSize())) {
+                    if (blackOrb.getLocalFrames().size() == 1) {
 
-            } else {
+                        g.drawImage(image, blackOrb.getLocalX(), (blackOrb.getLocalY()), Constants.orbSize(), Constants.orbSize(), null);
 
-
-                g.drawImage(image,(globalX - bounds.x), (globalY - bounds.y), Constants.orbSize(), Constants.orbSize(),null);
-            }
-        }
+                    } else {
 
 
 
-        if(blackOrb.isDead() && blackOrb.isShowCollectibles()) {
+                        g.drawImage(image, (globalX - bounds.x), (globalY - bounds.y), blackOrb.getWidth(), blackOrb.getHeight(), null);
+                    }
+                }
 
-            for (Collectible collectible : blackOrb.getCollectibles()) {
+             if (blackOrb.isShowCollectibles()) {
 
-                g.setColor(new Color(0x7B26B9));
-                g.fillOval(collectible.getX(),collectible.getY(),collectible.getWidth(),collectible.getHeight());
+                for (Collectible collectible : blackOrb.getCollectibles()) {
+
+                    int globalx = collectible.getLocalX() + collectible.getLocalFrame().getX();
+                    int globaly = collectible.getLocalY() + collectible.getLocalFrame().getY();
+
+                    Rectangle bound = new Rectangle(frame.getX(), frame.getY(), frame.getWidth(), frame.getHeight());
+
+                    if (bound.contains(globalx, globaly) || bound.contains(globalx + collectible.getWidth(), globaly) ||
+                            bound.contains(globalx, globaly + collectible.getHeight()) ||
+                            bound.contains(globalx + collectible.getWidth(), globaly + collectible.getHeight())) {
+                        g.setColor(new Color(0x7B26B9));
+                        for (int j = 0; j < blackOrb.getCollectibles().size(); j++) {
+                            g.fillOval(collectible.getX(), collectible.getY(),
+                                    collectible.getWidth(), collectible.getHeight());
+                        }
+
+                    }
+
+
+
+                }
             }
         }
 

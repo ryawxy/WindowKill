@@ -12,7 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ShotGunView implements Drawable {
-    private JFrame frame;
+    private final JFrame frame;
 
     public ShotGunView(JFrame frame) {
         this.frame = frame;
@@ -41,7 +41,7 @@ public class ShotGunView implements Drawable {
                 }
             }
         }
-        g.setColor(new Color(255, 151, 215));
+        g.setColor(new Color(138, 227, 220));
         for(GameObjects enemy : Game.getEnemies()){
             if(!enemy.isDead()){
                 if(enemy.isVisible()){

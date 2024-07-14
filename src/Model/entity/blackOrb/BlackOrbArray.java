@@ -18,7 +18,6 @@ import java.util.ArrayList;
 
 public class BlackOrbArray {
    static ArrayList<BlackOrbFrame> blackOrbArray = new ArrayList<>();
-   static ArrayList<Laser> lasers = new ArrayList<>();
    static BufferedImage image;
    private static int time;
 
@@ -26,11 +25,6 @@ public class BlackOrbArray {
 
 
         int sideLength = 150;
-        int xLoc;
-        int yLoc;
-        int width;
-        int height;
-
 
         //create orbs
         for(int i=0;i<5;i++) {
@@ -60,28 +54,29 @@ public class BlackOrbArray {
 
         try {
             image = ImageIO.read(new File("src/images/laser.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ignored) {
+
         }
 
         for (int i=0;i< blackOrbArray.size();i++) {
             for (int j = 0; j < blackOrbArray.size(); j++) {
                 if (i != j) {
 
-                    double globalx1 = blackOrbArray.get(i).getX() + blackOrbArray.get(i).getBlackOrb().getX();
-                    double globaly1 = blackOrbArray.get(i).getY() + blackOrbArray.get(i).getBlackOrb().getY();
-                    double globalx2 = blackOrbArray.get(j).getX() + blackOrbArray.get(j).getBlackOrb().getX();
-                    double globaly2 = blackOrbArray.get(j).getY() + blackOrbArray.get(j).getBlackOrb().getY();
+                    double globalX1 = blackOrbArray.get(i).getX() + blackOrbArray.get(i).getBlackOrb().getLocalX();
+                    double globalY1 = blackOrbArray.get(i).getY() + blackOrbArray.get(i).getBlackOrb().getLocalY();
+                    double globalX2 = blackOrbArray.get(j).getX() + blackOrbArray.get(j).getBlackOrb().getLocalX();
+                    double globalY2 = blackOrbArray.get(j).getY() + blackOrbArray.get(j).getBlackOrb().getLocalY();
 
-                    double angle = Math.atan2(globaly2 - globaly1, globalx2 - globalx1);
-                    double x1 = blackOrbArray.get(i).getBlackOrb().getX() ;
-                    double y1 = blackOrbArray.get(i).getBlackOrb().getY() ;
-                    double x2 = x1 + 200 * Math.cos(angle);
-                    double y2 = y1 + 200 * Math.sin(angle);
+
+                    double angle = Math.atan2(globalY2 - globalY1, globalX2 - globalX1);
+                    double x1 = blackOrbArray.get(i).getBlackOrb().getLocalX() ;
+                    double y1 = blackOrbArray.get(i).getBlackOrb().getLocalY() ;
+                    double x2 = x1 + 150 * Math.cos(angle);
+                    double y2 = y1 + 150 * Math.sin(angle);
 
 
                     // Calculate the angle of the diameter
-                    if (globaly2 - globaly1 == 0) angle = 0;
+                    if (globalY2 - globalY1 == 0) angle = 0;
                     else angle = Math.toDegrees(angle);
 
                     // Rotate the PNG image
@@ -99,30 +94,20 @@ public class BlackOrbArray {
                     // Calculate the midpoint of the line
                     double midX = (x1 + x2) / 2;
                     double midY = (y1 + y2) / 2;
-                    Laser laser = new Laser(new Point2D.Double((midX-newImageWidth)/2+65,(midY-newImageHeight)/2+50),scaledImage);
+                    Laser laser = new Laser(new Point2D.Double((midX-newImageWidth)/2+50,(midY-newImageHeight)/2+70),scaledImage);
                     laser.setWidth(newImageWidth);
                     laser.setHeight(newImageHeight);
                     laser.setAngle(angle);
-
                     laser.setBlackOrb1(blackOrbArray.get(i).getBlackOrb());
                     laser.setBlackOrb2(blackOrbArray.get(j).getBlackOrb());
                     laser.setLocalFrame(blackOrbArray.get(i));
                     blackOrbArray.get(i).getBlackOrb().getLasers().add(laser);
+                    Game.getEnemies().add(laser);
 
 
                 }
             }
         }
-
-//        xLoc = blackOrbArray.get(4).getX()+blackOrbArray.get(4).getWidth();
-//        width = Math.abs(xLoc-blackOrbArray.get(1).getX());
-//        yLoc = (int) blackOrbArray.get(2).getY()+blackOrbArray.get(2).getHeight();
-//        height =(int) Math.abs(yLoc-blackOrbArray.get(0).getY());
-//        InvisibleFrame invisibleFrame = new InvisibleFrame((int) 800,(int) 600,(int) 300,(int) 300);
-//        new KeyListener((JPanel) invisibleFrame.getContentPane());
-//        new MouseListener((JPanel) invisibleFrame.getContentPane());
-//
-//       Game.getInvisibleFrames().add(invisibleFrame);
 
     }
     public static void createInvisibleFrame(){
@@ -154,14 +139,6 @@ public class BlackOrbArray {
         g2d.drawImage(img, 0, 0, null);
         g2d.dispose();
         return rotated;
-    }
-
-    public static ArrayList<BlackOrbFrame> getBlackOrbArray() {
-        return blackOrbArray;
-    }
-
-    public static ArrayList<Laser> getLasers() {
-        return lasers;
     }
 }
 

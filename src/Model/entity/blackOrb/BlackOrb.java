@@ -9,13 +9,7 @@ public class BlackOrb extends GameObjects {
     private final ArrayList<Laser> lasers = new ArrayList<>();
     public BlackOrb(int x, int y) {
         super(x, y);
-
-        setX(x);
-        setY(y);
-        setLocalX(x);
-        setLocalY(y);
         getLocalFrames().add(getLocalFrame());
-        setPreviousLocalFrame(getLocalFrame());
         setHP(30);
     }
 

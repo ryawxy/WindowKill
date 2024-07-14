@@ -27,6 +27,7 @@ public class MouseListener extends MouseInputAdapter {
 
     public void mouseClicked(MouseEvent e) {
 
+
         int mouseX = e.getX();
         int mouseY = e.getY();
 
@@ -43,9 +44,11 @@ public class MouseListener extends MouseInputAdapter {
             shot.getLocalFrames().add(shot.getLocalFrame());
             Game.getEpsilonShots().add(shot);
 
+
             Game.getEpsilonShots().getLast().setXVelocity((int) (speed * Math.cos(angle)));
             Game.getEpsilonShots().getLast().setYVelocity((int) (speed * Math.sin(angle)));
             Game.getEpsilonShots().getLast().setOnFire(true);
+
 
         }else{
 

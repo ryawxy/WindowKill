@@ -3,6 +3,8 @@ package Model;
 import Controller.Game;
 import Model.entity.Barricados;
 import Model.entity.Wyrm;
+import Model.entity.blackOrb.BlackOrb;
+import Model.entity.blackOrb.Laser;
 import Model.enums.Direction;
 import Model.enums.Side;
 import javax.swing.*;
@@ -26,7 +28,7 @@ public class FrameIntersection {
             int globalY =(entity.getLocalY() + entity.getLocalFrame().getY());
 
             Rectangle rectangle = new Rectangle(globalX, globalY, entity.getWidth(), entity.getHeight());
-            if(entity instanceof Wyrm || entity instanceof Barricados){
+            if(entity instanceof Wyrm || entity instanceof Barricados || entity instanceof BlackOrb || entity instanceof Laser){
 
                 if(globalX>=frame.getX()&& globalX+entity.getWidth()<= frame.getX()+frame.getWidth() &&
                         globalY>= frame.getY()&&globalY+entity.getHeight()<= frame.getY()+frame.getHeight()){

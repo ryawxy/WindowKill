@@ -61,6 +61,7 @@ public class WyrmView implements Drawable {
                     } else {
 
 
+
                         g.drawImage(image, (globalX - bounds.x), (globalY - bounds.y), wyrm.getWidth(), wyrm.getHeight(), null);
                     }
                     g.setTransform(affineTransform);

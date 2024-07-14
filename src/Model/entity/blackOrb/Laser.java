@@ -1,23 +1,24 @@
 package Model.entity.blackOrb;
 
-import javax.swing.*;
+import Model.GameObjects;
+
+
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-public class Laser {
-
+public class Laser extends GameObjects {
     Point2D start;
     Image image;
     Point2D end;
-    int width;
-    int height;
     BlackOrb blackOrb1;
     BlackOrb blackOrb2;
-    JFrame localFrame;
     private boolean visible = true;
     private double angle;
 
     public Laser(Point2D start, Image image) {
+        super((int) start.getX(), (int) start.getY());
+        setPreviousLocalFrame(getLocalFrame());
+        getLocalFrames().add(getLocalFrame());
         this.start = start;
         this.image = image;
     }
@@ -25,7 +26,6 @@ public class Laser {
     public Point2D getStart() {
         return start;
     }
-
     public Image getImage() {
         return image;
     }
@@ -46,14 +46,6 @@ public class Laser {
         this.blackOrb2 = blackOrb2;
     }
 
-    public JFrame getLocalFrame() {
-        return localFrame;
-    }
-
-    public void setLocalFrame(JFrame localFrame) {
-        this.localFrame = localFrame;
-    }
-
     public Point2D getEnd() {
         return end;
     }
@@ -61,27 +53,9 @@ public class Laser {
     public void setEnd(Point2D end) {
         this.end = end;
     }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
     public void setStart(Point2D start) {
         this.start = start;
     }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
     public boolean isVisible() {
         return visible;
     }

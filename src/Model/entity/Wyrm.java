@@ -5,7 +5,6 @@ import Controller.Game;
 import Model.Collectible;
 import Model.GameObjects;
 import Model.Movable;
-import Model.ObjectsIntersection;
 
 import javax.swing.*;
 import java.awt.geom.Point2D;
@@ -39,7 +38,7 @@ public class Wyrm extends GameObjects implements Movable {
 
             double distance = epsilonPosition.distance(wyrmPosition);
 
-            if (distance > 250 && getCloser) {
+            if (distance > 300 && getCloser) {
 
                 setXVelocity(0);
                 setYVelocity(0);
@@ -62,27 +61,11 @@ public class Wyrm extends GameObjects implements Movable {
                 if(collisionNumber%2==0) angle += 0.015;
                 else angle -= 0.015;
 
-//                if(ObjectsIntersection.wyrmInterectsEntity()){
-//                    if(angle>0){
-//                        angle = -0.015;
-//                    }else if(angle<=0){
-//                        angle = 0.015;
-//                    }
-//
-//                    ObjectsIntersection.setWyrmCollision(false);
-//                }
-//                if(angle>0) angle+=0.015;
-//                if(angle<0) angle-=0.015;
-
-
-
-                int newX = (int) (epsilon.getLocalX() + epsilon.getLocalFrame().getX() + 250 * Math.cos(angle) - getLocalFrame().getWidth());
-                int newY = (int) (epsilon.getLocalY() + epsilon.getLocalFrame().getY() + 250 * Math.sin(angle) - getLocalFrame().getHeight());
+                int newX = (int) (epsilon.getLocalX() + epsilon.getLocalFrame().getX() + 300 * Math.cos(angle) - getLocalFrame().getWidth());
+                int newY = (int) (epsilon.getLocalY() + epsilon.getLocalFrame().getY() + 300 * Math.sin(angle) - getLocalFrame().getHeight());
 
                 setLocalX(newX - getLocalFrame().getX());
                 setLocalY(newY - getLocalFrame().getY());
-
-
                 getLocalFrame().setLocation(newX, newY);
 
 

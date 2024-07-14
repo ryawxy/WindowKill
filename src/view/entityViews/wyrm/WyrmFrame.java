@@ -3,10 +3,16 @@ package view.entityViews.wyrm;
 import Controller.Game;
 import Controller.KeyListener;
 import Model.entity.Wyrm;
+import view.entityViews.ArchmireView;
 import view.entityViews.NecropickView;
+import view.entityViews.OmenoctView;
+import view.entityViews.barricados.BarricadosView;
+import view.entityViews.blackOrb.BlackOrbView;
+import view.entityViews.blackOrb.LaserView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 
 public class WyrmFrame extends JFrame {
@@ -28,6 +34,15 @@ public class WyrmFrame extends JFrame {
         wyrm.setItsPanel(wyrmPanel);
         wyrmPanel.setWyrmView(new WyrmView(this));
         wyrmPanel.setNecropickView(new NecropickView(this));
+        wyrmPanel.setBarricadosView(new BarricadosView(this));
+        wyrmPanel.setOmenoctView(new OmenoctView(this));
+        wyrmPanel.setArchmireView(new ArchmireView(this));
+        wyrmPanel.setLaserView(new LaserView(this));
+        try {
+            wyrmPanel.setBlackOrbView(new BlackOrbView(this));
+        }catch (IOException ignored){
+
+        }
         new KeyListener((JPanel)getContentPane());
 
         Game.getFrames().add(this);

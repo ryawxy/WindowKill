@@ -7,6 +7,8 @@ import Model.entity.blackOrb.BlackOrb;
 import view.entityViews.ArchmireView;
 import view.entityViews.NecropickView;
 import view.entityViews.OmenoctView;
+import view.entityViews.barricados.BarricadosView;
+import view.entityViews.wyrm.WyrmView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,12 +34,17 @@ public class BlackOrbFrame extends JFrame implements FrameType {
         blackOrb = new Model.entity.blackOrb.BlackOrb(30,20);
         blackOrb.setLocalFrame(this);
         blackOrb.setPreviousLocalFrame(this);
-        blackOrbPanel.setBlackOrbView(new view.entityViews.blackOrb.BlackOrbView(blackOrb,this));
+        blackOrbPanel.setBlackOrbView(new view.entityViews.blackOrb.BlackOrbView(this));
         blackOrbPanel.setOmenoctView(new OmenoctView(this));
         blackOrbPanel.setNecropickView(new NecropickView(this));
         blackOrbPanel.setArchmireView(new ArchmireView(this));
+        blackOrbPanel.setLaserView(new LaserView(this));
+        blackOrbPanel.setWyrmView(new WyrmView(this));
+        blackOrbPanel.setBarricadosView(new BarricadosView(this));
         Game.getBlackOrbs().add(blackOrb);
         Game.getEnemies().add(blackOrb);
+        Game.getFrames().add(this);
+        Game.getBlackOrbFrames().add(this);
         bounds = new Rectangle(getX(),getY(),getWidth(),getHeight());
 
     }
