@@ -5,6 +5,7 @@ import Model.GameObjects;
 import Model.Movable;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class Vertex extends GameObjects implements Movable {
 
@@ -15,14 +16,17 @@ public class Vertex extends GameObjects implements Movable {
     private double yCenter = getY()+radius;
     private double xVelocity2;
     private double yVelocity2;
-    private int localX = getX();
-    private int localY = getY();
-    private JFrame localFrame = Game.getEpsilon().getLocalFrame();
+    private int localX;
+    private int localY;
+    private JFrame localFrame;
+    private ArrayList<JFrame> localFrames = new ArrayList<>();
 
 
 
     public Vertex(int x, int y) {
         super(x, y);
+        setX(x);
+        setY(y);
         localX = getX();
         localY = getY();
 
@@ -34,8 +38,8 @@ public class Vertex extends GameObjects implements Movable {
         Epsilon epsilon = Game.getEpsilon();
 
 
-        xVelocity = epsilon.getxVelocity();
-        yVelocity = epsilon.getyVelocity();
+        xVelocity = epsilon.getXVelocity();
+        yVelocity = epsilon.getYVelocity();
         xVelocity2 = epsilon.getxVelocity2();
         yVelocity2 = epsilon.getyVelocity2();
 

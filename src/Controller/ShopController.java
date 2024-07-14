@@ -11,7 +11,7 @@ public class ShopController {
 
     private HashMap<String,Integer> itemsXP;
     private int banishTimer;
-    private int index=Game.getShots().size()-3;
+    private int index=Game.getEpsilonShots().size()-3;
     //balls shooting one by on in empower mode
     private int time=3;
     //amount of time since shooting the next fire
@@ -41,8 +41,8 @@ public class ShopController {
 //            for(GameObjects enemy : Game.getEnemies()) {
 //                if(banishTimer<40){
 //                System.out.println(banishTimer);
-//                enemy.setxVelocity(enemy.getxVelocity() * -1);
-//                enemy.setyVelocity(enemy.getyVelocity() * -1);
+//                enemy.setXVelocity(enemy.getXVelocity() * -1);
+//                enemy.setYVelocity(enemy.getYVelocity() * -1);
 //
 //            }
 //            }
@@ -62,10 +62,10 @@ public class ShopController {
                 time++;
 
                 for (int i = 0; i <= index; i++) {
-                    Game.getShots().get(i).move();
+                    Game.getEpsilonShots().get(i).move();
                 }
                 if (time >= 2) {
-                    if (index <= Game.getShots().size() - 2) {
+                    if (index <= Game.getEpsilonShots().size() - 2) {
                         index++;
                         time = 0;
                     }

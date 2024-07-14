@@ -1,19 +1,29 @@
 package view.entityViews.wyrm;
 
 import Controller.MouseListener;
-import view.entityViews.ShotGunView;
+import view.ShotGunView;
+import view.entityViews.ArchmireView;
 import view.entityViews.EpsilonView;
+import view.entityViews.NecropickView;
+import view.entityViews.OmenoctView;
+import view.entityViews.barricados.BarricadosView;
+import view.entityViews.blackOrb.BlackOrbView;
+import view.entityViews.blackOrb.LaserView;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class WyrmPanel extends JPanel {
 
-    private Rectangle bound;
     private JFrame itsFrame;
-    WyrmView wyrmView;
-    EpsilonView epsilonView;
-    private double rotationAngle;
+   private WyrmView wyrmView;
+    private NecropickView necropickView;
+    private OmenoctView omenoctView;
+    private ArchmireView archmireView;
+    private BarricadosView barricadosView;
+    private BlackOrbView blackOrbView;
+    private LaserView laserView;
+
 
     public WyrmPanel(int x, int y){
 
@@ -29,47 +39,55 @@ public class WyrmPanel extends JPanel {
         super.paintComponent(g);
 
         Graphics2D g2D = (Graphics2D) g;
-        setRotationAngle(getRotationAngle()+0.02);
-        WyrmView wyrmView1 = new WyrmView(((WyrmFrame)itsFrame).getWyrm(),rotationAngle);
 
-        wyrmView1.paint(g2D);
 
-        epsilonView = new EpsilonView(itsFrame);
+
+        EpsilonView epsilonView = new EpsilonView(itsFrame);
         epsilonView.paint(g2D);
+
+        necropickView.paint(g2D);
+        omenoctView.paint(g2D);
+        archmireView.paint(g2D);
+        barricadosView.paint(g2D);
+        blackOrbView.paint(g2D);
+        laserView.paint(g2D);
+        wyrmView.paint(g2D);
 
         ShotGunView shotGunView = new ShotGunView(itsFrame);
         shotGunView.paint(g2D);
     }
 
-    public Rectangle getBound() {
-        return bound;
-    }
-
     public void setBound(Rectangle bound) {
-        this.bound = bound;
-    }
-
-    public JFrame getItsFrame() {
-        return itsFrame;
     }
 
     public void setItsFrame(JFrame itsFrame) {
         this.itsFrame = itsFrame;
     }
-
-    public WyrmView getWyrmView() {
-        return wyrmView;
-    }
-
     public void setWyrmView(WyrmView wyrmView) {
         this.wyrmView = wyrmView;
     }
 
-    public double getRotationAngle() {
-        return rotationAngle;
+    public void setNecropickView(NecropickView necropickView) {
+        this.necropickView = necropickView;
     }
 
-    public void setRotationAngle(double rotationAngle) {
-        this.rotationAngle = rotationAngle;
+    public void setOmenoctView(OmenoctView omenoctView) {
+        this.omenoctView = omenoctView;
+    }
+
+    public void setArchmireView(ArchmireView archmireView) {
+        this.archmireView = archmireView;
+    }
+
+    public void setBarricadosView(BarricadosView barricadosView) {
+        this.barricadosView = barricadosView;
+    }
+
+    public void setBlackOrbView(BlackOrbView blackOrbView) {
+        this.blackOrbView = blackOrbView;
+    }
+
+    public void setLaserView(LaserView laserView) {
+        this.laserView = laserView;
     }
 }

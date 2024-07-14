@@ -3,40 +3,39 @@ package view;
 import Controller.Game;
 import Model.entity.Vertex;
 import Controller.MouseListener;
-import view.entityViews.EpsilonView;
-import view.entityViews.ShotGunView;
-import view.entityViews.TrigorathView;
-import view.entityViews.VertexView;
-import view.entityViews.smiley.FireView;
+import view.entityViews.*;
+import view.entityViews.barricados.BarricadosView;
+import view.entityViews.blackOrb.BlackOrbView;
+import view.entityViews.blackOrb.LaserView;
+import view.entityViews.wyrm.WyrmView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 
-
 public class GamePanel extends JPanel {
     static GamePanel INSTANCE;
-    private static int FRAME_WIDTH = 600;
-    private static int FRAME_HEIGHT = 600;
-    private Dimension SCREEN_SIZE = new Dimension(600, 600);
-    private MouseListener mouseListener;
+    private static int FRAME_WIDTH = 700;
+    private static int FRAME_HEIGHT = 700;
     private static double angle;
-
-    FireView fireView = new FireView();
-
-
+    private final NecropickView necropickView = new NecropickView(GlassFrame.getINSTANCE());
+    private final ArchmireView archmireView = new ArchmireView(GlassFrame.getINSTANCE());
+    private final WyrmView wyrmView = new WyrmView(GlassFrame.getINSTANCE());
+    private final BarricadosView barricadosView = new BarricadosView(GlassFrame.getINSTANCE());
+    private final BlackOrbView blackOrbView = new BlackOrbView(GlassFrame.getINSTANCE());
+    private final LaserView laserView = new LaserView(GlassFrame.getINSTANCE());
     public GamePanel() throws IOException {
 
 
-        mouseListener = new MouseListener(this);
+        MouseListener mouseListener = new MouseListener(this);
         addMouseListener(mouseListener);
+        setDoubleBuffered(true);
 
         setBorder(BorderFactory.createLineBorder(Color.black, 5));
         setBackground(new Color(0,0,0));
-
-     //   setLocationToCenter(GlassFrame.getINSTANCE());
-        setSize(FRAME_WIDTH,FRAME_HEIGHT);
+        Dimension SCREEN_SIZE = new Dimension(700, 700);
+        setSize(SCREEN_SIZE);
 
         GlassFrame.getINSTANCE().add(this);
 
@@ -79,20 +78,22 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) {
         Graphics2D g2D = (Graphics2D) g;
         super.paintComponent(g2D);
+        g.setColor(Color.BLACK);
+        g.fillRect(0,0,getWidth(),getHeight());
 
-        fireView.paint(g2D);
+        necropickView.paint(g2D);
 
-        Game.getNecropickView().paint(g2D);
+        archmireView.paint(g2D);
 
-        Game.getArchmireView().paint(g2D);
+        wyrmView.paint(g2D);
+        barricadosView.paint(g2D);
+        blackOrbView.paint(g2D);
+        laserView.paint(g2D);
 
         //paint epsilon
 
         EpsilonView epsilonView = new EpsilonView(GlassFrame.getINSTANCE());
-            epsilonView.paint(g2D);
-
-
-
+        epsilonView.paint(g2D);
 
 
         //paint epsilon's shotGun
@@ -100,14 +101,14 @@ public class GamePanel extends JPanel {
         shotGunView.paint(g2D);
 
         //paint trigorath
-   //     Game.getTrigorathView().paint(g2D);
+        //     Game.getTrigorathView().paint(g2D);
         TrigorathView trigorathView = new TrigorathView(GlassFrame.getINSTANCE());
         trigorathView.paint(g2D);
 
         //  paint squarantine
         Game.getSquarantineView().paint(g2D);
         //paint epsilons vertex
-     //   Game.getVertexView().paint(g2D);
+        //   Game.getVertexView().paint(g2D);
         VertexView vertexView = new VertexView(GlassFrame.getINSTANCE());
         vertexView.paint(g2D);
 
@@ -118,10 +119,20 @@ public class GamePanel extends JPanel {
         Game.getCerberusView().paint(g2D);
 
 
+        OmenoctView omenoctView = new OmenoctView(GlassFrame.getINSTANCE());
+        omenoctView.paint(g2D);
 
-        Game.getOmenoctView().paint(g2D);
-
-
+//        for (BlackOrb blackOrb : Game.getBlackOrbs()) {
+//            BlackOrbView blackOrbView = null;
+//            try {
+//                blackOrbView = new BlackOrbView(blackOrb, GlassFrame.getINSTANCE());
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//            blackOrbView.paint(g2D);
+//
+//
+//        }
     }
 
     public static int getFRAME_WIDTH() {

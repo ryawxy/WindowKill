@@ -14,11 +14,6 @@ public class MouseListener extends MouseInputAdapter {
     JPanel gamePanel;
     ShotGun shotGun;
     Epsilon epsilon;
-    private int mouseX;
-    private int mouseY;
-    private double angle;
-    private double angle2;
-    private double angleDegrees;
     private final double speed = Constants.getShotGunSpeed();
     private static int timer;
     //if empower item is activated, wait a bit for each shot to fire
@@ -32,21 +27,28 @@ public class MouseListener extends MouseInputAdapter {
 
     public void mouseClicked(MouseEvent e) {
 
-        mouseX = e.getX();
-        mouseY = e.getY();
 
-        angle2 = Math.atan2(mouseY - Game.getEpsilon().getLocalY(), mouseX - Game.getEpsilon().getLocalX());
+        int mouseX = e.getX();
+        int mouseY = e.getY();
+
+        double angle2 = Math.atan2(mouseY - Game.getEpsilon().getLocalY(), mouseX - Game.getEpsilon().getLocalX());
         double fireX = Game.getEpsilon().getLocalX() + Game.getEpsilon().getRadius() * Math.cos(angle2);
         double fireY = Game.getEpsilon().getLocalY() + Game.getEpsilon().getRadius() * Math.sin(angle2);
-        angle = Math.atan2(mouseY - epsilon.getLocalY(), mouseX - epsilon.getLocalX());
-      //  angleDegrees = Math.toDegrees(angle);
+        double angle = Math.atan2(mouseY - epsilon.getLocalY(), mouseX - epsilon.getLocalX());
 
         if (!GameInfo.getCurrentShopItem().containsKey(ShopItem.Empower)) {
-            Game.addShot((int) fireX, (int) fireY, Constants.getShotGunHeight(), Constants.getShotGunWidth());
+            ShotGun shot = new ShotGun((int) fireX, (int) fireY);
+            shot.setLocalFrame(epsilon.getLocalFrame());
+            shot.setPreviousLocalFrame(epsilon.getLocalFrame());
+            shot.getLocalFrames().clear();
+            shot.getLocalFrames().add(shot.getLocalFrame());
+            Game.getEpsilonShots().add(shot);
 
-            Game.getShots().getLast().setxVelocity((int) (speed * Math.cos(angle)));
-            Game.getShots().getLast().setyVelocity((int) (speed * Math.sin(angle)));
-            Game.getShots().getLast().setOnFire(true);
+
+            Game.getEpsilonShots().getLast().setXVelocity((int) (speed * Math.cos(angle)));
+            Game.getEpsilonShots().getLast().setYVelocity((int) (speed * Math.sin(angle)));
+            Game.getEpsilonShots().getLast().setOnFire(true);
+
 
         }else{
 
@@ -55,13 +57,13 @@ public class MouseListener extends MouseInputAdapter {
                 Game.addShot((int) fireX, (int) fireY, Constants.getShotGunHeight(), Constants.getShotGunWidth());
             }
 
-            for(int j = Game.getShots().size()-3; j<= Game.getShots().size()-1; j++){
+            for(int j = Game.getEpsilonShots().size()-3; j<= Game.getEpsilonShots().size()-1; j++){
 
 
-                Game.getShots().get(j).setxVelocity((int) (speed * Math.cos(angle)));
-                Game.getShots().get(j).setyVelocity((int) (speed * Math.sin(angle)));
+                Game.getEpsilonShots().get(j).setXVelocity((int) (speed * Math.cos(angle)));
+                Game.getEpsilonShots().get(j).setYVelocity((int) (speed * Math.sin(angle)));
 
-                Game.getShots().get(j).setOnFire(true);
+                Game.getEpsilonShots().get(j).setOnFire(true);
 
             }
         }

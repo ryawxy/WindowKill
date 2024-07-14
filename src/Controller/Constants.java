@@ -125,7 +125,7 @@ public class Constants {
         return 50;
     }
     public static int omenoctWidth(){
-        return 10;
+        return 67;
     }
     public static int miniArchmireWidth(){
         return 50;
@@ -140,7 +140,7 @@ public class Constants {
         return 45;
     }
     public static int barricadosWidth(){
-        return 300;
+        return 200;
     }
     public static int orbSize(){
         return 60;
@@ -148,14 +148,18 @@ public class Constants {
     public static int wyrmSize(){
         return 60;
     }
-    public static int smileySize(){
-        return 120;
+    public static double omenoctNormalSpeed(){
+        return 3.0;
     }
-    public static int smileyPointerWidth(){
+    public static double omenoctExtraSpeed(){
+        return 2.0;
+    }
+    public static int wyrmWidth(){
         return 100;
     }
-    public static int smileyPointerHeight(){
-        return 120;
+    public static int wyrmHeight(){
+        return 75;
     }
+
 
 }

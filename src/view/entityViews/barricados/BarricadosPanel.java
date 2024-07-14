@@ -1,8 +1,11 @@
 package view.entityViews.barricados;
 
+import Controller.MouseListener;
 import Model.enums.BarricadosType;
 import view.entityViews.EpsilonView;
+import view.entityViews.NecropickView;
 import view.entityViews.TrigorathView;
+import view.entityViews.wyrm.WyrmView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,13 +16,17 @@ public class BarricadosPanel extends JPanel {
     JFrame itsFrame;
     BarricadosType barricadosType;
     BarricadosView barricadosView;
+    private WyrmView wyrmView;
+    private NecropickView necropickView;
+
 
     public  BarricadosPanel(int x, int y, BarricadosType barricadosType) {
 
      this.setSize(x,y);
      this.barricadosType = barricadosType;
      this.setBackground(Color.BLACK);
-    barricadosView = new BarricadosView(barricadosType);
+    MouseListener mouseListener = new MouseListener(this);
+    addMouseListener(mouseListener);
 
 
 }
@@ -41,6 +48,8 @@ public class BarricadosPanel extends JPanel {
 
         TrigorathView trigorathView = new TrigorathView(getItsFrame());
         trigorathView.paint(g2D);
+        wyrmView.paint(g2D);
+        necropickView.paint(g2D);
 
 
     }
@@ -55,5 +64,17 @@ public class BarricadosPanel extends JPanel {
 
     public void setItsFrame(JFrame itsFrame) {
         this.itsFrame = itsFrame;
+    }
+
+    public void setWyrmView(WyrmView wyrmView) {
+        this.wyrmView = wyrmView;
+    }
+
+    public void setNecropickView(NecropickView necropickView) {
+        this.necropickView = necropickView;
+    }
+
+    public void setBarricadosView(BarricadosView barricadosView) {
+        this.barricadosView = barricadosView;
     }
 }

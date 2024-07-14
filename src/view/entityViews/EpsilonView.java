@@ -21,8 +21,7 @@ public class EpsilonView implements Drawable {
 
 
         Epsilon epsilon = Game.getEpsilon();
-//        int globalX = epsilon.getX() + epsilon.getPreviousLocalFrame().getX();
-//        int globalY = epsilon.getY() + epsilon.getPreviousLocalFrame().getY();
+
         int globalX = epsilon.getGlobalX();
         int globalY = epsilon.getGlobalY();
 
@@ -38,9 +37,6 @@ public class EpsilonView implements Drawable {
                 g.setColor(Color.WHITE);
                 g.drawOval((int) (epsilon.getLocalX()), (int) (epsilon.getLocalY()), epsilon.getRadius(), epsilon.getRadius());
 
-
-//            g.setColor(Color.WHITE);
-//            g.drawOval(epsilon.getX(), epsilon.getY(), epsilon.getRadius(), epsilon.getRadius());
 
             } else {
                 g.setColor(Color.WHITE);

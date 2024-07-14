@@ -1,9 +1,9 @@
 package Model;
 
 import Model.entity.ShotGun;
-
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GameObjects extends JLabel {
     private int x;
@@ -15,21 +15,25 @@ public class GameObjects extends JLabel {
     private double xVelocity;
     private double yVelocity;
     private boolean showCollectibles;
-    private ArrayList<Collectible> collectibles = new ArrayList<>();
+    private final ArrayList<Collectible> collectibles = new ArrayList<>();
     private boolean attackByMelee;
-    private ArrayList<ShotGun> shots = new ArrayList<>();
+    private final ArrayList<ShotGun> shots = new ArrayList<>();
     private int HP;
     private JFrame localFrame;
     private JFrame previousLocalFrame;
-    private int globalX;
-    private int globalY;
-    private ArrayList<JFrame> localFrames = new ArrayList<>();
+    private final ArrayList<JFrame> localFrames = new ArrayList<>();
     private boolean dead;
+    private int numCollectibles;
+    private int timer;
 
     public GameObjects(int x, int y){
 
         this.x = x;
         this.y = y;
+        setX(x);
+        setY(y);
+        setLocalX(x);
+        setLocalY(y);
 
     }
 
@@ -69,26 +73,32 @@ public class GameObjects extends JLabel {
         this.height = height;
     }
     public void decreaseHP(int decrement){
-        setHP(getHP() - decrement);
-        if (getHP() <= 0) {
-            setDead(true);
-            setShowCollectibles(true);
+        if(!isDead()) {
+            setHP(getHP() - decrement);
+
+            if (getHP() <= 0) {
+                setDead(true);
+                setShowCollectibles(true);
+                showCollectible();
+
+
+            }
         }
     }
 
-    public double getxVelocity() {
+    public double getXVelocity() {
         return xVelocity;
     }
 
-    public void setxVelocity(double xVelocity) {
+    public void setXVelocity(double xVelocity) {
         this.xVelocity = xVelocity;
     }
 
-    public double getyVelocity() {
+    public double getYVelocity() {
         return yVelocity;
     }
 
-    public void setyVelocity(double yVelocity) {
+    public void setYVelocity(double yVelocity) {
         this.yVelocity = yVelocity;
     }
 
@@ -103,7 +113,6 @@ public class GameObjects extends JLabel {
     public ArrayList<Collectible> getCollectibles() {
         return collectibles;
     }
-    public void invisibleCollectible(){}
 
     public boolean isAttackByMelee() {
         return attackByMelee;
@@ -153,21 +162,14 @@ public class GameObjects extends JLabel {
         return getLocalX()+getLocalFrame().getX() ;
     }
 
-    public void setGlobalX(int globalX) {
-        this.globalX = globalX;
-    }
-
     public int getGlobalY() {
         return getLocalY()+getLocalFrame().getY();
-    }
-
-    public void setGlobalY(int globalY) {
-        this.globalY = globalY;
     }
 
     public ArrayList<JFrame> getLocalFrames() {
         return localFrames;
     }
+
 
     public boolean isDead() {
         return dead;
@@ -177,7 +179,38 @@ public class GameObjects extends JLabel {
         this.dead = dead;
     }
 
+    public int getNumCollectibles() {
+        return numCollectibles;
+    }
+
     public void setHP(int HP) {
         this.HP = HP;
+    }
+
+    public void showCollectible(){
+
+        Random random = new Random();
+        int numCollectibles = getNumCollectibles();
+        int radius = Math.max(getHeight(),getWidth());
+
+        for(int i=0;i<numCollectibles;i++){
+            double angle = 2*Math.PI*random.nextDouble();
+            int distance = random.nextInt(radius);
+
+            int x = (int) (getLocalX() + distance*Math.cos(angle));
+            int y = (int) (getLocalY() + distance*Math.sin(angle));
+
+            Collectible collectible = new Collectible(x,y,getLocalFrame());
+            collectible.setRadius(10);
+            getCollectibles().add(collectible);
+        }
+    }
+    public void invisibleCollectible(){
+        if (isShowCollectibles()) {
+            timer++;
+            if (timer > 500) {
+                setShowCollectibles(false);
+            }
+        }
     }
 }

@@ -51,7 +51,7 @@ public class Trigorath extends GameObjects implements Movable {
         localyPoints = yPoints;
     }
 
-    public double getxVelocity() {
+    public double getXVelocity() {
         return xVelocity;
     }
 
@@ -59,7 +59,7 @@ public class Trigorath extends GameObjects implements Movable {
         this.xVelocity = xVelocity;
     }
 
-    public double getyVelocity() {
+    public double getYVelocity() {
         return yVelocity;
     }
 
@@ -146,37 +146,37 @@ public class Trigorath extends GameObjects implements Movable {
             }
             //if banish item is activated move in the opposite direction
             if(GameInfo.getCurrentShopItem().containsKey(ShopItem.Banish)){
-                this.setxVelocity((int) (getxVelocity()*-1));
-                this.setyVelocity((int) (getyVelocity()*-1));
+                this.setxVelocity((int) (getXVelocity()*-1));
+                this.setyVelocity((int) (getYVelocity()*-1));
             }
 
-            xPoints[0] += (int) getxVelocity();
-            xPoints[1] += (int) getxVelocity();
-            xPoints[2] += (int) getxVelocity();
+            xPoints[0] += (int) getXVelocity();
+            xPoints[1] += (int) getXVelocity();
+            xPoints[2] += (int) getXVelocity();
 
 
-            localxPoints[0] += (int) getxVelocity();
-            localxPoints[1] += (int) getxVelocity();
-            localxPoints[2] += (int) getxVelocity();
+            localxPoints[0] += (int) getXVelocity();
+            localxPoints[1] += (int) getXVelocity();
+            localxPoints[2] += (int) getXVelocity();
 
-            yPoints[0] += (int) getyVelocity();
-            yPoints[1] += (int) getyVelocity();
-            yPoints[2] += (int) getyVelocity();
+            yPoints[0] += (int) getYVelocity();
+            yPoints[1] += (int) getYVelocity();
+            yPoints[2] += (int) getYVelocity();
 
-            localyPoints[0] += (int) getyVelocity();
-            localyPoints[1] += (int) getyVelocity();
-            localyPoints[2] += (int) getyVelocity();
-
-
-            trigorathXPos += (int) getxVelocity();
-            trigorathYPos += (int) getyVelocity();
+            localyPoints[0] += (int) getYVelocity();
+            localyPoints[1] += (int) getYVelocity();
+            localyPoints[2] += (int) getYVelocity();
 
 
-            this.setX((int) (getX() + getxVelocity()));
-            this.setY((int) (getY() + getyVelocity()));
+            trigorathXPos += (int) getXVelocity();
+            trigorathYPos += (int) getYVelocity();
 
-            this.setLocalX((int) (getLocalX() + getxVelocity()));
-            this.setLocalY((int) (getLocalY() + getyVelocity()));
+
+            this.setX((int) (getX() + getXVelocity()));
+            this.setY((int) (getY() + getYVelocity()));
+
+            this.setLocalX((int) (getLocalX() + getXVelocity()));
+            this.setLocalY((int) (getLocalY() + getYVelocity()));
         }
     }
     public void decreaseHP(int decrement){
@@ -225,10 +225,10 @@ public class Trigorath extends GameObjects implements Movable {
     }
     public void initializeCollectibles(){
 
-        Collectible collectible1 = new Collectible(xPoints[0],yPoints[0]);
+        Collectible collectible1 = new Collectible(xPoints[0],yPoints[0],getLocalFrame());
         collectible1.setRadius(10);
 
-        Collectible collectible2 = new Collectible(xPoints[1],yPoints[1]);
+        Collectible collectible2 = new Collectible(xPoints[1],yPoints[1],getLocalFrame());
         collectible2.setRadius(10);
 
         collectibles.add(collectible1);

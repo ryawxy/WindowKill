@@ -76,7 +76,7 @@ public class StarterMenu extends JFrame {
 
                 try {
 
-                    gameLoop = new GameLoop(game);
+                    gameLoop = new GameLoop();
 
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);

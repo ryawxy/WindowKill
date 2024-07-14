@@ -1,20 +1,24 @@
 package view.entityViews.barricados;
 
 import Controller.Game;
+import Controller.KeyListener;
 import Model.entity.Barricados;
 import Model.FrameType;
+import Model.entity.Wyrm;
 import Model.enums.BarricadosType;
+import view.entityViews.NecropickView;
+import view.entityViews.wyrm.WyrmPanel;
+import view.entityViews.wyrm.WyrmView;
 
 import javax.swing.*;
 import java.awt.*;
-
-
 public class BarricadosFrame extends JFrame implements FrameType {
     private final Barricados barricados;
-    private final Rectangle bounds;
+
     BarricadosType barricadosType;
 
     public BarricadosFrame(int x,int y,BarricadosType barricadosType){
+
         this.setSize(200,200);
         this.setBackground(Color.BLACK);
         this.setLocation(x,y);
@@ -22,17 +26,21 @@ public class BarricadosFrame extends JFrame implements FrameType {
         this.setTitle("Barricados frame");
         BarricadosPanel barricadosPanel = new BarricadosPanel(200,200,barricadosType);
         this.setContentPane(barricadosPanel);
-        this.getContentPane().setLocation(x,y);
         barricadosPanel.setBound(new Rectangle(x,y,200,200));
         barricadosPanel.setItsFrame(this);
         this.setVisible(true);
-        barricados = new Barricados(15,15);
+        barricados = new Barricados(0,0);
         barricados.setLocalFrame(this);
         barricados.setType(barricadosType);
         barricados.setItsFrame(this);
-        bounds = new Rectangle(getX(),getY(),getWidth(),getHeight());
-        this.barricadosType = barricadosType;
+        barricadosPanel.setBarricadosView(new BarricadosView(this));
+        barricadosPanel.setWyrmView(new WyrmView(this));
+        barricadosPanel.setNecropickView(new NecropickView(this));
         Game.getFrames().add(this);
+        Game.getBarricados().add(barricados);
+        Game.getBarricadosFrames().add(this);
+        Game.getEnemies().add(barricados);
+        new KeyListener((JPanel) getContentPane());
 
     }
 
@@ -48,7 +56,7 @@ public class BarricadosFrame extends JFrame implements FrameType {
 
     @Override
     public Rectangle getBound() {
-        return bounds;
+        return null;
     }
 
     public Barricados getBarricados() {

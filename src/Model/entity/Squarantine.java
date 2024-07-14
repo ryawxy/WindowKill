@@ -48,7 +48,7 @@ public class Squarantine extends GameObjects implements Movable {
         initializeCollectibles();
     }
 
-    public double getxVelocity() {
+    public double getXVelocity() {
         return xVelocity;
     }
 
@@ -56,7 +56,7 @@ public class Squarantine extends GameObjects implements Movable {
         this.xVelocity = xVelocity;
     }
 
-    public double getyVelocity() {
+    public double getYVelocity() {
         return yVelocity;
     }
 
@@ -131,26 +131,26 @@ public class Squarantine extends GameObjects implements Movable {
 
         //if banish item is activated move in the opposite direction
         if(GameInfo.getCurrentShopItem().containsKey(ShopItem.Banish)){
-            this.setxVelocity((int) (getxVelocity()*-1));
-            this.setyVelocity((int) (getyVelocity()*-1));
+            this.setxVelocity((int) (getXVelocity()*-1));
+            this.setyVelocity((int) (getYVelocity()*-1));
         }
 
-        xPoints[0] += (int) getxVelocity();
-        xPoints[1] += (int) getxVelocity();
-        xPoints[2] += (int) getxVelocity();
-        xPoints[3] += (int) getxVelocity();
+        xPoints[0] += (int) getXVelocity();
+        xPoints[1] += (int) getXVelocity();
+        xPoints[2] += (int) getXVelocity();
+        xPoints[3] += (int) getXVelocity();
 
-        yPoints[0] += (int) getyVelocity();
-        yPoints[1] += (int) getyVelocity();
-        yPoints[2] += (int) getyVelocity();
-        yPoints[3] += (int) getyVelocity();
+        yPoints[0] += (int) getYVelocity();
+        yPoints[1] += (int) getYVelocity();
+        yPoints[2] += (int) getYVelocity();
+        yPoints[3] += (int) getYVelocity();
 
-        squarantineXPos += (int) getxVelocity();
-        squarantineYPos += (int) getyVelocity();
+        squarantineXPos += (int) getXVelocity();
+        squarantineYPos += (int) getYVelocity();
 
 
-        this.setX((int) (getX() + getxVelocity()));
-        this.setY((int) (getY() + getyVelocity()));
+        this.setX((int) (getX() + getXVelocity()));
+        this.setY((int) (getY() + getYVelocity()));
     }
     @Override
     public void move(){
@@ -176,9 +176,9 @@ public class Squarantine extends GameObjects implements Movable {
             setDead(true);
             setShowCollectibles(true);
 
-                getCollectibles().get(0).setX(xPoints[1]);
-                getCollectibles().get(0).setY(yPoints[1]);
-
+//                getCollectibles().get(0).setX(xPoints[1]);
+//                getCollectibles().get(0).setY(yPoints[1]);
+//
         }else{
             Game.getSoundPlayer().playSoundEffect("src/Sound/hurt.wav");
         }
@@ -195,7 +195,7 @@ public class Squarantine extends GameObjects implements Movable {
 
     public void initializeCollectibles(){
 
-        Collectible collectible1 = new Collectible(xPoints[0],yPoints[0]);
+        Collectible collectible1 = new Collectible(xPoints[0],yPoints[0],getLocalFrame());
         collectible1.setRadius(10);
 
         collectibles.add(collectible1);

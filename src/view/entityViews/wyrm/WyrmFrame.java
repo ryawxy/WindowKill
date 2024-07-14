@@ -3,17 +3,20 @@ package view.entityViews.wyrm;
 import Controller.Game;
 import Controller.KeyListener;
 import Model.entity.Wyrm;
+import view.entityViews.ArchmireView;
+import view.entityViews.NecropickView;
+import view.entityViews.OmenoctView;
+import view.entityViews.barricados.BarricadosView;
+import view.entityViews.blackOrb.BlackOrbView;
+import view.entityViews.blackOrb.LaserView;
+
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 
 public class WyrmFrame extends JFrame {
-
     Wyrm wyrm;
-    Rectangle bound;
-   private double xVelocity;
-   private double yVelocity;
-
     public WyrmFrame(int x, int y){
 
         this.setSize(150,150);
@@ -26,32 +29,27 @@ public class WyrmFrame extends JFrame {
         wyrmPanel.setBound(new Rectangle(x,y,150,150));
         wyrmPanel.setItsFrame(this);
         this.setVisible(true);
-        wyrm = new Wyrm(30,20);
+        wyrm = new Wyrm(0,0);
         wyrm.setLocalFrame(this);
         wyrm.setItsPanel(wyrmPanel);
-        wyrmPanel.setWyrmView(new WyrmView(wyrm,wyrmPanel.getRotationAngle()));
-        bound = new Rectangle(getX(),getY(),getWidth(),getHeight());
+        wyrmPanel.setWyrmView(new WyrmView(this));
+        wyrmPanel.setNecropickView(new NecropickView(this));
+        wyrmPanel.setBarricadosView(new BarricadosView(this));
+        wyrmPanel.setOmenoctView(new OmenoctView(this));
+        wyrmPanel.setArchmireView(new ArchmireView(this));
+        wyrmPanel.setLaserView(new LaserView(this));
+        try {
+            wyrmPanel.setBlackOrbView(new BlackOrbView(this));
+        }catch (IOException ignored){
+
+        }
+        new KeyListener((JPanel)getContentPane());
+
         Game.getFrames().add(this);
         Game.getEnemies().add(wyrm);
-        new KeyListener(wyrmPanel);
+        Game.getWyrms().add(wyrm);
+        Game.getWyrmFrames().add(this);
 
-    }
-
-
-    public double getxVelocity() {
-        return xVelocity;
-    }
-
-    public void setxVelocity(double xVelocity) {
-        this.xVelocity = xVelocity;
-    }
-
-    public double getyVelocity() {
-        return yVelocity;
-    }
-
-    public void setyVelocity(double yVelocity) {
-        this.yVelocity = yVelocity;
     }
 
     public Wyrm getWyrm() {

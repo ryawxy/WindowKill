@@ -1,7 +1,7 @@
 package Model;
 
 import Model.entity.*;
-import Model.enums.Size;
+import Model.enums.ArchmireType;
 import view.SettingsFrame;
 import view.entityViews.barricados.BarricadosPanel;
 
@@ -67,9 +67,9 @@ public  void initWave1(){
         int[] xPoints6 = {370,360,340,330,340,360};
         int[] yPoints6 = {350, (int) (350+20*Math.sqrt(3)/2),(int) (350+20*Math.sqrt(3)/2),350,(int) (350-20*Math.sqrt(3)/2),(int) (350-20*Math.sqrt(3)/2)};
 
-        Omenoct omenoct = new Omenoct(350,350);
-        omenoct.setxPoints(xPoints6);
-        omenoct.setyPoints(yPoints6);
+//        Omenoct omenoct = new Omenoct(350,350);
+//        omenoct.setxPoints(xPoints6);
+//        omenoct.setyPoints(yPoints6);
  //       wave1EasyOmenoct.add(omenoct);
 //
 //        squarantine = new Squarantine(185,185);
@@ -94,7 +94,7 @@ public  void initWave1(){
         trigorath.setLocalyPoints(yPoints3);
         wave1EasyTrigorath.add(trigorath);
 
-        Archmire archmire = new Archmire(50,50, Size.MINI);
+        Archmire archmire = new Archmire(50,50, ArchmireType.MINI);
      //   wave1EasyArchmire.add(archmire);
 
         Necropick necropick = new Necropick(300,300);
