@@ -16,14 +16,16 @@ public class SmileyFrame extends JFrame implements FrameType {
     public SmileyFrame(int x, int y){
 
         this.setSize(200,200);
-        this.setBackground(Color.BLACK);
         this.setLocation(x,y);
         this.setUndecorated(true);
+        this.setBackground(new Color(0,0,0,0));
         this.setTitle("Smiley frame");
         SmileyPanel smileyPanel = new SmileyPanel(200,200);
         this.setContentPane(smileyPanel);
         smileyPanel.setBound(new Rectangle(x,y,200,200));
         smileyPanel.setItsFrame(this);
+        smileyPanel.setSmileyView(new SmileyView(this));
+        smileyPanel.setSmileyPointerView(new SmileyPointerView(this));
         this.setVisible(true);
         smiley = new Smiley(45,45);
         smiley.setLocalFrame(this);

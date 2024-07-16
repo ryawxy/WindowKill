@@ -1,7 +1,6 @@
 package view.entityViews.blackOrb;
 
 import Controller.MouseListener;
-import view.ShotGunView;
 import view.entityViews.*;
 import view.entityViews.barricados.BarricadosView;
 import view.entityViews.wyrm.WyrmView;

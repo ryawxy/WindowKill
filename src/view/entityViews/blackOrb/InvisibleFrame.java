@@ -1,9 +1,11 @@
 package view.entityViews.blackOrb;
 
+import Model.FrameType;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class InvisibleFrame extends JFrame {
+public class InvisibleFrame extends JFrame implements FrameType {
 
     Rectangle bound;
     public InvisibleFrame(int x, int y,int width,int height){
@@ -20,6 +22,16 @@ public class InvisibleFrame extends JFrame {
         invisiblePanel.setItsFrame(this);
         this.setVisible(true);
 
+    }
+
+    @Override
+    public boolean isometric() {
+        return true;
+    }
+
+    @Override
+    public boolean solid() {
+        return false;
     }
 
     public Rectangle getBound() {

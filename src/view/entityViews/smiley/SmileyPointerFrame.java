@@ -5,7 +5,7 @@ import Controller.KeyListener;
 import Controller.MouseListener;
 import Model.FrameType;
 import Model.entity.smiley.SmileyPointFinger;
-import Model.enums.SmileyHandSide;
+import Model.enums.PunchType;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,20 +17,22 @@ public class SmileyPointerFrame extends JFrame implements FrameType {
 
 
 
-    public SmileyPointerFrame(int x, int y, SmileyHandSide smileyHandSide){
+    public SmileyPointerFrame(int x, int y, PunchType punchType){
 
         this.setSize(150,200);
-        this.setBackground(Color.BLACK);
         this.setLocation(x,y);
         this.setUndecorated(true);
+        this.setBackground(new Color(0,0,0,0));
         this.setTitle("Smiley frame");
         SmileyPointerPanel smileyPointerPanel = new SmileyPointerPanel(150,200);
         this.setContentPane(smileyPointerPanel);
         smileyPointerPanel.setBound(new Rectangle(x,y,150,200));
         smileyPointerPanel.setItsFrame(this);
+        smileyPointerPanel.setSmileyPointerView(new SmileyPointerView(this));
+        smileyPointerPanel.setSmileyView(new SmileyView(this));
         this.setVisible(true);
         smileyPointFinger = new SmileyPointFinger(30,20);
-        smileyPointFinger.setSmileyHandSide(smileyHandSide);
+        smileyPointFinger.setSmileyHandSide(punchType);
         smileyPointFinger.setLocalFrame(this);
         bound = new Rectangle(getX(),getY(),getWidth(),getHeight());
         Game.getFrames().add(this);
@@ -39,14 +41,6 @@ public class SmileyPointerFrame extends JFrame implements FrameType {
         Game.getSmileyPointerFrames().add(this);
         new KeyListener(smileyPointerPanel);
         new MouseListener(smileyPointerPanel);
-    }
-
-    public SmileyPointFinger getSmileyPointFinger() {
-        return smileyPointFinger;
-    }
-
-    public void setSmileyPointFinger(SmileyPointFinger smileyPointFinger) {
-        this.smileyPointFinger = smileyPointFinger;
     }
 
     @Override

@@ -2,26 +2,7 @@ package Controller;
 
 import view.SettingsFrame;
 
-import java.awt.*;
-
 public class Constants {
-
-    private static  int FRAME_WIDTH = 700;
-    private static  int FRAME_HEIGHT = 700;
-    private static  Dimension SCREEN_SIZE = new Dimension(FRAME_WIDTH, FRAME_HEIGHT);
-
-    public static int getFrameWidth(){
-        return 700;
-    }
-    public static int getFrameHeight(){
-        return 700;
-    }
-    public static Dimension getFrameDimension(){
-        return SCREEN_SIZE;
-    }
-    public static Dimension glassFrameDimension(){
-        return Toolkit.getDefaultToolkit().getScreenSize();
-    }
     public static int getEpsilonRadius(){
         return 30;
     }
@@ -54,26 +35,8 @@ public class Constants {
 
         return 5;
     }
-    public static int frameWidthForEpsilon(){
-        return FRAME_WIDTH - 8;
-    }
-    public static int frameHeightForEpsilon(){
-        return FRAME_HEIGHT - 8;
-    }
     public static int HP(){
         return 100;
-    }
-    public static int XP(){
-        return 0;
-    }
-    public static void setFrameWidth(int frameWidth){
-        FRAME_WIDTH = frameWidth;
-    }
-    public static void setFrameHeight(int frameHeight){
-        FRAME_HEIGHT = frameHeight;
-    }
-    public static void setScreenSize(Dimension dimension){
-        SCREEN_SIZE = new Dimension(FRAME_WIDTH,FRAME_HEIGHT);
     }
     public static int shrinkAmount(){
         return 1;
@@ -160,6 +123,28 @@ public class Constants {
     public static int wyrmHeight(){
         return 75;
     }
-
-
+    public static int smileySize() {
+        return 100;
+    }
+    public static int smileyPointerWidth(){
+        return 100;
+    }
+    public static int smileyPointerHeight(){
+        return 120;
+    }
+    public static int fireSize(){
+        return 100;
+    }
+    public static int smileyPunchWidth(){
+        return 180;
+    }
+    public static int smileyPunchHeight(){
+        return 130;
+    }
+    public static int punchVelocity(){
+        return 0;
+    }
+    public static int punchAcceleration(){
+        return 1;
+    }
 }

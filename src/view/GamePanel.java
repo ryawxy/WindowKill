@@ -7,6 +7,10 @@ import view.entityViews.*;
 import view.entityViews.barricados.BarricadosView;
 import view.entityViews.blackOrb.BlackOrbView;
 import view.entityViews.blackOrb.LaserView;
+import view.entityViews.smiley.FireView;
+import view.entityViews.smiley.SmileyPointerView;
+import view.entityViews.smiley.SmileyPunchView;
+import view.entityViews.smiley.SmileyView;
 import view.entityViews.wyrm.WyrmView;
 
 import javax.swing.*;
@@ -25,6 +29,10 @@ public class GamePanel extends JPanel {
     private final BarricadosView barricadosView = new BarricadosView(GlassFrame.getINSTANCE());
     private final BlackOrbView blackOrbView = new BlackOrbView(GlassFrame.getINSTANCE());
     private final LaserView laserView = new LaserView(GlassFrame.getINSTANCE());
+    private final SmileyView smileyView = new SmileyView(GlassFrame.getINSTANCE());
+    private final SmileyPointerView smileyPointerView = new SmileyPointerView(GlassFrame.getINSTANCE());
+    private final FireView fireView = new FireView(GlassFrame.getINSTANCE());
+    private final SmileyPunchView smileyPunchView = new SmileyPunchView(GlassFrame.getINSTANCE());
     public GamePanel() throws IOException {
 
 
@@ -32,7 +40,7 @@ public class GamePanel extends JPanel {
         addMouseListener(mouseListener);
         setDoubleBuffered(true);
 
-        setBorder(BorderFactory.createLineBorder(Color.black, 5));
+ //       setBorder(BorderFactory.createLineBorder(Color.black, 5));
         setBackground(new Color(0,0,0));
         Dimension SCREEN_SIZE = new Dimension(700, 700);
         setSize(SCREEN_SIZE);
@@ -122,17 +130,11 @@ public class GamePanel extends JPanel {
         OmenoctView omenoctView = new OmenoctView(GlassFrame.getINSTANCE());
         omenoctView.paint(g2D);
 
-//        for (BlackOrb blackOrb : Game.getBlackOrbs()) {
-//            BlackOrbView blackOrbView = null;
-//            try {
-//                blackOrbView = new BlackOrbView(blackOrb, GlassFrame.getINSTANCE());
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//            blackOrbView.paint(g2D);
-//
-//
-//        }
+        smileyView.paint(g2D);
+        smileyPointerView.paint(g2D);
+        fireView.paint(g2D);
+        smileyPunchView.paint(g2D);
+
     }
 
     public static int getFRAME_WIDTH() {

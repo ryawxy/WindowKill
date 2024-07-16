@@ -10,7 +10,6 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class ShotGun extends GameObjects implements Movable {
-    private boolean onFire;
     private int expansion;
     // time interval that each shot expands the frame
     private boolean visible = true;
@@ -20,8 +19,7 @@ public class ShotGun extends GameObjects implements Movable {
 
     public ShotGun(int x, int y) {
         super(x, y);
-        setLocalX(x);
-        setLocalY(y);
+
         setLocalFrame(GlassFrame.getINSTANCE());
         setPreviousLocalFrame(GlassFrame.getINSTANCE());
         getLocalFrames().add(GlassFrame.getINSTANCE());
@@ -48,7 +46,6 @@ public class ShotGun extends GameObjects implements Movable {
     }
 
     public void setOnFire(boolean onFire) {
-        this.onFire = onFire;
     }
 
     public int getExpansion() {

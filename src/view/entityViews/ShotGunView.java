@@ -1,4 +1,4 @@
-package view;
+package view.entityViews;
 
 import Controller.Game;
 import Model.Drawable;
@@ -7,6 +7,8 @@ import Model.entity.Necropick;
 import Model.entity.ShotGun;
 import Model.entity.Omenoct;
 import Model.entity.Wyrm;
+import Model.entity.smiley.Smiley;
+import Model.entity.smiley.SmileyPointFinger;
 
 import javax.swing.*;
 import java.awt.*;
@@ -41,12 +43,17 @@ public class ShotGunView implements Drawable {
                 }
             }
         }
-        g.setColor(new Color(138, 227, 220));
+
         for(GameObjects enemy : Game.getEnemies()){
             if(!enemy.isDead()){
                 if(enemy.isVisible()){
                     for(ShotGun shotGun : enemy.getShots()) {
                         if(shotGun.isVisible()){
+                            if(enemy instanceof Necropick) g.setColor(new Color(186, 206, 163));
+                            if(enemy instanceof Omenoct) g.setColor(new Color(255, 151, 215));
+                            if(enemy instanceof Wyrm) g.setColor(new Color(0xFFB7B7));
+                            if (enemy instanceof SmileyPointFinger) g.setColor(new Color(235, 255, 13));
+                            if(enemy instanceof Smiley) g.setColor(new Color(175, 193, 255));
                         int x = shotGun.getLocalX() + shotGun.getLocalFrame().getX();
                         int y = shotGun.getLocalY() + shotGun.getLocalFrame().getY();
                         Rectangle bounds = new Rectangle(frame.getX(), frame.getY()
@@ -55,11 +62,6 @@ public class ShotGunView implements Drawable {
                                 bounds.contains(x, y + shotGun.getHeight()) ||
                                 bounds.contains(x + shotGun.getWidth(), y + shotGun.getHeight())) {
                             if (shotGun.getLocalFrames().size() == 1) {
-
-
-                                if(enemy instanceof Necropick) g.setColor(new Color(186, 206, 163));
-                                if(enemy instanceof Omenoct) g.setColor(new Color(255, 151, 215));
-                                if(enemy instanceof Wyrm) g.setColor(new Color(0xFFB7B7));
                                 g.fillRect(shotGun.getLocalX(), shotGun.getLocalY(), shotGun.getWidth(), shotGun.getHeight());
                             } else {
 

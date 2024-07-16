@@ -22,10 +22,6 @@ public class KeyListener {
     private boolean rightPressed;
     private final int absVelocity = Constants.epsilonAbsVelocity();
     private static boolean pauseGame;
-    private static boolean activate;
-    //activates chosen ability;
-    private static boolean canUseAbility;
-    // can the player use the ability?
     private static boolean abilityKeyPressed;
     private static int keyPressedNumber;
 
@@ -46,6 +42,7 @@ public class KeyListener {
         actionMap = gameFrame.getRootPane().getActionMap();
 
         //key press
+
         inputMap.put(KeyStroke.getKeyStroke(SettingsFrame.getKeyBinding("up"),0),"upPress");
         inputMap.put(KeyStroke.getKeyStroke(SettingsFrame.getKeyBinding("down"),0),"downPress");
         inputMap.put(KeyStroke.getKeyStroke(SettingsFrame.getKeyBinding("left"),0),"leftPress");
@@ -107,7 +104,7 @@ public class KeyListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(epsilon.getLocalY() + epsilon.getRadius()< epsilon.getLocalFrame().getHeight()) {
-                    if (!upPressed) {
+                    if (!upPressed ) {
                         epsilon.setyVelocity(absVelocity );
                         shotGun.setYVelocity(absVelocity);
                     }else {
@@ -236,5 +233,17 @@ public class KeyListener {
 
     public static void setKeyPressedNumber(int keyPressedNumber) {
         KeyListener.keyPressedNumber = keyPressedNumber;
+    }
+
+    public ActionMap getActionMap() {
+        return actionMap;
+    }
+
+    public InputMap getInputMap() {
+        return inputMap;
+    }
+
+    public void setInputMap(InputMap inputMap) {
+        this.inputMap = inputMap;
     }
 }

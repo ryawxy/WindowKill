@@ -27,8 +27,8 @@ public class LaserView implements Drawable {
                     Rectangle bounds = new Rectangle(frame.getX(), frame.getY()
                             , frame.getWidth(), frame.getHeight());
 
-                    int globalX = (int) (laser.getLocalX() + laser.getLocalFrame().getX());
-                    int globalY = (int) (laser.getLocalY() + laser.getLocalFrame().getY());
+                    int globalX = (int) (laser.getLocalX() + laser.getBlackOrb1().getLocalFrame().getX());
+                    int globalY = (int) (laser.getLocalY() + laser.getBlackOrb1().getLocalFrame().getY());
                     if (laser.isVisible()) {
                         if (bounds.contains(globalX, globalY) || bounds.contains(globalX + laser.getWidth(), globalY) ||
                                 bounds.contains(globalX, globalY + laser.getWidth()) ||
@@ -40,7 +40,9 @@ public class LaserView implements Drawable {
 
                             } else{
 
-                                g.drawImage(laser.getImage(), (globalX - bounds.x), (globalY - bounds.y),laser.getWidth(),laser.getHeight(), null);
+                                g.drawImage(laser.getImage(), (globalX - bounds.x), (globalY - bounds.y),laser.getImage().getWidth(null),laser.getImage().getHeight(null), null);
+                                g.setColor(new Color(0,0,0));
+
                             }
 
                         }

@@ -8,11 +8,13 @@ public class SmileyPunchPanel extends JPanel {
 
     private Rectangle bound;
     private JFrame itsFrame;
+    private SmileyPunchView smileyPunchView;
 
     public SmileyPunchPanel(int x, int y){
 
         this.setSize(x,y);
-        this.setBackground(Color.BLACK);
+        this.setOpaque(false);
+        this.setBackground(new Color(0,0,0,0));
         MouseListener mouseListener = new MouseListener(this);
         addMouseListener(mouseListener);
     }
@@ -20,6 +22,12 @@ public class SmileyPunchPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+//        g.setColor(Color.BLACK);
+//        g.fillRect(0,0,getWidth(),getHeight());
+
+        Graphics2D g2D = (Graphics2D) g;
+        smileyPunchView.paint(g2D);
     }
 
     public Rectangle getBound() {
@@ -36,5 +44,9 @@ public class SmileyPunchPanel extends JPanel {
 
     public void setItsFrame(JFrame itsFrame) {
         this.itsFrame = itsFrame;
+    }
+
+    public void setSmileyPunchView(SmileyPunchView smileyPunchView) {
+        this.smileyPunchView = smileyPunchView;
     }
 }

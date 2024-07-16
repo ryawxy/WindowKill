@@ -1,11 +1,7 @@
 package view.entityViews.wyrm;
 
 import Controller.MouseListener;
-import view.ShotGunView;
-import view.entityViews.ArchmireView;
-import view.entityViews.EpsilonView;
-import view.entityViews.NecropickView;
-import view.entityViews.OmenoctView;
+import view.entityViews.*;
 import view.entityViews.barricados.BarricadosView;
 import view.entityViews.blackOrb.BlackOrbView;
 import view.entityViews.blackOrb.LaserView;

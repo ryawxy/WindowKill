@@ -10,10 +10,8 @@ import java.util.Random;
 public class Omenoct extends GameObjects implements Movable {
     private boolean visible = true;
     private boolean canMove;
-    private Side side;
+    private Side side = Side.RIGHT;
     private double angle;
-    private double stuckXVelocity;
-    private double stuckYVelocity;
     private boolean canChoose = true;
 
     public Omenoct(int x, int y) {
@@ -49,7 +47,9 @@ public class Omenoct extends GameObjects implements Movable {
             if(getLocalY()+getHeight()>=getLocalFrame().getHeight()) side = Side.DOWN;
 
 
-        if((epsilon.getLocalFrame().equals(getLocalFrame())|| epsilon.getLocalFrames().contains(getLocalFrame())) && canChoose) {
+        if((epsilon.getLocalFrame().equals(getLocalFrame())|| epsilon.getLocalFrames().contains(getLocalFrame())) && canChoose
+        && getLocalX()>0 && getLocalX()+getWidth()<getLocalFrame().getWidth() && getLocalY()>0 && getLocalY()+getHeight()<getLocalFrame().getHeight()) {
+
             chooseSide();
             canMove = true;
             canChoose = false;
@@ -68,25 +68,35 @@ public class Omenoct extends GameObjects implements Movable {
             setXVelocity(Math.cos(angle)*Constants.omenoctNormalSpeed());
             setYVelocity(Math.sin(angle)*Constants.omenoctNormalSpeed());
         }
+        if(getXVelocity()== 0 && getYVelocity() ==0) {
+            if (getLocalX() + getWidth() > getLocalFrame().getWidth()) setXVelocity(-5);
+            if (getLocalY() + getHeight() > getLocalFrame().getHeight()) setYVelocity(-5);
+            if (getLocalX() < 0) setXVelocity(5);
+            if (getLocalY() < 0) setYVelocity(5);
+        }
 
-//        if(getXVelocity() == 0 && getYVelocity() == 0){
-//            if(side.equals(Side.DOWN) || side.equals(Side.UP)){
-//                stuckXVelocity = epsilon.getXVelocity()+epsilon.getxVelocity2();
-//            }else{
-//                stuckYVelocity = epsilon.getYVelocity()+epsilon.getyVelocity2();
-//            }
-//        }
+
+        double stuckXVelocity = 0;
+        double stuckYVelocity = 0;
+        if(getXVelocity() == 0 && getYVelocity() == 0){
+            if(side.equals(Side.DOWN) || side.equals(Side.UP)){
+                stuckXVelocity = epsilon.getXVelocity()+epsilon.getxVelocity2();
+            }else{
+                stuckYVelocity = epsilon.getYVelocity()+epsilon.getyVelocity2();
+            }
+        }
+
 //        if(epsilon.getXVelocity()+epsilon.getxVelocity2()>0 && getLocalX()+getWidth()>=getLocalFrame().getWidth())stuckXVelocity=0;
 //        if(epsilon.getXVelocity()+epsilon.getxVelocity2()<0 && getLocalX()<=0)stuckXVelocity=0;
 //
 //        if(epsilon.getYVelocity()+epsilon.getyVelocity2()>0 && getLocalY()+getHeight()>=getLocalFrame().getHeight())stuckYVelocity=0;
 //        if(epsilon.getYVelocity()+epsilon.getyVelocity2()<0 && getLocalY()<=0)stuckYVelocity=0;
 
-        setLocalX((int) (getLocalX() + getXVelocity()+stuckXVelocity));
-            setLocalY((int) (getLocalY() + getYVelocity()+stuckYVelocity));
+        setLocalX((int) (getLocalX() + getXVelocity()+ stuckXVelocity));
+            setLocalY((int) (getLocalY() + getYVelocity()+ stuckYVelocity));
 
-            setX((int) (getX() + getXVelocity()+stuckXVelocity));
-            setY((int) (getY() + getYVelocity()+stuckYVelocity));
+            setX((int) (getX() + getXVelocity()+ stuckXVelocity));
+            setY((int) (getY() + getYVelocity()+ stuckYVelocity));
 
         }
 

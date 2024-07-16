@@ -1,8 +1,9 @@
 package view.entityViews.smiley;
 
 import Controller.MouseListener;
-import view.entityViews.ShotGunView;
+
 import view.entityViews.EpsilonView;
+import view.entityViews.ShotGunView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,13 +13,13 @@ public class SmileyPanel extends JPanel {
     private Rectangle bound;
     private JFrame itsFrame;
     private SmileyView smileyView;
-   private EpsilonView epsilonView;
-   private ShotGunView shotGunView;
+    private SmileyPointerView smileyPointerView;
 
     public SmileyPanel(int x, int y){
 
         this.setSize(x,y);
-        this.setBackground(Color.BLACK);
+        this.setOpaque(false);
+        this.setBackground(new Color(0,0,0,0));
         MouseListener mouseListener = new MouseListener(this);
         addMouseListener(mouseListener);
     }
@@ -29,13 +30,14 @@ public class SmileyPanel extends JPanel {
 
         Graphics2D g2D = (Graphics2D) g;
 
-        smileyView = new SmileyView(((SmileyFrame)itsFrame).getSmiley());
+        smileyPointerView.paint(g2D);
+
         smileyView.paint(g2D);
 
-        epsilonView = new EpsilonView(itsFrame);
+        EpsilonView epsilonView = new EpsilonView(itsFrame);
         epsilonView.paint(g2D);
 
-        shotGunView = new ShotGunView(itsFrame);
+        ShotGunView shotGunView = new ShotGunView(itsFrame);
         shotGunView.paint(g2D);
 
 
@@ -48,12 +50,15 @@ public class SmileyPanel extends JPanel {
     public void setBound(Rectangle bound) {
         this.bound = bound;
     }
-
-    public JFrame getItsFrame() {
-        return itsFrame;
-    }
-
     public void setItsFrame(JFrame itsFrame) {
         this.itsFrame = itsFrame;
+    }
+
+    public void setSmileyView(SmileyView smileyView) {
+        this.smileyView = smileyView;
+    }
+
+    public void setSmileyPointerView(SmileyPointerView smileyPointerView) {
+        this.smileyPointerView = smileyPointerView;
     }
 }

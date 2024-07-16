@@ -18,8 +18,9 @@ public class FireView implements Drawable {
     private BufferedImage image2;
     private BufferedImage image3;
 
-    public FireView() {
+    public FireView(JFrame frame) {
 
+        this.frame = frame;
 
         try {
             image1 = ImageIO.read(new File("src/images/vomit2.png"));
@@ -47,12 +48,14 @@ public class FireView implements Drawable {
 
         for (Smiley smiley : Game.getSmilies()) {
             for (int i = 0; i < smiley.getAoeAttacks().size(); i++) {
-
-                if (i % 3 == 0) {
-                    g.drawImage(image3, smiley.getAoeAttacks().get(i).getX(), smiley.getAoeAttacks().get(i).getY(),100,100, null);
-                } else if (i % 3 == 1){
-                    g.drawImage(image1, smiley.getAoeAttacks().get(i).getX(), smiley.getAoeAttacks().get(i).getY(),100,100, null);
-                } else g.drawImage(image2, smiley.getAoeAttacks().get(i).getX(), smiley.getAoeAttacks().get(i).getY(),100,100, null);
+                if (smiley.getAoeAttacks().get(i).isVisible()) {
+                    if (i % 3 == 0) {
+                        g.drawImage(image3, smiley.getAoeAttacks().get(i).getX(), smiley.getAoeAttacks().get(i).getY(), 100, 100, null);
+                    } else if (i % 3 == 1) {
+                        g.drawImage(image1, smiley.getAoeAttacks().get(i).getX(), smiley.getAoeAttacks().get(i).getY(), 100, 100, null);
+                    } else
+                        g.drawImage(image2, smiley.getAoeAttacks().get(i).getX(), smiley.getAoeAttacks().get(i).getY(), 100, 100, null);
+                }
             }
         }
     }

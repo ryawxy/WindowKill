@@ -38,11 +38,13 @@ public class MouseListener extends MouseInputAdapter {
 
         if (!GameInfo.getCurrentShopItem().containsKey(ShopItem.Empower)) {
             ShotGun shot = new ShotGun((int) fireX, (int) fireY);
+
             shot.setLocalFrame(epsilon.getLocalFrame());
             shot.setPreviousLocalFrame(epsilon.getLocalFrame());
             shot.getLocalFrames().clear();
             shot.getLocalFrames().add(shot.getLocalFrame());
             Game.getEpsilonShots().add(shot);
+
 
 
             Game.getEpsilonShots().getLast().setXVelocity((int) (speed * Math.cos(angle)));

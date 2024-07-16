@@ -6,10 +6,14 @@ import Model.entity.blackOrb.BlackOrbArray;
 import Model.enums.ArchmireType;
 import Model.enums.BarricadosType;
 import Model.enums.Direction;
+import Model.enums.PunchType;
 import view.*;
 import view.entityViews.barricados.BarricadosFrame;
 import view.entityViews.blackOrb.BlackOrbFrame;
 import myproject.MyProject;
+import view.entityViews.smiley.SmileyFrame;
+import view.entityViews.smiley.SmileyPointerFrame;
+import view.entityViews.smiley.SmileyPunchFrame;
 import view.entityViews.wyrm.WyrmFrame;
 
 import javax.swing.*;
@@ -96,21 +100,25 @@ public class GameLoop {
                             Game.getEnemies().add(archmire);
 
                         }
+ //                       new SmileyFrame(400,100);
+//                       new SmileyPunchFrame(100,100, PunchType.QUAKE);
+//                        new SmileyPointerFrame(100,100, PunchType.LEFT);
+//                        new SmileyPointerFrame(600,100, PunchType.RIGHT);
 
                         try {
-                            BlackOrbArray.createBlackOrbArray(100,150);
+                            BlackOrbArray.createBlackOrbArray(120,150);
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);
                         }
-                        BlackOrbArray.createInvisibleFrame();
-                          WyrmFrame wyrmFrame =   new WyrmFrame(510,300);
-//                        WyrmFrame wyrmFrame1 =   new WyrmFrame(710,600);
+//                        BlackOrbArray.createInvisibleFrame();
+ //                         WyrmFrame wyrmFrame =   new WyrmFrame(410,300);
+ //                       WyrmFrame wyrmFrame1 =   new WyrmFrame(710,600);
 
 
 
-                            Omenoct omenoct = new Omenoct(200,500);
-                            Game.getEnemies().add(omenoct);
-                            Game.getOmenocts().add(omenoct);
+//                            Omenoct omenoct = new Omenoct(200,500);
+//                            Game.getEnemies().add(omenoct);
+//                            Game.getOmenocts().add(omenoct);
 //                            Necropick necropick = new Necropick(200,200);
 //                            Game.getEnemies().add(necropick);
 //                            Game.getNecropicks().add(necropick);
@@ -119,7 +127,7 @@ public class GameLoop {
 //                        Game.getEnemies().add(archmire);
 //                        Game.getArchmires().add(archmire);
 //
- //                       BarricadosFrame barricadosFrame = new BarricadosFrame(100,300, BarricadosType.T1);
+ //                       BarricadosFrame barricadosFrame = new BarricadosFrame(100,300, BarricadosType.T2);
 
 
                     }else        if(SettingsFrame.getChosenLevel()==1) {
@@ -368,7 +376,7 @@ public class GameLoop {
                 }
                 if( lose ) {
 
-                    frameSize.shrink();
+                    frameSize.normalShrinkage();
                     GamePanel.setFRAME_WIDTH(0);
                     GamePanel.setFRAME_HEIGHT(0);
                     int purchase = JOptionPane.showOptionDialog(GlassFrame.getINSTANCE(),
@@ -461,9 +469,9 @@ public class GameLoop {
                     throw new RuntimeException(ex);
                 }
                 //shrinkage starts after 10 seconds
-                if (countTime >= 50 ) {
+                if (countTime >= 200 ) {
 
-            //        frameSize.shrink();
+        //            frameSize.normalShrinkage();
                 }
 
 
@@ -482,7 +490,7 @@ public class GameLoop {
 
                             IntersectionPoint point = new IntersectionPoint(new Point2D.Double(shotGun.getX(), shotGun.getY()),5,false,false,null,shotGun);
                             ObjectsIntersection.getIntersectionPoints().add(point);
-                     //       shotGun.setVisible(false);
+                            shotGun.setVisible(false);
                         }
                     }
                 }
@@ -538,6 +546,13 @@ public class GameLoop {
                     }
 
                 }
+                for(GameObjects enemy : Game.getEnemies()){
+                    for(ShotGun shotGun : enemy.getShots()){
+                        for(JFrame frame : Game.getFrames()){
+                            frameIntersection.changeLocalFrame(frame,shotGun);
+                        }
+                    }
+                }
 
                 for(JFrame frame : Game.getFrames()) {
                     if (!frame.equals(Game.getEpsilon().getLocalFrame())) {
@@ -548,10 +563,10 @@ public class GameLoop {
                 }
                 for(ShotGun shotGun : Game.getEpsilonShots()) {
                     for (JFrame frame : Game.getFrames()) {
-                        if (!frame.equals(Game.getEpsilon().getLocalFrame())) {
+                 //       if (!frame.equals(shotGun.getLocalFrame())) {
                             frameIntersection.changeLocalFrame(frame, shotGun);
 
-                        }
+//                        }
                     }
                 }
               for(Vertex vertex : Game.getEpsilon().getVertex()){
@@ -562,16 +577,10 @@ public class GameLoop {
 
                 for(JFrame frame : Game.getFrames()) frame.getContentPane().repaint();
 
-                for (BlackOrbFrame blackOrbFrame : Game.getBlackOrbFrames()) blackOrbFrame.getContentPane().repaint();
-
                 for(WyrmFrame wyrmFrame : Game.getWyrmFrames()){
                     wyrmFrame.getWyrm().move();
 
-                    for(ShotGun shotGun : wyrmFrame.getWyrm().getShots()){
-                        for(JFrame frame : Game.getFrames()){
-                            if(!frame.equals(shotGun.getLocalFrame())) frameIntersection.changeLocalFrame(frame,shotGun);
-                        }
-                    }
+
                     for(Collectible collectible : wyrmFrame.getWyrm().getCollectibles()){
                         for(JFrame frame : Game.getFrames()){
                             if(!frame.equals(collectible.getLocalFrame())) frameIntersection.changeLocalFrame(frame,collectible);
@@ -580,11 +589,7 @@ public class GameLoop {
                     wyrmFrame.getWyrm().shot();
 
                 }
-//                for(WyrmFrame wyrmFrame : Game.getWyrmFrames()){
-//                    for(ShotGun shotGun : wyrmFrame.getWyrm().getShots()){
-//                        shotGun.move();
-//                    }
-//                }
+
 
                 for(GameObjects enemy : Game.getEnemies()){
                     for(JFrame frame : Game.getFrames()){
@@ -593,6 +598,14 @@ public class GameLoop {
                         }
                     }
                 }
+        //        BossAttack.projectile();
+          //      BossAttack.vomit();
+          //      BossAttack.powerPunch();
+        //        BossAttack.rapidFire();
+        //        BossAttack.annihilator();
+        //        BossAttack.quake();
+        //        BossAttack.slap();
+
 
 
 

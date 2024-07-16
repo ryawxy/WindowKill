@@ -94,14 +94,14 @@ public  void initWave1(){
         trigorath.setLocalyPoints(yPoints3);
         wave1EasyTrigorath.add(trigorath);
 
-        Archmire archmire = new Archmire(50,50, ArchmireType.MINI);
+//        Archmire archmire = new Archmire(50,50, ArchmireType.MINI);
      //   wave1EasyArchmire.add(archmire);
 
         Necropick necropick = new Necropick(300,300);
     //    wave1EasyNecropicks.add(necropick);
 
-        Barricados barricados = new Barricados(100,100);
-        wave1EasyBarricados.add(barricados);
+//        Barricados barricados = new Barricados(100,100);
+//        wave1EasyBarricados.add(barricados);
     //    BarricadosPanel panel = new BarricadosPanel();
     //    barricadosPanels.add(panel);
 

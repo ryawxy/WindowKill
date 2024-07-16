@@ -2,6 +2,7 @@ package view.entityViews.wyrm;
 
 import Controller.Game;
 import Controller.KeyListener;
+import Model.FrameType;
 import Model.entity.Wyrm;
 import view.entityViews.ArchmireView;
 import view.entityViews.NecropickView;
@@ -15,7 +16,7 @@ import java.awt.*;
 import java.io.IOException;
 
 
-public class WyrmFrame extends JFrame {
+public class WyrmFrame extends JFrame implements FrameType {
     Wyrm wyrm;
     public WyrmFrame(int x, int y){
 
@@ -54,5 +55,20 @@ public class WyrmFrame extends JFrame {
 
     public Wyrm getWyrm() {
         return wyrm;
+    }
+
+    @Override
+    public boolean isometric() {
+        return true;
+    }
+
+    @Override
+    public boolean solid() {
+        return false;
+    }
+
+    @Override
+    public Rectangle getBound() {
+        return null;
     }
 }

@@ -24,7 +24,7 @@ public class BlackOrbArray {
     public static void createBlackOrbArray(int x, int y) throws IOException {
 
 
-        int sideLength = 150;
+        int sideLength = 180;
 
         //create orbs
         for(int i=0;i<5;i++) {
@@ -32,21 +32,19 @@ public class BlackOrbArray {
 
             double xPosition = sideLength * Math.cos(theta);
             double yPosition = -sideLength * Math.sin(theta);
-            time++;
 
 
-            if (time >= 2000) {
+
+
                 BlackOrbFrame blackOrbFrame = new BlackOrbFrame((int) xPosition + x, (int) yPosition + y);
                 Game.getEnemies().add(blackOrbFrame.getBlackOrb());
-
-                KeyListener keyListener = new KeyListener((JPanel) blackOrbFrame.getContentPane());
 
                 blackOrbArray.add(blackOrbFrame);
                 Game.getFrames().add(blackOrbFrame);
                 Game.getBlackOrbFrames().add(blackOrbFrame);
-                time = 0;
-            }else i--;
-        }
+
+            }
+
 
 
 
@@ -71,8 +69,8 @@ public class BlackOrbArray {
                     double angle = Math.atan2(globalY2 - globalY1, globalX2 - globalX1);
                     double x1 = blackOrbArray.get(i).getBlackOrb().getLocalX() ;
                     double y1 = blackOrbArray.get(i).getBlackOrb().getLocalY() ;
-                    double x2 = x1 + 150 * Math.cos(angle);
-                    double y2 = y1 + 150 * Math.sin(angle);
+                    double x2 = x1 + 180 * Math.cos(angle);
+                    double y2 = y1 + 180 * Math.sin(angle);
 
 
                     // Calculate the angle of the diameter
@@ -94,7 +92,7 @@ public class BlackOrbArray {
                     // Calculate the midpoint of the line
                     double midX = (x1 + x2) / 2;
                     double midY = (y1 + y2) / 2;
-                    Laser laser = new Laser(new Point2D.Double((midX-newImageWidth)/2+50,(midY-newImageHeight)/2+70),scaledImage);
+                    Laser laser = new Laser(new Point2D.Double((midX-newImageWidth)/2+50,(midY-newImageHeight)/2+68),scaledImage);
                     laser.setWidth(newImageWidth);
                     laser.setHeight(newImageHeight);
                     laser.setAngle(angle);

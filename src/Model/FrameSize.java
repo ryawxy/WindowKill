@@ -2,11 +2,9 @@ package Model;
 
 import Controller.Constants;
 import Controller.Game;
-import Model.enums.BarricadosType;
 import Model.enums.Direction;
 import view.GamePanel;
 import view.GlassFrame;
-import view.entityViews.barricados.BarricadosFrame;
 
 
 import javax.swing.*;
@@ -27,7 +25,7 @@ public class FrameSize {
 
         this.gamePanel = gamePanel;
     }
-    public void shrink (){
+    public void normalShrinkage(){
      minSize = 400;
      if(GameLoop.isWin()  && Game.getEpsilon().getRadius()>=GamePanel.getFRAME_HEIGHT()){
          minSize = 0;
@@ -95,9 +93,11 @@ public class FrameSize {
                     if (((FrameType)frame).solid()) {
 
                         if (frame.getX() >= GlassFrame.getINSTANCE().getX() + GlassFrame.getINSTANCE().getWidth()) {
-                            if (GlassFrame.getINSTANCE().getX() + GlassFrame.getINSTANCE().getWidth() + (Constants.expandAmount() / 2) > frame.getX()) {
+
+                            if (GlassFrame.getINSTANCE().getX() + GlassFrame.getINSTANCE().getWidth() + (Constants.expandAmount() / 2) >= frame.getX()) {
 
                                 valid = false;
+
 
                             }
                         }

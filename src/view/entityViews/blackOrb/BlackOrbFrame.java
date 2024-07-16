@@ -2,6 +2,8 @@ package view.entityViews.blackOrb;
 
 
 import Controller.Game;
+import Controller.KeyListener;
+import Controller.MouseListener;
 import Model.FrameType;
 import Model.entity.blackOrb.BlackOrb;
 import view.entityViews.ArchmireView;
@@ -20,12 +22,12 @@ public class BlackOrbFrame extends JFrame implements FrameType {
     Rectangle bounds;
 
     public BlackOrbFrame(int x,int y) throws IOException {
-        this.setSize(150,150);
+        this.setSize(180,180);
         this.setBackground(Color.BLACK);
         this.setLocation(x,y);
         this.setUndecorated(true);
         this.setTitle("Black-Orb frame");
-        view.entityViews.blackOrb.BlackOrbPanel blackOrbPanel = new view.entityViews.blackOrb.BlackOrbPanel(150,150);
+        view.entityViews.blackOrb.BlackOrbPanel blackOrbPanel = new view.entityViews.blackOrb.BlackOrbPanel(180,180);
         this.setContentPane(blackOrbPanel);
 
 
@@ -46,6 +48,9 @@ public class BlackOrbFrame extends JFrame implements FrameType {
         Game.getFrames().add(this);
         Game.getBlackOrbFrames().add(this);
         bounds = new Rectangle(getX(),getY(),getWidth(),getHeight());
+        new KeyListener((JPanel) getContentPane());
+        new MouseListener(blackOrbPanel);
+
 
     }
 

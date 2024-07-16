@@ -25,13 +25,10 @@ public class Epsilon extends GameObjects implements Movable {
     private final ArrayList<Model.entity.Vertex> vertex = new ArrayList<>();
     private int vertexNumber;
     private final ArrayList<JFrame> localFrames = new ArrayList<>();
+    private final ObjectsIntersection objectsIntersection = new ObjectsIntersection();
 
     public Epsilon(int x, int y) throws IOException {
         super(x, y);
-        setX(x);
-        setY(y);
-        setLocalX(x);
-        setLocalY(y);
         setHP(100);
         setLocalFrame(GlassFrame.getINSTANCE());
         setPreviousLocalFrame(GlassFrame.getINSTANCE());
@@ -80,7 +77,7 @@ public class Epsilon extends GameObjects implements Movable {
             xVelocity2 = 0;
 
         }
-
+        objectsIntersection.holeCollision();
 
         this.setX((int) (getX()+xVelocity2+ getXVelocity()));
         this.setY((int) (getY()+yVelocity2+ getYVelocity()));
@@ -196,21 +193,19 @@ public class Epsilon extends GameObjects implements Movable {
     public int getHeight() {
         return getRadius();
     }
-
-    @Override
-    public void setHeight(int height) {
-    }
-
     @Override
     public int getWidth() {
         return getRadius();
-    }
-
-    @Override
-    public void setWidth(int width) {
     }
     public ArrayList<JFrame> getLocalFrames() {
         return localFrames;
     }
 
+    public void setxVelocity2(double xVelocity2) {
+        this.xVelocity2 = xVelocity2;
+    }
+
+    public void setyVelocity2(double yVelocity2) {
+        this.yVelocity2 = yVelocity2;
+    }
 }
