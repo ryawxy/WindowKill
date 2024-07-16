@@ -4,50 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="barricados transition between frames">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/KeyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/KeyListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/MouseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MouseListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/BossAttack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/BossAttack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/FrameIntersection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/FrameIntersection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/FrameSize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/FrameSize.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/ObjectsIntersection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ObjectsIntersection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Wave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Wave.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/entity/Epsilon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/entity/Epsilon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/entity/Omenoct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/entity/Omenoct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/entity/ShotGun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/entity/ShotGun.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/entity/blackOrb/BlackOrb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/entity/blackOrb/BlackOrb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/entity/blackOrb/BlackOrbArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/entity/blackOrb/BlackOrbArray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/entity/smiley/Fire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/entity/smiley/Fire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/entity/smiley/Smiley.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/entity/smiley/Smiley.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/entity/smiley/SmileyPointFinger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/entity/smiley/SmileyPointFinger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/entity/smiley/SmileyPunch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/entity/smiley/SmileyPunch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/enums/SmileyHandSide.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/enums/PunchType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/orb.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/orb.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/images/smiley.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/images/smiley.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/SettingsFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/SettingsFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/entityViews/ShotGunView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/ShotGunView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/entityViews/blackOrb/BlackOrbFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/blackOrb/BlackOrbFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/entityViews/blackOrb/BlackOrbPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/blackOrb/BlackOrbPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/entityViews/blackOrb/InvisibleFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/blackOrb/InvisibleFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/entityViews/blackOrb/LaserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/blackOrb/LaserView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/entityViews/smiley/FireView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/smiley/FireView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPointerFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPointerFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPointerPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPointerPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPointerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPointerView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPunchFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPunchFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPunchPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPunchPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPunchView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPunchView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/entityViews/wyrm/WyrmFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/wyrm/WyrmFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/entityViews/wyrm/WyrmPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/wyrm/WyrmPanel.java" afterDir="false" />
-    </list>
+    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="made laser damages better" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -443,7 +400,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720866031778</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="made laser damages better">
+      <option name="closed" value="true" />
+      <created>1721136126499</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1721136126499</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -458,7 +423,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="impact mechanism for epsilon" />
     <MESSAGE value="added waves" />
     <MESSAGE value="added sound settings" />
     <MESSAGE value="made collisions cleaner" />
@@ -483,6 +447,7 @@
     <MESSAGE value="wyrm transition between frames" />
     <MESSAGE value="wyrm collision created" />
     <MESSAGE value="barricados transition between frames" />
-    <option name="LAST_COMMIT_MESSAGE" value="barricados transition between frames" />
+    <MESSAGE value="made laser damages better" />
+    <option name="LAST_COMMIT_MESSAGE" value="made laser damages better" />
   </component>
 </project>
