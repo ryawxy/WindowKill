@@ -4,27 +4,101 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="made laser damages better">
+    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="created waves">
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/MouseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MouseListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/BossAttack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/BossAttack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GameInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/GameObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameObjects.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/ObjectsIntersection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ObjectsIntersection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Wave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Wave.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/entity/Archmire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/entity/Archmire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/entity/Necropick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/entity/Necropick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/entity/Omenoct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/entity/Omenoct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/entity/blackOrb/BlackOrb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/entity/blackOrb/BlackOrb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/entity/blackOrb/BlackOrbArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/entity/blackOrb/BlackOrbArray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/entity/blackOrb/Laser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/entity/blackOrb/Laser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/entity/smiley/SmileyPunch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/entity/smiley/SmileyPunch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/enums/EnemyType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/enums/EnemyType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/GameInfoView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/GameInfoView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/SettingsFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/SettingsFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/entityViews/blackOrb/LaserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/blackOrb/LaserView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Constants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Game.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/KeyCodeCapture.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/KeyListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/MouseListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ShopController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SkillTreeController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/BossAttack.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Collectible.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Drawable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/FrameIntersection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/FrameSize.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/FrameType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/GameInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/GameLoop.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/GameObjects.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/IntersectionPoint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Movable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/ObjectsIntersection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Wave.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/entity/Archmire.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/entity/Barricados.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/entity/Cerberus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/entity/Epsilon.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/entity/Footprint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/entity/Necropick.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/entity/Omenoct.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/entity/ShotGun.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/entity/Squarantine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/entity/Trigorath.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/entity/Vertex.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/entity/Wyrm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/entity/blackOrb/BlackOrb.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/entity/blackOrb/BlackOrbArray.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/entity/blackOrb/Laser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/entity/smiley/Fire.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/entity/smiley/Smiley.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/entity/smiley/SmileyPointFinger.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/entity/smiley/SmileyPunch.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/enums/Ability.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/enums/ArchmireType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/enums/Attack.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/enums/BarricadosType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/enums/Direction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/enums/EnemyType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/enums/PunchType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/enums/ShopItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/enums/Side.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/myproject/MyProject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sound/SoundPlayer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sound/wave.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/GameInfoView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/GamePanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/GlassFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/SettingsFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/ShopFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/SkillTreeFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/StarterMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/ArchmireView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/CerberusView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/EpsilonView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/NecropickView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/OmenoctView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/ShotGunView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/SquarantineView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/TrigorathView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/VertexView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/barricados/BarricadosFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/barricados/BarricadosPanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/barricados/BarricadosView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/blackOrb/BlackOrbFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/blackOrb/BlackOrbPanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/blackOrb/BlackOrbView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/blackOrb/InvisibleFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/blackOrb/InvisiblePanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/blackOrb/LaserView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/smiley/FireView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPointerFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPointerPanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPointerView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPunchFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPunchPanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyPunchView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/smiley/SmileyView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/wyrm/WyrmFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/wyrm/WyrmPanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/wyrm/WyrmView.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +168,7 @@
   <component name="RunManager">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="WindowKill2" />
+      <module name="WindowKill" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -429,7 +503,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721136126499</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="created waves">
+      <option name="closed" value="true" />
+      <created>1721308630426</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1721308630426</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -444,7 +526,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added waves" />
     <MESSAGE value="added sound settings" />
     <MESSAGE value="made collisions cleaner" />
     <MESSAGE value="made paint methods cleaner" />
@@ -469,6 +550,7 @@
     <MESSAGE value="wyrm collision created" />
     <MESSAGE value="barricados transition between frames" />
     <MESSAGE value="made laser damages better" />
-    <option name="LAST_COMMIT_MESSAGE" value="made laser damages better" />
+    <MESSAGE value="created waves" />
+    <option name="LAST_COMMIT_MESSAGE" value="created waves" />
   </component>
 </project>
