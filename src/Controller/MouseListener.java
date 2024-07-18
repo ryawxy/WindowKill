@@ -18,6 +18,8 @@ public class MouseListener extends MouseInputAdapter {
     private static int timer;
     //if empower item is activated, wait a bit for each shot to fire
     private static boolean shootinEmpowerMode;
+    private int mouseX;
+    private int mouseY;
     public <T extends JPanel> MouseListener(T gamePanel){
         this.gamePanel = gamePanel;
         shotGun = Game.getShotGun();
@@ -28,8 +30,8 @@ public class MouseListener extends MouseInputAdapter {
     public void mouseClicked(MouseEvent e) {
 
 
-        int mouseX = e.getX();
-        int mouseY = e.getY();
+         mouseX = e.getX();
+         mouseY = e.getY();
 
         double angle2 = Math.atan2(mouseY - Game.getEpsilon().getLocalY(), mouseX - Game.getEpsilon().getLocalX());
         double fireX = Game.getEpsilon().getLocalX() + Game.getEpsilon().getRadius() * Math.cos(angle2);
@@ -86,5 +88,13 @@ public class MouseListener extends MouseInputAdapter {
 
     public static void setShootinEmpowerMode(boolean shootinEmpowerMode) {
         MouseListener.shootinEmpowerMode = shootinEmpowerMode;
+    }
+
+    public void setMouseX(int mouseX) {
+        this.mouseX = mouseX;
+    }
+
+    public void setMouseY(int mouseY) {
+        this.mouseY = mouseY;
     }
 }

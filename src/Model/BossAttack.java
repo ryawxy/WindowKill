@@ -17,6 +17,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Area;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class BossAttack {
     private static final Epsilon epsilon = Game.getEpsilon();
@@ -145,7 +146,15 @@ public class BossAttack {
                     if (smileyPunch.getLocalFrame().getY() < 700)
                         smileyPunch.getLocalFrame().setLocation(smileyPunch.getLocalFrame().getX(), smileyPunch.getLocalFrame().getY() + 5);
                     else smileyPunch.quakeEffect();
+                    Random random = new Random();
+                    if(smileyPunch.isHasPunched()){
+                        int x = random.nextInt(Game.getEpsilon().getLocalFrame().getWidth());
+                        int y = random.nextInt(Game.getEpsilon().getLocalFrame().getHeight());
+                        Game.getMouseListener().setMouseX(x);
+                        Game.getMouseListener().setMouseY(y);
+                    }
                 }
+
             }
         }
 

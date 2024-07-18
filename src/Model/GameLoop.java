@@ -2,23 +2,16 @@ package Model;
 
 import Controller.*;
 import Model.entity.*;
-import Model.entity.blackOrb.BlackOrbArray;
-import Model.enums.ArchmireType;
-import Model.enums.BarricadosType;
+import Model.entity.blackOrb.BlackOrb;
 import Model.enums.Direction;
-import Model.enums.PunchType;
 import view.*;
-import view.entityViews.barricados.BarricadosFrame;
-import view.entityViews.blackOrb.BlackOrbFrame;
 import myproject.MyProject;
-import view.entityViews.smiley.SmileyFrame;
-import view.entityViews.smiley.SmileyPointerFrame;
-import view.entityViews.smiley.SmileyPunchFrame;
 import view.entityViews.wyrm.WyrmFrame;
 
 import javax.swing.*;
 import java.awt.geom.Point2D;
 import java.io.IOException;
+import java.util.Random;
 
 
 public class GameLoop {
@@ -71,88 +64,19 @@ public class GameLoop {
             if (!KeyListener.getPauseGame()) {
 
 
-                //waves
-                wave.initWave1();
-                if (!wave1Created) {
-                    Game.getSoundPlayer().playSoundEffect("src/Sound/wave.wav");
-
-                    if(SettingsFrame.getChosenLevel()==0) {
-                        for (Squarantine squarantine : wave.wave1EasySquarantine) {
-                            Game.getSquarantine().add(squarantine);
-                            Game.getEnemies().add(squarantine);
-
-                        }
-                        for (Trigorath trigorath : wave.wave1EasyTrigorath) {
-                            Game.getTrigoraths().add(trigorath);
-                            Game.getEnemies().add(trigorath);
-                        }
-                        for(Necropick necropick : wave.wave1EasyNecropicks){
-                            Game.getNecropicks().add(necropick);
-                            Game.getEnemies().add(necropick);
-                        }
-                        for(Omenoct omenoct : wave.wave1EasyOmenoct){
-                            Game.getOmenocts().add(omenoct);
-                            Game.getEnemies().add(omenoct);
-
-                        }
-                        for(Archmire archmire : wave.wave1EasyArchmire){
-                            Game.getArchmires().add(archmire);
-                            Game.getEnemies().add(archmire);
-
-                        }
- //                       new SmileyFrame(400,100);
-//                       new SmileyPunchFrame(100,100, PunchType.QUAKE);
-//                        new SmileyPointerFrame(100,100, PunchType.LEFT);
-//                        new SmileyPointerFrame(600,100, PunchType.RIGHT);
-
-                        try {
-                            BlackOrbArray.createBlackOrbArray(120,150);
-                        } catch (IOException ex) {
-                            throw new RuntimeException(ex);
-                        }
-//                        BlackOrbArray.createInvisibleFrame();
- //                         WyrmFrame wyrmFrame =   new WyrmFrame(410,300);
- //                       WyrmFrame wyrmFrame1 =   new WyrmFrame(710,600);
-
-
-
-//                            Omenoct omenoct = new Omenoct(200,500);
-//                            Game.getEnemies().add(omenoct);
-//                            Game.getOmenocts().add(omenoct);
-//                            Necropick necropick = new Necropick(200,200);
-//                            Game.getEnemies().add(necropick);
-//                            Game.getNecropicks().add(necropick);
-
-//                        Archmire archmire = new Archmire(500,200, ArchmireType.LARGE);
-//                        Game.getEnemies().add(archmire);
-//                        Game.getArchmires().add(archmire);
 //
- //                       BarricadosFrame barricadosFrame = new BarricadosFrame(100,300, BarricadosType.T2);
-
-
-                    }else        if(SettingsFrame.getChosenLevel()==1) {
-                        for (Squarantine squarantine : wave.wave1MediumSquarantine) {
-                            Game.getSquarantine().add(squarantine);
-                            Game.getEnemies().add(squarantine);
-                        }
-                        for (Trigorath trigorath : wave.wave1MediumTrigorath) {
-                            Game.getTrigoraths().add(trigorath);
-                            Game.getEnemies().add(trigorath);
-                        }
-                    }else  if(SettingsFrame.getChosenLevel()==2) {
-                        for (Squarantine squarantine : wave.wave1HardSquarantine) {
-                            Game.getSquarantine().add(squarantine);
-                            Game.getEnemies().add(squarantine);
-                        }
-                        for (Trigorath trigorath : wave.wave1HardTrigorath) {
-                            Game.getTrigoraths().add(trigorath);
-                            Game.getEnemies().add(trigorath);
-                        }
-                    }
-                    wave1Created = true;
-                    GameInfo.setCurrentWave(1);
-                }
-
+//                if(!wave1Created) {
+//                    WyrmFrame wyrmFrame1 = new WyrmFrame(100, 100);
+//                    Necropick necropick1 = new Necropick(300, 300);
+//                    Game.getEnemies().add(necropick1);
+//                    Game.getNecropicks().add(necropick1);
+//                    wave1Created = true;
+//                }
+                wave.initWave1();
+                wave.initWave2();
+                wave.initWave3();
+                wave.initWave4();
+                wave.initWave5();
                 try {
                     objectsIntersection = new ObjectsIntersection(Game.getGameFrame());
                 } catch (IOException ex) {
@@ -160,154 +84,7 @@ public class GameLoop {
                 }
 
 
-                //if wave 1 ended create wave2
-                if (!wave2Created) {
-                    for (Trigorath trigorath : Game.getTrigoraths()) {
-                        if (trigorath.isDead()) {
-                            deadT++;
 
-                        }
-                    }
-                    for (Squarantine squarantine : Game.getSquarantine()) {
-                        if (squarantine.isDead()) {
-                            deadS++;
-
-                        }
-                    }
-                }
-                if (deadT >= Game.getTrigoraths().size() && deadS >= Game.getSquarantine().size()) {
-                    timeBetweenWave++;
-                    if (timeBetweenWave > 500){
-                        Game.getSquarantine().clear();
-                        Game.getTrigoraths().clear();
-                        Game.getEnemies().clear();
-                        //    if(nextWave>=200) {
-                        wave.initWave2();
-                        if (!wave2Created && wave1Created) {
-                            Game.getSoundPlayer().playSoundEffect("src/Sound/wave.wav");
-
-                            if(SettingsFrame.getChosenLevel()==0) {
-                                for (Squarantine squarantine : wave.wave2EasySquarantine) {
-                                    Game.getSquarantine().add(squarantine);
-                                    Game.getEnemies().add(squarantine);
-                                }
-                                for (Trigorath trigorath : wave.wave2EasyTrigorath) {
-                                    Game.getTrigoraths().add(trigorath);
-                                    Game.getEnemies().add(trigorath);
-                                }
-                            }else        if(SettingsFrame.getChosenLevel()==1) {
-                                for (Squarantine squarantine : wave.wave2MediumSquarantine) {
-                                    Game.getSquarantine().add(squarantine);
-                                    Game.getEnemies().add(squarantine);
-                                }
-                                for (Trigorath trigorath : wave.wave2MediumTrigorath) {
-                                    Game.getTrigoraths().add(trigorath);
-                                    Game.getEnemies().add(trigorath);
-                                }
-                            }else  if(SettingsFrame.getChosenLevel()==2) {
-                                for (Squarantine squarantine : wave.wave2HardSquarantine) {
-                                    Game.getSquarantine().add(squarantine);
-                                    Game.getEnemies().add(squarantine);
-                                }
-                                for (Trigorath trigorath : wave.wave2HardTrigorath) {
-                                    Game.getTrigoraths().add(trigorath);
-                                    Game.getEnemies().add(trigorath);
-                                }
-                            }
-                            wave2Created = true;
-                            GameInfo.setCurrentWave(2);
-                        }
-                        timeBetweenWave = 0;
-
-                    }
-                }
-                deadS = 0;
-                deadT =0 ;
-                if(!wave3Created) {
-                    for (Trigorath trigorath : Game.getTrigoraths()) {
-                        if (trigorath.isDead()) {
-                            deadT++;
-
-                        }
-                    }
-                    for (Squarantine squarantine : Game.getSquarantine()) {
-                        if (squarantine.isDead()) {
-                            deadS++;
-
-                        }
-                    }
-                }
-                if(deadT>= Game.getTrigoraths().size() && deadS>= Game.getSquarantine().size()) {
-                    timeBetweenWave++;
-                    if (timeBetweenWave > 500) {
-
-                        Game.getSquarantine().clear();
-                        Game.getTrigoraths().clear();
-                        Game.getEnemies().clear();
-
-                        wave.initWave3();
-                        if (!wave3Created && wave2Created) {
-                            Game.getSoundPlayer().playSoundEffect("src/Sound/wave.wav");
-
-                            if(SettingsFrame.getChosenLevel()==0) {
-                                for (Squarantine squarantine : Wave.wave3EasySquarantine) {
-                                    Game.getSquarantine().add(squarantine);
-                                    Game.getEnemies().add(squarantine);
-                                }
-                                for (Trigorath trigorath : wave.wave3EasyTrigorath) {
-                                    Game.getTrigoraths().add(trigorath);
-                                    Game.getEnemies().add(trigorath);
-                                }
-                            }else        if(SettingsFrame.getChosenLevel()==1) {
-                                for (Squarantine squarantine : wave.wave3MediumSquarantine) {
-                                    Game.getSquarantine().add(squarantine);
-                                    Game.getEnemies().add(squarantine);
-                                }
-                                for (Trigorath trigorath : wave.wave3MediumTrigorath) {
-                                    Game.getTrigoraths().add(trigorath);
-                                    Game.getEnemies().add(trigorath);
-                                }
-                            }else  if(SettingsFrame.getChosenLevel()==2) {
-                                for (Squarantine squarantine : wave.wave3HardSquarantine) {
-                                    Game.getSquarantine().add(squarantine);
-                                    Game.getEnemies().add(squarantine);
-                                }
-                                for (Trigorath trigorath : wave.wave3HardTrigorath) {
-                                    Game.getTrigoraths().add(trigorath);
-                                    Game.getEnemies().add(trigorath);
-                                }
-                            }
-                            wave3Created = true;
-                            GameInfo.setCurrentWave(3);
-                        }
-                        timeBetweenWave = 0;
-                    }
-                }
-
-                deadS = 0;
-                deadT =0 ;
-                if(wave3Created) {
-                    for (Trigorath trigorath : Game.getTrigoraths()) {
-                        if (trigorath.isDead()) {
-                            deadT++;
-
-                        }
-                    }
-                    for (Squarantine squarantine : Game.getSquarantine()) {
-                        if (squarantine.isDead()) {
-                            deadS++;
-
-                        }
-                    }
-                }
-                if(deadT>= Game.getTrigoraths().size() && deadS>= Game.getSquarantine().size()){
-                    win = true;
-                    if(Game.getEpsilon().getRadius()< GamePanel.getFRAME_WIDTH() && Game.getEpsilon().getRadius()<= GamePanel.getFRAME_HEIGHT()) {
-                        Game.getEpsilon().setRadius(Game.getEpsilon().getRadius() + 1);
-
-                    }
-
-                }
                 if(win && !hasPlayed){
                     Game.getSoundPlayer().playSoundEffect("src/Sound/gameover.wav");
                     hasPlayed = true;
@@ -484,7 +261,7 @@ public class GameLoop {
                     if(shotGun.isVisible()) intersectionSide = objectsIntersection.shotIntersectsFrame(shotGun);
                     if (intersectionSide != null) {
 
-                        if (shotGun.getExpansion() < 15) {
+                        if (shotGun.getExpansion() < 5) {
                             frameSize.expand(intersectionSide);
                             shotGun.setExpansion(shotGun.getExpansion() + 1);
 
@@ -530,6 +307,14 @@ public class GameLoop {
                     omenoct.move();
                     omenoct.shoot();
 
+                }
+
+                for(BlackOrb blackOrb : Game.getBlackOrbs()) {
+                    if (blackOrb.getSpot() == null) {
+                        Random random = new Random();
+                        int index = random.nextInt(Game.getBlackOrbs().size());
+                        Game.getBlackOrbs().get(index).avalanche();
+                    }
                 }
                 for(Archmire archmire : Game.getArchmires()){
 
@@ -589,6 +374,10 @@ public class GameLoop {
                     wyrmFrame.getWyrm().shot();
 
                 }
+//                for(int i=0; i<Game.getArchmires().size();i++){
+//                    Archmire archmire = Game.getArchmires().get(i);
+//                    if(!archmire.isMitosis()) archmire.createGhostArchmire();
+//                }
 
 
                 for(GameObjects enemy : Game.getEnemies()){

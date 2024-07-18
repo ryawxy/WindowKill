@@ -14,7 +14,7 @@ public class GameInfo  {
     private static LinkedHashMap<String,Boolean> trnsformLocks = new LinkedHashMap<>();
     private static LinkedHashMap<String,Boolean> defenceLocks = new LinkedHashMap<>();
     private static LinkedHashMap<String,Boolean> attackLocks = new LinkedHashMap<>();
-    private static int currentWave;
+    private  int currentWave;
 
     public  GameInfo(){
 
@@ -46,12 +46,12 @@ public class GameInfo  {
         return currentAbility;
     }
 
-    public static int getCurrentWave() {
+    public  int getCurrentWave() {
         return currentWave;
     }
 
-    public static void setCurrentWave(int currentWave) {
-        GameInfo.currentWave = currentWave;
+    public  void setCurrentWave(int currentWave) {
+        this.currentWave = currentWave;
     }
 
     public static LinkedHashMap<String, Boolean> getAttackLocks() {

@@ -16,7 +16,7 @@ public class SettingsFrame extends JFrame  {
     private final JSlider sound;
     private final JSlider keySensitivity;
     private final JSlider level;
-    private static final HashMap<String,Integer> keyBindings = new HashMap<>();
+    private static  HashMap<String,Integer> keyBindings = new HashMap<>();
     private static int chosenLevel;
     private static int chosenSound;
     private static int chosenSensitivity;
@@ -264,5 +264,9 @@ public class SettingsFrame extends JFrame  {
 
     public static int getChosenSensitivity() {
         return chosenSensitivity;
+    }
+
+    public static void setKeyBindings(HashMap<String, Integer> keyBindings) {
+        SettingsFrame.keyBindings = keyBindings;
     }
 }

@@ -19,7 +19,7 @@ public class GameInfoView implements Drawable {
             g.drawString("♥" + 0, 100, 20);
         }
         g.drawString(GameLoop.getMinutes()+":"+GameLoop.getSeconds(),195,20);
-        g.drawString(GameInfo.getCurrentWave()+"/3",290,20);
+        g.drawString(MyProject.getGameInfo().getCurrentWave()+"/3",290,20);
     }
     }
 

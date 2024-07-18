@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.Game;
 import Model.entity.ShotGun;
 import javax.swing.*;
 import java.util.ArrayList;
@@ -80,6 +81,7 @@ public class GameObjects extends JLabel {
                 setDead(true);
                 setShowCollectibles(true);
                 showCollectible();
+                Game.getKilledEnemies().add(this);
 
 
             }

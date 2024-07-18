@@ -1,531 +1,244 @@
 package Model;
 
+import Controller.Game;
 import Model.entity.*;
-import Model.enums.ArchmireType;
-import view.SettingsFrame;
-import view.entityViews.barricados.BarricadosPanel;
 
+
+import Model.entity.blackOrb.BlackOrb;
+import Model.entity.blackOrb.BlackOrbArray;
+import Model.enums.ArchmireType;
+import Model.enums.BarricadosType;
+import Model.enums.EnemyType;
+import myproject.MyProject;
+
+import view.GlassFrame;
+import view.entityViews.barricados.BarricadosFrame;
+import view.entityViews.blackOrb.BlackOrbFrame;
+import view.entityViews.wyrm.WyrmFrame;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Random;
 
 public class Wave {
-
-    public  ArrayList<Trigorath> wave1EasyTrigorath = new ArrayList<>();
-    public  ArrayList<Squarantine> wave1EasySquarantine = new ArrayList<>();
-    public  ArrayList<Necropick> wave1EasyNecropicks = new ArrayList<>();
-    public  ArrayList<Omenoct> wave1EasyOmenoct = new ArrayList<>();
-    public  ArrayList<Archmire> wave1EasyArchmire = new ArrayList<>();
-    public  ArrayList<Barricados> wave1EasyBarricados = new ArrayList<>();
-
-    public  ArrayList<Trigorath> wave1MediumTrigorath = new ArrayList<>();
-    public  ArrayList<Squarantine> wave1MediumSquarantine = new ArrayList<>();
-
-    public  ArrayList<Trigorath> wave1HardTrigorath = new ArrayList<>();
-    public  ArrayList<Squarantine> wave1HardSquarantine = new ArrayList<>();
-
-    public  ArrayList<Trigorath> wave2EasyTrigorath = new ArrayList<>();
-    public  ArrayList<Squarantine> wave2EasySquarantine = new ArrayList<>();
-
-    public  ArrayList<Trigorath> wave2MediumTrigorath = new ArrayList<>();
-    public  ArrayList<Squarantine> wave2MediumSquarantine = new ArrayList<>();
-
-    public  ArrayList<Trigorath> wave2HardTrigorath = new ArrayList<>();
-    public  ArrayList<Squarantine> wave2HardSquarantine = new ArrayList<>();
-    public ArrayList<Trigorath> wave3EasyTrigorath = new ArrayList<>();
-    public static ArrayList<Squarantine> wave3EasySquarantine = new ArrayList<>();
-
-    public ArrayList<Trigorath> wave3MediumTrigorath = new ArrayList<>();
-    public ArrayList<Squarantine> wave3MediumSquarantine = new ArrayList<>();
-
-    public ArrayList<Trigorath> wave3HardTrigorath = new ArrayList<>();
-    public ArrayList<Squarantine> wave3HardSquarantine = new ArrayList<>();
-    public ArrayList<BarricadosPanel> barricadosPanels = new ArrayList<>();
+    private final Random random = new Random();
+    private final LinkedList<EnemyType> enemyTypes = new LinkedList<>();
+    public final ArrayList<GameObjects> waveEnemy = new ArrayList<>();
+    private boolean stopWave1;
+    private boolean stopWave2;
+    private boolean stopWave3;
+    private boolean stopWave4;
+    private boolean stopWave5;
 
 
+    public Wave() {
 
-  static   Squarantine squarantine;
-   static Trigorath trigorath;
+        enemyTypes.add(EnemyType.Omenoct);
+        enemyTypes.add(EnemyType.Necropick);
+        enemyTypes.add(EnemyType.Wyrm);
+//        enemyTypes.add(EnemyType.MiniArchmire);
+//        enemyTypes.add(EnemyType.LargeArchmire);
+        enemyTypes.add(EnemyType.Blackorb);
+        enemyTypes.add(EnemyType.Barricados1);
+        enemyTypes.add(EnemyType.Barricados2);
 
-public  void initWave1(){
-
-
-    if(SettingsFrame.getChosenLevel()==0){
-        int [] xPoints = {50,40,60};
-        int [] yPoints = {20,40,40};
-
-        int [] xPoints2 = {150,140,160};
-        int [] yPoints2 = {120,140,140};
-
-        int [] xPoints3 = {250,240,260};
-        int [] yPoints3 = {220,240,240};
-
-        int [] xPoints4 = {75,95,95,75};
-        int [] yPoints4 = {75,75,95,95};
-
-        int [] xPoints5 = {175,195,195,175};
-        int [] yPoints5 = {175,175,195,195};
-
-        int[] xPoints6 = {370,360,340,330,340,360};
-        int[] yPoints6 = {350, (int) (350+20*Math.sqrt(3)/2),(int) (350+20*Math.sqrt(3)/2),350,(int) (350-20*Math.sqrt(3)/2),(int) (350-20*Math.sqrt(3)/2)};
-
-//        Omenoct omenoct = new Omenoct(350,350);
-//        omenoct.setxPoints(xPoints6);
-//        omenoct.setyPoints(yPoints6);
- //       wave1EasyOmenoct.add(omenoct);
-//
-//        squarantine = new Squarantine(185,185);
-//        squarantine.setxPoints(xPoints5);
-//        squarantine.setyPoints(yPoints5);
-//        wave1EasySquarantine.add(squarantine);
-//
-//        trigorath = new Trigorath(50,33);
-//        trigorath.setxPoints(xPoints);
-//        trigorath.setyPoints(yPoints);
-//        wave1EasyTrigorath.add(trigorath);
-//
-//        trigorath = new Trigorath(150,133);
-//        trigorath.setxPoints(xPoints2);
-//        trigorath.setyPoints(yPoints2);
-//        wave1EasyTrigorath.add(trigorath);
-
-        trigorath = new Trigorath(250,233);
-        trigorath.setxPoints(xPoints3);
-        trigorath.setyPoints(yPoints3);
-        trigorath.setLocalxPoints(xPoints3);
-        trigorath.setLocalyPoints(yPoints3);
-        wave1EasyTrigorath.add(trigorath);
-
-//        Archmire archmire = new Archmire(50,50, ArchmireType.MINI);
-     //   wave1EasyArchmire.add(archmire);
-
-        Necropick necropick = new Necropick(300,300);
-    //    wave1EasyNecropicks.add(necropick);
-
-//        Barricados barricados = new Barricados(100,100);
-//        wave1EasyBarricados.add(barricados);
-    //    BarricadosPanel panel = new BarricadosPanel();
-    //    barricadosPanels.add(panel);
-
-    }
-    if(SettingsFrame.getChosenLevel()==1){
-        int [] xPoints = {50,40,60};
-        int [] yPoints = {20,40,40};
-
-        int [] xPoints2 = {150,140,160};
-        int [] yPoints2 = {120,140,140};
-
-        int [] xPoints3 = {250,240,260};
-        int [] yPoints3 = {220,240,240};
-
-        int [] xPoints4 = {75,95,95,75};
-        int [] yPoints4 = {75,75,95,95};
-
-        int [] xPoints5 = {675,695,695,675};
-        int [] yPoints5 = {675,675,695,695};
-
-
-        squarantine = new Squarantine(685,685);
-        squarantine.setxPoints(xPoints5);
-        squarantine.setyPoints(yPoints5);
-        wave1MediumSquarantine.add(squarantine);
-
-        squarantine = new Squarantine(85,85);
-        squarantine.setxPoints(xPoints4);
-        squarantine.setyPoints(yPoints4);
-        wave1MediumSquarantine.add(squarantine);
-
-        trigorath = new Trigorath(50,33);
-        trigorath.setxPoints(xPoints);
-        trigorath.setyPoints(yPoints);
-        wave1MediumTrigorath.add(trigorath);
-
-        trigorath = new Trigorath(150,133);
-        trigorath.setxPoints(xPoints2);
-        trigorath.setyPoints(yPoints2);
-        wave1MediumTrigorath.add(trigorath);
-
-        trigorath = new Trigorath(250,233);
-        trigorath.setxPoints(xPoints3);
-        trigorath.setyPoints(yPoints3);
-        wave1MediumTrigorath.add(trigorath);
-    }
-    if(SettingsFrame.getChosenLevel()==2){
-        int [] xPoints = {50,40,60};
-        int [] yPoints = {20,40,40};
-
-        int [] xPoints2 = {150,140,160};
-        int [] yPoints2 = {120,140,140};
-
-        int [] xPoints3 = {250,240,260};
-        int [] yPoints3 = {220,240,240};
-
-        int [] xPoints4 = {75,95,95,75};
-        int [] yPoints4 = {75,75,95,95};
-
-        int [] xPoints5 = {675,695,695,675};
-        int [] yPoints5 = {675,675,695,695};
-
-        int [] xPoints6 = {450,440,460};
-        int [] yPoints6 = {420,440,440};
-
-        squarantine = new Squarantine(685,685);
-        squarantine.setxPoints(xPoints5);
-        squarantine.setyPoints(yPoints5);
-        wave1HardSquarantine.add(squarantine);
-
-        squarantine = new Squarantine(85,85);
-        squarantine.setxPoints(xPoints4);
-        squarantine.setyPoints(yPoints4);
-        wave1HardSquarantine.add(squarantine);
-
-        trigorath = new Trigorath(50,33);
-        trigorath.setxPoints(xPoints);
-        trigorath.setyPoints(yPoints);
-        wave1HardTrigorath.add(trigorath);
-
-        trigorath = new Trigorath(150,133);
-        trigorath.setxPoints(xPoints2);
-        trigorath.setyPoints(yPoints2);
-        wave1HardTrigorath.add(trigorath);
-
-        trigorath = new Trigorath(250,233);
-        trigorath.setxPoints(xPoints3);
-        trigorath.setyPoints(yPoints3);
-        wave1HardTrigorath.add(trigorath);
-
-        trigorath = new Trigorath(450,433);
-        trigorath.setxPoints(xPoints6);
-        trigorath.setyPoints(yPoints6);
-        wave1HardTrigorath.add(trigorath);
+        MyProject.getGameInfo().setCurrentWave(1);
     }
 
-}
+    public void initWave1() {
+        if (MyProject.getGameInfo().getCurrentWave() == 1) {
+            if (Math.random() < 0.001) {
+                if (Game.getKilledEnemies().isEmpty()) {
+                    if (!stopWave1) {
+                        int index = random.nextInt(5);
+                        EnemyType enemyType = enemyTypes.get(index);
+                        int x = random.nextInt(GlassFrame.getINSTANCE().getWidth());
+                        int y = random.nextInt(GlassFrame.getINSTANCE().getHeight());
 
+                       generateEnemy(enemyType, x, y);
+
+
+                    }
+                } else stopWave1 = true;
+            }
+
+            if (stopWave1) {
+                if (Game.getKilledEnemies().size() == waveEnemy.size()) {
+                    MyProject.getGameInfo().setCurrentWave(2);
+                    waveEnemy.clear();
+
+                    Game.getKilledEnemies().clear();
+
+                }
+            }
+        }
+    }
     public void initWave2(){
-        if(SettingsFrame.getChosenLevel()==0){
-            int [] xPoints = {50,40,60};
-            int [] yPoints = {20,40,40};
+        if(MyProject.getGameInfo().getCurrentWave()==2){
+            if(Math.random()<0.005) {
+                if (Game.getKilledEnemies().isEmpty()) {
+                    if (!stopWave2) {
+                        int index = random.nextInt(6);
+                        EnemyType enemyType = enemyTypes.get(index);
+                        int x = random.nextInt(GlassFrame.getINSTANCE().getWidth());
+                        int y = random.nextInt(GlassFrame.getINSTANCE().getHeight());
 
-            int [] xPoints2 = {150,140,160};
-            int [] yPoints2 = {120,140,140};
-
-            int [] xPoints4 = {75,95,95,75};
-            int [] yPoints4 = {75,75,95,95};
-
-            int [] xPoints5 = {275,295,295,275};
-            int [] yPoints5 = {275,275,295,295};
-
-            squarantine = new Squarantine(85,85);
-            squarantine.setxPoints(xPoints4);
-            squarantine.setyPoints(yPoints4);
-            wave2EasySquarantine.add(squarantine);
-
-//            squarantine = new Squarantine(285,285);
-//            squarantine.setxPoints(xPoints5);
-//            squarantine.setyPoints(yPoints5);
-//            wave2EasySquarantine.add(squarantine);
-//
-//            trigorath = new Trigorath(50,33);
-//            trigorath.setxPoints(xPoints);
-//            trigorath.setyPoints(yPoints);
-//            wave2EasyTrigorath.add(trigorath);
-//
-//            trigorath = new Trigorath(150,133);
-//            trigorath.setxPoints(xPoints2);
-//            trigorath.setyPoints(yPoints2);
-//            wave2EasyTrigorath.add(trigorath);
+                        generateEnemy(enemyType, x, y);
 
 
-        }
-        if(SettingsFrame.getChosenLevel()==1){
-            int [] xPoints = {50,40,60};
-            int [] yPoints = {20,40,40};
+                    }
+                } else stopWave2 = true;
+            }
 
-            int [] xPoints2 = {150,140,160};
-            int [] yPoints2 = {120,140,140};
+            if(stopWave2) {
+                if (Game.getKilledEnemies().size() == waveEnemy.size()) {
+                    MyProject.getGameInfo().setCurrentWave(3);
+                    waveEnemy.clear();
+                    Game.getKilledEnemies().clear();
 
-            int [] xPoints4 = {75,95,95,75};
-            int [] yPoints4 = {75,75,95,95};
-
-            int [] xPoints5 = {275,295,295,275};
-            int [] yPoints5 = {275,275,295,295};
-
-            int [] xPoints6 = {575,595,595,575};
-            int [] yPoints6 = {575,575,595,595};
-
-            int [] xPoints7 = {275,295,295,275};
-            int [] yPoints7 = {275,275,295,295};
-
-            squarantine = new Squarantine(85,85);
-            squarantine.setxPoints(xPoints4);
-            squarantine.setyPoints(yPoints4);
-            wave2MediumSquarantine.add(squarantine);
-
-            squarantine = new Squarantine(585,585);
-            squarantine.setxPoints(xPoints6);
-            squarantine.setyPoints(yPoints6);
-            wave2MediumSquarantine.add(squarantine);
-
-            squarantine = new Squarantine(285,285);
-            squarantine.setxPoints(xPoints5);
-            squarantine.setyPoints(yPoints5);
-            wave2MediumSquarantine.add(squarantine);
-
-            trigorath = new Trigorath(50,33);
-            trigorath.setxPoints(xPoints);
-            trigorath.setyPoints(yPoints);
-            wave2MediumTrigorath.add(trigorath);
-
-            trigorath = new Trigorath(150,133);
-            trigorath.setxPoints(xPoints2);
-            trigorath.setyPoints(yPoints2);
-            wave2MediumTrigorath.add(trigorath);
-
-            trigorath = new Trigorath(250,233);
-            trigorath.setxPoints(xPoints7);
-            trigorath.setyPoints(yPoints7);
-            wave2MediumTrigorath.add(trigorath);
-
-        }
-        if(SettingsFrame.getChosenLevel()==2){
-            int [] xPoints = {50,40,60};
-            int [] yPoints = {20,40,40};
-
-            int [] xPoints2 = {150,140,160};
-            int [] yPoints2 = {120,140,140};
-
-            int [] xPoints3 = {250,240,260};
-            int [] yPoints3 = {220,240,240};
-
-            int [] xPoints4 = {75,95,95,75};
-            int [] yPoints4 = {75,75,95,95};
-
-            int [] xPoints5 = {675,695,695,675};
-            int [] yPoints5 = {675,675,695,695};
-
-            int [] xPoints6 = {450,440,460};
-            int [] yPoints6 = {420,440,440};
-
-            int [] xPoints7 = {550,540,560};
-            int [] yPoints7 = {520,540,540};
-
-
-            squarantine = new Squarantine(685,685);
-            squarantine.setxPoints(xPoints5);
-            squarantine.setyPoints(yPoints5);
-            wave2HardSquarantine.add(squarantine);
-
-            squarantine = new Squarantine(85,85);
-            squarantine.setxPoints(xPoints4);
-            squarantine.setyPoints(yPoints4);
-            wave2HardSquarantine.add(squarantine);
-
-//            trigorath = new Trigorath(50,33);
-//            trigorath.setxPoints(xPoints);
-//            trigorath.setyPoints(yPoints);
-//            wave2HardTrigorath.add(trigorath);
-
-            trigorath = new Trigorath(150,133);
-            trigorath.setxPoints(xPoints2);
-            trigorath.setyPoints(yPoints2);
-            wave2HardTrigorath.add(trigorath);
-
-            trigorath = new Trigorath(250,233);
-            trigorath.setxPoints(xPoints3);
-            trigorath.setyPoints(yPoints3);
-            wave2HardTrigorath.add(trigorath);
-
-            trigorath = new Trigorath(450,433);
-            trigorath.setxPoints(xPoints6);
-            trigorath.setyPoints(yPoints6);
-            wave2HardTrigorath.add(trigorath);
-
-            trigorath = new Trigorath(550,533);
-            trigorath.setxPoints(xPoints7);
-            trigorath.setyPoints(yPoints7);
-            wave2HardTrigorath.add(trigorath);
+                }
+            }
         }
     }
     public void initWave3(){
-        if(SettingsFrame.getChosenLevel()==0){
-            int [] xPoints = {50,40,60};
-            int [] yPoints = {20,40,40};
+        if(MyProject.getGameInfo().getCurrentWave()==3){
+            if(Math.random()<0.005) {
+                if (Game.getKilledEnemies().isEmpty()) {
+                    if (!stopWave3) {
+                        int index = random.nextInt(6);
+                        EnemyType enemyType = enemyTypes.get(index);
+                        int x = random.nextInt(GlassFrame.getINSTANCE().getWidth());
+                        int y = random.nextInt(GlassFrame.getINSTANCE().getHeight());
 
-            int [] xPoints2 = {150,140,160};
-            int [] yPoints2 = {120,140,140};
+                        generateEnemy(enemyType, x, y);
 
-            int [] xPoints3 = {250,240,260};
-            int [] yPoints3 = {220,240,240};
 
-            int [] xPoints4 = {75,95,95,75};
-            int [] yPoints4 = {75,75,95,95};
+                    }
+                } else stopWave3 = true;
+            }
 
-            int [] xPoints5 = {350,340,360};
-            int [] yPoints5 = {320,340,340};
+            if(stopWave3) {
+                if (Game.getKilledEnemies().size() == waveEnemy.size()) {
+                    MyProject.getGameInfo().setCurrentWave(4);
+                    waveEnemy.clear();
+                    Game.getKilledEnemies().clear();
 
-            int [] xPoints6 = {450,440,460};
-            int [] yPoints6 = {420,440,440};
-
-            int [] xPoints7 = {575,595,595,575};
-            int [] yPoints7 = {575,575,595,595};
-
-            squarantine = new Squarantine(85,85);
-            squarantine.setxPoints(xPoints4);
-            squarantine.setyPoints(yPoints4);
-            wave3EasySquarantine.add(squarantine);
-//
-            squarantine = new Squarantine(585,585);
-            squarantine.setxPoints(xPoints7);
-            squarantine.setyPoints(yPoints7);
-            wave3EasySquarantine.add(squarantine);
-
-            trigorath = new Trigorath(50,33);
-            trigorath.setxPoints(xPoints);
-            trigorath.setyPoints(yPoints);
-            wave3EasyTrigorath.add(trigorath);
-
-            trigorath = new Trigorath(150,133);
-            trigorath.setxPoints(xPoints2);
-            trigorath.setyPoints(yPoints2);
-            wave3EasyTrigorath.add(trigorath);
-
-            trigorath = new Trigorath(250,233);
-            trigorath.setxPoints(xPoints3);
-            trigorath.setyPoints(yPoints3);
-            wave3EasyTrigorath.add(trigorath);
-
-            trigorath = new Trigorath(350,333);
-            trigorath.setxPoints(xPoints5);
-            trigorath.setyPoints(yPoints5);
-            wave3EasyTrigorath.add(trigorath);
-
-            trigorath = new Trigorath(450,433);
-            trigorath.setxPoints(xPoints6);
-            trigorath.setyPoints(yPoints6);
-            wave3EasyTrigorath.add(trigorath);
+                }
+            }
         }
-        if(SettingsFrame.getChosenLevel()==1){
-            int [] xPoints = {50,40,60};
-            int [] yPoints = {20,40,40};
+    }
+    public void initWave4(){
+        if(MyProject.getGameInfo().getCurrentWave()==4){
+            if(Math.random()<0.005) {
+                if (Game.getKilledEnemies().isEmpty()) {
+                    if (!stopWave4) {
+                        int index = random.nextInt(6);
+                        EnemyType enemyType = enemyTypes.get(index);
+                        int x = random.nextInt(GlassFrame.getINSTANCE().getWidth());
+                        int y = random.nextInt(GlassFrame.getINSTANCE().getHeight());
 
-            int [] xPoints2 = {150,140,160};
-            int [] yPoints2 = {120,140,140};
-
-            int [] xPoints4 = {75,95,95,75};
-            int [] yPoints4 = {75,75,95,95};
-
-            int [] xPoints5 = {275,295,295,275};
-            int [] yPoints5 = {275,275,295,295};
-
-            int [] xPoints6 = {575,595,595,575};
-            int [] yPoints6 = {575,575,595,595};
-
-            int [] xPoints7 = {275,295,295,275};
-            int [] yPoints7 = {275,275,295,295};
-
-            int [] xPoints8 = {375,395,395,375};
-            int [] yPoints8 = {375,375,395,395};
-
-            squarantine = new Squarantine(85,85);
-            squarantine.setxPoints(xPoints4);
-            squarantine.setyPoints(yPoints4);
-            wave3MediumSquarantine.add(squarantine);
-
-            squarantine = new Squarantine(585,585);
-            squarantine.setxPoints(xPoints6);
-            squarantine.setyPoints(yPoints6);
-            wave3MediumSquarantine.add(squarantine);
-
-            squarantine = new Squarantine(285,285);
-            squarantine.setxPoints(xPoints5);
-            squarantine.setyPoints(yPoints5);
-            wave3MediumSquarantine.add(squarantine);
+                       generateEnemy(enemyType, x, y);
 
 
-            squarantine = new Squarantine(385,385);
-            squarantine.setxPoints(xPoints8);
-            squarantine.setyPoints(yPoints8);
-            wave3MediumSquarantine.add(squarantine);
+                    }
+                } else stopWave4 = true;
+            }
 
-            trigorath = new Trigorath(50,33);
-            trigorath.setxPoints(xPoints);
-            trigorath.setyPoints(yPoints);
-            wave3MediumTrigorath.add(trigorath);
+            if(stopWave4) {
+                if (Game.getKilledEnemies().size() == waveEnemy.size()) {
+                    MyProject.getGameInfo().setCurrentWave(5);
+                    waveEnemy.clear();
+                    Game.getKilledEnemies().clear();
 
-            trigorath = new Trigorath(150,133);
-            trigorath.setxPoints(xPoints2);
-            trigorath.setyPoints(yPoints2);
-            wave3MediumTrigorath.add(trigorath);
-
-            trigorath = new Trigorath(250,233);
-            trigorath.setxPoints(xPoints7);
-            trigorath.setyPoints(yPoints7);
-            wave3MediumTrigorath.add(trigorath);
+                }
+            }
         }
-        if(SettingsFrame.getChosenLevel()==2){
-            int [] xPoints = {50,40,60};
-            int [] yPoints = {20,40,40};
+    }
+    public void initWave5(){
+        if(MyProject.getGameInfo().getCurrentWave()==5){
+            if(Math.random()<0.005) {
+                if (Game.getKilledEnemies().isEmpty()) {
+                    if (!stopWave5) {
+                        int index = random.nextInt(4);
+                        EnemyType enemyType = enemyTypes.get(index);
+                        int x = random.nextInt(GlassFrame.getINSTANCE().getWidth());
+                        int y = random.nextInt(GlassFrame.getINSTANCE().getHeight());
 
-            int [] xPoints2 = {150,140,160};
-            int [] yPoints2 = {120,140,140};
+                        generateEnemy(enemyType, x, y);
 
-            int [] xPoints3 = {250,240,260};
-            int [] yPoints3 = {220,240,240};
 
-            int [] xPoints4 = {75,95,95,75};
-            int [] yPoints4 = {75,75,95,95};
+                    }
+                } else stopWave5 = true;
+            }
 
-            int [] xPoints5 = {675,695,695,675};
-            int [] yPoints5 = {675,675,695,695};
+            if(stopWave5) {
+                if (Game.getKilledEnemies().size() == waveEnemy.size()) {
+                    MyProject.getGameInfo().setCurrentWave(6);
+                    waveEnemy.clear();
+                    Game.getKilledEnemies().clear();
 
-            int [] xPoints6 = {450,440,460};
-            int [] yPoints6 = {420,440,440};
-
-            int [] xPoints7 = {550,540,560};
-            int [] yPoints7 = {520,540,540};
-
-            int [] xPoints8 = {275,295,295,275};
-            int [] yPoints8 = {275,275,295,295};
-
-            squarantine = new Squarantine(685,685);
-            squarantine.setxPoints(xPoints5);
-            squarantine.setyPoints(yPoints5);
-            wave3HardSquarantine.add(squarantine);
-//
-//            squarantine = new Squarantine(85,85);
-//            squarantine.setxPoints(xPoints4);
-//            squarantine.setyPoints(yPoints4);
-//            wave3HardSquarantine.add(squarantine);
-
-            squarantine = new Squarantine(285,285);
-            squarantine.setxPoints(xPoints8);
-            squarantine.setyPoints(yPoints8);
-            wave3HardSquarantine.add(squarantine);
-
-            trigorath = new Trigorath(50,33);
-            trigorath.setxPoints(xPoints);
-            trigorath.setyPoints(yPoints);
-            wave3HardTrigorath.add(trigorath);
-
-            trigorath = new Trigorath(150,133);
-            trigorath.setxPoints(xPoints2);
-            trigorath.setyPoints(yPoints2);
-            wave3HardTrigorath.add(trigorath);
-
-            trigorath = new Trigorath(250,233);
-            trigorath.setxPoints(xPoints3);
-            trigorath.setyPoints(yPoints3);
-            wave3HardTrigorath.add(trigorath);
-
-            trigorath = new Trigorath(450,433);
-            trigorath.setxPoints(xPoints6);
-            trigorath.setyPoints(yPoints6);
-            wave3HardTrigorath.add(trigorath);
-
-            trigorath = new Trigorath(550,533);
-            trigorath.setxPoints(xPoints7);
-            trigorath.setyPoints(yPoints7);
-            wave3HardTrigorath.add(trigorath);
+                }
+            }
         }
+    }
+
+    public void generateEnemy(EnemyType enemyType,int x,int y)  {
+        GameObjects enemy;
+        if(enemyType.equals(EnemyType.Omenoct)){
+            enemy = new Omenoct(x,y);
+            waveEnemy.add(enemy);
+        }
+        else if(enemyType.equals(EnemyType.Barricados1)){
+          BarricadosFrame barricadosFrame =   new BarricadosFrame(x,y,BarricadosType.T1);
+            enemy = barricadosFrame.getBarricados();
+
+        }
+        else if(enemyType.equals(EnemyType.Barricados2)){
+            BarricadosFrame barricadosFrame =   new BarricadosFrame(x,y,BarricadosType.T2);
+            enemy = barricadosFrame.getBarricados();
+        }
+//        else if(enemyType.equals(EnemyType.MiniArchmire)){
+//            enemy =  new Archmire(x,y, ArchmireType.MINI);
+//            waveEnemy.add(enemy);
+//        }
+//        else if(enemyType.equals(EnemyType.LargeArchmire)){
+//            enemy =  new Archmire(x,y, ArchmireType.LARGE);
+//            waveEnemy.add(enemy);
+//        }
+        else if(enemyType.equals(EnemyType.Wyrm)) {
+            WyrmFrame wyrmFrame = new WyrmFrame(x,y);
+            enemy = wyrmFrame.getWyrm();
+            waveEnemy.add(enemy);
+
+        }
+        else if(enemyType.equals(EnemyType.Blackorb)) {
+            boolean hasMAde = false;
+            for (GameObjects gameObjects : waveEnemy) {
+                if (gameObjects instanceof BlackOrb) {
+                    hasMAde = true;
+                    break;
+                }
+            }
+            if (!hasMAde) {
+                BlackOrbArray blackOrbArray = new BlackOrbArray();
+                try {
+                    blackOrbArray.createBlackOrbArray(x, y);
+                    blackOrbArray.createInvisibleFrame();
+                    for (BlackOrbFrame blackOrbFrame : blackOrbArray.getBlackOrbArray())
+                        waveEnemy.add(blackOrbFrame.getBlackOrb());
+                } catch (IOException ignored) {
+
+                }
+
+            }
+        }
+        else if(enemyType.equals(EnemyType.Necropick)) {
+            enemy = new Necropick(x,y);
+            waveEnemy.add(enemy);
+        }
+
+
     }
 
 

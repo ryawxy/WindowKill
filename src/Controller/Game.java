@@ -40,7 +40,7 @@ public class Game {
     private static view.GameInfoView gameInfoView;
     protected static GamePanel gamePanel;
     protected static KeyListener keyListener;
-    protected MouseListener mouseListener;
+    protected static MouseListener mouseListener;
     private static SoundPlayer soundPlayer;
     private  static ArrayList<Cerberus> cerberuses;
     private static ArrayList<GameObjects> enemies;
@@ -58,6 +58,7 @@ public class Game {
     private static final ArrayList<SmileyPunch> smileyPunches = new ArrayList<>();
     private static final ArrayList<SmileyPunchFrame> smileyPunchFrames = new ArrayList<>();
     private static final ArrayList<Smiley> smilies = new ArrayList<>();
+    private static final ArrayList<GameObjects> killedEnemies = new ArrayList<>();
 
 
     public Game() throws IOException, AWTException {
@@ -225,8 +226,12 @@ public class Game {
     public static ArrayList<Smiley> getSmilies() {
         return smilies;
     }
+    public static ArrayList<GameObjects> getKilledEnemies() {
+        return killedEnemies;
+    }
 
-    public static KeyListener getKeyListener() {
-        return keyListener;
+
+    public static MouseListener getMouseListener() {
+        return mouseListener;
     }
 }

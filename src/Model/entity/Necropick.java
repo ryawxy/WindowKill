@@ -22,6 +22,8 @@ public class Necropick extends GameObjects implements Movable {
         getLocalFrames().clear();
         getLocalFrames().add(getLocalFrame());
         setHP(10);
+        Game.getEnemies().add(this);
+        Game.getNecropicks().add(this);
     }
 
     @Override

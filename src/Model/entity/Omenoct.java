@@ -24,6 +24,8 @@ public class Omenoct extends GameObjects implements Movable {
         setPreviousLocalFrame(Game.getEpsilon().getLocalFrame());
         getLocalFrames().add(getLocalFrame());
         setHP(20);
+        Game.getEnemies().add(this);
+        Game.getOmenocts().add(this);
     }
 
     @Override

@@ -4,7 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="made laser damages better" />
+    <list default="true" id="161ac71f-a5a9-4511-bf91-8bc668c1c09d" name="Changes" comment="made laser damages better">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/MouseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MouseListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/BossAttack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/BossAttack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/GameInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameLoop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/GameObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/GameObjects.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/ObjectsIntersection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ObjectsIntersection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Wave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Wave.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/entity/Archmire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/entity/Archmire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/entity/Necropick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/entity/Necropick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/entity/Omenoct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/entity/Omenoct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/entity/blackOrb/BlackOrb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/entity/blackOrb/BlackOrb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/entity/blackOrb/BlackOrbArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/entity/blackOrb/BlackOrbArray.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/entity/blackOrb/Laser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/entity/blackOrb/Laser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/entity/smiley/SmileyPunch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/entity/smiley/SmileyPunch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/enums/EnemyType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/enums/EnemyType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/GameInfoView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/GameInfoView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/SettingsFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/SettingsFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/entityViews/blackOrb/LaserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/entityViews/blackOrb/LaserView.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,7 +57,7 @@
     </excluded-from-favorite>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="wyrm" />
+        <entry key="$PROJECT_DIR$" value="smiley" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -50,14 +71,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;smiley&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/MinGW/shabakee/DMServerside&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "masterV2.0",
+    "last_opened_file_path": "C:/Users/Namazi/Favorites/WindowKill"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Namazi\Ap2024\WindowKill2\src" />

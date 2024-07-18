@@ -17,7 +17,7 @@ import java.util.Random;
 public class Archmire extends GameObjects implements Movable {
     private ArchmireType archmireType;
     private final ArrayList<Footprint> footprints;
-    private boolean ghost = true;
+    private boolean mitosis;
 
     public Archmire(int x, int y, ArchmireType archmireType) {
         super(x, y);
@@ -27,6 +27,8 @@ public class Archmire extends GameObjects implements Movable {
         getLocalFrames().add(getLocalFrame());
         setHP(30);
         footprints = new ArrayList<>();
+        Game.getEnemies().add(this);
+        Game.getArchmires().add(this);
 
     }
 
@@ -81,12 +83,6 @@ public class Archmire extends GameObjects implements Movable {
         }
     }
 
-    @Override
-    public void decreaseHP(int decrement) {
-        super.decreaseHP(decrement);
-
-    }
-
     public void createGhostArchmire(){
         if(isDead() && !archmireType.equals(ArchmireType.GHOST)) {
 
@@ -101,12 +97,14 @@ public class Archmire extends GameObjects implements Movable {
                 Archmire archmire = new Archmire(x,y,ArchmireType.GHOST);
                 archmire.setWidth(getWidth()/2);
                 archmire.setHeight(getHeight()/2);
+                archmire.setHP(15);
                 archmire.setLocalFrame(getLocalFrame());
                 archmire.setPreviousLocalFrame(getLocalFrame());
                 archmire.getLocalFrames().clear();
                 archmire.getLocalFrames().add(archmire.getLocalFrame());
                 Game.getEnemies().add(archmire);
                 Game.getArchmires().add(archmire);
+                setMitosis(true);
 
             }
         }
@@ -117,7 +115,7 @@ public class Archmire extends GameObjects implements Movable {
         if(archmireType.equals(ArchmireType.MINI)) return Constants.miniArchmireWidth();
         if(archmireType.equals(ArchmireType.LARGE)) return Constants.largeArchmireWidth();
 
-        return 0;
+        return 50;
     }
 
     @Override
@@ -125,7 +123,7 @@ public class Archmire extends GameObjects implements Movable {
         if(archmireType.equals(ArchmireType.MINI)) return Constants.miniArchmireHeight();
         if(archmireType.equals(ArchmireType.LARGE)) return Constants.largeArchmireHeight();
 
-        return 0;
+        return 50;
     }
     public ArchmireType getsize() {
         return archmireType;
@@ -140,11 +138,15 @@ public class Archmire extends GameObjects implements Movable {
         else return 5;
     }
 
-    public boolean isGhost() {
-        return ghost;
+    public boolean isMitosis() {
+        return mitosis;
     }
 
-    public void setGhost(boolean ghost) {
-        this.ghost = ghost;
+    public void setMitosis(boolean ghost) {
+        this.mitosis = ghost;
+    }
+
+    public ArchmireType getArchmireType() {
+        return archmireType;
     }
 }

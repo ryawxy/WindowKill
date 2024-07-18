@@ -71,4 +71,14 @@ public class Laser extends GameObjects {
     public void setAngle(double angle) {
         this.angle = angle;
     }
+
+    @Override
+    public int getWidth() {
+        return getImage().getWidth(null);
+    }
+
+    @Override
+    public int getHeight() {
+        return getImage().getHeight(null);
+    }
 }

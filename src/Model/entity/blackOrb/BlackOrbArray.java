@@ -21,7 +21,7 @@ public class BlackOrbArray {
    static BufferedImage image;
    private static int time;
 
-    public static void createBlackOrbArray(int x, int y) throws IOException {
+    public  void createBlackOrbArray(int x, int y) throws IOException {
 
 
         int sideLength = 180;
@@ -40,8 +40,9 @@ public class BlackOrbArray {
                 Game.getEnemies().add(blackOrbFrame.getBlackOrb());
 
                 blackOrbArray.add(blackOrbFrame);
-                Game.getFrames().add(blackOrbFrame);
-                Game.getBlackOrbFrames().add(blackOrbFrame);
+
+
+
 
             }
 
@@ -69,8 +70,8 @@ public class BlackOrbArray {
                     double angle = Math.atan2(globalY2 - globalY1, globalX2 - globalX1);
                     double x1 = blackOrbArray.get(i).getBlackOrb().getLocalX() ;
                     double y1 = blackOrbArray.get(i).getBlackOrb().getLocalY() ;
-                    double x2 = x1 + 180 * Math.cos(angle);
-                    double y2 = y1 + 180 * Math.sin(angle);
+                    double x2 = x1 + 170 * Math.cos(angle);
+                    double y2 = y1 + 170 * Math.sin(angle);
 
 
                     // Calculate the angle of the diameter
@@ -108,7 +109,7 @@ public class BlackOrbArray {
         }
 
     }
-    public static void createInvisibleFrame(){
+    public  void createInvisibleFrame(){
                int  xLoc = blackOrbArray.get(4).getX()+blackOrbArray.get(4).getWidth();
       int  width = Math.abs(xLoc-blackOrbArray.get(1).getX());
       int  yLoc = (int) blackOrbArray.get(2).getY()+blackOrbArray.get(2).getHeight();
@@ -138,5 +139,25 @@ public class BlackOrbArray {
         g2d.dispose();
         return rotated;
     }
+    public void avalanche(){
+
+            Polygon pentagon = new Polygon();
+            int[] xPoints = new int[5];
+            int[] yPoints = new int[5];
+
+            for(int i=0;i<blackOrbArray.size();i++){
+                xPoints[i] = blackOrbArray.get(i).getX()+blackOrbArray.get(i).getBlackOrb().getLocalX();
+                yPoints[i] = blackOrbArray.get(i).getY()+blackOrbArray.get(i).getBlackOrb().getLocalY();
+
+            }
+            pentagon = new Polygon(xPoints,yPoints,5);
+
+
+    }
+
+    public  ArrayList<BlackOrbFrame> getBlackOrbArray() {
+        return blackOrbArray;
+    }
+
 }
 

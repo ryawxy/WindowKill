@@ -107,6 +107,7 @@ public class ObjectsIntersection {
 
         //epsilon shots enemy
         for(ShotGun shotGun : Game.getEpsilonShots()) {
+
         for(GameObjects enemy : Game.getEnemies()){
 
 
@@ -120,8 +121,6 @@ public class ObjectsIntersection {
                             if (enemy1.intersects(shot)) {
                                 enemy.decreaseHP(5);
                                 shotGun.setVisible(false);
-                                System.out.println(enemy.getHP());
-
                                 IntersectionPoint point = new IntersectionPoint(new Point2D.Double(shotGun.getLocalX(), shotGun.getLocalY()), 10, false, false, epsilon, enemy);
                                 intersectionPoints.add(point);
                             }
@@ -274,7 +273,8 @@ public class ObjectsIntersection {
                 if(!enemy1.equals(enemy2) && !(enemy1 instanceof Archmire) && !(enemy2 instanceof Archmire) &&
                         !(enemy1 instanceof BlackOrb) && !(enemy2 instanceof BlackOrb) && !(enemy1 instanceof Smiley) &&
                         !(enemy2 instanceof Smiley) && !(enemy2 instanceof SmileyPointFinger) &&!(enemy1 instanceof SmileyPointFinger)
-                &&!(enemy1 instanceof SmileyPunch) && !(enemy2 instanceof SmileyPunch) && !(enemy1 instanceof Laser) && !(enemy2 instanceof Laser)) {
+                &&!(enemy1 instanceof SmileyPunch) && !(enemy2 instanceof SmileyPunch) && !(enemy1 instanceof Laser) && !(enemy2 instanceof Laser)
+               && !(enemy1 instanceof Wyrm) && !(enemy2 instanceof Wyrm) ) {
                     if (enemy1.isVisible() && enemy2.isVisible()) {
                         Rectangle e1 = new Rectangle(enemy1.getLocalX()+enemy1.getLocalFrame().getX(), enemy1.getLocalY()+enemy1.getLocalFrame().getY(), enemy1.getWidth(), enemy1.getHeight());
                         Rectangle e2 = new Rectangle(enemy2.getLocalX()+enemy2.getLocalFrame().getX(), enemy2.getLocalY()+enemy2.getLocalFrame().getY(), enemy2.getWidth(), enemy2.getHeight());
@@ -404,14 +404,17 @@ public void vertexIntersectsNecropick(){
                                 epsilonCenter.distance(footprintCenter) <= Math.abs(arcRadius1 - (double)epsilon.getRadius() / 2)) {
                             if ((currentTime - lastTime) / 1000 >= 1) {
                                 lastTime = currentTime;
-                                epsilon.decreaseHP(2);
+                                if(archmire.getArchmireType().equals(ArchmireType.GHOST)) epsilon.decreaseHP(1);
+                                else epsilon.decreaseHP(2);
+
                             }
                         }
                     if (epsilonCenter.distance(archmireCenter) <= Math.abs(arcRadius - (double) epsilon.getRadius() / 2) ||
                             epsilonCenter.distance(footprintCenter) <= Math.abs(arcRadius1 - (double) epsilon.getRadius() / 2)) {
                         if ((currentTime - lastTime3) / 1000 >= 1) {
                             lastTime3 = currentTime;
-                            epsilon.decreaseHP(10);
+                            if(archmire.getArchmireType().equals(ArchmireType.GHOST)) epsilon.decreaseHP(1);
+                           else epsilon.decreaseHP(10);
                         }
                     }
 
@@ -425,7 +428,8 @@ public void vertexIntersectsNecropick(){
                                 || distance <= Math.abs(arcRadius - (double) enemy.getWidth() /2) || distance <= Math.abs(enemy.getHeight()/2)){
                                     if ((currentTime - lastTime2) / 1000 >= 1) {
                                         lastTime2 = currentTime;
-                                        enemy.decreaseHP(2);
+                                        if(archmire.getArchmireType().equals(ArchmireType.GHOST)) enemy.decreaseHP(1);
+                                        else enemy.decreaseHP(2);
                                     }
                                 }
                                 double distance2 = enemyCenter.distance(archmireCenter);
@@ -433,6 +437,7 @@ public void vertexIntersectsNecropick(){
                                         || distance2 <= Math.abs(arcRadius - (double) enemy.getWidth() /2) || distance2 <= Math.abs(enemy.getHeight()/2)){
                                     if ((currentTime - lastTime4) / 1000 >= 1) {
                                         lastTime4 = currentTime;
+                                        if(archmire.getArchmireType().equals(ArchmireType.GHOST)) enemy.decreaseHP(5);
                                         enemy.decreaseHP(10);
                                     }
                                 }
@@ -588,7 +593,7 @@ public void vertexIntersectsNecropick(){
 
                             IntersectionPoint intersectionPoint = new IntersectionPoint(new Point2D.Double(barricados.getLocalX(),
                                     barricados.getLocalY()),
-                                    5, false, false, barricados, epsilon);
+                                    3, false, false, barricados, epsilon);
                             intersectionPoints.add(intersectionPoint);
                         }
                     }
