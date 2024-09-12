@@ -1,6 +1,6 @@
 # Project Title:
 
-### Window Kill Game Simulation
+### Window Kill Game Simulation - Phase 1 and Phase 2
 
 # Description:
 
